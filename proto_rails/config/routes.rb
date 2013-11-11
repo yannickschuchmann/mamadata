@@ -1,4 +1,6 @@
 ProtoRails::Application.routes.draw do
+  resources :supporters
+
   resources :beneficiaries
 
   # The priority is based upon order of creation: first created -> highest priority.
