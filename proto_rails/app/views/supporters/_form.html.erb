@@ -61,15 +61,15 @@
   </div>
     <div class="field">
     <%= f.label :is_volunteer %><br>
-    <%= f.number_field :is_volunteer %>
+    <%= f.check_box :is_volunteer %>
   </div>
   <div class="field">
     <%= f.label :begin_of_work %><br>
-    <%= f.text_field :begin_of_work %>
+    <%= f.date_select :begin_of_work %>
   </div>
     <div class="field">
     <%= f.label :end_of_work %><br>
-    <%= f.number_field :end_of_work %>
+    <%= f.date_select :end_of_work %>
   </div>
   <div class="field">
     <%= f.label :type_of_work %><br>
