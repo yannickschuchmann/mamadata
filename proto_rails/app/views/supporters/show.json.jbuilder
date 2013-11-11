@@ -1,0 +1,1 @@
+json.extract! @supporter, :organisation, :name, :family_name, :date_of_birth, :country, :city, :street, :zipcode, :email, :website, :telephone_number, :godfather, :is_volunteer, :begin_of_work, :end_of_work, :type_of_work, :created_at, :updated_at
