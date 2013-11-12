@@ -1,4 +1,6 @@
 ProtoRails::Application.routes.draw do
+  resources :ben_family_members
+
   resources :supporters
 
   resources :beneficiaries

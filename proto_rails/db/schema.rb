@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131112225547) do
+ActiveRecord::Schema.define(version: 20131112230242) do
+
+  create_table "ben_family_members", force: true do |t|
+    t.integer  "beneficiary_id"
+    t.string   "relation"
+    t.string   "status"
+    t.string   "name"
+    t.string   "surname"
+    t.date     "date_of_birth"
+    t.string   "profession"
+    t.integer  "income"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "beneficiaries", force: true do |t|
     t.string   "name"

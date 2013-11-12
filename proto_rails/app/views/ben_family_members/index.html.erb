@@ -1,0 +1,41 @@
+<h1>Listing ben_family_members</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Beneficiary</th>
+      <th>Relation</th>
+      <th>Status</th>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Date of birth</th>
+      <th>Profession</th>
+      <th>Income</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ben_family_members.each do |ben_family_member| %>
+      <tr>
+        <td><%= ben_family_member.beneficiary %></td>
+        <td><%= ben_family_member.relation %></td>
+        <td><%= ben_family_member.status %></td>
+        <td><%= ben_family_member.name %></td>
+        <td><%= ben_family_member.surname %></td>
+        <td><%= ben_family_member.date_of_birth %></td>
+        <td><%= ben_family_member.profession %></td>
+        <td><%= ben_family_member.income %></td>
+        <td><%= link_to 'Show', ben_family_member %></td>
+        <td><%= link_to 'Edit', edit_ben_family_member_path(ben_family_member) %></td>
+        <td><%= link_to 'Destroy', ben_family_member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ben family member', new_ben_family_member_path %>
