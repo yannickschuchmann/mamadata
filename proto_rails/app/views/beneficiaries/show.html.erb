@@ -55,5 +55,30 @@
   <%= @beneficiary.pin_code %>
 </p>
 
+<p>
+    <strong>Surname</strong>
+    <%= @beneficiary.surname %>
+  </p>
+  <p>
+    <strong>Narrative Text</strong>
+    <%= @beneficiary.narrative_text %>
+  </p>
+  <p>
+    <strong>School Name</strong>
+    <%= @beneficiary.school_name %>
+  </p>
+  <p>
+    <strong>School Type</strong>
+    <%= @beneficiary.school_type %>
+  </p>
+    <p>
+    <strong>School Class</strong>
+    <%= @beneficiary.school_class %>
+  </p>
+    <p>
+    <strong>Health Condition</strong>
+    <%= @beneficiary.health_condition %>
+  </p>
+
 <%= link_to 'Edit', edit_beneficiary_path(@beneficiary) %> |
 <%= link_to 'Back', beneficiaries_path %>

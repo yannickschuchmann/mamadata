@@ -69,6 +69,6 @@ class BeneficiariesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def beneficiary_params
-      params.require(:beneficiary).permit(:name, :fathers_name, :gender, :date_of_birth, :place_of_birth, :native_place, :house_name, :house_number, :street_name, :city, :pin_code)
+      params.require(:beneficiary).permit(:name, :fathers_name, :gender, :date_of_birth, :place_of_birth, :native_place, :house_name, :house_number, :street_name, :city, :pin_code, :surname, :narrative_text, :school_name, :school_type, :school_class, :health_condition)
     end
 end
