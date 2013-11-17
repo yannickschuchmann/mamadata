@@ -1,0 +1,93 @@
+<%= form_for(@person) do |f| %>
+  <% if @person.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
+
+      <ul>
+      <% @person.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :fathers_name %><br>
+    <%= f.text_field :fathers_name %>
+  </div>
+  <div class="field">
+    <%= f.label :gender %><br>
+    <%= f.text_field :gender %>
+  </div>
+  <div class="field">
+    <%= f.label :date_of_birth %><br>
+    <%= f.date_select :date_of_birth %>
+  </div>
+  <div class="field">
+    <%= f.label :place_of_birth %><br>
+    <%= f.text_field :place_of_birth %>
+  </div>
+  <div class="field">
+    <%= f.label :native_place %><br>
+    <%= f.text_field :native_place %>
+  </div>
+  <div class="field">
+    <%= f.label :name_of_the_house %><br>
+    <%= f.text_field :name_of_the_house %>
+  </div>
+  <div class="field">
+    <%= f.label :number_of_the_house %><br>
+    <%= f.number_field :number_of_the_house %>
+  </div>
+  <div class="field">
+    <%= f.label :name_of_the_street %><br>
+    <%= f.text_field :name_of_the_street %>
+  </div>
+  <div class="field">
+    <%= f.label :city %><br>
+    <%= f.text_field :city %>
+  </div>
+  <div class="field">
+    <%= f.label :pin_code %><br>
+    <%= f.number_field :pin_code %>
+  </div>
+  <div class="field">
+    <%= f.label :religion %><br>
+    <%= f.text_field :religion %>
+  </div>
+  <div class="field">
+    <%= f.label :caste %><br>
+    <%= f.text_field :caste %>
+  </div>
+  <div class="field">
+    <%= f.label :education %><br>
+    <%= f.text_field :education %>
+  </div>
+  <div class="field">
+    <%= f.label :marital_status %><br>
+    <%= f.text_field :marital_status %>
+  </div>
+  <div class="field">
+    <%= f.label :health_condition %><br>
+    <%= f.text_field :health_condition %>
+  </div>
+  <div class="field">
+    <%= f.label :occupation %><br>
+    <%= f.text_field :occupation %>
+  </div>
+  <div class="field">
+    <%= f.label :income %><br>
+    <%= f.number_field :income %>
+  </div>
+  <div class="field">
+    <%= f.label :role %><br>
+    <%= f.text_field :role %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

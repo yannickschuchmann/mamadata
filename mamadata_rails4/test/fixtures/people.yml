@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  fathers_name: MyString
+  gender: MyString
+  date_of_birth: 2013-11-17
+  place_of_birth: MyString
+  native_place: MyString
+  name_of_the_house: MyString
+  number_of_the_house: 1
+  name_of_the_street: MyString
+  city: MyString
+  pin_code: 1
+  religion: MyString
+  caste: MyString
+  education: MyString
+  marital_status: MyString
+  health_condition: MyString
+  occupation: MyString
+  income: 1
+  role_id: 
+
+two:
+  name: MyString
+  fathers_name: MyString
+  gender: MyString
+  date_of_birth: 2013-11-17
+  place_of_birth: MyString
+  native_place: MyString
+  name_of_the_house: MyString
+  number_of_the_house: 1
+  name_of_the_street: MyString
+  city: MyString
+  pin_code: 1
+  religion: MyString
+  caste: MyString
+  education: MyString
+  marital_status: MyString
+  health_condition: MyString
+  occupation: MyString
+  income: 1
+  role_id: 
