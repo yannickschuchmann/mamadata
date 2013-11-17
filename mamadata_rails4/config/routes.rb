@@ -1,4 +1,6 @@
 MamadataRails4::Application.routes.draw do
+  resources :roles
+
   resources :people
 
   root 'people#index'
