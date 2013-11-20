@@ -13,7 +13,24 @@
 
   <div class="field">
     <%= f.label :program %><br>
-    <%= f.text_field :program %>
+    <!-- 
+      Multiple Select funktioniert noch nicht, wird noch nicht abgespeichert
+    -->
+    <%= f.select(:program, [['Sponsorship', 'Sponsorship'],
+                                  ['Evening Homework Help Centre', 'Evening Homework Help Centre'],
+                                  ['Day Care Centre', 'Day Care Centre'],
+                                  ['Mobile Library', 'Mobile Library'],
+                                  ['Outreach Program', 'Outreach Program'],
+                                  ["Girls' Program", "Girls' Program"],
+                                  ['Shelter', 'Shelter'],
+                                  ['Spirulina', 'Spirulina'],
+                                  ['VTC', 'VTC'],
+                                  ['Creches', 'Creches'],
+                                  ['Community Development', 'Community Development']
+                                 ],{ :prompt => "Please select"},
+                                   { :multiple => true, :size => 10 }
+                                 ) %>
+    <% f.text_field :program %>
   </div>
   <div class="field">
     <%= f.label :school_name %><br>
@@ -21,15 +38,16 @@
   </div>
   <div class="field">
     <%= f.label :school_type %><br>
-    <%= f.text_field :school_type %>
+    <%= f.select :school_type, ["government", "government aided", "private"]%>
+    <% f.text_field :school_type %>
   </div>
   <div class="field">
     <%= f.label :school_language %><br>
-    <%= f.text_field :school_language %>
+    <%= f.select :school_language, ["English", "Tamil"]%>
   </div>
   <div class="field">
     <%= f.label :school_class %><br>
-    <%= f.text_field :school_class %>
+    <%= f.select :school_class, ["LKG", "UKG", 1,2,3,4,5,6,7,8,9,10,11,12, "College"]%>
   </div>
   <div class="field">
     <%= f.label :narrative_text %><br>
