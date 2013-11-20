@@ -38,8 +38,5 @@ end
 # Use unicorn as the app server
 # gem 'unicorn'
 
-# Use Capistrano for deployment
-#gem 'capistrano',  '~> 3.0.1'
-#gem 'capistrano-rails', '~> 1.1.0'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
