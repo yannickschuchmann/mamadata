@@ -1,0 +1,49 @@
+<%= form_for(@beneficiary) do |f| %>
+  <% if @beneficiary.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@beneficiary.errors.count, "error") %> prohibited this beneficiary from being saved:</h2>
+
+      <ul>
+      <% @beneficiary.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :program %><br>
+    <%= f.text_field :program %>
+  </div>
+  <div class="field">
+    <%= f.label :school_name %><br>
+    <%= f.text_field :school_name %>
+  </div>
+  <div class="field">
+    <%= f.label :school_type %><br>
+    <%= f.text_field :school_type %>
+  </div>
+  <div class="field">
+    <%= f.label :school_language %><br>
+    <%= f.text_field :school_language %>
+  </div>
+  <div class="field">
+    <%= f.label :school_class %><br>
+    <%= f.text_field :school_class %>
+  </div>
+  <div class="field">
+    <%= f.label :narrative_text %><br>
+    <%= f.text_area :narrative_text %>
+  </div>
+  <div class="field">
+    <%= f.label :godfather %><br>
+    <%= f.text_field :godfather %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.text_field :status %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

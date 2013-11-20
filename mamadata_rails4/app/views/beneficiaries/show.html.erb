@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Program:</strong>
+  <%= @beneficiary.program %>
+</p>
+
+<p>
+  <strong>School name:</strong>
+  <%= @beneficiary.school_name %>
+</p>
+
+<p>
+  <strong>School type:</strong>
+  <%= @beneficiary.school_type %>
+</p>
+
+<p>
+  <strong>School language:</strong>
+  <%= @beneficiary.school_language %>
+</p>
+
+<p>
+  <strong>School class:</strong>
+  <%= @beneficiary.school_class %>
+</p>
+
+<p>
+  <strong>Narrative text:</strong>
+  <%= @beneficiary.narrative_text %>
+</p>
+
+<p>
+  <strong>Godfather:</strong>
+  <%= @beneficiary.godfather %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @beneficiary.status %>
+</p>
+
+<%= link_to 'Edit', edit_beneficiary_path(@beneficiary) %> |
+<%= link_to 'Back', beneficiaries_path %>

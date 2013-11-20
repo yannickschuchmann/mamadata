@@ -1,8 +1,9 @@
 MamadataRails4::Application.routes.draw do
+  resources :beneficiaries
   resources :roles
-
   resources :people
   resources :supporters
+
   root 'people#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

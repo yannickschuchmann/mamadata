@@ -1,0 +1,41 @@
+<h1>Listing beneficiaries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Program</th>
+      <th>School name</th>
+      <th>School type</th>
+      <th>School language</th>
+      <th>School class</th>
+      <th>Narrative text</th>
+      <th>Godfather</th>
+      <th>Status</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @beneficiaries.each do |beneficiary| %>
+      <tr>
+        <td><%= beneficiary.program %></td>
+        <td><%= beneficiary.school_name %></td>
+        <td><%= beneficiary.school_type %></td>
+        <td><%= beneficiary.school_language %></td>
+        <td><%= beneficiary.school_class %></td>
+        <td><%= beneficiary.narrative_text %></td>
+        <td><%= beneficiary.godfather %></td>
+        <td><%= beneficiary.status %></td>
+        <td><%= link_to 'Show', beneficiary %></td>
+        <td><%= link_to 'Edit', edit_beneficiary_path(beneficiary) %></td>
+        <td><%= link_to 'Destroy', beneficiary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Beneficiary', new_beneficiary_path %>
