@@ -1,0 +1,89 @@
+<h1>Listing community_developments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Head of household</th>
+      <th>Type of family</th>
+      <th>Residental status</th>
+      <th>House posession</th>
+      <th>House type</th>
+      <th>Electricity</th>
+      <th>Water from</th>
+      <th>Toilet facility</th>
+      <th>Rain harvesting</th>
+      <th>Want rain harvesting</th>
+      <th>Earning members of family</th>
+      <th>Source of income</th>
+      <th>Land details</th>
+      <th>Any savings</th>
+      <th>Mode of savings</th>
+      <th>Debts</th>
+      <th>Reason for debt</th>
+      <th>Family members addicted to</th>
+      <th>Family members addicted who</th>
+      <th>Family disabled</th>
+      <th>Family type of handicap</th>
+      <th>Family chronic deseases</th>
+      <th>Family chronic deseases which</th>
+      <th>Family children vaccined</th>
+      <th>Family knowledge of family planning</th>
+      <th>Family undergone family planning</th>
+      <th>Home remedies for illnesses</th>
+      <th>Illness treatment</th>
+      <th>Family school dropout</th>
+      <th>Family dropout reason for</th>
+      <th>Family dropout present condition</th>
+      <th>Family skilled in art</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @community_developments.each do |community_development| %>
+      <tr>
+        <td><%= community_development.head_of_household_id %></td>
+        <td><%= community_development.type_of_family %></td>
+        <td><%= community_development.residental_status %></td>
+        <td><%= community_development.house_posession %></td>
+        <td><%= community_development.house_type %></td>
+        <td><%= community_development.electricity %></td>
+        <td><%= community_development.water_from %></td>
+        <td><%= community_development.toilet_facility %></td>
+        <td><%= community_development.rain_harvesting %></td>
+        <td><%= community_development.want_rain_harvesting %></td>
+        <td><%= community_development.earning_members_of_family %></td>
+        <td><%= community_development.source_of_income %></td>
+        <td><%= community_development.land_details %></td>
+        <td><%= community_development.any_savings %></td>
+        <td><%= community_development.mode_of_savings %></td>
+        <td><%= community_development.debts %></td>
+        <td><%= community_development.reason_for_debt %></td>
+        <td><%= community_development.family_members_addicted_to %></td>
+        <td><%= community_development.family_members_addicted_who %></td>
+        <td><%= community_development.family_disabled %></td>
+        <td><%= community_development.family_type_of_handicap %></td>
+        <td><%= community_development.family_chronic_deseases %></td>
+        <td><%= community_development.family_chronic_deseases_which %></td>
+        <td><%= community_development.family_children_vaccined %></td>
+        <td><%= community_development.family_knowledge_of_family_planning %></td>
+        <td><%= community_development.family_undergone_family_planning %></td>
+        <td><%= community_development.home_remedies_for_illnesses %></td>
+        <td><%= community_development.illness_treatment %></td>
+        <td><%= community_development.family_school_dropout %></td>
+        <td><%= community_development.family_dropout_reason_for %></td>
+        <td><%= community_development.family_dropout_present_condition %></td>
+        <td><%= community_development.family_skilled_in_art %></td>
+        <td><%= link_to 'Show', community_development %></td>
+        <td><%= link_to 'Edit', edit_community_development_path(community_development) %></td>
+        <td><%= link_to 'Destroy', community_development, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Community development', new_community_development_path %>

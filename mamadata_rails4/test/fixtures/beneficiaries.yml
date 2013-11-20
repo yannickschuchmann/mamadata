@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  program_id: 
+  school_name: MyString
+  school_type: MyString
+  school_language: MyString
+  school_class: MyString
+  narrative_text: MyText
+  godfather_id: 
+  status: MyString
+
+two:
+  program_id: 
+  school_name: MyString
+  school_type: MyString
+  school_language: MyString
+  school_class: MyString
+  narrative_text: MyText
+  godfather_id: 
+  status: MyString

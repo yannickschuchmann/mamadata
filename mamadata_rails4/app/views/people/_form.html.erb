@@ -21,11 +21,11 @@
   </div>
   <div class="field">
     <%= f.label :gender %><br>
-    <%= f.text_field :gender %>
+    <%= f.select :gender, ["male", "female"] %>
   </div>
   <div class="field">
     <%= f.label :date_of_birth %><br>
-    <%= f.date_select :date_of_birth %>
+    <%= f.date_select :date_of_birth, :start_year => 1920 %>
   </div>
   <div class="field">
     <%= f.label :place_of_birth %><br>
@@ -57,27 +57,34 @@
   </div>
   <div class="field">
     <%= f.label :religion %><br>
-    <%= f.text_field :religion %>
+    <%= f.select :religion, ["Hindu", "Christian", "Muslim", "Other"]%>
+    <!--
+      Hier muss eine entsprechende Weiche rein, damit der nicht das leere Feld nimmt, deswegen ist es hier auskommentiert.
+      In der Datenbank wird nämlich das letzte Feld gespeichert
+    -->
+    <% f.text_field :religion %>
   </div>
   <div class="field">
     <%= f.label :caste %><br>
-    <%= f.text_field :caste %>
+    <%= f.select :caste, ["Scheduled Caste", "Most Backward Class", "Backward Class", "Other"]%>
+    <% f.text_field :caste %>
   </div>
   <div class="field">
     <%= f.label :education %><br>
-    <%= f.text_field :education %>
+    <%= f.select :education, ["Primary", "High", "Hr Secondary", "College", "Vocational"]%>
   </div>
   <div class="field">
     <%= f.label :marital_status %><br>
-    <%= f.text_field :marital_status %>
+    <%= f.select :marital_status, ["none", "married", "widow/widower", "deserted", "divorced", "seperated"]%>
   </div>
   <div class="field">
     <%= f.label :health_condition %><br>
-    <%= f.text_field :health_condition %>
+    <%= f.select :health_condition, ["normal", "disabled", "mentally retarded"]%>
   </div>
   <div class="field">
     <%= f.label :occupation %><br>
-    <%= f.text_field :occupation %>
+    <%= f.select :occupation, ["none", "student", "agricultural coolie", "small farmer", "industrial worker", "government employee", "other"]%>
+    <% f.text_field :occupation %>
   </div>
   <div class="field">
     <%= f.label :income %><br>
