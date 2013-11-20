@@ -1,7 +1,7 @@
 class CreateCommunityDevelopments < ActiveRecord::Migration
   def change
     create_table :community_developments do |t|
-      t.reference :head_of_household
+      t.references :head_of_household
       t.string :type_of_family
       t.string :residental_status
       t.string :house_posession

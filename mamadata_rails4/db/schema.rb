@@ -11,7 +11,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131117193456) do
+ActiveRecord::Schema.define(version: 20131120200836) do
+
+  create_table "beneficiaries", force: true do |t|
+    t.integer  "program_id"
+    t.string   "school_name"
+    t.string   "school_type"
+    t.string   "school_language"
+    t.string   "school_class"
+    t.text     "narrative_text"
+    t.integer  "godfather_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "beneficiaries", ["godfather_id"], name: "index_beneficiaries_on_godfather_id"
+  add_index "beneficiaries", ["program_id"], name: "index_beneficiaries_on_program_id"
+
+  create_table "community_developments", force: true do |t|
+    t.integer  "head_of_household_id"
+    t.string   "type_of_family"
+    t.string   "residental_status"
+    t.string   "house_posession"
+    t.string   "house_type"
+    t.boolean  "electricity"
+    t.string   "water_from"
+    t.boolean  "toilet_facility"
+    t.boolean  "rain_harvesting"
+    t.boolean  "want_rain_harvesting"
+    t.integer  "earning_members_of_family"
+    t.string   "source_of_income"
+    t.string   "land_details"
+    t.boolean  "any_savings"
+    t.string   "mode_of_savings"
+    t.boolean  "debts"
+    t.string   "reason_for_debt"
+    t.string   "family_members_addicted_to"
+    t.string   "family_members_addicted_who"
+    t.boolean  "family_disabled"
+    t.string   "family_type_of_handicap"
+    t.boolean  "family_chronic_deseases"
+    t.string   "family_chronic_deseases_which"
+    t.boolean  "family_children_vaccined"
+    t.boolean  "family_knowledge_of_family_planning"
+    t.boolean  "family_undergone_family_planning"
+    t.boolean  "home_remedies_for_illnesses"
+    t.string   "illness_treatment"
+    t.boolean  "family_school_dropout"
+    t.text     "family_dropout_reason_for"
+    t.text     "family_dropout_present_condition"
+    t.string   "family_skilled_in_art"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "people", force: true do |t|
     t.string   "name"
@@ -62,6 +115,12 @@ ActiveRecord::Schema.define(version: 20131117193456) do
     t.date     "begin_of_work"
     t.date     "end_of_work"
     t.string   "type_of_work"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tests", force: true do |t|
+    t.boolean  "asdf"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
