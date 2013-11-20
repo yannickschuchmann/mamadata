@@ -1,0 +1,69 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  head_of_household: 
+  type_of_family: MyString
+  residental_status: MyString
+  house_posession: MyString
+  house_type: MyString
+  electricity: false
+  water_from: MyString
+  toilet_facility: false
+  rain_harvesting: false
+  want_rain_harvesting: false
+  earning_members_of_family: 1
+  source_of_income: MyString
+  land_details: MyString
+  any_savings: false
+  mode_of_savings: MyString
+  debts: false
+  reason_for_debt: MyString
+  family_members_addicted_to: MyString
+  family_members_addicted_who: MyString
+  family_disabled: false
+  family_type_of_handicap: MyString
+  family_chronic_deseases: false
+  family_chronic_deseases_which: MyString
+  family_children_vaccined: false
+  family_knowledge_of_family_planning: false
+  family_undergone_family_planning: false
+  home_remedies_for_illnesses: false
+  illness_treatment: MyString
+  family_school_dropout: false
+  family_dropout_reason_for: MyText
+  family_dropout_present_condition: MyText
+  family_skilled_in_art: MyString
+
+two:
+  head_of_household: 
+  type_of_family: MyString
+  residental_status: MyString
+  house_posession: MyString
+  house_type: MyString
+  electricity: false
+  water_from: MyString
+  toilet_facility: false
+  rain_harvesting: false
+  want_rain_harvesting: false
+  earning_members_of_family: 1
+  source_of_income: MyString
+  land_details: MyString
+  any_savings: false
+  mode_of_savings: MyString
+  debts: false
+  reason_for_debt: MyString
+  family_members_addicted_to: MyString
+  family_members_addicted_who: MyString
+  family_disabled: false
+  family_type_of_handicap: MyString
+  family_chronic_deseases: false
+  family_chronic_deseases_which: MyString
+  family_children_vaccined: false
+  family_knowledge_of_family_planning: false
+  family_undergone_family_planning: false
+  home_remedies_for_illnesses: false
+  illness_treatment: MyString
+  family_school_dropout: false
+  family_dropout_reason_for: MyText
+  family_dropout_present_condition: MyText
+  family_skilled_in_art: MyString
