@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131120200836) do
+ActiveRecord::Schema.define(version: 20131122210136) do
 
   create_table "beneficiaries", force: true do |t|
     t.integer  "program_id"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(version: 20131120200836) do
 
   add_index "beneficiaries", ["godfather_id"], name: "index_beneficiaries_on_godfather_id"
   add_index "beneficiaries", ["program_id"], name: "index_beneficiaries_on_program_id"
+
+  create_table "benefits", force: true do |t|
+    t.string   "name"
+    t.string   "descriptioin"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "community_developments", force: true do |t|
     t.integer  "head_of_household_id"
@@ -91,6 +98,20 @@ ActiveRecord::Schema.define(version: 20131120200836) do
   end
 
   add_index "people", ["role_id"], name: "index_people_on_role_id"
+
+  create_table "program_benefit_relationships", force: true do |t|
+    t.integer  "program_id"
+    t.integer  "benefit_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "programs", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", force: true do |t|
     t.string   "name"
