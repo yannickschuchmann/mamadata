@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  program_benefit_relationship_id: 1
+  amount: 1
+  remark: MyString
+
+two:
+  user_id: 1
+  program_benefit_relationship_id: 1
+  amount: 1
+  remark: MyString

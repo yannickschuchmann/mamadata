@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @benefit_incident.user_id %>
+</p>
+
+<p>
+  <strong>Program benefit relationship:</strong>
+  <%= @benefit_incident.program_benefit_relationship_id %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @benefit_incident.amount %>
+</p>
+
+<p>
+  <strong>Remark:</strong>
+  <%= @benefit_incident.remark %>
+</p>
+
+<%= link_to 'Edit', edit_benefit_incident_path(@benefit_incident) %> |
+<%= link_to 'Back', benefit_incidents_path %>
