@@ -1,4 +1,8 @@
 MamadataRails4::Application.routes.draw do
+  resources :benefits
+
+  resources :programs
+
   resources :community_developments
 
   resources :beneficiaries
