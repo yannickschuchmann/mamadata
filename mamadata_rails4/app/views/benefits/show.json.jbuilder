@@ -1,1 +1,1 @@
-json.extract! @benefit, :name, :descriptioin, :created_at, :updated_at
+json.extract! @benefit, :name, :description, :created_at, :updated_at
