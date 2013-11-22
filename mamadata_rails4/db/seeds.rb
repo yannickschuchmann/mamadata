@@ -40,7 +40,7 @@ Benefit.create(name: "Counseling", description: "Medical Activities")
 Benefit.create(name: "Medical Camp", description: "Medical Activities")
 Benefit.create(name: "Medical Aid", description: "Medical Activities")
 Benefit.create(name: "Medical Insurance", description: "Medical Activities")
-Benefit.create(name: "Emergency Relief ", description: "Medical Activities")
+Benefit.create(name: "Emergency Relief", description: "Medical Activities")
 Benefit.create(name: "Higher Education Loan/Fees", description: "School Activities")
 Benefit.create(name: "School Fees", description: "School Activities")
 Benefit.create(name: "Boarding Fees", description: "School Activities")
@@ -61,12 +61,19 @@ Benefit.create(name: "Fares and Transportation", description: "Transport Activit
 Benefit.create(name: "Auto charges", description: "ITransport Activities")
 Benefit.create(name: "Provisions (grocery)", description: "Transport Activities")
 Benefit.create(name: "Sport Materials", description: "Transport Activities")
-Benefit.create(name: "Study Material (Notebooks, Bag, Uniform, Books, Special Guide, Stationary)", description: "Study Material")
-Benefit.create(name: "Study Instruments (e.g Calculater, Mini Drafter, Geometry Box)", description: "Study Material")
+Benefit.create(name: "Study Material", description: "Study Material  (Notebooks, Bag, Uniform, Books, Special Guide, Stationary)")
+Benefit.create(name: "Study Instruments", description: "Study Material  (e.g Calculater, Mini Drafter, Geometry Box)")
 Benefit.create(name: "Laptop", description: "Study Material")
 Benefit.create(name: "Milk and snacks", description: "Nutrition Support")
 Benefit.create(name: "Spirulina", description: "Nutrition Support")
 Benefit.create(name: "Cerelac/ Milk/ Horlicks", description: "Nutrition Support")
 Benefit.create(name: "Microcredit", description: "Nutrition Support")
 
+sponsorship_benefits = ["Training and Placements","Summer Camp","Festivals/Celebrations/Visits","Counseling","Medical Camp","Medical Aid","Emergency Relief","Higher Education Loan/Fees","School Fees","Boarding Fees",
+	"Project Fees","Tuition Fees","Type-writing fees","Computer Fees","Tailoring Course Fees","Required dress","Uniform Stitching Charges","Footwear","Cycle","Fares and Transportation","Auto charges", "Provisions (grocery)",
+	"Study Material","Study Instruments","Laptop","Milk and snacks","Spirulina","Cerelac/ Milk/ Horlicks","Microcredit",]
+
+sponsorship_benefits.each do |name|
+sponsorship.add_benefit(Benefit.find_by_name(name))
+end	
 
