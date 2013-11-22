@@ -15,7 +15,7 @@
     <% @benefits.each do |benefit| %>
       <tr>
         <td><%= benefit.name %></td>
-        <td><%= benefit.descriptioin %></td>
+        <td><%= benefit.description %></td>
         <td><%= link_to 'Show', benefit %></td>
         <td><%= link_to 'Edit', edit_benefit_path(benefit) %></td>
         <td><%= link_to 'Destroy', benefit, method: :delete, data: { confirm: 'Are you sure?' } %></td>

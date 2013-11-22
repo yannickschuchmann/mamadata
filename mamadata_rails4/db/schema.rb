@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131122210136) do
+ActiveRecord::Schema.define(version: 20131122221509) do
 
   create_table "beneficiaries", force: true do |t|
     t.integer  "program_id"
@@ -29,9 +29,18 @@ ActiveRecord::Schema.define(version: 20131122210136) do
   add_index "beneficiaries", ["godfather_id"], name: "index_beneficiaries_on_godfather_id"
   add_index "beneficiaries", ["program_id"], name: "index_beneficiaries_on_program_id"
 
+  create_table "benefit_incidents", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "program_benefit_relationship_id"
+    t.integer  "amount"
+    t.string   "remark"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "benefits", force: true do |t|
     t.string   "name"
-    t.string   "descriptioin"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
