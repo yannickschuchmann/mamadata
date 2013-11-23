@@ -13,11 +13,15 @@
 
   <div class="field">
     <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+    <%= f.select :user_id, Person.all.collect{|p| [p.name, p.id]}  %>
   </div>
   <div class="field">
-    <%= f.label :program_benefit_relationship_id %><br>
-    <%= f.number_field :program_benefit_relationship_id %>
+    <%= f.label :program %><br>
+    <%= f.select :program_benefit_relationship_id, Program.all.collect{|p| [p.name, p.id]} %>
+  </div>
+    <div class="field">
+    <%= f.label :benefit %><br>
+    <%= f.select :program_benefit_relationship_id, Benefit.all.collect{|b| [b.name, b.id]} %>
   </div>
   <div class="field">
     <%= f.label :amount %><br>

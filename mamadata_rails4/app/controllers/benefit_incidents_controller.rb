@@ -15,6 +15,8 @@ class BenefitIncidentsController < ApplicationController
   # GET /benefit_incidents/new
   def new
     @benefit_incident = BenefitIncident.new
+    @programs = Program.all
+    @benefits = Benefit.all
   end
 
   # GET /benefit_incidents/1/edit

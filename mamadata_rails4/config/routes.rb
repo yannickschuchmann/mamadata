@@ -1,7 +1,11 @@
 MamadataRails4::Application.routes.draw do
   resources :benefit_incidents
 
-  resources :benefits
+  resources :benefits do
+    member do
+      get :programs
+    end
+  end
 
   resources :programs do
     member do
