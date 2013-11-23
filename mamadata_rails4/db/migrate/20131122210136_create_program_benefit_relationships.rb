@@ -6,5 +6,8 @@ class CreateProgramBenefitRelationships < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :program_benefit_relationships, :program_id
+    add_index :program_benefit_relationships, :benefit_id
+    add_index :program_benefit_relationships, [:program_id, :benefit_id], unique: true, name: 'prog_ben_index'
   end
 end

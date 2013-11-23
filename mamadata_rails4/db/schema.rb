@@ -115,6 +115,10 @@ ActiveRecord::Schema.define(version: 20131122221509) do
     t.datetime "updated_at"
   end
 
+  add_index "program_benefit_relationships", ["benefit_id"], name: "index_program_benefit_relationships_on_benefit_id"
+  add_index "program_benefit_relationships", ["program_id", "benefit_id"], name: "prog_ben_index", unique: true
+  add_index "program_benefit_relationships", ["program_id"], name: "index_program_benefit_relationships_on_program_id"
+
   create_table "programs", force: true do |t|
     t.string   "name"
     t.string   "description"

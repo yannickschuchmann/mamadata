@@ -13,24 +13,25 @@
 
   <div class="field">
     <%= f.label :person_id %><br>
-    <%= f.number_field :person_id  %>
+    <%= f.select :person_id, Person.all.map{|person| [person.name, person.id]}  %>
   </div>
-<%= @program %>
+      <div>
+
+    <%=  @programs.map {|lame| [lame.name, ProgramBenefitRelationship.find_by(program_id: lame.id)]}%>
+  </div>
     <div class="field">
-    <%= f.label :benefit %><br>
-    <%= f.select :program_benefit_relationship_id, Benefit.all.collect{|b| [b.name, b.id]}, include_blank: true %>
-  </div>
-      <div class="field">
     <%= f.label :program_benefit_relationship_id %><br>
-    <%= f.select :program_benefit_relationship_id, Benefit.all.collect{|b| [b.name, b.id]}, include_blank: true %>
+    <%= f.select(:program_benefit_relationship_id, ProgramBenefitRelationship.all.map {|bla| [bla.program_id, bla.id]})  %>
   </div>
+  
+
   <div class="field">
     <%= f.label :amount %><br>
     <%= f.number_field :amount %>
   </div>
   <div class="field">
     <%= f.label :remark %><br>
-    <%= f.text_field :remark %>
+    <%= f.text_field :remark%>
   </div>
   <div class="actions">
     <%= f.submit %>
