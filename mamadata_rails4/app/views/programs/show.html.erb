@@ -9,6 +9,12 @@
   <strong>Description:</strong>
   <%= @program.description %>
 </p>
+<p>
+<strong>Has Following Benefits</strong>
+<% @benefits.each do |benefit| %>
+<li><%=	benefit.name %></li>
+	<% end %>
+</p>
 
 <%= link_to 'Edit', edit_program_path(@program) %> |
 <%= link_to 'Back', programs_path %>

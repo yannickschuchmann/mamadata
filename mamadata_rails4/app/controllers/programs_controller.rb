@@ -21,6 +21,12 @@ class ProgramsController < ApplicationController
   def edit
   end
 
+  def benefits
+    @program = Program.find(params[:id])
+    @benefits = @program.benefits
+    render 'show'
+  end
+
   # POST /programs
   # POST /programs.json
   def create

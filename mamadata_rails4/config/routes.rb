@@ -3,7 +3,11 @@ MamadataRails4::Application.routes.draw do
 
   resources :benefits
 
-  resources :programs
+  resources :programs do
+    member do
+      get :benefits
+    end
+  end
 
   resources :community_developments
 
