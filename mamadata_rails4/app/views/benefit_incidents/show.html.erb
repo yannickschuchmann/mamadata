@@ -2,12 +2,17 @@
 
 <p>
   <strong>User:</strong>
-  <%= @benefit_incident.user_id %>
+  <%= @benefit_incident.person_id %>
 </p>
 
 <p>
-  <strong>Program benefit relationship:</strong>
-  <%= @benefit_incident.program_benefit_relationship_id %>
+  <strong>Program:</strong>
+  <%=  @program.name%>
+</p>
+
+<p>
+  <strong>Benefit:</strong>
+  <%= @benefit.name %>
 </p>
 
 <p>

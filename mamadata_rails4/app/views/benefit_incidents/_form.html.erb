@@ -12,15 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.select :user_id, Person.all.collect{|p| [p.name, p.id]}, include_blank: true  %>
+    <%= f.label :person_id %><br>
+    <%= f.number_field :person_id  %>
   </div>
-  <div class="field">
-    <%= f.label :program %><br>
-    <%= f.select :program_benefit_relationship_id, Program.all.collect{|p| [p.name, p.id]}, include_blank: true%>
-  </div>
+<%= @program %>
     <div class="field">
     <%= f.label :benefit %><br>
+    <%= f.select :program_benefit_relationship_id, Benefit.all.collect{|b| [b.name, b.id]}, include_blank: true %>
+  </div>
+      <div class="field">
+    <%= f.label :program_benefit_relationship_id %><br>
     <%= f.select :program_benefit_relationship_id, Benefit.all.collect{|b| [b.name, b.id]}, include_blank: true %>
   </div>
   <div class="field">

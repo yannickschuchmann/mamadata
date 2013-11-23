@@ -10,6 +10,10 @@ class BenefitIncidentsController < ApplicationController
   # GET /benefit_incidents/1
   # GET /benefit_incidents/1.json
   def show
+        program_id = ProgramBenefitRelationship.find_by(id: @benefit_incident.program_benefit_relationship_id).program_id
+        @program = Program.find_by(id: program_id)
+        benefit_id = ProgramBenefitRelationship.find_by(id: @benefit_incident.program_benefit_relationship_id).benefit_id
+        @benefit = Benefit.find_by(id: benefit_id)
   end
 
   # GET /benefit_incidents/new
@@ -71,6 +75,6 @@ class BenefitIncidentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def benefit_incident_params
-      params.require(:benefit_incident).permit(:user_id, :program_benefit_relationship_id, :amount, :remark)
+      params.require(:benefit_incident).permit(:person_id, :program_benefit_relationship_id, :amount, :remark)
     end
 end

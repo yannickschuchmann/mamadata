@@ -1,4 +1,6 @@
 class BenefitIncident < ActiveRecord::Base
 	belongs_to :person
-	has_one :program_benefit_relationship
+	belongs_to :program_benfit_relationship
+
+
 end
