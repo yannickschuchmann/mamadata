@@ -19,6 +19,10 @@
     <%= f.label :description %><br>
     <%= f.text_field :description %>
   </div>
+  <%= f.fields_for :benefits do |builder| %>
+  <%= builder.label :benefit_id %>
+  <%= builder.text_field :name %><br>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

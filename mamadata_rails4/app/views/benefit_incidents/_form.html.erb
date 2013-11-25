@@ -15,20 +15,14 @@
     <%= f.label :person_id %><br>
     <%= f.select :person_id, Person.all.map{|person| [person.name, person.id]}  %>
   </div>
-
-
-    <div class="field">
-    <%= f.label :program_id %><br>
-    <%= f.select(:program_id, @programs.map{|program| [program.name, program.id]}, include_blank: true )  %>
-  </div>
-
-    <div class="field">
-    <%= f.label :benefit_id %><br>
-    <%= f.select(:benefit_id, @benefits.map {|benefit| [benefit.name, benefit.id]}, include_blank: true )  %>
-  </div>
       <div class="field">
-    <%= f.label :program_benefit_relationship_id %><br>
-    <%= f.number_field :program_benefit_relationship_id  %>
+    <%= f.label :program_id %><br>
+    <%= f.select :program_id, Program.all.map{|program| [program.name, program.id]}  %>
+  </div>
+    </div>
+      <div class="field">
+    <%= f.label :benefit_id %><br>
+    <%= f.select :benefit_id, Benefit.all.map{|benefit| [benefit.name, benefit.id]}  %>
   </div>
   <div class="field">
     <%= f.label :amount %><br>
@@ -38,15 +32,8 @@
     <%= f.label :remark %><br>
     <%= f.text_field :remark%>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-        <div>
-    <%  @benefits.map {|lame| [lame.name, ProgramBenefitRelationship.find_by(benefit_id: lame.id)]}.each do |output| %>
-   
-    <% if (output[1] != nil) %>
-    <li> <%= output[0] %> "--->" <%=output[1].id%> </li>
-    <% end %>
-    <% end %>
-  </div>

@@ -6,18 +6,16 @@
 </p>
 
 <p>
-  <strong>Program:</strong>
-  <%=  @program.name%>
-</p>
-
-<p>
-  <strong>Benefit:</strong>
-  <%= @benefit.name %>
-</p>
 
 <p>
   <strong>Amount:</strong>
   <%= @benefit_incident.amount %>
+</p>
+  <strong>Program:</strong>
+  <%= @benefit_incident.program.name %>
+</p>
+  <strong>Benefit:</strong>
+  <%= @benefit_incident.benefit.name %>
 </p>
 
 <p>

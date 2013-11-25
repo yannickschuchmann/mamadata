@@ -4,7 +4,8 @@
   <thead>
     <tr>
       <th>User</th>
-      <th>Program benefit relationship</th>
+      <th>Program</th>
+      <th>Benefit</th>
       <th>Amount</th>
       <th>Remark</th>
       <th></th>
@@ -16,8 +17,9 @@
   <tbody>
     <% @benefit_incidents.each do |benefit_incident| %>
       <tr>
-        <td><%= benefit_incident.person_id %></td>
-        <td><%= benefit_incident.program_benefit_relationship_id %></td>
+        <td><%= benefit_incident.person.name %></td>
+        <td><%= benefit_incident.program.name %></td>
+        <td><%= benefit_incident.benefit.name %></td>
         <td><%= benefit_incident.amount %></td>
         <td><%= benefit_incident.remark %></td>
         <td><%= link_to 'Show', benefit_incident %></td>

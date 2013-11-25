@@ -9,6 +9,15 @@
   <strong>Descriptioin:</strong>
   <%= @benefit.description %>
 </p>
+<p>
+  <strong>Belongs to Programs:</strong>
+  <ul>
+  <% @benefit.programs.each do |program| %>
+  <li><%= program.name %></li>
+  <% end %>
+  </ul>
+</p>
+
 
 <%= link_to 'Edit', edit_benefit_path(@benefit) %> |
 <%= link_to 'Back', benefits_path %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131125112858) do
+ActiveRecord::Schema.define(version: 20131122221509) do
 
   create_table "beneficiaries", force: true do |t|
     t.integer  "program_id"
@@ -31,11 +31,10 @@ ActiveRecord::Schema.define(version: 20131125112858) do
 
   create_table "benefit_incidents", force: true do |t|
     t.integer  "person_id"
-    t.integer  "program_benefit_relationship_id"
-    t.integer  "program_id"
     t.integer  "benefit_id"
+    t.integer  "program_id"
     t.integer  "amount"
-    t.string   "remark"
+    t.text     "remark"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -45,11 +44,6 @@ ActiveRecord::Schema.define(version: 20131125112858) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "benefits_programs", force: true do |t|
-    t.integer "program_id"
-    t.integer "benefit_id"
   end
 
   create_table "community_developments", force: true do |t|

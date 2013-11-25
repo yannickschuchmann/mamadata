@@ -10,7 +10,6 @@ class ProgramsController < ApplicationController
   # GET /programs/1
   # GET /programs/1.json
   def show
-    @benefits = @program.benefits
   end
 
   # GET /programs/new
@@ -24,7 +23,6 @@ class ProgramsController < ApplicationController
 
   def benefits
     @program = Program.find(params[:id])
-    @benefits = @program.benefits
     render 'show'
   end
 
@@ -76,6 +74,6 @@ class ProgramsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def program_params
-      params.require(:program).permit(:name, :description)
+      params.require(:program).permit(:name, :description, benefits_attributes: [:id, :name])
     end
 end
