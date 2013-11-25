@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20131122221509) do
   create_table "benefit_incidents", force: true do |t|
     t.integer  "person_id"
     t.integer  "program_benefit_relationship_id"
+    t.integer  "program_id"
+    t.integer  "benefit_id"
     t.integer  "amount"
     t.string   "remark"
     t.datetime "created_at"

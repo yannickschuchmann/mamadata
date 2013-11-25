@@ -10,10 +10,10 @@ class BenefitIncidentsController < ApplicationController
   # GET /benefit_incidents/1
   # GET /benefit_incidents/1.json
   def show
-        program_id = ProgramBenefitRelationship.find_by(id: @benefit_incident.program_benefit_relationship_id).program_id
-        @program = Program.find_by(id: program_id)
-        benefit_id = ProgramBenefitRelationship.find_by(id: @benefit_incident.program_benefit_relationship_id).benefit_id
-        @benefit = Benefit.find_by(id: benefit_id)
+        # program_id = ProgramBenefitRelationship.find_by(id: @benefit_incident.program_benefit_relationship_id).program_id
+        # @program = Program.find_by(id: program_id)
+        # benefit_id = ProgramBenefitRelationship.find_by(id: @benefit_incident.program_benefit_relationship_id).benefit_id
+        # @benefit = Benefit.find_by(id: benefit_id)
   end
 
   # GET /benefit_incidents/new
