@@ -4,6 +4,12 @@
   <strong>Name:</strong>
   <%= @role.name %>
 </p>
+<p>
+<strong>Has Following Persons</strong>
+<% @role.people.each do |benefit| %>
+<li><%=	benefit.name %></li>
+	<% end %>
+</p>
 
 <%= link_to 'Edit', edit_role_path(@role) %> |
 <%= link_to 'Back', roles_path %>

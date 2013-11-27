@@ -91,8 +91,8 @@
     <%= f.number_field :income %>
   </div>
   <div class="field">
-    <%= f.label :role %><br>
-    <%= f.text_field :role %>
+    <%= f.label :role_id %><br>
+    <%= f.select :role_id, Role.all.map{|role| [role.name, role.id]}  %>
   </div>
   <div class="actions">
     <%= f.submit %>
