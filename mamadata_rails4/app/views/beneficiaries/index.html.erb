@@ -20,7 +20,7 @@
   <tbody>
     <% @beneficiaries.each do |beneficiary| %>
       <tr>
-        <td><%= beneficiary.program %></td>
+        <td><%= beneficiary.program.name %></td>
         <td><%= beneficiary.school_name %></td>
         <td><%= beneficiary.school_type %></td>
         <td><%= beneficiary.school_language %></td>

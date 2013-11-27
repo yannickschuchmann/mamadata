@@ -12,26 +12,9 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :program %><br>
-    <!-- 
-      Multiple Select funktioniert noch nicht, wird noch nicht abgespeichert
-    -->
-    <%= f.select(:program, [['Sponsorship', 'Sponsorship'],
-                                  ['Evening Homework Help Centre', 'Evening Homework Help Centre'],
-                                  ['Day Care Centre', 'Day Care Centre'],
-                                  ['Mobile Library', 'Mobile Library'],
-                                  ['Outreach Program', 'Outreach Program'],
-                                  ["Girls' Program", "Girls' Program"],
-                                  ['Shelter', 'Shelter'],
-                                  ['Spirulina', 'Spirulina'],
-                                  ['VTC', 'VTC'],
-                                  ['Creches', 'Creches'],
-                                  ['Community Development', 'Community Development']
-                                 ],{ :prompt => "Please select"},
-                                   { :multiple => true, :size => 10 }
-                                 ) %>
-    <% f.text_field :program %>
-  </div>
+    <%= f.label :program_id %><br>
+    <%= f.select :program_id, Program.all.map{|program| [program.name, program.id]} %>
+ </div>
   <div class="field">
     <%= f.label :school_name %><br>
     <%= f.text_field :school_name %>
