@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131122221509) do
+ActiveRecord::Schema.define(version: 20131127180640) do
 
   create_table "beneficiaries", force: true do |t|
     t.integer  "program_id"
@@ -79,6 +79,13 @@ ActiveRecord::Schema.define(version: 20131122221509) do
     t.text     "family_dropout_reason_for"
     t.text     "family_dropout_present_condition"
     t.string   "family_skilled_in_art"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "members", force: true do |t|
+    t.integer  "person_id"
+    t.integer  "program_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
