@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Program:</strong>
-  <%= @beneficiary.program.name %>
+  
+  <strong>Programs:</strong>
+  <% @beneficiary.programs.each do |program| %>
+  <li><%= program.name %></li>
+  <% end %>
 </p>
 
 <p>
@@ -40,12 +43,6 @@
   <%= @beneficiary.status %>
 </p>
  
-   <p>
-   <strong>Is in Following Programs</strong>
-   <% beneficiary.programs.each do |program| %>
-   <li><%= program.name %></li>
-   <% end %>
-   </p>
 
 <%= link_to 'Edit', edit_beneficiary_path(@beneficiary) %> |
 <%= link_to 'Back', beneficiaries_path %>

@@ -26,7 +26,6 @@
   <%= builder.label :benefit_id %>
   <%= builder.select :id, (Benefit.all.map {|benefit| [benefit.name, benefit.id]}) %><br>
   <% end %>
->>>>>>> added better errors to Gemfile. possible to add benefits upon creation
   <% end %>
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary' %>
