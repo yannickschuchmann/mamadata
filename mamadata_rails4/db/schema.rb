@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131128174007) do
+ActiveRecord::Schema.define(version: 20131128212628) do
 
   create_table "beneficiaries", force: true do |t|
     t.string   "school_name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20131128174007) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "member_id"
+    t.integer  "benefit_incident_id"
   end
 
   add_index "beneficiaries", ["godfather_id"], name: "index_beneficiaries_on_godfather_id"
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(version: 20131128174007) do
     t.text     "remark"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "beneficiary_id"
   end
 
   create_table "benefits", force: true do |t|
