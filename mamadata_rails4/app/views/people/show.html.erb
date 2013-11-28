@@ -96,7 +96,9 @@
 </p>
 <p>
 <strong>Is in Following Programs</strong>
-<% 
+<% @person.programs.each do |program| %>
+<li><%= program.name %></li>
+<% end %>
 </p>
 
 <%= link_to 'Edit', edit_person_path(@person) %> |

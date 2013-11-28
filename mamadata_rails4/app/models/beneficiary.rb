@@ -1,4 +1,5 @@
 class Beneficiary < ActiveRecord::Base
-  belongs_to :program
+  has_many :members
+  has_many :programs, through: :members
   belongs_to :godfather
 end
