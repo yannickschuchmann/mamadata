@@ -15,6 +15,7 @@ class BeneficiariesController < ApplicationController
   # GET /beneficiaries/new
   def new
     @beneficiary = Beneficiary.new
+    3.times {@beneficiary.programs.build}
   end
 
   # GET /beneficiaries/1/edit
@@ -69,6 +70,6 @@ class BeneficiariesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def beneficiary_params
-      params.require(:beneficiary).permit(:program_id, :school_name, :school_type, :school_language, :school_class, :narrative_text, :godfather_id, :status)
+      params.require(:beneficiary).permit(:member_id, :school_name, :school_type, :school_language, :school_class, :narrative_text, :godfather_id, :status)
     end
 end

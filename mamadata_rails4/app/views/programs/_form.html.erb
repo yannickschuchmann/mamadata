@@ -19,13 +19,14 @@
     <div class="span3"><%= f.label :description %></div>
     <div class="span9"><%= f.text_field :description %></div>
   </div>
-  <%= f.fields_for :benefits do |builder| %>
-  <div class="field">
-    <div class="span3"><%= builder.label :benefit_id %></div>
-    <div class="span9">
-      <%= builder.text_field :name %><br>
-    </div>
-  </div>
+
+
+  <% for benefit in @program.benefits %>
+  <%= fields_for "program[benefit_attributes][]", benefit do |builder| %>
+  <%= builder.label :benefit_id %>
+  <%= builder.select :id, (Benefit.all.map {|benefit| [benefit.name, benefit.id]}) %><br>
+  <% end %>
+>>>>>>> added better errors to Gemfile. possible to add benefits upon creation
   <% end %>
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary' %>

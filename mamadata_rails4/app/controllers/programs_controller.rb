@@ -15,6 +15,7 @@ class ProgramsController < ApplicationController
   # GET /programs/new
   def new
     @program = Program.new
+    @program.benefits << Benefit.new
   end
 
   # GET /programs/1/edit
@@ -74,6 +75,6 @@ class ProgramsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def program_params
-      params.require(:program).permit(:name, :description, benefits_attributes: [:id, :name])
+      params.require(:program).permit(:name, :description, benefit_attributes: [:id])
     end
 end
