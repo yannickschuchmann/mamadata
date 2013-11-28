@@ -1,12 +1,10 @@
-<h1>Listing benefits</h1>
+<h1>Benefits</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
-      <th>Descriptioin</th>
-      <th></th>
-      <th></th>
+      <th>Description</th>
       <th></th>
     </tr>
   </thead>
@@ -16,9 +14,9 @@
       <tr>
         <td><%= benefit.name %></td>
         <td><%= benefit.description %></td>
-        <td><%= link_to 'Show', benefit %></td>
-        <td><%= link_to 'Edit', edit_benefit_path(benefit) %></td>
-        <td><%= link_to 'Destroy', benefit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to (content_tag(:i, "", :class => "icon-file")), benefit %>
+        <%= link_to (content_tag(:i, "", :class => "icon-edit")), edit_benefit_path(benefit) %>
+        <%= link_to (content_tag(:i, "", :class => "icon-trash")), benefit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +24,7 @@
 
 <br>
 
-<%= link_to 'New Benefit', new_benefit_path %>
+<%= link_to new_benefit_path, :class => 'btn btn-primary' do %>
+  <%= (content_tag(:i, "", :class => "icon-pencil")) %>
+  New Benefit
+<% end %>

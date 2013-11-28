@@ -1,6 +1,6 @@
-<h1>Listing supporters</h1>
+<h1>Supporters</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Organisation</th>
@@ -19,6 +19,7 @@
       <th>Begin of Work</th>
       <th>End of Work</th>
       <th>Type of Work</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -33,6 +34,7 @@
         <td><%= supporter.city %></td>
         <td><%= supporter.street %></td>
         <td><%= supporter.zipcode %></td>
+        <td><%= supporter.email %></td>
         <td><%= supporter.website %></td>
         <td><%= supporter.telephone_number %></td>
         <td><%= supporter.godfather %></td>
@@ -40,9 +42,9 @@
         <td><%= supporter.begin_of_work %></td>
         <td><%= supporter.end_of_work %></td>
         <td><%= supporter.type_of_work %></td>
-        <td><%= link_to 'Show', supporter %></td>
-        <td><%= link_to 'Edit', edit_supporter_path(supporter) %></td>
-        <td><%= link_to 'Destroy', supporter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to (content_tag(:i, '', :class => 'icon-file')), supporter %>
+        <%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_supporter_path(supporter) %>
+        <%= link_to (content_tag(:i, '', :class => 'icon-trash')), supporter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -50,4 +52,7 @@
 
 <br>
 
-<%= link_to 'New Supporter', new_supporter_path %>
+<%= link_to new_supporter_path, :class => 'btn btn-primary' do %>
+  <%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+  New Supporter
+<% end %>

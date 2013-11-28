@@ -12,125 +12,133 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :head_of_household_id %><br>
-    <%= f.text_field :head_of_household_id %>
+    <div class="span3"><%= f.label :head_of_household_id %></div>
+    <div class="span9"><%= f.text_field :head_of_household_id %></div>
   </div>
   <div class="field">
-    <%= f.label :type_of_family %><br>
-    <%= f.select :type_of_family, ["nuclear", "joint"]%>
+    <div class="span3"><%= f.label :type_of_family %></div>
+    <div class="span9"><%= f.select :type_of_family, ["nuclear", "joint"]%></div>
   </div>
   <div class="field">
-    <%= f.label :residental_status %><br>
-    <%= f.select :residental_status, ["own house", "rented house", "house on temple land", "no house"]%>
+    <div class="span3"><%= f.label :residental_status %></div>
+    <div class="span9"><%= f.select :residental_status, ["own house", "rented house", "house on temple land", "no house"]%></div>
   </div>
   <div class="field">
-    <%= f.label :house_posession %><br>
-    <%= f.select :residental_status, ["father's property", "bought the land", "temple land", "no man's land", "other"]%>
+    <div class="span3"><%= f.label :house_posession %></div>
+    <div class="span9"><%= f.select :residental_status, ["father's property", "bought the land", "temple land", "no man's land", "other</div>"]%>
     <% f.text_field :source_of_income %>
   </div>
   <div class="field">
-    <%= f.label :house_type %><br>
-    <%= f.select :house_type, ["thatched", "tiled", "concrete"]%>
+    <div class="span3"><%= f.label :house_type %></div>
+    <div class="span9"><%= f.select :house_type, ["thatched", "tiled", "concrete"]%>
     <% f.text_field :house_type %>
+    </div>
   </div>
   <div class="field">
-    <%= f.label :electricity %><br>
-    <%= f.check_box :electricity %>
+    <div class="span3"><%= f.label :electricity %></div>
+    <div class="span9"><%= f.check_box :electricity %></div>
   </div>
   <div class="field">
-    <%= f.label :water_from %><br>
-    <%= f.select :water_from, ["municipality", "village ponf", "no water"]%>
+    <div class="span3"><%= f.label :water_from %></div>
+    <div class="span9"><%= f.select :water_from, ["municipality", "village ponf", "no water"]%>
     <% f.text_field :water_from %>
+    </div>
   </div>
   <div class="field">
-    <%= f.label :toilet_facility %><br>
-    <%= f.check_box :toilet_facility %>
+    <div class="span3"><%= f.label :toilet_facility %></div>
+    <div class="span9"><%= f.check_box :toilet_facility %></div>
   </div>
   <div class="field">
-    <%= f.label :rain_harvesting %><br>
-    <%= f.check_box :rain_harvesting %>
+    <div class="span3"><%= f.label :rain_harvesting %></div>
+    <div class="span9"><%= f.check_box :rain_harvesting %></div>
   </div>
   <div class="field">
-    <%= f.label :want_rain_harvesting %><br>
-    <%= f.check_box :want_rain_harvesting %>
+    <div class="span3"><%= f.label :want_rain_harvesting %></div>
+    <div class="span9"><%= f.check_box :want_rain_harvesting %></div>
   </div>
   <div class="field">
-    <%= f.label :earning_members_of_family %><br>
-    <%= f.number_field :earning_members_of_family  %>
+    <div class="span3"><%= f.label :earning_members_of_family %></div>
+    <div class="span9"><%= f.number_field :earning_members_of_family  %></div>
   </div>
   <div class="field">
-    <%= f.label :source_of_income %><br>
-    <%= f.select :source_of_income, ["salary", "cattle", "agriculture", "nil", "other"]%>
+    <div class="span3"><%= f.label :source_of_income %></div>
+    <div class="span9"><%= f.select :source_of_income, ["salary", "cattle", "agriculture", "nil", "other"]%>
     <% f.text_field :source_of_income %>
+    </div>
   </div>
   <div class="field">
-    <%= f.label :land_details %><br>
-    <%= f.select :land_details, ["own land", "other land"]%>
+    <div class="span3"><%= f.label :land_details %></div>
+    <div class="span9"><%= f.select :land_details, ["own land", "other land"]%>
     <% f.text_field :land_details %>
+    </div>
   </div>
   <div class="field">
-    <%= f.label :any_savings %><br>
-    <%= f.check_box :any_savings %>
+    <div class="span3"><%= f.label :any_savings %></div>
+    <div class="span9"><%= f.check_box :any_savings %></div>
   </div>
   <div class="field">
-    <%= f.label :mode_of_savings %><br>
-    <%= f.select :mode_of_savings, ["bank", "chits", "any other"]%>
+    <div class="span3"><%= f.label :mode_of_savings %></div>
+    <div class="span9"><%= f.select :mode_of_savings, ["bank", "chits", "any other"]%>
     <% f.text_field :mode_of_savings %>
+    </div>
   </div>
   <div class="field">
-    <%= f.label :debts %><br>
-    <%= f.check_box :debts %>
+    <div class="span3"><%= f.label :debts %></div>
+    <div class="span9"><%= f.check_box :debts %></div>
   </div>
   <div class="field">
-    <%= f.label :reason_for_debt %><br>
-    <%= f.select :reason_for_debt, ["food", "housing", "education", "medicine", "profession", "functions", "other"]%>
+    <div class="span3"><%= f.label :reason_for_debt %></div>
+    <div class="span9"><%= f.select :reason_for_debt, ["food", "housing", "education", "medicine", "profession", "functions", "other"]%>
     <% f.text_field :reason_for_debt %>
+    </div>
   </div>
   <div class="field">
-    <%= f.label :family_members_addicted_to %><br>
-    <%= f.select :family_members_addicted_to, ["alcohol", "other"]%>
+    <div class="span3"><%= f.label :family_members_addicted_to %></div>
+    <div class="span9"><%= f.select :family_members_addicted_to, ["alcohol", "other"]%>
     <% f.text_field :family_members_addicted_to %>
+    </div>
   </div>
   <div class="field">
-    <%= f.label :family_members_addicted_who %><br>
-    <%= f.text_field :family_members_addicted_who %>
+    <div class="span3"><%= f.label :family_members_addicted_who %></div>
+    <div class="span9"><%= f.text_field :family_members_addicted_who %></div>
   </div>
   <div class="field">
-    <%= f.label :family_disabled %><br>
-    <%= f.check_box :family_disabled %>
+    <div class="span3"><%= f.label :family_disabled %></div>
+    <div class="span9"><%= f.check_box :family_disabled %></div>
   </div>
   <div class="field">
-    <%= f.label :family_type_of_handicap %><br>
-    <%= f.select :family_type_of_handicap, ["visually", "mentally", "orthopedically", "hearing impaired", "other"]%>
+    <div class="span3"><%= f.label :family_type_of_handicap %></div>
+    <div class="span9"><%= f.select :family_type_of_handicap, ["visually", "mentally", "orthopedically", "hearing impaired", "other"]%>
     <% f.text_field :family_type_of_handicap %>
+    </div>
   </div>
   <div class="field">
-    <%= f.label :family_chronic_deseases %><br>
-    <%= f.check_box :family_chronic_deseases %>
+    <div class="span3"><%= f.label :family_chronic_deseases %></div>
+    <div class="span9"><%= f.check_box :family_chronic_deseases %></div>
   </div>
   <div class="field">
-    <%= f.label :family_chronic_deseases_which %><br>
-    <%= f.text_field :family_chronic_deseases_which %>
+    <div class="span3"><%= f.label :family_chronic_deseases_which %></div>
+    <div class="span9"><%= f.text_field :family_chronic_deseases_which %></div>
   </div>
   <div class="field">
-    <%= f.label :family_children_vaccined %><br>
-    <%= f.check_box :family_children_vaccined %>
+    <div class="span3"><%= f.label :family_children_vaccined %></div>
+    <div class="span9"><%= f.check_box :family_children_vaccined %></div>
   </div>
   <div class="field">
-    <%= f.label :family_knowledge_of_family_planning %><br>
-    <%= f.check_box :family_knowledge_of_family_planning %>
+    <div class="span3"><%= f.label :family_knowledge_of_family_planning %></div>
+    <div class="span9"><%= f.check_box :family_knowledge_of_family_planning %></div>
   </div>
   <div class="field">
-    <%= f.label :family_undergone_family_planning %><br>
-    <%= f.check_box :family_undergone_family_planning %>
+    <div class="span3"><%= f.label :family_undergone_family_planning %></div>
+    <div class="span9"><%= f.check_box :family_undergone_family_planning %></div>
   </div>
   <div class="field">
-    <%= f.label :home_remedies_for_illnesses %><br>
-    <%= f.check_box :home_remedies_for_illnesses %>
+    <div class="span3"><%= f.label :home_remedies_for_illnesses %></div>
+    <div class="span9"><%= f.check_box :home_remedies_for_illnesses %></div>
   </div>
   <div class="field">
-    <%= f.label :illness_treatment %><br>
-    <!-- 
+    <div class="span3"><%= f.label :illness_treatment %></div>
+    <div class="span9"><!--
       Multiple Select funktioniert noch nicht, wird noch nicht abgespeichert
     -->
     <%= f.select(:illness_treatment, [['government hospital', 'government hospital'],
@@ -144,25 +152,26 @@
                                    { :multiple => true, :size => 8 }
                                  ) %>
     <% f.text_field :illness_treatment %>
+    </div> 
   </div>
   <div class="field">
-    <%= f.label :family_school_dropout %><br>
-    <%= f.check_box :family_school_dropout %>
+    <div class="span3"><%= f.label :family_school_dropout %></div>
+    <div class="span9"><%= f.check_box :family_school_dropout %></div>
   </div>
   <div class="field">
-    <%= f.label :family_dropout_reason_for %><br>
-    <%= f.text_area :family_dropout_reason_for %>
+    <div class="span3"><%= f.label :family_dropout_reason_for %></div>
+    <div class="span9"><%= f.text_area :family_dropout_reason_for %></div>
   </div>
   <div class="field">
-    <%= f.label :family_dropout_present_condition %><br>
-    <%= f.text_area :family_dropout_present_condition %>
+    <div class="span3"><%= f.label :family_dropout_present_condition %></div>
+    <div class="span9"><%= f.text_area :family_dropout_present_condition %></div>
   </div>
   <div class="field">
     <!-- 
       Multiple Select funktioniert noch nicht, wird noch nicht abgespeichert
     -->
-    <%= f.label :family_skilled_in_art %><br>
-    <%= f.select(:illness_treatment, [['handicrafts', 'handicrafts'],
+    <div class="span3"><%= f.label :family_skilled_in_art %></div>
+    <div class="span9"><%= f.select(:illness_treatment, [['handicrafts', 'handicrafts'],
                               ['folk arts', 'folk arts'],
                               ['martial arts', 'martial arts'],
                               ['other', 'other'],
@@ -171,8 +180,9 @@
                                { :multiple => true, :size => 6 }
                              ) %>
     <% f.text_field :family_skilled_in_art %>
+    </div>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => 'btn btn-primary' %>
   </div>
 <% end %>

@@ -1,6 +1,6 @@
-<h1>Listing beneficiaries</h1>
+<h1>Beneficiaries</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Program</th>
@@ -11,8 +11,6 @@
       <th>Narrative text</th>
       <th>Godfather</th>
       <th>Status</th>
-      <th></th>
-      <th></th>
       <th></th>
     </tr>
   </thead>
@@ -28,9 +26,9 @@
         <td><%= beneficiary.narrative_text %></td>
         <td><%= beneficiary.godfather %></td>
         <td><%= beneficiary.status %></td>
-        <td><%= link_to 'Show', beneficiary %></td>
-        <td><%= link_to 'Edit', edit_beneficiary_path(beneficiary) %></td>
-        <td><%= link_to 'Destroy', beneficiary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to (content_tag(:i, "", :class => "icon-file")), beneficiary %>
+        <%= link_to (content_tag(:i, "", :class => "icon-edit")), edit_beneficiary_path(beneficiary) %>
+        <%= link_to (content_tag(:i, "", :class => "icon-trash")), beneficiary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -38,4 +36,7 @@
 
 <br>
 
-<%= link_to 'New Beneficiary', new_beneficiary_path %>
+<%= link_to new_beneficiary_path, :class => 'btn btn-primary' do %>
+  <%= (content_tag(:i, "", :class => "icon-pencil")) %>
+  New Beneficiary
+<% end %>

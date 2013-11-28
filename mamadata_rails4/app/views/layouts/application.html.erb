@@ -37,45 +37,43 @@
     <%= javascript_include_tag "application" %>
   </head>
   <body>
-
-    <div class="navbar navbar-fluid-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">MamadataRails4</a>
-          <div class="container-fluid nav-collapse">
-            <ul class="nav">
-             <li style="padding: 10px; display:inline-block;"><%= link_to 'Community Developments', community_developments_path %></li>
-  <li style="padding: 10px; display:inline-block;"><%= link_to 'Beneficiaries', beneficiaries_path %></li>
-  <li style="padding: 10px; display:inline-block;"><%= link_to 'Roles', roles_path %></li>
-  <li style="padding: 10px; display:inline-block;"><%= link_to 'People', people_path %></li>
-  <li style="padding: 10px; display:inline-block;"><%= link_to 'Supporters', supporters_path %></li>
-  <li style="padding: 10px; display:inline-block;"><%= link_to 'Programs', programs_path %></li>
-  <li style="padding: 10px; display:inline-block;"><%= link_to 'Benefits', benefits_path %></li>
-  <li style="padding: 10px; display:inline-block;"><%= link_to 'New Incident', new_benefit_incident_path %></li>
-            </ul>
-          </div><!--/.nav-collapse -->
+    <div id="wrap">
+      <div class="navbar navbar-fluid-top">
+        <div class="navbar-inner">
+          <div class="container-fluid">
+            <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="#">MamadataRails4</a>
+            <div class="container-fluid nav-collapse">
+              <ul class="nav">
+                <li><%= link_to 'Community Developments', community_developments_path %></li>
+                <li><%= link_to 'Beneficiaries', beneficiaries_path %></li>
+                <li><%= link_to 'Roles', roles_path %></li>
+                <li><%= link_to 'People', people_path %></li>
+                <li><%= link_to 'Supporters', supporters_path %></li>
+                <li><%= link_to 'Programs', programs_path %></li>
+                <li><%= link_to 'Benefits', benefits_path %></li>
+                <li><%= link_to 'New Incident', new_benefit_incident_path %></li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
         </div>
       </div>
+      <div class="container-fluid">
+        <div class="row-fluid">
+            <%= bootstrap_flash %>
+            <%= yield %>
+        </div><!--/row-->
+      </div> <!-- /container -->
+      <div id="push"></div>
     </div>
-
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span9">
-          <%= bootstrap_flash %>
-          <%= yield %>
-        </div>
-      </div><!--/row-->
-
-      <footer>
-        <p>&copy; Company 2013</p>
-      </footer>
-
-    </div> <!-- /container -->
-
+    <footer>
+      <div class="container-fluid">
+        &copy; Mamadata 2013
+      </div>
+    </footer>
   </body>
 </html>

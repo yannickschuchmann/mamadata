@@ -12,39 +12,40 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :program_id %><br>
-    <%= f.select :program_id, Program.all.map{|program| [program.name, program.id]} %>
+    <div class="span3"><%= f.label :program_id %></div>
+    <div class="span9"><%= f.select :program_id, Program.all.map{|program| [program.name, program.id]} %></div>
  </div>
   <div class="field">
-    <%= f.label :school_name %><br>
-    <%= f.text_field :school_name %>
+    <div class="span3"><%= f.label :school_name %></div>
+    <div class="span9"><%= f.text_field :school_name %></div>
   </div>
   <div class="field">
-    <%= f.label :school_type %><br>
-    <%= f.select :school_type, ["government", "government aided", "private"]%>
+    <div class="span3"><%= f.label :school_type %></div>
+    <div class="span9"><%= f.select :school_type, ["government", "government aided", "private"]%>
     <% f.text_field :school_type %>
+    </div>
   </div>
   <div class="field">
-    <%= f.label :school_language %><br>
-    <%= f.select :school_language, ["English", "Tamil"]%>
+    <div class="span3"><%= f.label :school_language %></div>
+    <div class="span9"><%= f.select :school_language, ["English", "Tamil"]%></div>
   </div>
   <div class="field">
-    <%= f.label :school_class %><br>
-    <%= f.select :school_class, ["LKG", "UKG", 1,2,3,4,5,6,7,8,9,10,11,12, "College"]%>
+    <div class="span3"><%= f.label :school_class %></div>
+    <div class="span9"><%= f.select :school_class, ["LKG", "UKG", 1,2,3,4,5,6,7,8,9,10,11,12, "College"]%></div>
   </div>
   <div class="field">
-    <%= f.label :narrative_text %><br>
-    <%= f.text_area :narrative_text %>
+    <div class="span3"><%= f.label :narrative_text %></div>
+    <div class="span9"><%= f.text_area :narrative_text %></div>
   </div>
   <div class="field">
-    <%= f.label :godfather %><br>
-    <%= f.text_field :godfather %>
+    <div class="span3"><%= f.label :godfather %></div>
+    <div class="span9"><%= f.text_field :godfather %></div>
   </div>
   <div class="field">
-    <%= f.label :status %><br>
-    <%= f.text_field :status %>
+    <div class="span3"><%= f.label :status %></div>
+    <div class="span9"><%= f.text_field :status %></div>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => 'btn btn-primary' %>
   </div>
 <% end %>

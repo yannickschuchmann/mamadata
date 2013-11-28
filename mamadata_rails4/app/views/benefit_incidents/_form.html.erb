@@ -12,28 +12,27 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :person_id %><br>
-    <%= f.select :person_id, Person.all.map{|person| [person.name, person.id]}  %>
+    <div class="span3"><%= f.label :person_id %></div>
+    <div class="span9"><%= f.select :person_id, Person.all.map{|person| [person.name, person.id]}  %></div>
   </div>
       <div class="field">
-    <%= f.label :program_id %><br>
-    <%= f.select :program_id, Program.all.map{|program| [program.name, program.id]}  %>
-  </div>
-    </div>
-      <div class="field">
-    <%= f.label :benefit_id %><br>
-    <%= f.select :benefit_id, Benefit.all.map{|benefit| [benefit.name, benefit.id]}  %>
+    <div class="span3"><%= f.label :program_id %></div>
+    <div class="span9"><%= f.select :program_id, Program.all.map{|program| [program.name, program.id]}  %></div>
   </div>
   <div class="field">
-    <%= f.label :amount %><br>
-    <%= f.number_field :amount %>
+    <div class="span3"><%= f.label :benefit_id %></div>
+    <div class="span9"><%= f.select :benefit_id, Benefit.all.map{|benefit| [benefit.name, benefit.id]}  %></div>
   </div>
   <div class="field">
-    <%= f.label :remark %><br>
-    <%= f.text_field :remark%>
+    <div class="span3"><%= f.label :amount %></div>
+    <div class="span9"><%= f.number_field :amount %></div>
+  </div>
+  <div class="field">
+    <div class="span3"><%= f.label :remark %></div>
+    <div class="span9"><%= f.text_field :remark%></div>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => 'btn btn-primary' %>
   </div>
 <% end %>
