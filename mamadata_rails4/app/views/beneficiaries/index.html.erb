@@ -3,7 +3,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Program</th>
+      <th>Programs</th>
       <th>School name</th>
       <th>School type</th>
       <th>School language</th>
@@ -18,7 +18,9 @@
   <tbody>
     <% @beneficiaries.each do |beneficiary| %>
       <tr>
-        <td><%= beneficiary.program.name %></td>
+        <td><% beneficiary.programs.each do |program| %>
+        <li><%= program.name %></li>
+         <%  end%></td>
         <td><%= beneficiary.school_name %></td>
         <td><%= beneficiary.school_type %></td>
         <td><%= beneficiary.school_language %></td>

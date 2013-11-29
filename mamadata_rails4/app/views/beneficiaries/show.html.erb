@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Program:</strong>
-  <%= @beneficiary.program.name %>
+  
+  <strong>Programs:</strong>
+  <% @beneficiary.programs.each do |program| %>
+  <li><%= program.name %></li>
+  <% end %>
 </p>
 
 <p>
@@ -38,6 +41,13 @@
 <p>
   <strong>Status:</strong>
   <%= @beneficiary.status %>
+</p>
+ <p>
+
+  <strong>Has following Incidents</strong>
+   <% @beneficiary.benefit_incidents.each do |incident| %>
+  <%= link_to 'Incident', benefit_incident_path(incident) %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_beneficiary_path(@beneficiary) %> |

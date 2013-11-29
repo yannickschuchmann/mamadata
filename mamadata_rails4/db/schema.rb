@@ -11,10 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131122221509) do
+ActiveRecord::Schema.define(version: 20131128212628) do
 
   create_table "beneficiaries", force: true do |t|
-    t.integer  "program_id"
     t.string   "school_name"
     t.string   "school_type"
     t.string   "school_language"
@@ -24,10 +23,10 @@ ActiveRecord::Schema.define(version: 20131122221509) do
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "member_id"
   end
 
   add_index "beneficiaries", ["godfather_id"], name: "index_beneficiaries_on_godfather_id"
-  add_index "beneficiaries", ["program_id"], name: "index_beneficiaries_on_program_id"
 
   create_table "benefit_incidents", force: true do |t|
     t.integer  "person_id"
@@ -37,6 +36,7 @@ ActiveRecord::Schema.define(version: 20131122221509) do
     t.text     "remark"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "beneficiary_id"
   end
 
   create_table "benefits", force: true do |t|
@@ -82,6 +82,17 @@ ActiveRecord::Schema.define(version: 20131122221509) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "members", force: true do |t|
+    t.integer  "beneficiary_id"
+    t.integer  "program_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "members", ["beneficiary_id", "program_id"], name: "index_members_on_beneficiary_id_and_program_id", unique: true
+  add_index "members", ["beneficiary_id"], name: "index_members_on_beneficiary_id"
+  add_index "members", ["program_id"], name: "index_members_on_program_id"
 
   create_table "people", force: true do |t|
     t.string   "name"

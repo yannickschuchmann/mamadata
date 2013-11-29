@@ -11,10 +11,7 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <div class="span3"><%= f.label :program_id %></div>
-    <div class="span9"><%= f.select :program_id, Program.all.map{|program| [program.name, program.id]} %></div>
- </div>
+
   <div class="field">
     <div class="span3"><%= f.label :school_name %></div>
     <div class="span9"><%= f.text_field :school_name %></div>
@@ -39,12 +36,19 @@
   </div>
   <div class="field">
     <div class="span3"><%= f.label :godfather %></div>
-    <div class="span9"><%= f.text_field :godfather %></div>
+    <div class="span9"><%= f.number_field :godfather_id %></div>
   </div>
   <div class="field">
     <div class="span3"><%= f.label :status %></div>
     <div class="span9"><%= f.text_field :status %></div>
   </div>
+    <% for program in @beneficiary.programs %>
+  <%= fields_for "beneficiary[program_attributes][]", program do |builder| %>
+  <%= builder.label :program_id %>
+  <%= builder.select :id, (Program.all.map {|program| [program.name, program.id]}) %><br>
+  <% end %>
+  <% end %>
+ 
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary' %>
   </div>
