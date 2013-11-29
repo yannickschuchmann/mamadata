@@ -23,18 +23,24 @@
     </div>
 
 
-
-    <span class="ul">
+<div class="row-fluid">
+  <span class="ul">
  
-  <% Benefit.all.each do |b| %>
+  <% Benefit.all.each_slice(10) do |slice| %>
+  <div class="span3">
+  <% slice.each do |b| %>
     <label class="li"><%= check_box_tag :benefit_ids, b.id, @program.benefits.include?(b), :name => 'program[benefit_ids][]' %> <%= b.name %></label>
+    <% end %>
+  </div>
 
   <% end %>
  
-    </span>
-
-
+  </span>
+  </div>
+  <br>
+<div class="row-fluid">
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary' %>
+  </div>
   </div>
 <% end %>
