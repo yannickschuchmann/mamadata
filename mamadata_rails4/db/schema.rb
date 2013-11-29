@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20131128212628) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "member_id"
-    t.integer  "benefit_incident_id"
   end
 
   add_index "beneficiaries", ["godfather_id"], name: "index_beneficiaries_on_godfather_id"

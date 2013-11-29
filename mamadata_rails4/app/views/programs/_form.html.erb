@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+
+
   <div class="field">
     <div class="span3"><%= f.label :name %></div>
     <div class="span9"><%= f.text_field :name %></div>
@@ -19,10 +21,18 @@
     <div class="span3"><%= f.label :description %></div>
     <div class="span9"><%= f.text_field :description %></div>
     </div>
- <div class="field">
-    <div class="span3"><%= f.label :benefit_ids %></div>
-    <div class="span9"><%= f.select :benefit_ids, Benefit.all.collect {|x| [x.name, x.id]},{}, multiple: true %> 
-    </div>
+
+
+
+    <span class="ul">
+ 
+  <% Benefit.all.each do |b| %>
+    <label class="li"><%= check_box_tag :benefit_ids, b.id, @program.benefits.include?(b), :name => 'program[benefit_ids][]' %> <%= b.name %></label>
+
+  <% end %>
+ 
+    </span>
+
 
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary' %>
