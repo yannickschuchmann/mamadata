@@ -18,47 +18,47 @@
 		</div>
 	</div>
 	<div class="field">
-		<div class="span3"><%= f.label :fathers_name %></div>
+		<div class="span3"><%= f.label "Father's Name" %></div>
 		<div class="span9"><%= f.text_field :fathers_name %></div>
 	</div>
 	<div class="field">
-		<div class="span3"><%= f.label :gender %></div>
+		<div class="span3"><%= f.label "Gender" %></div>
 		<div class="span9"><%= f.select :gender, ["male", "female"] %></div>
 	</div>
 	<div class="field">
-		<div class="span3"><%= f.label :date_of_birth %></div>
+		<div class="span3"><%= f.label "Date of Birth" %></div>
 		<div class="span9"><%= f.date_select :date_of_birth, :start_year => 1920 %></div>
 	</div>
 	<div class="field">
-		<div class="span3"><%= f.label :place_of_birth %></div>
+		<div class="span3"><%= f.label "Place of birth" %></div>
 		<div class="span9"><%= f.text_field :place_of_birth %></div>
 	</div>
 	<div class="field">
-		<div class="span3"><%= f.label :native_place %></div>
+		<div class="span3"><%= f.label "Native place" %></div>
 		<div class="span9"><%= f.text_field :native_place %></div>
 	</div>
 	<div class="field">
-		<div class="span3"><%= f.label :name_of_the_house %></div>
+		<div class="span3"><%= f.label "Name of the house" %></div>
 		<div class="span9"><%= f.text_field :name_of_the_house %></div>
 	</div>
 	<div class="field">
-		<div class="span3"><%= f.label :number_of_the_house %></div>
+		<div class="span3"><%= f.label "Number of the house" %></div>
 		<div class="span9"><%= f.number_field :number_of_the_house %></div>
 	</div>
 	<div class="field">
-		<div class="span3"><%= f.label :name_of_the_street %></div>
+		<div class="span3"><%= f.label "Name of the street" %></div>
 		<div class="span9"><%= f.text_field :name_of_the_street %></div>
 	</div>
 	<div class="field">
-		<div class="span3"><%= f.label :city %></div>
+		<div class="span3"><%= f.label "City/Village" %></div>
 		<div class="span9"><%= f.text_field :city %></div>
 	</div>
 	<div class="field">
-		<div class="span3"><%= f.label :pin_code %></div>
+		<div class="span3"><%= f.label "PIN Code" %></div>
 		<div class="span9"><%= f.number_field :pin_code %></div>
 	</div>
 	<div class="field">
-		<div class="span3"><%= f.label :religion %></div>
+		<div class="span3"><%= f.label "Religion" %></div>
 		<div class="span9"><%= f.select :religion, ["Hindu", "Christian", "Muslim", "Other"]%>
 		<!--
 			Hier muss eine entsprechende Weiche rein, damit der nicht das leere Feld nimmt, deswegen ist es hier auskommentiert.
@@ -68,34 +68,34 @@
 		</div>
 	</div>
 	<div class="field">
-		<div class="span3"><%= f.label :caste %></div>
+		<div class="span3"><%= f.label "Caste" %></div>
 		<div class="span9"><%= f.select :caste, ["Scheduled Caste", "Most Backward Class", "Backward Class", "Other"]%></div>
 		<% f.text_field :caste %>
 	</div>
 	<div class="field">
-		<div class="span3"><%= f.label :education %></div>
+		<div class="span3"><%= f.label "Education" %></div>
 		<div class="span9"><%= f.select :education, ["Primary", "High", "Hr Secondary", "College", "Vocational"]%></div>
 	</div>
 	<div class="field">
-		<div class="span3"><%= f.label :marital_status %></div>
+		<div class="span3"><%= f.label "Marital Status" %></div>
 		<div class="span9"><%= f.select :marital_status, ["none", "married", "widow/widower", "deserted", "divorced", "seperated"]%></div>
 	</div>
 	<div class="field">
-		<div class="span3"><%= f.label :health_condition %></div>
+		<div class="span3"><%= f.label "Health Condition" %></div>
 		<div class="span9"><%= f.select :health_condition, ["normal", "disabled", "mentally retarded"]%></div>
 	</div>
 	<div class="field">
-		<div class="span3"><%= f.label :occupation %></div>
+		<div class="span3"><%= f.label "Occupation" %></div>
 		<div class="span9"><%= f.select :occupation, ["none", "student", "agricultural coolie", "small farmer", "industrial worker", "government employee", "other"]%>
 		<% f.text_field :occupation %>
 		</div>
 	</div>
 	<div class="field">
-		<div class="span3"><%= f.label :income %></div>
+		<div class="span3"><%= f.label "Income per month" %></div>
 		<div class="span9"><%= f.number_field :income %></div>
 	</div>
 	<div class="field">
-		<div class="span3"><%= f.label :role_id %></div>
+		<div class="span3"><%= f.label "Role in context of Sharana" %></div>
 		<div class="span9"><%= f.select :role_id, Role.all.map{|role| [role.name, role.id]}  %></div>
 	</div>
 	<div class="actions">
