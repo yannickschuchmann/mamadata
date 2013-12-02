@@ -2,7 +2,6 @@ class BeneficiariesController < ApplicationController
   before_action :set_beneficiary, only: [:show, :edit, :update, :destroy]
 
   # GET /beneficiaries
-  # GET /beneficiaries.json
   def index
     @beneficiaries = Beneficiary.all
   end

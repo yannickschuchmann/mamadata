@@ -5,5 +5,4 @@ class Program < ActiveRecord::Base
 	has_many :members
 	has_many :beneficiaries, through: :members, source: 'beneficiary'
 	validates :name, presence: true
-
 end
