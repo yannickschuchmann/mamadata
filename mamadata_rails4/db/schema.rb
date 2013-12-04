@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131127180640) do
+ActiveRecord::Schema.define(version: 20131204122458) do
 
   create_table "beneficiaries", force: true do |t|
     t.string   "school_name"
@@ -90,6 +90,14 @@ ActiveRecord::Schema.define(version: 20131127180640) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "familys", force: true do |t|
+    t.integer "person_id"
+    t.integer "community_development_id"
+  end
+
+  add_index "familys", ["community_development_id"], name: "index_familys_on_community_development_id"
+  add_index "familys", ["person_id"], name: "index_familys_on_person_id"
 
   create_table "members", force: true do |t|
     t.integer  "program_id"
