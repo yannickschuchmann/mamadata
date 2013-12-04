@@ -24,6 +24,9 @@ class CommunityDevelopmentsController < ApplicationController
   # POST /community_developments
   # POST /community_developments.json
   def create
+    #remove empty array fields!
+    community_development_params["family_skilled_in_art"].reject!(&:empty?)
+    community_development_params["illness_treatment"].reject!(&:empty?)
     @community_development = CommunityDevelopment.new(community_development_params)
 
     respond_to do |format|
@@ -40,10 +43,9 @@ class CommunityDevelopmentsController < ApplicationController
   # PATCH/PUT /community_developments/1
   # PATCH/PUT /community_developments/1.json
   def update
-    puts "33333333333333333333333333333333333"
+    #remove empty array fields!
     community_development_params["family_skilled_in_art"].reject!(&:empty?)
-    puts community_development_params["family_skilled_in_art"].class
-    puts community_development_params["illness_treatment"].reject!(&:empty?)
+    community_development_params["illness_treatment"].reject!(&:empty?)
     respond_to do |format|
       if @community_development.update(community_development_params)
         format.html { redirect_to @community_development, notice: 'Community development was successfully updated.' }
