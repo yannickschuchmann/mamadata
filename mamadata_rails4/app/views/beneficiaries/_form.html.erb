@@ -36,8 +36,7 @@
   </div>
   <div class="field">
     <div class="span3"><%= f.label "Godfather" %></div>
-  <!-- Hier muss noch mal geschaut werden, wie man das macht, das automatisch der guardian/godfather ausgewählt wird. Eventuell Hilfstabelle !? -->
-    <div class="span9"><%= f.select :godfather_id, Person.where(role_id: "4").map{|role| [role.name, role.id]} %></div>
+    <div class="span9"><%= f.select :godfather_id, Supporter.where(:godfather => 1).map{|role| [role.name, role.id]} %></div>
   </div>
   <div class="field">
     <div class="span3"><%= f.label "Status" %></div>
