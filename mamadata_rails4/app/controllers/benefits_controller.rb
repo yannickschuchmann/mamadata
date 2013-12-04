@@ -40,6 +40,11 @@ class BenefitsController < ApplicationController
   # PATCH/PUT /benefits/1
   # PATCH/PUT /benefits/1.json
   def update
+
+     puts '@@@@@@@@@@@@'
+    puts benefit_params
+    puts '@@@@@@@@@@@@'
+    
     respond_to do |format|
       if @benefit.update(benefit_params)
         format.html { redirect_to @benefit, notice: 'Benefit was successfully updated.' }
@@ -69,6 +74,6 @@ class BenefitsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def benefit_params
-      params.require(:benefit).permit(:name, :descriptioin)
+      params.require(:benefit).permit(:name, :description)
     end
 end

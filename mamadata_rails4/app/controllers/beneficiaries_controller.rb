@@ -2,7 +2,6 @@ class BeneficiariesController < ApplicationController
   before_action :set_beneficiary, only: [:show, :edit, :update, :destroy]
 
   # GET /beneficiaries
-  # GET /beneficiaries.json
   def index
     @beneficiaries = Beneficiary.all
   end
@@ -26,7 +25,8 @@ class BeneficiariesController < ApplicationController
   # POST /beneficiaries.json
   def create
     @beneficiary = Beneficiary.new(beneficiary_params)
-
+    puts @beneficiary.inspect
+    puts "#########################################"
     respond_to do |format|
       if @beneficiary.save
         format.html { redirect_to @beneficiary, notice: 'Beneficiary was successfully created.' }
@@ -70,6 +70,6 @@ class BeneficiariesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def beneficiary_params
-      params.require(:beneficiary).permit(:member_id, :school_name, :school_type, :school_language, :school_class, :narrative_text, :godfather, :status, program_attributes: [:id])
+      params.require(:beneficiary).permit(:member_id, :school_name, :school_type, :school_language, :school_class, :narrative_text, :godfather, :status, :program_ids => [])
     end
 end
