@@ -25,7 +25,8 @@ class BeneficiariesController < ApplicationController
   # POST /beneficiaries.json
   def create
     @beneficiary = Beneficiary.new(beneficiary_params)
-
+    puts @beneficiary.inspect
+    puts "#########################################"
     respond_to do |format|
       if @beneficiary.save
         format.html { redirect_to @beneficiary, notice: 'Beneficiary was successfully created.' }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131128212628) do
+ActiveRecord::Schema.define(version: 20131127180640) do
 
   create_table "beneficiaries", force: true do |t|
     t.string   "school_name"
@@ -19,25 +19,33 @@ ActiveRecord::Schema.define(version: 20131128212628) do
     t.string   "school_language"
     t.string   "school_class"
     t.text     "narrative_text"
-    t.integer  "godfather_id"
     t.string   "status"
+    t.integer  "program_id"
+    t.integer  "godfather_id"
+    t.integer  "member_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "member_id"
   end
 
   add_index "beneficiaries", ["godfather_id"], name: "index_beneficiaries_on_godfather_id"
+  add_index "beneficiaries", ["member_id"], name: "index_beneficiaries_on_member_id"
+  add_index "beneficiaries", ["program_id"], name: "index_beneficiaries_on_program_id"
 
   create_table "benefit_incidents", force: true do |t|
     t.integer  "person_id"
     t.integer  "benefit_id"
     t.integer  "program_id"
+    t.integer  "beneficiary_id"
     t.integer  "amount"
     t.text     "remark"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "beneficiary_id"
   end
+
+  add_index "benefit_incidents", ["beneficiary_id"], name: "index_benefit_incidents_on_beneficiary_id"
+  add_index "benefit_incidents", ["benefit_id"], name: "index_benefit_incidents_on_benefit_id"
+  add_index "benefit_incidents", ["person_id"], name: "index_benefit_incidents_on_person_id"
+  add_index "benefit_incidents", ["program_id"], name: "index_benefit_incidents_on_program_id"
 
   create_table "benefits", force: true do |t|
     t.string   "name"
@@ -84,13 +92,12 @@ ActiveRecord::Schema.define(version: 20131128212628) do
   end
 
   create_table "members", force: true do |t|
-    t.integer  "beneficiary_id"
     t.integer  "program_id"
+    t.integer  "beneficiary_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "members", ["beneficiary_id", "program_id"], name: "index_members_on_beneficiary_id_and_program_id", unique: true
   add_index "members", ["beneficiary_id"], name: "index_members_on_beneficiary_id"
   add_index "members", ["program_id"], name: "index_members_on_program_id"
 
@@ -128,7 +135,6 @@ ActiveRecord::Schema.define(version: 20131128212628) do
   end
 
   add_index "program_benefit_relationships", ["benefit_id"], name: "index_program_benefit_relationships_on_benefit_id"
-  add_index "program_benefit_relationships", ["program_id", "benefit_id"], name: "prog_ben_index", unique: true
   add_index "program_benefit_relationships", ["program_id"], name: "index_program_benefit_relationships_on_program_id"
 
   create_table "programs", force: true do |t|
