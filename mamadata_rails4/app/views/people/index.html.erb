@@ -1,22 +1,22 @@
 <h1>People</h1>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Fathers name</th>
+        <th>Gender</th>
+        <th>Date of birth</th>
+        <th>Place of birth</th>
+        <th>City</th>
+        <th>PIN code</th>
+        <th>Role</th>
+        <th></th>
+      </tr>
+    </thead>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Fathers name</th>
-      <th>Gender</th>
-      <th>Date of birth</th>
-      <th>Place of birth</th>
-      <th>City</th>
-      <th>PIN code</th>
-      <th>Role</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @people.each do |person| %>
+    <tbody>
+      <% @people.each do |person| %>
       <tr>
         <td><%= person.name %></td>
         <td><%= person.fathers_name %></td>
@@ -25,18 +25,23 @@
         <td><%= person.place_of_birth %></td>
         <td><%= person.city %></td>
         <td><%= person.pin_code %></td>
-        <td><%= person.role_id %></td>
+        <td>
+          <% if !person.role_id.nil?
+            b = Role.find (person.role_id) %>
+           <%= b.name %>
+          <% end %>
+        </td>
         <td><%= link_to (content_tag(:i, "", :class => "icon-file")), person %>
-        <%= link_to (content_tag(:i, "", :class => "icon-edit")), edit_person_path(person) %>
-        <%= link_to (content_tag(:i, "", :class => "icon-trash")), person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <%= link_to (content_tag(:i, "", :class => "icon-edit")), edit_person_path(person) %>
+          <%= link_to (content_tag(:i, "", :class => "icon-trash")), person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <br>
 
-<br>
-
-<%= link_to new_person_path, :class => 'btn btn-primary' do %>
+  <%= link_to new_person_path, :class => 'btn btn-primary' do %>
   <%= content_tag(:i, "", :class => "icon-pencil") %>
   New Person
-<% end %>
+  <% end %>

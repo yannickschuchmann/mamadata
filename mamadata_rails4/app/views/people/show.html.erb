@@ -92,6 +92,10 @@
 
 <p>
   <strong>Role:</strong>
+  <% if !@person.role_id.nil?
+            b = Role.find (@person.role_id) %>
+           <%= b.name %>
+          <% end %>
   <%#= @person.role.name %>
 </p>
 
