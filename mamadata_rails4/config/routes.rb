@@ -1,4 +1,5 @@
 MamadataRails4::Application.routes.draw do
+  get "playground/familytest"
   resources :benefit_incidents
 
   resources :benefits do

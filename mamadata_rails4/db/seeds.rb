@@ -7,9 +7,16 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Person.create(name: "Heide", fathers_name: "Witzka", gender: "male", date_of_birth: "16-01-1991", place_of_birth: "Hamburg", native_place: "Hamburg",  name_of_the_house: "Rathaus", number_of_the_house: "1", name_of_the_street: "Rathausmarkt", city: "Hamburg", pin_code: 20095, religion: "Christian", caste: "Scheduled Caste", education: "High", marital_status: "seperated", health_condition: "mentally retarded", occupation: "government employee", income: 50000)
-Person.create(name: "Devils", fathers_name: "Daughter", gender: "female", date_of_birth: "16-11-2013", place_of_birth: "Hell", native_place: "Hell",  name_of_the_house: "Hurenhaus", number_of_the_house: "666", name_of_the_street: "Highway to Hell", city: "Hamburg", pin_code: 20095, religion: "goth", caste: "highest", education: "Primary", marital_status: "deserted", health_condition: "mentally retarded", occupation: "reaper", income: 500000000)
-Person.create(name: "Mr", fathers_name: "Willy", gender: "male", date_of_birth: "16-01-1960", place_of_birth: "Murica", native_place: "Murica",  name_of_the_house: "Walmart", number_of_the_house: "1", name_of_the_street: "Wallstreet", city: "Murica", pin_code: 20095, religion: "Christian", caste: "Backward Class", education: "Primary", marital_status: "married", health_condition: "normal", occupation: "Bäm", income: 50000)
+Person.create(name: "1Heide", father_id: 2, mother_id: 3, fathers_name: "Witzka", gender: "male", date_of_birth: "16-01-1991", place_of_birth: "Hamburg", native_place: "Hamburg",  name_of_the_house: "Rathaus", number_of_the_house: "1", name_of_the_street: "Rathausmarkt", city: "Hamburg", pin_code: 20095, religion: "Christian", caste: "Scheduled Caste", education: "High", marital_status: "seperated", health_condition: "mentally retarded", occupation: "government employee", income: 50000)
+Person.create(name: "2Devils", father_id: 4, mother_id: 5, fathers_name: "Daughter", gender: "female", date_of_birth: "16-11-2013", place_of_birth: "Hell", native_place: "Hell",  name_of_the_house: "Hurenhaus", number_of_the_house: "666", name_of_the_street: "Highway to Hell", city: "Hamburg", pin_code: 20095, religion: "goth", caste: "highest", education: "Primary", marital_status: "deserted", health_condition: "mentally retarded", occupation: "reaper", income: 500000000)
+Person.create(name: "3Mr", father_id: 6, mother_id: 7, fathers_name: "Willy", gender: "male", date_of_birth: "16-01-1960", place_of_birth: "Murica", native_place: "Murica",  name_of_the_house: "Walmart", number_of_the_house: "1", name_of_the_street: "Wallstreet", city: "Murica", pin_code: 20095, religion: "Christian", caste: "Backward Class", education: "Primary", marital_status: "married", health_condition: "normal", occupation: "Bäm", income: 50000)
+Person.create(name: "4Beni", gender: "male")
+Person.create(name: "5Mara",gender: "female")
+Person.create(name: "6Fara",gender: "male")
+
+Person.create(name: "7Schara", father_id: 8,mother_id: 9,gender: "female")
+Person.create(name: "8male", gender: "male") 
+Person.create(name: "9female", father_id: 8,gender: "female")
 
 Role.create(name: "Beneficiary")
 Role.create(name: "Father")

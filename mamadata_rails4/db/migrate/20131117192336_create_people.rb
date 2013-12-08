@@ -20,7 +20,8 @@ class CreatePeople < ActiveRecord::Migration
       t.string :occupation
       t.integer :income
       t.references :role, index: true
-
+      t.integer :father_id
+      t.integer :mother_id
       t.timestamps
     end
   end

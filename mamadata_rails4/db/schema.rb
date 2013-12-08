@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 20131204122458) do
   create_table "familys", force: true do |t|
     t.integer "person_id"
     t.integer "community_development_id"
+    t.string  "name"
   end
 
   add_index "familys", ["community_development_id"], name: "index_familys_on_community_development_id"
@@ -129,6 +130,8 @@ ActiveRecord::Schema.define(version: 20131204122458) do
     t.string   "occupation"
     t.integer  "income"
     t.integer  "role_id"
+    t.integer  "father_id"
+    t.integer  "mother_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -170,7 +173,7 @@ ActiveRecord::Schema.define(version: 20131204122458) do
     t.string   "email"
     t.string   "website"
     t.string   "telephone_number"
-    t.string   "godfather"
+    t.boolean  "godfather"
     t.boolean  "is_volunteer"
     t.date     "begin_of_work"
     t.date     "end_of_work"
