@@ -1,20 +1,11 @@
 <%= content_for :js do %><%= javascript_include_tag "families" %> <% end %>
 
 <h2>Family</h2>
-<%= form_for(@family) do |f| %>
-	<% if @family.errors.any? %>
-    	<div id="error_explanation">
-			<h2><%= pluralize(@family.errors.count, "error") %> prohibited this beneficiary from being saved:</h2>
-			<ul>
-      			<% @family.errors.full_messages.each do |msg| %>
-        			<li><%= msg %></li>
-      			<% end %>
-      		</ul>
-   		</div>
-	<% end %>
-	<div class="field">
-		<div class="span3"><%= f.label "Family name" %></div>
-		<div class="span9"><%= f.text_field :name %></div>
+	<div id="addpeople"> Add People </div>
+
+	<div id="people">
+		
 	</div>
-<% end %>
-<div id="addpeople"> Add People </div>
+	<div class="actions">
+		<input class="btn btn-primary" name="commit" type="submit" value="Create Family">
+	</div>

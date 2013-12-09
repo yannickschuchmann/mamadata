@@ -19,4 +19,7 @@ class FamiliesController < ApplicationController
 			format.js 
 		end
 	end
+	def create
+		puts params
+	end
 end
