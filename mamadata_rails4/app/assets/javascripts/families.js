@@ -1,4 +1,5 @@
-$( document ).ready(function() {
+ready = function() {
+    console.log("families")
 	$("#new_person").hide();
 	$("#head").click(function(){
 		("#new_person").slideToggle();
@@ -16,4 +17,7 @@ $( document ).ready(function() {
                 }
             });
 	});
-});
+};
+
+$(document).ready(ready);
+// $(document).on('page:load', ready);
