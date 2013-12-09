@@ -1,4 +1,4 @@
-ready = function() {
+// families = function() {
     console.log("families")
 	$("#new_person").hide();
 	$("#head").click(function(){
@@ -6,6 +6,7 @@ ready = function() {
 	});
 
 	$("#addpeople").click(function(){
+        console.log("clicked")
         jQuery.ajax({
                 url: "/families/addpeople.js",
                 type: "GET",
@@ -17,7 +18,8 @@ ready = function() {
                 }
             });
 	});
-};
-
-$(document).ready(ready);
-// $(document).on('page:load', ready);
+// };
+// // this loads on ALL sites
+// $(document).ready(families);
+// // this only on /families*
+// $(document).on('page:load', families());

@@ -67,6 +67,8 @@
         <div class="row-fluid" id="content">
             <%= bootstrap_flash %>
             <%= yield %>
+            <!-- need to be loaded after the content -->
+            <%= yield :js %>
         </div><!--/row-->
       </div> <!-- /container -->
       <div id="push"></div>

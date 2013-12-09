@@ -1,3 +1,5 @@
+<%= content_for :js do %><%= javascript_include_tag "families" %> <% end %>
+
 <h2>Family</h2>
 <%= form_for(@family) do |f| %>
 	<% if @family.errors.any? %>
