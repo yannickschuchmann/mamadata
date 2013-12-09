@@ -1,0 +1,29 @@
+<h1>Family</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>People</th>
+      <th>Family Member</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @families.each do |family| %>
+      <tr>
+        <td><%= family.name %></td>
+        <td><%= family.head %></td>
+        <td><% family.people.each do |people| %>
+				<%= people.name %> <br>
+			<% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  <%= link_to new_family_path, :class => 'btn btn-primary' do %>
+  <%= content_tag(:i, "", :class => "icon-pencil") %>
+  New Family
+  <% end %>

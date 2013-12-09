@@ -91,14 +91,15 @@ ActiveRecord::Schema.define(version: 20131204122458) do
     t.datetime "updated_at"
   end
 
-  create_table "familys", force: true do |t|
+  create_table "families", force: true do |t|
     t.integer "person_id"
     t.integer "community_development_id"
     t.string  "name"
+    t.string  "head"
   end
 
-  add_index "familys", ["community_development_id"], name: "index_familys_on_community_development_id"
-  add_index "familys", ["person_id"], name: "index_familys_on_person_id"
+  add_index "families", ["community_development_id"], name: "index_families_on_community_development_id"
+  add_index "families", ["person_id"], name: "index_families_on_person_id"
 
   create_table "members", force: true do |t|
     t.integer  "program_id"
@@ -129,13 +130,13 @@ ActiveRecord::Schema.define(version: 20131204122458) do
     t.string   "health_condition"
     t.string   "occupation"
     t.integer  "income"
+    t.integer  "family_id"
     t.integer  "role_id"
-    t.integer  "father_id"
-    t.integer  "mother_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "people", ["family_id"], name: "index_people_on_family_id"
   add_index "people", ["role_id"], name: "index_people_on_role_id"
 
   create_table "program_benefit_relationships", force: true do |t|
