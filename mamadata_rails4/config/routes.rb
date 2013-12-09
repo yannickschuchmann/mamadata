@@ -1,7 +1,8 @@
 MamadataRails4::Application.routes.draw do
 
   get 'families/addpeople', to: 'families#addpeople'
-  
+  put 'families/create', to: 'families#create'
+
   resources :benefit_incidents
 
   resources :benefits do
