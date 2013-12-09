@@ -24,7 +24,7 @@ class FamiliesController < ApplicationController
 		puts params
 		puts "ENNNNNNNNNNNNNDDDDDDDDDD"
 		@persons = params[:person]
-		@family = Family.create(name:params[:familyname],head:"Homer")
+		@family = Family.create(name:params[:familyname],params[:familyname])
 		@persons.each do |key,value|
 			@family.people.create(name: value["name"], fathers_name: value["fname"], role: Role.find_by_id(value["role_id"].to_i))
 		end
