@@ -12,7 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require foundation
 //= require jquery.ui.all
 //= require jquery.turbolinks
-//= require twitter/bootstrap
+
 //= require turbolinks
+$(function(){ $(document).foundation(); });

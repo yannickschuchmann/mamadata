@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "MamadataRails4" %></title>
     <%= csrf_meta_tags %>
-
+    <%= javascript_include_tag "vendor/modernizr" %>
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript">
+      </script>
     <![endif]-->
 
     <%= stylesheet_link_tag "application", :media => "all" %>
@@ -49,6 +50,7 @@
             <a class="brand" href="#">MamadataRails4</a>
             <div class="container-fluid nav-collapse">
               <ul class="nav">
+                 <li><%= link_to 'Community Development', community_developments_path %></li>
                 <li><%= link_to 'Families', families_path %></li>
                 <li><%= link_to 'People', people_path %></li>
                 <!-- <li><%= link_to 'Beneficiaries', beneficiaries_path %></li> -->
@@ -65,7 +67,7 @@
       </div>
       <div class="container-fluid">
         <div class="row-fluid" id="content">
-            <%= bootstrap_flash %>
+
             <%= yield %>
             <!-- need to be loaded after the content -->
             <%= yield :js %>
