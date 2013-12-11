@@ -12,7 +12,7 @@ $("#addpeople").click(function(){
 						'</div>'+
 						'<div class="field">'+
 						'<div class="span3"><label for="Role in context of Sharana">Role in the Household</label></div>'+
-						   '<div class="span9"><select id="role_id" name="person[role_id]"><option value="1">Head of the Household</option>'+
+						'<div class="span9"><select id="role_id" name="person[role_id]"><option value="1">Head of the Household</option>'+
 									'<option value="2">Wife</option>'+
 									'<option value="3">Child</option>'+
 									'<option value="4">Father</option>'+
