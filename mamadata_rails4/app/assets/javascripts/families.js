@@ -41,7 +41,7 @@ $("#submitFamily").click(function(){
 	console.log(dataToSend);
 	// var data = JSON.stringify(dataToSend)
 	$.ajax({
-		url: "http://localhost:3000/families/create",   // I'm doing the proper routing later, since '/make_suggestion' routes to 'items/1/make_suggestion'
+		url: "http://"+window.location.host+"/families/create",   // I'm doing the proper routing later, since '/make_suggestion' routes to 'items/1/make_suggestion'
 		type: "PUT",
 		dataType: 'json',
 		async: 'false',
