@@ -19,8 +19,8 @@ class CreatePeople < ActiveRecord::Migration
       t.string :health_condition
       t.string :occupation
       t.integer :income
+      t.references :family, index:true
       t.references :role, index: true
-
       t.timestamps
     end
   end

@@ -12,7 +12,7 @@ class CreateSupporters < ActiveRecord::Migration
       t.string :email
       t.string :website
       t.string :telephone_number
-      t.string :godfather
+      t.boolean :godfather
       t.boolean :is_volunteer
       t.date :begin_of_work
       t.date :end_of_work

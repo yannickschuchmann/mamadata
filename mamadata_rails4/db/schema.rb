@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131127180640) do
+ActiveRecord::Schema.define(version: 20131204122458) do
 
   create_table "beneficiaries", force: true do |t|
     t.string   "school_name"
@@ -91,6 +91,17 @@ ActiveRecord::Schema.define(version: 20131127180640) do
     t.datetime "updated_at"
   end
 
+  create_table "families", force: true do |t|
+    t.integer "person_id"
+    t.integer "community_development_id"
+    t.string  "name"
+    t.integer "head_id"
+  end
+
+  add_index "families", ["community_development_id"], name: "index_families_on_community_development_id"
+  add_index "families", ["head_id"], name: "index_families_on_head_id"
+  add_index "families", ["person_id"], name: "index_families_on_person_id"
+
   create_table "members", force: true do |t|
     t.integer  "program_id"
     t.integer  "beneficiary_id"
@@ -120,11 +131,13 @@ ActiveRecord::Schema.define(version: 20131127180640) do
     t.string   "health_condition"
     t.string   "occupation"
     t.integer  "income"
+    t.integer  "family_id"
     t.integer  "role_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "people", ["family_id"], name: "index_people_on_family_id"
   add_index "people", ["role_id"], name: "index_people_on_role_id"
 
   create_table "program_benefit_relationships", force: true do |t|
@@ -162,7 +175,7 @@ ActiveRecord::Schema.define(version: 20131127180640) do
     t.string   "email"
     t.string   "website"
     t.string   "telephone_number"
-    t.string   "godfather"
+    t.boolean  "godfather"
     t.boolean  "is_volunteer"
     t.date     "begin_of_work"
     t.date     "end_of_work"

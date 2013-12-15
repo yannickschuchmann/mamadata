@@ -26,7 +26,7 @@
         <td><%= beneficiary.school_language %></td>
         <td><%= beneficiary.school_class %></td>
         <td><%= beneficiary.narrative_text %></td>
-        <td><%= beneficiary.godfather %></td>
+        <td><%= beneficiary.godfather["name"] %></td>
         <td><%= beneficiary.status %></td>
         <td><%= link_to (content_tag(:i, "", :class => "icon-file")), beneficiary %>
         <%= link_to (content_tag(:i, "", :class => "icon-edit")), edit_beneficiary_path(beneficiary) %>

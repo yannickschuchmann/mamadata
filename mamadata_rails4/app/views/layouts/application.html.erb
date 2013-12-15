@@ -49,10 +49,11 @@
             <a class="brand" href="#">MamadataRails4</a>
             <div class="container-fluid nav-collapse">
               <ul class="nav">
-                <li><%= link_to 'Community Developments', community_developments_path %></li>
-                <li><%= link_to 'Beneficiaries', beneficiaries_path %></li>
-                <li><%= link_to 'Roles', roles_path %></li>
+                <li><%= link_to 'Families', families_path %></li>
                 <li><%= link_to 'People', people_path %></li>
+                <!-- <li><%= link_to 'Beneficiaries', beneficiaries_path %></li> -->
+                <li><%= link_to 'Roles', roles_path %></li>
+                <!-- <li><%= link_to 'People', people_path %></li> -->
                 <li><%= link_to 'Supporters', supporters_path %></li>
                 <li><%= link_to 'Programs', programs_path %></li>
                 <li><%= link_to 'Benefits', benefits_path %></li>
@@ -63,9 +64,11 @@
         </div>
       </div>
       <div class="container-fluid">
-        <div class="row-fluid">
+        <div class="row-fluid" id="content">
             <%= bootstrap_flash %>
             <%= yield %>
+            <!-- need to be loaded after the content -->
+            <%= yield :js %>
         </div><!--/row-->
       </div> <!-- /container -->
       <div id="push"></div>
