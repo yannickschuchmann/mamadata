@@ -23,4 +23,9 @@ describe Program do
   	expect{@program.benefits << @benefit}.to change{ProgramBenefitRelationship.count}.by(1)
   end
 
+  it "should delete the entry in join table when associated benefit is deleted" do
+  	@program.benefits << @benefit
+  	expect{@program.benefits.delete(@benefit)}.to change{ProgramBenefitRelationship.count}.by(-1)
+  end
+
 end
