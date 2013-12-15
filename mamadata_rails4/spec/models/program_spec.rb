@@ -11,9 +11,12 @@ describe Program do
   	expect(@program).not_to be_valid
   end
 
-  it "can contain benefits" do
+  it "should be valid to add and remove benefits" do
   	@program.benefits << @benefit
   	expect(@program.benefits).to include(@benefit)
+
+  	@program.benefits.delete(@benefit)
+  	expect(@program.benefits).not_to include(@benefit)
   end
 
 end
