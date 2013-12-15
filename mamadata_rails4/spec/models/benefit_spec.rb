@@ -24,7 +24,6 @@ describe Benefit do
   end
 
   it "should have an entry in join table when associated with program" do
-  	
   	expect{@benefit.programs << @program}.to change{ProgramBenefitRelationship.count}.by(1)
   end
 

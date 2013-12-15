@@ -19,4 +19,8 @@ describe Program do
   	expect(@program.benefits).not_to include(@benefit)
   end
 
+   it "should have an entry in join table when associated with program" do
+  	expect{@program.benefits << @benefit}.to change{ProgramBenefitRelationship.count}.by(1)
+  end
+
 end
