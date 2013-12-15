@@ -95,10 +95,11 @@ ActiveRecord::Schema.define(version: 20131204122458) do
     t.integer "person_id"
     t.integer "community_development_id"
     t.string  "name"
-    t.string  "head"
+    t.integer "head_id"
   end
 
   add_index "families", ["community_development_id"], name: "index_families_on_community_development_id"
+  add_index "families", ["head_id"], name: "index_families_on_head_id"
   add_index "families", ["person_id"], name: "index_families_on_person_id"
 
   create_table "members", force: true do |t|
