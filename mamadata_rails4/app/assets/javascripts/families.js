@@ -52,7 +52,7 @@ $("#submitFamily").click(function(){
 			// console.log(returned_value);
 		},
 		error: function(returned_value){
-			console.log("error: " + returned_value);
+			alert("Something went Wrong during the sending of the data please retry later");
 		}
 	});
 });
