@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 20131204122458) do
     t.integer  "income"
     t.integer  "family_id"
     t.integer  "role_id"
+    t.string   "beneficiary_status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
