@@ -24,8 +24,8 @@ $("#addpeople").click(function(){
 						'</div>'
 	);
 	peopleNumber = peopleNumber + 1;
-});
-$("#submitFamily").click(function(){
+$("#submitFamily").click(function(event){
+	event.preventDefault();
 	var dataToSend = {};
 	var persons = document.getElementsByClassName("person");
 	dataToSend.person = {};
