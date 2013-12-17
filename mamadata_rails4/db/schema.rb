@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131204122458) do
+ActiveRecord::Schema.define(version: 20131215202820) do
 
   create_table "beneficiaries", force: true do |t|
     t.string   "school_name"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20131204122458) do
   add_index "beneficiaries", ["godfather_id"], name: "index_beneficiaries_on_godfather_id"
   add_index "beneficiaries", ["member_id"], name: "index_beneficiaries_on_member_id"
   add_index "beneficiaries", ["program_id"], name: "index_beneficiaries_on_program_id"
+
+  create_table "beneficiary_program_relationships", force: true do |t|
+    t.integer  "program_id"
+    t.integer  "beneficiary_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "beneficiary_program_relationships", ["beneficiary_id"], name: "index_beneficiary_program_relationships_on_beneficiary_id"
+  add_index "beneficiary_program_relationships", ["program_id"], name: "index_beneficiary_program_relationships_on_program_id"
 
   create_table "benefit_incidents", force: true do |t|
     t.integer  "person_id"
@@ -101,16 +111,6 @@ ActiveRecord::Schema.define(version: 20131204122458) do
   add_index "families", ["community_development_id"], name: "index_families_on_community_development_id"
   add_index "families", ["head_id"], name: "index_families_on_head_id"
   add_index "families", ["person_id"], name: "index_families_on_person_id"
-
-  create_table "members", force: true do |t|
-    t.integer  "program_id"
-    t.integer  "beneficiary_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "members", ["beneficiary_id"], name: "index_members_on_beneficiary_id"
-  add_index "members", ["program_id"], name: "index_members_on_program_id"
 
   create_table "people", force: true do |t|
     t.string   "name"
