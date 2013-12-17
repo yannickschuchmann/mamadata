@@ -20,7 +20,8 @@ $("#addpeople").click(function(){
 									'<option value="6">Brother</option>'+
 									'<option value="7">Sister</option>'+
 							'</select></div>'+
-						'</div></div>'
+						'</div>'+
+						'</div>'
 	);
 	peopleNumber = peopleNumber + 1;
 });
@@ -35,11 +36,9 @@ $("#submitFamily").click(function(){
 		tmp.role_id = $(person).find("#role_id")[0].value;
 		if (tmp.role_id === "1") {
 			dataToSend.familyname = tmp.fname;
-		};
+		}
 		dataToSend.person[index] = tmp;
 	});
-	console.log(dataToSend);
-	// var data = JSON.stringify(dataToSend)
 	$.ajax({
 		url: "http://"+window.location.host+"/families/create",   // I'm doing the proper routing later, since '/make_suggestion' routes to 'items/1/make_suggestion'
 		type: "PUT",
