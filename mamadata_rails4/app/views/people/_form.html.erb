@@ -102,6 +102,8 @@
 		<div class="span3"><%= f.label "Beneficiary Status" %></div>
 		<div class="span9"><%= f.select :beneficiary_status, ["No","To Qualify","Yes"] %></div>
 	</div>
+	<div id="if_beneficiary"></div>
+
 	<div class="actions">
 		<%= f.submit :class => 'btn btn-primary' %>
 	</div>
