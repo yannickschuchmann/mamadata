@@ -36,3 +36,21 @@
     <%= f.submit :class => 'btn btn-primary' %>
   </div>
 <% end %>
+
+<script>
+  var data = <%= @data.to_json.html_safe %>;
+  console.log(data);
+$('#benefit_incident_program_id').on('change', function(){
+  $('#benefit_incident_benefit_id').empty();
+  var benefitsOfSelectedProgram = data[this.value];
+  console.log(data[this.value]);
+
+$.each(benefitsOfSelectedProgram, function(key, value) {   
+     $('#benefit_incident_benefit_id')
+         .append($("<option></option>")
+         .attr("value",value.id)
+         .text(value.name));
+});
+
+  });
+</script>

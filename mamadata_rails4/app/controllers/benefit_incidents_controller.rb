@@ -22,6 +22,7 @@ class BenefitIncidentsController < ApplicationController
   # GET /benefit_incidents/1/edit
   def edit
     @person = @benefit_incident.person
+    @data = Hash[Program.all.map{|p| [p.id, p.benefits]}]
   end
 
   # POST /benefit_incidents
