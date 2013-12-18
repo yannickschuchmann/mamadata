@@ -3,6 +3,15 @@ class FamiliesController < ApplicationController
 	
 	def index
 		@families = Family.all
+		@heads = []
+		@families.each do |familie|
+			if Person.find_by_id(familie.head_id.to_i).nil?
+				@heads << Person.new(name: "Unknown")
+			else
+				@heads << Person.find_by_id(familie.head_id.to_i)
+			end
+		end
+		puts @heads
 	end
 	def new
 		# @family = Family.new
@@ -20,13 +29,14 @@ class FamiliesController < ApplicationController
 	# 	end
 	# end
 	def create
-		puts "CREATEEEEEEEEEEEEEEEEEEe"
-		puts params
-		puts "ENNNNNNNNNNNNNDDDDDDDDDD"
 		@persons = params[:person]
-		@family = Family.create(name:params[:familyname],head:params[:familyname])
+		@family = Family.create(name:params[:familyname])
 		@persons.each do |key,value|
-			@family.people.create(name: value["name"], fathers_name: value["fname"], role: Role.find_by_id(value["role_id"].to_i))
+			people = @family.people.create(name: value["name"], fathers_name: value["fname"], role: Role.find_by_id(value["role_id"].to_i))
+			if value["role_id"].to_i == 1
+				@family.head_id = people.id
+				@family.save
+			end
 		end
 		render :json => @family
 	end

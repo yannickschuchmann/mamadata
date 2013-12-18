@@ -20,11 +20,12 @@ $("#addpeople").click(function(){
 									'<option value="6">Brother</option>'+
 									'<option value="7">Sister</option>'+
 							'</select></div>'+
-						'</div></div>'
+						'</div>'+
+						'</div>'
 	);
 	peopleNumber = peopleNumber + 1;
-});
-$("#submitFamily").click(function(){
+$("#submitFamily").click(function(event){
+	event.preventDefault();
 	var dataToSend = {};
 	var persons = document.getElementsByClassName("person");
 	dataToSend.person = {};
@@ -35,13 +36,11 @@ $("#submitFamily").click(function(){
 		tmp.role_id = $(person).find("#role_id")[0].value;
 		if (tmp.role_id === "1") {
 			dataToSend.familyname = tmp.fname;
-		};
+		}
 		dataToSend.person[index] = tmp;
 	});
-	console.log(dataToSend);
-	// var data = JSON.stringify(dataToSend)
 	$.ajax({
-		url: "http://localhost:3000/families/create",   // I'm doing the proper routing later, since '/make_suggestion' routes to 'items/1/make_suggestion'
+		url: "http://"+window.location.host+"/families/create",   // I'm doing the proper routing later, since '/make_suggestion' routes to 'items/1/make_suggestion'
 		type: "PUT",
 		dataType: 'json',
 		async: 'false',
@@ -52,7 +51,7 @@ $("#submitFamily").click(function(){
 			// console.log(returned_value);
 		},
 		error: function(returned_value){
-			console.log("error: " + returned_value);
+			alert("Something went Wrong during the sending of the data please retry later");
 		}
 	});
 });

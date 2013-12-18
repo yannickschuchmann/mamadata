@@ -7,7 +7,7 @@ mother = Role.create(name: "Mother")
 brother = Role.create(name: "Brother")
 sister = Role.create(name: "Sister")
 
-simpsons = Family.create(name:"Simpsons",head:"Homer")
+simpsons = Family.create(name:"Simpsons")
 simpsons.people.create(name: "Homer", gender: "male", role: head)
 simpsons.people.create(name: "Marge",gender: "female",role: wife)
 simpsons.people.create(name: "Bart",gender: "male", role: child)

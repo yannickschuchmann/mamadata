@@ -21,6 +21,7 @@ class CreatePeople < ActiveRecord::Migration
       t.integer :income
       t.references :family, index:true
       t.references :role, index: true
+      t.string :beneficiary_status
       t.timestamps
     end
   end

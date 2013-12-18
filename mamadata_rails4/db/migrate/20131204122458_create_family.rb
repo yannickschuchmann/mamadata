@@ -4,7 +4,7 @@ class CreateFamily < ActiveRecord::Migration
   		t.references :person, index: true
   		t.references :community_development, index: true
   		t.string :name
-  		t.string :head
+  		t.references :head, index: true
   	end
   end
 end

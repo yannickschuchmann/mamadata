@@ -24,17 +24,22 @@ class PeopleController < ApplicationController
   # POST /people
   # POST /people.json
   def create
-    @person = Person.new(person_params)
-
-    respond_to do |format|
-      if @person.save
-        format.html { redirect_to @person, notice: 'Person was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @person }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @person.errors, status: :unprocessable_entity }
-      end
+    personParameters = ActionController::Parameters.new(params["person"])
+    @person = Person.create(personParameters.permit(:name, :fathers_name, :gender, :date_of_birth, :place_of_birth, :native_place, :name_of_the_house, :number_of_the_house, :name_of_the_street, :city, :pin_code, :religion, :caste, :education, :marital_status, :health_condition, :occupation, :income, :role_id))
+    if params["beneficiary"]
+      beneficiaryParameters = ActionController::Parameters.new(params["beneficiary"])
+      @beneficiary = Beneficiary.create(beneficiaryParameters.permit(:school_name))
     end
+    # respond_to do |format|
+    #   if @person.save
+    #     format.html { redirect_to @person, notice: 'Person was successfully created.' }
+    #     format.json { render action: 'show', status: :created, location: @person }
+    #   else
+    #     format.html { render action: 'new' }
+    #     format.json { render json: @person.errors, status: :unprocessable_entity }
+    #   end
+    # end
+    render :json => @person
   end
 
   # PATCH/PUT /people/1
@@ -69,6 +74,6 @@ class PeopleController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-      params.require(:person).permit(:name, :fathers_name, :gender, :date_of_birth, :place_of_birth, :native_place, :name_of_the_house, :number_of_the_house, :name_of_the_street, :city, :pin_code, :religion, :caste, :education, :marital_status, :health_condition, :occupation, :income, :role_id)
+      params.require(:person).permit(:name, :fathers_name, :gender, :date_of_birth, :place_of_birth, :native_place, :name_of_the_house, :number_of_the_house, :name_of_the_street, :city, :pin_code, :religion, :caste, :education, :marital_status, :health_condition, :occupation, :income, :role_id, {:person => []})
     end
 end
