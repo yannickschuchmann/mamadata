@@ -31,7 +31,8 @@ $("#submitPerson").click(function(event){
 	//change the value to let the user know that he done something
 	this.value = "Creating...";
 	// disable the button so the user can't send twice
-	$("#submitPerson").prop("disabled",true);
+	// $("#submitPerson").prop("disabled",true);
+	var dataToSend = {};
 	person = {};
 	var new_person = document.getElementById("new_person");
 	person.name = $(new_person).find("#person_name")[0].value;
@@ -40,10 +41,26 @@ $("#submitPerson").click(function(event){
 
 	//if beneficiary is yes parse it too
 	if ($('#person_beneficiary_status').find(":selected").text() === "Yes") {
-		beneficiary = {};
-		beneficiary.school_name = $(new_person).find("#beneficiary_school_name")[0].value;
+		dataToSend.beneficiary = {};
+		dataToSend.beneficiary.school_name = $(new_person).find("#beneficiary_school_name")[0].value;
 	}
-	console.log(person, beneficiary);
-	var dataToSend = {};
-	dataToSend.person = {};
+	// console.log(person, beneficiary);
+	
+	dataToSend.person = person;
+	console.log(dataToSend);
+	$.ajax({
+		url: "http://"+window.location.host+"/people/create",   // I'm doing the proper routing later, since '/make_suggestion' routes to 'items/1/make_suggestion'
+		type: "PUT",
+		dataType: 'json',
+		async: 'false',
+		data: dataToSend,
+		success: function(returned_value){
+			window.location.replace("/people")
+			// window.location.replace("/families/show/"+returned_value.id)
+			// console.log(returned_value);
+		},
+		error: function(returned_value){
+			alert("Something went Wrong during the sending of the data please retry later");
+		}
+	});
 });
