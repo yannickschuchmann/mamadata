@@ -16,12 +16,12 @@ class BenefitIncidentsController < ApplicationController
   def new
     @benefit_incident = BenefitIncident.new
     @data = Hash[Program.all.map{|p| [p.id, p.benefits]}]
-    @person = Person.find(params[:person_id])
-    @benefit_incident.person_id = @person.id
+    @person = Person.find(params[:person_id]) 
   end
 
   # GET /benefit_incidents/1/edit
   def edit
+    @person = @benefit_incident.person
   end
 
   # POST /benefit_incidents
