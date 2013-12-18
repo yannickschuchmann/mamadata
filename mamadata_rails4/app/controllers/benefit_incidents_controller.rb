@@ -16,6 +16,7 @@ class BenefitIncidentsController < ApplicationController
   def new
     @benefit_incident = BenefitIncident.new
     @data = Hash[Program.all.map{|p| [p.id, p.benefits]}]
+    @person = Person.find_by(id: :person_id)
   end
 
   # GET /benefit_incidents/1/edit

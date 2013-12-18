@@ -13,11 +13,11 @@
 
   <div class="field">
     <div class="span3"><%= f.label :person_id %></div>
-    <div class="span9"><%= f.select :person_id, Person.all.map{|person| [person.name, person.id]}  %></div>
+    <div class="span9"><%= f.text_field :person_id, @person.name %></div>
   </div>
       <div class="field">
     <div class="span3"><%= f.label :program_id %></div>
-    <div class="span9"><%= f.select :program_id, Program.all.map{|program| [program.name, program.id]}, :class => 'program_select' %></div>
+    <div class="span9"><%= f.select :program_id, Program.all.map{|program| [program.name, program.id]} %></div>
   </div>
   <div class="field">
     <div class="span3"><%= f.label :benefit_id %></div>
