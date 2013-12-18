@@ -17,7 +17,7 @@
   </div>
       <div class="field">
     <div class="span3"><%= f.label :program_id %></div>
-    <div class="span9" id="program_select"><%= f.select :program_id, Program.all.map{|program| [program.name, program.id]} %></div>
+    <div class="span9"><%= f.select :program_id, Program.all.map{|program| [program.name, program.id]}, :class => 'program_select' %></div>
   </div>
   <div class="field">
     <div class="span3"><%= f.label :benefit_id %></div>
