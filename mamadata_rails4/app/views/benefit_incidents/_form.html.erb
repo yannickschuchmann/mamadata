@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <div class="span3"><%= f.label :benefit_id %></div>
-    <div class="span9"><%= f.select :benefit_id, Benefit.all.map{|benefit| [benefit.name, benefit.id]}%></div>
+    <div class="span9" id="benefit_select"><%= f.select :benefit_id, []%></div>
   </div>
   <div class="field">
     <div class="span3"><%= f.label :amount %></div>
