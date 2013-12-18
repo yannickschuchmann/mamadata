@@ -13,7 +13,7 @@
 
   <div class="field">
     <div class="span3"><%= f.label :person_id %></div>
-    <div class="span9"><%= f.text_field :person_id, @person.name %></div>
+    <div class="span9"><%= f.text_field :person_id, value: Person.find(params[:person_id]).id, readonly: true %></div>
   </div>
       <div class="field">
     <div class="span3"><%= f.label :program_id %></div>

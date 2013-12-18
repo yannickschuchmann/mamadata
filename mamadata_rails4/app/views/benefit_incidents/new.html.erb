@@ -15,8 +15,8 @@ $('#benefit_incident_program_id').on('change', function(){
 $.each(benefitsOfSelectedProgram, function(key, value) {   
      $('#benefit_incident_benefit_id')
          .append($("<option></option>")
-         .attr("value",key.id)
-         .text(value.name)); 
+         .attr("value",value.id)
+         .text(value.name));
 });
 
   });
