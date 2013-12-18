@@ -11,100 +11,126 @@
 		</div>
 	<% end %>
 
-	<div class="field">
-		<div class="span3"><%= f.label :name %></div>
-		<div class="span9">
-			<%= f.text_field :name %>
+	<div class="row">
+		<div class="large-12 column">
+			<%= f.text_field :name, :placeholder => :name %>
 		</div>
 	</div>
-	<div class="field">
-		<div class="span3"><%= f.label "Father's Name" %></div>
-		<div class="span9"><%= f.text_field :fathers_name %></div>
-	</div>
-	<div class="field">
-		<div class="span3"><%= f.label "Gender" %></div>
-		<div class="span9"><%= f.select :gender, ["male", "female"] %></div>
-	</div>
-	<div class="field">
-		<div class="span3"><%= f.label "Date of Birth" %></div>
-		<div class="span9"><%= f.date_select :date_of_birth, :start_year => 1920 %></div>
-	</div>
-	<div class="field">
-		<div class="span3"><%= f.label "Place of birth" %></div>
-		<div class="span9"><%= f.text_field :place_of_birth %></div>
-	</div>
-	<div class="field">
-		<div class="span3"><%= f.label "Native place" %></div>
-		<div class="span9"><%= f.text_field :native_place %></div>
-	</div>
-	<div class="field">
-		<div class="span3"><%= f.label "Name of the house" %></div>
-		<div class="span9"><%= f.text_field :name_of_the_house %></div>
-	</div>
-	<div class="field">
-		<div class="span3"><%= f.label "Number of the house" %></div>
-		<div class="span9"><%= f.number_field :number_of_the_house %></div>
-	</div>
-	<div class="field">
-		<div class="span3"><%= f.label "Name of the street" %></div>
-		<div class="span9"><%= f.text_field :name_of_the_street %></div>
-	</div>
-	<div class="field">
-		<div class="span3"><%= f.label "City/Village" %></div>
-		<div class="span9"><%= f.text_field :city %></div>
-	</div>
-	<div class="field">
-		<div class="span3"><%= f.label "PIN Code" %></div>
-		<div class="span9"><%= f.number_field :pin_code %></div>
-	</div>
-	<div class="field">
-		<div class="span3"><%= f.label "Religion" %></div>
-		<div class="span9"><%= f.select :religion, ["Hindu", "Christian", "Muslim", "Other"]%>
-		<!--
-			Hier muss eine entsprechende Weiche rein, damit der nicht das leere Feld nimmt, deswegen ist es hier auskommentiert.
-			In der Datenbank wird nämlich das letzte Feld gespeichert
-		-->
-		<% f.text_field :religion %>
+	<div class="row">
+		<div class="large-12 column">
+			<%= f.text_field :fathers_name, :placeholder => :fathers_name%>
 		</div>
 	</div>
-	<div class="field">
-		<div class="span3"><%= f.label "Caste" %></div>
-		<div class="span9"><%= f.select :caste, ["Scheduled Caste", "Most Backward Class", "Backward Class", "Other"]%></div>
-		<% f.text_field :caste %>
-	</div>
-	<div class="field">
-		<div class="span3"><%= f.label "Education" %></div>
-		<div class="span9"><%= f.select :education, ["Primary", "High", "Hr Secondary", "College", "Vocational"]%></div>
-	</div>
-	<div class="field">
-		<div class="span3"><%= f.label "Marital Status" %></div>
-		<div class="span9"><%= f.select :marital_status, ["none", "married", "widow/widower", "deserted", "divorced", "seperated"]%></div>
-	</div>
-	<div class="field">
-		<div class="span3"><%= f.label "Health Condition" %></div>
-		<div class="span9"><%= f.select :health_condition, ["normal", "disabled", "mentally retarded"]%></div>
-	</div>
-	<div class="field">
-		<div class="span3"><%= f.label "Occupation" %></div>
-		<div class="span9"><%= f.select :occupation, ["none", "student", "agricultural coolie", "small farmer", "industrial worker", "government employee", "other"]%>
-		<% f.text_field :occupation %>
+	<div class="row">
+		<div class="small-4 large-2 columns">
+			<%= f.label "Gender: " %>
+		</div>
+		<div class="small-8 large-10 columns">
+			<%= f.select :gender, ["male", "female"] %>
 		</div>
 	</div>
-	<div class="field">
-		<div class="span3"><%= f.label "Income per month" %></div>
-		<div class="span9"><%= f.number_field :income %></div>
+	<div class="row">
+		<div class="large-3 columns">
+			<%= f.label "Date of Birth: ", :class => "inline"%>
+		</div>
+		<div class="large-9 columns">
+			<%= f.date_select :date_of_birth, {:order => [:day, :month, :year], :start_year => 1910}, :class => "large-4 column" %>
+		</div>	
 	</div>
-	<div class="field">
-		<div class="span3"><%= f.label "Role in context of Sharana" %></div>
-		<div class="span9"><%= f.select :role_id, Role.all.map{|role| [role.name, role.id]}  %></div>
+	<div class="row">
+		<div class="large-12 column">
+			<%= f.text_field :place_of_birth, :placeholder => "Place of Birth" %>
+		</div>
 	</div>
-	<div class="field">
-		<div class="span3"><%= f.label "Beneficiary Status" %></div>
-		<div class="span9"><%= f.select :beneficiary_status, ["No","To Qualify","Yes"] %></div>
+	<div class="row">
+		<div class="large-12 column">
+			<%= f.text_field :native_place, :placeholder => "Native Place" %>
+		</div>
 	</div>
+	<div class="row">
+		<div class="large-12 column">
+			<%= f.text_field :name_of_the_house, :placeholder => "Name of the house" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 column">
+			<%= f.text_field :name_of_the_street, :placeholder => "Name of the Street" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 column">
+			<%= f.text_field :city, :placeholder => "City/Village" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 column">
+			<%= f.number_field :pin_code, :placeholder => "PIN Code" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 column">
+			<%= f.select :religion, ["Hindu", "Christian", "Muslim", "Other"]%>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 column">
+			<%= f.select :caste, ["Scheduled Caste", "Most Backward Class", "Backward Class", "Other"]%>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-2 columns">
+			<%= f.label "Education", :class => "inline"%>
+		</div>
+		<div class="large-10 columns">
+			<%= f.select :education, ["Primary", "High", "Hr Secondary", "College", "Vocational"]%>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-2 columns">
+			<%= f.label "Marital Status", :class => "inline"%>
+		</div>
+		<div class="large-10 columns">
+			<%= f.select :marital_status, ["none", "married", "widow/widower", "deserted", "divorced", "seperated"]%>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-2 columns">
+			<%= f.label "Health Condition", :class => "inline"%>
+		</div>
+		<div class="large-10 columns">
+			<%= f.select :health_condition, ["normal", "disabled", "mentally retarded"]%>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-2 columns">
+			<%= f.label "Occupation", :class => "inline"%>
+		</div>
+		<div class="large-10 columns">
+			<%= f.select :occupation, ["none", "student", "agricultural coolie", "small farmer", "industrial worker", "government employee", "other"]%>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 column">
+			<%= f.number_field :income, :placeholder => "Income per month in Rupee" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 column">
+			<%= f.select :role_id, Role.all.map{|role| [role.name, role.id]}, :placeholder => "Income per month in Rupee" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-2 columns">
+			<%= f.label "Beneficiary Status", :class => "inline"%>
+		</div>
+		<div class="large-10 columns">
+			<%= f.select :beneficiary_status, ["No","To Qualify","Yes"] %>
+		</div>
+	</div>
+
 	<div id="if_beneficiary"></div>
 
 	<div class="actions">
-		<input id="submitPerson" class="btn btn-primary" name="commit" type="submit" value="Create Person">
+		<input id="submitPerson" class="button" name="commit" type="submit" value="Create Person">
 	</div>
 <% end %>

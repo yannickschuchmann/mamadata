@@ -24,6 +24,7 @@ $("#addpeople").click(function(){
 						'</div>'
 	);
 	peopleNumber = peopleNumber + 1;
+});
 $("#submitFamily").click(function(event){
 	event.preventDefault();
 	var dataToSend = {};
@@ -46,7 +47,7 @@ $("#submitFamily").click(function(event){
 		async: 'false',
 		data: dataToSend,
 		success: function(returned_value){
-			window.location.replace("/families")
+			window.location.replace("/families");
 			// window.location.replace("/families/show/"+returned_value.id)
 			// console.log(returned_value);
 		},
@@ -54,4 +55,4 @@ $("#submitFamily").click(function(event){
 			alert("Something went Wrong during the sending of the data please retry later");
 		}
 	});
-});
+})

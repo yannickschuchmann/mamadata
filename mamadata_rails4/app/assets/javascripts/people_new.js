@@ -3,21 +3,25 @@ $('#person_beneficiary_status').on('change', function (e) {
     var valueSelected = this.value;
     if (valueSelected === "Yes") {
 		$("#if_beneficiary").append(
-			'<div class="field">'+
-				'<div class="span3"><label for="school_name">School Name</label></div>'+
-				'<div class="span9"><input id="beneficiary_school_name" name="person[school_name]" type="text"></div>'+
+			'<div class="row">'+
+				'<div class="large-12 column"><input id="beneficiary_school_name" placeholder="School Name" type="text"></div>'+
 			'</div>'+
-			'<div class="field">'+
-				'<div class="span3"><label for="beneficiary_school_type">School Type</label></div>'+
-				'<div class="span9"><select id="beneficiary_school_type" name="person[school_type]">'+
-							'<option value="1">Government</option>'+
-							'<option value="2">Government Aided</option>'+
-							'<option value="3">Private</option>'+
-				'</select></div>'+
+			'<div class="row">'+
+				'<div class="large-2 column">'+
+					'<label  class="inline" for="beneficiary_school_type">School Type</label>'+
+				'</div>'+
+				'<div class="large-10 column">'+
+					'<select id="beneficiary_school_type"  name="person[school_type]">'+
+						'<option value="1">Government</option>'+
+						'<option value="2">Government Aided</option>'+
+						'<option value="3">Private</option>'+
+					'</select>'+
+				'</div>'+
 			'</div>'+
-			'<div class="field">'+
-				'<div class="span3"><label for="beneficiary_narrative_text">Narrative text</label></div>'+
-				'<div class="span9"><input id="beneficiary_narrative_text" name="person[narrative_text]" type="text"></div>'+
+			'<div class="row">'+
+				'<div class="large-12 column">'+
+					'<input id="beneficiary_narrative_text" name="person[narrative_text]" placeholder="Narrative Text" type="text">'+
+				'</div>'+
 			'</div>'
 		);
     }else{
@@ -45,7 +49,6 @@ $("#submitPerson").click(function(event){
 		dataToSend.beneficiary.school_name = $(new_person).find("#beneficiary_school_name")[0].value;
 	}
 	// console.log(person, beneficiary);
-	
 	dataToSend.person = person;
 	console.log(dataToSend);
 	$.ajax({

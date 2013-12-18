@@ -75,10 +75,13 @@
         </ul>
       </section>
     </nav>
+
+     <%= javascript_include_tag "application" %>
+     
     <div class="row-fluid" id="content">
       <%= yield %>
       <!-- need to be loaded after the content -->
       <%= yield :js %>
-      <%= javascript_include_tag "application" %>
+    </div>
   </body>
 </html>

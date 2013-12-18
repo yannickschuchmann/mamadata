@@ -15,6 +15,7 @@
 //= require foundation
 //= require jquery.ui.all
 //= require jquery.turbolinks
-
 //= require turbolinks
-$(function(){ $(document).foundation(); });
+$(function(){ 
+	$(document).foundation();
+});
