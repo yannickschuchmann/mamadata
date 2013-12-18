@@ -58,7 +58,7 @@ $("#submitPerson").click(function(event){
 		async: 'false',
 		data: dataToSend,
 		success: function(returned_value){
-			window.location.replace("/people")
+			window.location.replace("/people");
 			// window.location.replace("/families/show/"+returned_value.id)
 			// console.log(returned_value);
 		},

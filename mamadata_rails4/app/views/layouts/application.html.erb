@@ -61,7 +61,7 @@
         </ul>
         <ul class="left">
           <ul class="nav">
-            <li><%= link_to 'Community Development', community_developments_path %></li>
+           <!-- <li><%= link_to 'Community Development', community_developments_path %></li> -->
             <li><%= link_to 'Families', families_path %></li>
             <li><%= link_to 'People', people_path %></li>
             <!-- <li><%= link_to 'Beneficiaries', beneficiaries_path %></li> -->
@@ -77,7 +77,7 @@
     </nav>
 
      <%= javascript_include_tag "application" %>
-     
+
     <div class="row-fluid" id="content">
       <%= yield %>
       <!-- need to be loaded after the content -->
