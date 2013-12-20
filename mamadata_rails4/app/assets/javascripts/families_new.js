@@ -25,6 +25,7 @@ $("#addpeople").click(function(){
 	);
 	peopleNumber = peopleNumber + 1;
 });
+
 $("#submitFamily").click(function(event){
 	event.preventDefault();
 	var dataToSend = {};
@@ -55,4 +56,4 @@ $("#submitFamily").click(function(event){
 			alert("Something went Wrong during the sending of the data please retry later");
 		}
 	});
-})
+});
