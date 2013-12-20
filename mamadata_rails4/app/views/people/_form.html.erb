@@ -12,162 +12,174 @@
 	<% end %>
 
 	<div class="row">
-		<div class="large-12 column">
+		<div class="small-12 column">
 			<%= f.text_field :name, :placeholder => :name %>
 		</div>
 	</div>
 	<div class="row">
-		<div class="large-12 column">
+		<div class="small-12 column">
 			<%= f.text_field :fathers_name, :placeholder => :fathers_name%>
 		</div>
 	</div>
 	<div class="row">
-		<div class="small-4 large-2 columns">
+		<div class="small-12 large-2 columns">
 			<%= f.label "Gender: " %>
 		</div>
-		<div class="small-8 large-10 columns">
+		<div class="small-12 large-10 columns">
 			<%= f.select :gender, ["male", "female"] %>
 		</div>
 	</div>
 	<div class="row">
-		<div class="large-3 columns">
+		<div class="small-12 large-3 columns">
 			<%= f.label "Date of Birth: ", :class => "inline"%>
 		</div>
-		<div class="large-9 columns">
-			<%= f.date_select :date_of_birth, {:order => [:day, :month, :year], :start_year => 1910}, :class => "large-4 column" %>
+		<div class="small-12 large-9 columns">
+			<%= f.date_select :date_of_birth, {:order => [:day, :month, :year], :start_year => 1910}, :class => "small-4 column" %>
 		</div>
 	</div>
 	<div class="row">
-		<div class="large-12 column">
+		<div class="small-12 column">
 			<%= f.text_field :place_of_birth, :placeholder => "Place of Birth" %>
 		</div>
 	</div>
 	<div class="row">
-		<div class="large-12 column">
+		<div class="small-12 column">
 			<%= f.text_field :native_place, :placeholder => "Native Place" %>
 		</div>
 	</div>
 	<div class="row">
-		<div class="large-12 column">
+		<div class="small-12 column">
 			<%= f.text_field :name_of_the_house, :placeholder => "Name of the house" %>
 		</div>
 	</div>
 	<div class="row">
-		<div class="large-12 column">
+		<div class="small-12 column">
 			<%= f.text_field :name_of_the_street, :placeholder => "Name of the Street" %>
 		</div>
 	</div>
 	<div class="row">
-		<div class="large-12 column">
+		<div class="small-12 column">
 			<%= f.text_field :city, :placeholder => "City/Village" %>
 		</div>
 	</div>
 	<div class="row">
-		<div class="large-12 column">
+		<div class="small-12 column">
 			<%= f.number_field :pin_code, :placeholder => "PIN Code" %>
 		</div>
 	</div>
 	<div class="row">
-		<div class="large-12 column">
+		<div class="small-12 column">
 			<%= f.select :religion, ["Hindu", "Christian", "Muslim", "Other"]%>
 		</div>
 	</div>
 	<div class="row">
-		<div class="large-12 column">
+		<div class="small-12 column">
 			<%= f.select :caste, ["Scheduled Caste", "Most Backward Class", "Backward Class", "Other"]%>
 		</div>
 	</div>
 	<div class="row">
-		<div class="large-2 columns">
+		<div class="small-12 large-2 columns">
 			<%= f.label "Education", :class => "inline"%>
 		</div>
-		<div class="large-10 columns">
+		<div class="small-12 large-10 columns">
 			<%= f.select :education, ["Primary", "High", "Hr Secondary", "College", "Vocational"]%>
 		</div>
 	</div>
 	<div class="row">
-		<div class="large-2 columns">
+		<div class="small-12 large-2 columns">
 			<%= f.label "Marital Status", :class => "inline"%>
 		</div>
-		<div class="large-10 columns">
+		<div class="small-12 large-10 columns">
 			<%= f.select :marital_status, ["none", "married", "widow/widower", "deserted", "divorced", "seperated"]%>
 		</div>
 	</div>
 	<div class="row">
-		<div class="large-2 columns">
+		<div class="small-12 large-2 columns">
 			<%= f.label "Health Condition", :class => "inline"%>
 		</div>
-		<div class="large-10 columns">
+		<div class="small-12 large-10 columns">
 			<%= f.select :health_condition, ["normal", "disabled", "mentally retarded"]%>
 		</div>
 	</div>
 	<div class="row">
-		<div class="large-2 columns">
+		<div class="small-12 large-2 columns">
 			<%= f.label "Occupation", :class => "inline"%>
 		</div>
-		<div class="large-10 columns">
+		<div class="small-12 large-10 columns">
 			<%= f.select :occupation, ["none", "student", "agricultural coolie", "small farmer", "industrial worker", "government employee", "other"]%>
 		</div>
 	</div>
 	<div class="row">
-		<div class="large-12 column">
+		<div class="small-12 large-12 column">
 			<%= f.number_field :income, :placeholder => "Income per month in Rupee" %>
 		</div>
 	</div>
 	<div class="row">
-		<div class="large-12 column">
+		<div class="small-12 large-12 column">
 			<%= f.select :role_id, Role.all.map{|role| [role.name, role.id]}, :placeholder => "Income per month in Rupee" %>
 		</div>
 	</div>
-  <div class="field">
-    <div class="span3"><%= f.label "School name" %></div>
-    <div class="span9"><%= f.text_field :school_name %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label "School type" %></div>
-    <div class="span9"><%= f.select :school_type, ["government", "government aided", "private"]%>
-    <% f.text_field :school_type %>
-    </div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label "School language" %></div>
-    <div class="span9"><%= f.select :school_language, ["English", "Tamil"]%></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label "Class" %></div>
-    <div class="span9"><%= f.select :school_class, ["LKG", "UKG", 1,2,3,4,5,6,7,8,9,10,11,12, "College"]%></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label "Narrative text" %></div>
-    <div class="span9"><%= f.text_area :narrative_text %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label "Godfather" %></div>
-    <div class="span9"><%= f.select :godfather_id, Supporter.where(:godfather => 1).map{|role| [role.name, role.id]} %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label "Status" %></div>
-    <div class="span9"><%= f.text_field :status %></div>
-  </div>
- <strong>Programs</strong>
-  <div class="row-fluid">
-  <span class="ul">
+	<div class="row">
+	<h2>Beneficiary Questioins:</h2>
+	</div>
+	<div class="row">
+		<div class="small-12 large-2 columns">
+			<%= f.label "School Type", :class => "inline"%>
+		</div>
+		<div class="small-12 large-10 column">
+			<%= f.select :school_type, ["government", "government aided", "private"] %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 large-2 columns">
+			<%= f.label "School Language", :class => "inline"%>
+		</div>
+		<div class="small-12 large-10 column">
+			<%= f.select :school_language, ["English Medium", "Tamil Medium"] %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 large-2 columns">
+			<%= f.label "School Class", :class => "inline"%>
+		</div>
+		<div class="small-12 large-10 column">
+			<%= f.select :school_class, ["LKG", "UKG", 1,2,3,4,5,6,7,8,9,10,11,12, "College"] %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 large-2 columns">
+			<%= f.label "Narrative text", :class => "inline"%>
+		</div>
+		<div class="small-12 large-10 column">
+			<%= f.text_area :narrative_text %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 large-2 columns">
+			<%= f.label "Godfather", :class => "inline"%>
+		</div>
+		<div class="small-12 large-10 column">
+			<%= f.select :godfather_id, Supporter.where(:godfather => 1).map{|role| [role.name, role.id]} %>
+		</div>
+	</div>
 
-  <% Program.all.each_slice(10) do |slice| %>
-  <div class="span3">
-  <% slice.each do |p| %>
-    <label class="li"><%= check_box_tag :program_ids, p.id, @person.programs.include?(p), :name => 'person[program_ids][]' %> <%= p.name %></label>
-    <% end %>
-  </div>
+	<h2>Programs</h2>
+	<div class="row">
+		<div class="large-12 column">
+		<div class="row">
+			<% Program.all.each_slice(10) do |slice| %>
+				<% slice.each do |p| %>
+				<label class="small-12 medium-6 large-4 column"><%= check_box_tag :program_ids, p.id, @person.programs.include?(p), :name => 'person[program_ids][]' %> <%= p.name %>
+				</label>
+				<% end %>
+			<% end %>
+		</div>
+		</div>
+	</div>
 
-  <% end %>
- 
-  </span>
-  </div>
-
-
-
-	<div class="actions">
-		<input id="submitPerson" class="button" name="commit" type="submit" value="Create Person">
+	<!-- TODO: AJAX ! -->
+	<div class="row button-center">
+		<a id="submitPerson" href="" class="button small-12 medium-4 large-3">Create Person</a>
+		<a id="submitPerson" href="" class="button small-12 medium-4 large-3">Back</a>
 	</div>
 <% end %>
