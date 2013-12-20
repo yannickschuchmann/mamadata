@@ -21,7 +21,13 @@ class CreatePeople < ActiveRecord::Migration
       t.integer :income
       t.references :family, index:true
       t.references :role, index: true
-      t.string :beneficiary_status
+      t.string :school_name
+      t.string :school_type
+      t.string :school_language
+      t.string :school_class
+      t.text :narrative_text
+      t.string :status
+      t.references :godfather, index: true
       t.timestamps
     end
   end

@@ -13,46 +13,26 @@
 
 ActiveRecord::Schema.define(version: 20131215202635) do
 
-  create_table "beneficiaries", force: true do |t|
-    t.string   "school_name"
-    t.string   "school_type"
-    t.string   "school_language"
-    t.string   "school_class"
-    t.text     "narrative_text"
-    t.string   "status"
-    t.integer  "program_id"
-    t.integer  "godfather_id"
-    t.integer  "member_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "beneficiaries", ["godfather_id"], name: "index_beneficiaries_on_godfather_id"
-  add_index "beneficiaries", ["member_id"], name: "index_beneficiaries_on_member_id"
-  add_index "beneficiaries", ["program_id"], name: "index_beneficiaries_on_program_id"
-
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
-    t.integer  "beneficiary_id"
+    t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "beneficiary_program_relationships", ["beneficiary_id"], name: "index_beneficiary_program_relationships_on_beneficiary_id"
+  add_index "beneficiary_program_relationships", ["person_id"], name: "index_beneficiary_program_relationships_on_person_id"
   add_index "beneficiary_program_relationships", ["program_id"], name: "index_beneficiary_program_relationships_on_program_id"
 
   create_table "benefit_incidents", force: true do |t|
     t.integer  "person_id"
     t.integer  "benefit_id"
     t.integer  "program_id"
-    t.integer  "beneficiary_id"
     t.integer  "amount"
     t.text     "remark"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "benefit_incidents", ["beneficiary_id"], name: "index_benefit_incidents_on_beneficiary_id"
   add_index "benefit_incidents", ["benefit_id"], name: "index_benefit_incidents_on_benefit_id"
   add_index "benefit_incidents", ["person_id"], name: "index_benefit_incidents_on_person_id"
   add_index "benefit_incidents", ["program_id"], name: "index_benefit_incidents_on_program_id"
@@ -133,12 +113,19 @@ ActiveRecord::Schema.define(version: 20131215202635) do
     t.integer  "income"
     t.integer  "family_id"
     t.integer  "role_id"
-    t.string   "beneficiary_status"
+    t.string   "school_name"
+    t.string   "school_type"
+    t.string   "school_language"
+    t.string   "school_class"
+    t.text     "narrative_text"
+    t.string   "status"
+    t.integer  "godfather_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "people", ["family_id"], name: "index_people_on_family_id"
+  add_index "people", ["godfather_id"], name: "index_people_on_godfather_id"
   add_index "people", ["role_id"], name: "index_people_on_role_id"
 
   create_table "program_benefit_relationships", force: true do |t|
