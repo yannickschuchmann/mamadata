@@ -39,13 +39,24 @@
 
 <script>
   var data = <%= @data.to_json.html_safe %>;
-  var startWithProgram = data[$('#benefit_incident_program_id').val()];
-  $.each(startWithProgram, function(key, value) {   
+  var lame = <%= @programs_for_user.to_json.html_safe %>;
+  var allPrograms = <%= @all_programs.to_json.html_safe %>;
+  $('#benefit_incident_program_id').empty();
+  $.each(lame, function( value) {   
+     $('#benefit_incident_program_id')
+         .append($("<option></option>")
+         .attr("value",value)
+         .text(allPrograms[value]));
+});
+
+var initialProgram = $('#benefit_incident_program_id').val();
+$.each(data[initialProgram], function(key, value) {   
      $('#benefit_incident_benefit_id')
          .append($("<option></option>")
          .attr("value",value.id)
          .text(value.name));
 });
+
 
 $('#benefit_incident_program_id').on('change', function(){
   $('#benefit_incident_benefit_id').empty();

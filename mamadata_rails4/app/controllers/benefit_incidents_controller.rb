@@ -19,8 +19,10 @@ class BenefitIncidentsController < ApplicationController
   # GET /benefit_incidents/new
   def new
     @benefit_incident = BenefitIncident.new(person_id: params[:person_id])
+    @all_programs = Hash[Program.all.map { |p| [p.id, p.name] }]
     @data = Hash[Program.all.map{|p| [p.id, p.benefits]}]
     @person = Person.find(params[:person_id])
+    @programs_for_user = Hash[BeneficiaryProgramRelationship.where(person_id: @person.id).map { |e| [e.id, e.program_id]  }]
   end
 
   # GET /benefit_incidents/1/edit
