@@ -20,6 +20,9 @@ h1{
 table {
 	margin: 0 auto;
 }
+.button-edit{
+	margin: 0 !important;
+}
 .button-center{
 	text-align: center;
 }

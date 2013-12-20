@@ -11,6 +11,7 @@
         <th>City</th>
         <th>PIN code</th>
         <th>Role</th>
+        <th></th>
       </tr>
     </thead>
 
@@ -30,13 +31,13 @@
            <%= b.name %>
           <% end %>
         </td>
+        <td> <a class="button [tiny small large] button-edit" href="/people/<%= person.id %>/edit"> Edit </a></td>
         <% end %>
       </tbody>
     </table>
   <br>
   <div class="button-center">
     <%= link_to new_person_path, :class => 'button [tiny small large]' do %>
-    <%= content_tag(:i, "", :class => "icon-pencil") %>
     New Person
     <% end %>
   </div>
