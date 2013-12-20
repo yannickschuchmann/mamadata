@@ -7,6 +7,10 @@ class BenefitIncidentsController < ApplicationController
     @benefit_incidents = BenefitIncident.all
   end
 
+  def list
+    @benefit_incidents = BenefitIncident.where(person_id: params[:person_id])
+  end
+
   # GET /benefit_incidents/1
   # GET /benefit_incidents/1.json
   def show

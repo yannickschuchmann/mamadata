@@ -43,7 +43,7 @@
   <%= @beneficiary.status %>
 </p>
  <p>
-
+    
   <strong>Has following Incidents</strong>
    <% @beneficiary.benefit_incidents.each do |incident| %>
   <%= link_to 'Incident', benefit_incident_path(incident) %>

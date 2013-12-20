@@ -4,7 +4,10 @@ MamadataRails4::Application.routes.draw do
   put 'families/create', to: 'families#create'
   put 'people/create', to: 'people#create'
 
-  resources :benefit_incidents
+  get 'benefit_incidents/list/:person_id', to: 'benefit_incidents#list', as: :benefit_incidents_list
+
+  resources :benefit_incidents  
+
 
   resources :benefits do
     member do
@@ -20,7 +23,6 @@ MamadataRails4::Application.routes.draw do
 
   resources :community_developments
   resources :families
-  resources :beneficiaries
   resources :roles
   resources :people
   resources :supporters
