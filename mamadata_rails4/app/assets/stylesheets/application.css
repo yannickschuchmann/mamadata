@@ -10,9 +10,16 @@
  *
  *= require_self
  *= require foundation_and_overrides
+ *= require responsive-tables
  *= require_tree .
  */
 
 h1{
+	text-align: center;
+}
+table {
+	margin: 0 auto;
+}
+.button-center{
 	text-align: center;
 }

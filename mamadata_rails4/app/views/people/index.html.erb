@@ -1,6 +1,6 @@
-<h1>People</h1>
-<div class="table-responsive">
-  <table id="peopleTable" class="table table-striped table-bordered">
+<div id="peopleIndex">
+  <h1>People</h1>
+  <table id="peopleTable" class="responsive">
     <thead>
       <tr>
         <th>Name</th>
@@ -11,14 +11,13 @@
         <th>City</th>
         <th>PIN code</th>
         <th>Role</th>
-        <th></th>
       </tr>
     </thead>
 
     <tbody>
       <% @people.each do |person| %>
       <tr>
-        <td><%= person.name %></td>
+        <td><a href="/people/<%= person.id %>"><%= person.name %></a></td>
         <td><%= person.fathers_name %></td>
         <td><%= person.gender %></td>
         <td><%= person.date_of_birth %></td>
@@ -31,25 +30,14 @@
            <%= b.name %>
           <% end %>
         </td>
-        <td><%= link_to (content_tag(:i, "", :class => "icon-file")), person %>
-          <%= link_to (content_tag(:i, "", :class => "icon-edit")), edit_person_path(person) %>
-          <%= link_to (content_tag(:i, "", :class => "icon-trash")), person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
         <% end %>
       </tbody>
     </table>
-  </div>
   <br>
-
-  <%= link_to new_person_path, :class => 'button [radius round]' do %>
-  <%= content_tag(:i, "", :class => "icon-pencil") %>
-  New Person
-  <% end %>
-<script type="text/javascript" src="/stupidtable.min"></script>
-  <script>
-$(document).ready(function() 
-    { 
-        $("#peopleTable").tablesorter(); 
-    } 
-); 
-  </script>
+  <div class="button-center">
+    <%= link_to new_person_path, :class => 'button [tiny small large]' do %>
+    <%= content_tag(:i, "", :class => "icon-pencil") %>
+    New Person
+    <% end %>
+  </div>
+</div>

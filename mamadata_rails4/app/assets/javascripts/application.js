@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require responsive-tables
 //= require foundation
 //= require jquery.ui.all
 //= require jquery.turbolinks
