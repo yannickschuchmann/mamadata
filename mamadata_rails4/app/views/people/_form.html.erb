@@ -119,6 +119,51 @@
 			<%= f.select :role_id, Role.all.map{|role| [role.name, role.id]}, :placeholder => "Income per month in Rupee" %>
 		</div>
 	</div>
+  <div class="field">
+    <div class="span3"><%= f.label "School name" %></div>
+    <div class="span9"><%= f.text_field :school_name %></div>
+  </div>
+  <div class="field">
+    <div class="span3"><%= f.label "School type" %></div>
+    <div class="span9"><%= f.select :school_type, ["government", "government aided", "private"]%>
+    <% f.text_field :school_type %>
+    </div>
+  </div>
+  <div class="field">
+    <div class="span3"><%= f.label "School language" %></div>
+    <div class="span9"><%= f.select :school_language, ["English", "Tamil"]%></div>
+  </div>
+  <div class="field">
+    <div class="span3"><%= f.label "Class" %></div>
+    <div class="span9"><%= f.select :school_class, ["LKG", "UKG", 1,2,3,4,5,6,7,8,9,10,11,12, "College"]%></div>
+  </div>
+  <div class="field">
+    <div class="span3"><%= f.label "Narrative text" %></div>
+    <div class="span9"><%= f.text_area :narrative_text %></div>
+  </div>
+  <div class="field">
+    <div class="span3"><%= f.label "Godfather" %></div>
+    <div class="span9"><%= f.select :godfather_id, Supporter.where(:godfather => 1).map{|role| [role.name, role.id]} %></div>
+  </div>
+  <div class="field">
+    <div class="span3"><%= f.label "Status" %></div>
+    <div class="span9"><%= f.text_field :status %></div>
+  </div>
+ <strong>Programs</strong>
+  <div class="row-fluid">
+  <span class="ul">
+
+  <% Program.all.each_slice(10) do |slice| %>
+  <div class="span3">
+  <% slice.each do |p| %>
+    <label class="li"><%= check_box_tag :program_ids, p.id, @person.programs.include?(p), :name => 'beneficiary[program_ids][]' %> <%= p.name %></label>
+    <% end %>
+  </div>
+
+  <% end %>
+ 
+  </span>
+  </div>
 
 
 
