@@ -1,6 +1,6 @@
 <h1>People</h1>
 <div class="table-responsive">
-  <table class="table table-striped table-bordered">
+  <table id="peopleTable" class="table table-striped table-bordered">
     <thead>
       <tr>
         <th>Name</th>
@@ -45,3 +45,11 @@
   <%= content_tag(:i, "", :class => "icon-pencil") %>
   New Person
   <% end %>
+<script type="text/javascript" src="/stupidtable.min"></script>
+  <script>
+$(document).ready(function() 
+    { 
+        $("#peopleTable").tablesorter(); 
+    } 
+); 
+  </script>
