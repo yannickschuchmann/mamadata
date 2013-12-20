@@ -27,8 +27,10 @@ class BenefitIncidentsController < ApplicationController
 
   # GET /benefit_incidents/1/edit
   def edit
+    @all_programs = Hash[Program.all.map { |p| [p.id, p.name] }]
     @person = @benefit_incident.person
     @data = Hash[Program.all.map{|p| [p.id, p.benefits]}]
+    @programs_for_user = Hash[BeneficiaryProgramRelationship.where(person_id: @person.id).map { |e| [e.id, e.program_id]  }]
   end
 
   # POST /benefit_incidents
