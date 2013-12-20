@@ -5,6 +5,7 @@ class ProgramsController < ApplicationController
   # GET /programs.json
   def index
     @programs = Program.all
+    @data = Program.all.map { |p| [p.name, p.benefits]  }
   end
 
   # GET /programs/1

@@ -13,15 +13,15 @@
 
   <div class="field">
     <div class="span3"><%= f.label :person_id %></div>
-    <div class="span9"><%= f.select :person_id, Person.all.map{|person| [person.name, person.id]}  %></div>
+    <div class="span9"><%= f.text_field :person_id, value: Person.find(@person.id).id, readonly: true %></div>
   </div>
       <div class="field">
     <div class="span3"><%= f.label :program_id %></div>
-    <div class="span9"><%= f.select :program_id, Program.all.map{|program| [program.name, program.id]}  %></div>
+    <div class="span9"><%= f.select :program_id, Program.all.map{|program| [program.name, program.id]} %></div>
   </div>
   <div class="field">
     <div class="span3"><%= f.label :benefit_id %></div>
-    <div class="span9"><%= f.select :benefit_id, Benefit.all.map{|benefit| [benefit.name, benefit.id]}  %></div>
+    <div class="span9" id="benefit_select"><%= f.select :benefit_id, []%></div>
   </div>
   <div class="field">
     <div class="span3"><%= f.label :amount %></div>
@@ -36,3 +36,27 @@
     <%= f.submit :class => 'btn btn-primary' %>
   </div>
 <% end %>
+
+<script>
+  var data = <%= @data.to_json.html_safe %>;
+  var startWithProgram = data[$('#benefit_incident_program_id').val()];
+  $.each(startWithProgram, function(key, value) {   
+     $('#benefit_incident_benefit_id')
+         .append($("<option></option>")
+         .attr("value",value.id)
+         .text(value.name));
+});
+
+$('#benefit_incident_program_id').on('change', function(){
+  $('#benefit_incident_benefit_id').empty();
+  var benefitsOfSelectedProgram = data[this.value];
+
+$.each(benefitsOfSelectedProgram, function(key, value) {   
+     $('#benefit_incident_benefit_id')
+         .append($("<option></option>")
+         .attr("value",value.id)
+         .text(value.name));
+});
+
+  });
+</script>

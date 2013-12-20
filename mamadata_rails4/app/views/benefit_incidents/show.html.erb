@@ -2,11 +2,8 @@
 
 <p>
   <strong>User:</strong>
-  <%= @benefit_incident.person.id %>
+  <%= @benefit_incident.person.name %>
 </p>
-
-<p>
-
 <p>
   <strong>Amount:</strong>
   <%= @benefit_incident.amount %>
@@ -24,4 +21,4 @@
 </p>
 
 <%= link_to 'Edit', edit_benefit_incident_path(@benefit_incident) %> |
-<%= link_to 'Back', benefit_incidents_path %>
+<%= link_to 'List All Incidents', benefit_incidents_list_path(person_id: @benefit_incident.person_id) %>

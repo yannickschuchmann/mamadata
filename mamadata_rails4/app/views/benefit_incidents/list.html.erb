@@ -1,0 +1,37 @@
+<h1>Listing Incidents</h1>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Program</th>
+      <th>Benefit</th>
+      <th>Amount</th>
+      <th>Remark</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @benefit_incidents.each do |benefit_incident| %>
+      <tr>
+        <td><%= benefit_incident.person.name %></td>
+        <td><%= benefit_incident.program.name %></td>
+        <td><%= benefit_incident.benefit.name %></td>
+        <td><%= benefit_incident.amount %></td>
+        <td><%= benefit_incident.remark %></td>
+        <td><%= link_to (content_tag(:i, '', :class => 'icon-file')), benefit_incident %>
+        <%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_benefit_incident_path(benefit_incident) %>
+        <%= link_to (content_tag(:i, '', :class => 'icon-trash')), benefit_incident, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to new_benefit_incident_path, :class => 'btn btn-primary' do %>
+  <%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+  New Benefit incident
+<% end %>
