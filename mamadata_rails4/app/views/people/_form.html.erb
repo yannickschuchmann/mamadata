@@ -119,16 +119,8 @@
 			<%= f.select :role_id, Role.all.map{|role| [role.name, role.id]}, :placeholder => "Income per month in Rupee" %>
 		</div>
 	</div>
-	<div class="row">
-		<div class="large-2 columns">
-			<%= f.label "Beneficiary Status", :class => "inline"%>
-		</div>
-		<div class="large-10 columns">
-			<%= f.select :beneficiary_status, ["No","To Qualify","Yes"] %>
-		</div>
-	</div>
 
-	<div id="if_beneficiary"></div>
+
 
 	<div class="actions">
 		<input id="submitPerson" class="button" name="commit" type="submit" value="Create Person">
