@@ -156,7 +156,7 @@
   <% Program.all.each_slice(10) do |slice| %>
   <div class="span3">
   <% slice.each do |p| %>
-    <label class="li"><%= check_box_tag :program_ids, p.id, @person.programs.include?(p), :name => 'beneficiary[program_ids][]' %> <%= p.name %></label>
+    <label class="li"><%= check_box_tag :program_ids, p.id, @person.programs.include?(p), :name => 'person[program_ids][]' %> <%= p.name %></label>
     <% end %>
   </div>
 
