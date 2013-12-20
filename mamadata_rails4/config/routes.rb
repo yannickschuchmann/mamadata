@@ -4,9 +4,12 @@ MamadataRails4::Application.routes.draw do
   put 'families/create', to: 'families#create'
   put 'people/create', to: 'people#create'
 
-  get 'benefit_incidents/list/:person_id', to: 'benefit_incidents#list', as: :benefit_incidents_list
+  resources :benefit_incidents, only: [:show, :edit, :index, :create]  
 
-  resources :benefit_incidents  
+  get 'benefit_incidents/list/:person_id', to: 'benefit_incidents#list', as: :benefit_incidents_list
+  get 'benefit_incidents/new/:person_id', to: 'benefit_incidents#new', as: :new_benefit_incident
+
+
 
 
   resources :benefits do
