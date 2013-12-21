@@ -10,13 +10,15 @@
       </ul>
     </div>
   <% end %>
-<h2>Person: <%=@person.name %></h2>
+<h2>Person: <%=@benefit_incident.person.name %></h2>
   <div class="field">
-    <div class="span9"><%= f.hidden_field :person_id, value: @person.id %></div>
+    <div class="span9"><%= f.hidden_field :person_id, value: @benefit_incident.person_id %></div>
   </div>
       <div class="field">
+      <div class="actions">
+      <%= link_to 'Add Person to Program', edit_person_path(@benefit_incident.person_id), :class => 'button [tiny small large]' %></div>
     <div class="span3"><%= f.label :program_id %></div>
-    <div class="span9"><%= f.select :program_id, Program.all.map{|program| [program.name, program.id]} %></div>
+    <div class="span9"><%= f.select :program_id, Program.all.map{|program| [program.name, program.id]}%></div>
   </div>
   <div class="field">
     <div class="span3"><%= f.label :benefit_id %></div>
@@ -38,10 +40,10 @@
 
 <script>
   var data = <%= @data.to_json.html_safe %>;
-  var lame = <%= @programs_for_user.to_json.html_safe %>;
+  var programsOfPerson = <%= @programs_for_user.to_json.html_safe %>;
   var allPrograms = <%= @all_programs.to_json.html_safe %>;
   $('#benefit_incident_program_id').empty();
-  $.each(lame, function( value) {   
+  $.each(programsOfPerson, function( value) {   
      $('#benefit_incident_program_id')
          .append($("<option></option>")
          .attr("value",value)
