@@ -1,31 +1,36 @@
 peopleNumber = 1;
+addPeople();
 $("#addpeople").click(function(){
-	$("#people").append('<div class="person">'+
-						'<h1>Person'+peopleNumber+'</h1>'+
-						'<div class="field">'+
-							'<div class="span3"><label for="name">Name</label></div>'+
-							'<div class="span9"><input id="name" name="person[name]" type="text"></div>'+
-						'</div>'+
-						'<div class="field">'+
-							'<div class="span3"><label for="person_Father\'s Name">Father\'s name</label></div>'+
-							'<div class="span9"><input id="fathers_name" name="person[fathers_name]" type="text"></div>'+
-						'</div>'+
-						'<div class="field">'+
-						'<div class="span3"><label for="Role in context of Sharana">Role in the Household</label></div>'+
-						'<div class="span9"><select id="role_id" name="person[role_id]"><option value="1">Head of the Household</option>'+
-									'<option value="2">Wife</option>'+
-									'<option value="3">Child</option>'+
-									'<option value="4">Father</option>'+
-									'<option value="5">Mother</option>'+
-									'<option value="6">Brother</option>'+
-									'<option value="7">Sister</option>'+
-							'</select></div>'+
-						'</div>'+
-						'</div>'
-	);
-	peopleNumber = peopleNumber + 1;
+	addPeople();
 });
-
+function addPeople (){
+	/*jshint multistr: true */
+	$("#people").append('<div class="person"> \
+						<h1>Person'+peopleNumber+'</h1>\
+						<div class="field">\
+							<div class="span3"><label for="name">Name</label></div>\
+							<div class="span9"><input id="name" name="person[name]" type="text"></div>\
+						</div>\
+						<div class="field">\
+							<div class="span3"><label for="person_Father\'s Name">Father\'s name</label></div>\
+							<div class="span9"><input id="fathers_name" name="person[fathers_name]" type="text"></div>\
+						</div>\
+						<div class="field">\
+						<div class="span3"><label for="Role in context of Sharana">Role in the Household</label></div>\
+						<div class="span9"><select id="role_id" name="person[role_id]"><option value="1">Head of the Household</option>\
+									<option value="2">Wife</option>\
+									<option value="3">Child</option>\
+									<option value="4">Father</option>\
+									<option value="5">Mother</option>\
+									<option value="6">Brother</option>\
+									<option value="7">Sister</option>\
+							</select></div>\
+						</div>\
+						</div>'
+	);
+	$("#familyList").append("<ul>Person"+peopleNumber+"</ul>");
+	peopleNumber = peopleNumber + 1;
+}
 $("#submitFamily").click(function(event){
 	event.preventDefault();
 	var dataToSend = {};

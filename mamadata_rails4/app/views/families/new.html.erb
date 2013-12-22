@@ -1,9 +1,22 @@
 <%= content_for :js do %><%= javascript_include_tag "families_new" %> <% end %>
 <h2>Family</h2>
-<div id="people">
-	
+<div class="row">
+	<div class="small-10 medium-10 large-10 columns">
+		<div id="people" >
+
+		</div>
+	</div>
+	<div class="small-12 medium-2 large-2 columns">
+		<strong>Family List</strong>
+		<ul id="familyList">
+		</ul>
+	</div>
 </div>
-<div class="btn btn-primary" id="addpeople"> Add People </div>
-<div class="actions">
-	<input id="submitFamily" class="btn btn-primary" name="commit" type="submit" value="Submit Family">
+<div class="row">
+	<div class="small-12 medium-12 large-12 button-center">
+		<div class="button" id="addpeople"> Add People </div>
+		<div class="actions">
+			<input id="submitFamily" class="button" name="commit" type="submit" value="Submit Family">
+		</div>
+	</div>
 </div>

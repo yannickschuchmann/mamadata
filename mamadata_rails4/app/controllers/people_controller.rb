@@ -64,7 +64,11 @@ class PeopleController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def search
+    puts "blaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    puts params
+    puts "blaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
