@@ -68,9 +68,14 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="small-12 column">
-			<%= f.select :religion, ["Hindu", "Christian", "Muslim", "Other"]%>
-		</div>
+        <div class="small-12 column">
+            <%= f.label "Religion" %>
+        </div>
+        <div class="small-12 column">
+            <div class="row selectWithOtherField">
+                <%= f.select_with_other_field("person", :religion, {:selectContainerClass => 'small-6 column', :textFieldContainerClass => 'small-6 column'}) %>
+            </div>
+        </div>
 	</div>
 	<div class="row">
 		<div class="small-12 column">

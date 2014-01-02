@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require modules/selectWithOtherField
 //= require jquery_ujs
 //= require responsive-tables
 //= require foundation
