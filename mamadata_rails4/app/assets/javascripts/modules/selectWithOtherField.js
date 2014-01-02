@@ -13,7 +13,7 @@ var selectWithOtherField = {
 				}
 			});
 
-			if($otherSelected) {
+			if(inputVal !== '' && $otherSelected) {
 				$this.find('select option[value="Other"]').prop('selected', true);
 				$input.prop('disabled', false);
 			}else{
