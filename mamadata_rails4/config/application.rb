@@ -21,3 +21,4 @@ module MamadataRails4
     # config.i18n.default_locale = :de
   end
 end
+
