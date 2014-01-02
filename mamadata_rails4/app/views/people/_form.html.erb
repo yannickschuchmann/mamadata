@@ -68,20 +68,25 @@
 		</div>
 	</div>
 	<div class="row">
-        <div class="small-12 column">
+        <div class="small-12 large-2 column">
             <%= f.label "Religion" %>
         </div>
-        <div class="small-12 column">
+        <div class="small-12 large-10 column">
             <div class="row selectWithOtherField">
                 <%= f.select_with_other_field("person", :religion, {:selectContainerClass => 'small-6 column', :textFieldContainerClass => 'small-6 column'}) %>
             </div>
         </div>
 	</div>
-	<div class="row">
-		<div class="small-12 column">
-			<%= f.select :caste, ["Scheduled Caste", "Most Backward Class", "Backward Class", "Other"]%>
-		</div>
-	</div>
+    <div class="row">
+        <div class="small-12 large-2 column">
+            <%= f.label "Caste" %>
+        </div>
+        <div class="small-12 large-10 column">
+            <div class="row selectWithOtherField">
+                <%= f.select_with_other_field("person", :caste, {:selectContainerClass => 'small-6 column', :textFieldContainerClass => 'small-6 column'}) %>
+            </div>
+        </div>
+    </div>
 	<div class="row">
 		<div class="small-12 large-2 columns">
 			<%= f.label "Education", :class => "inline"%>
@@ -106,14 +111,16 @@
 			<%= f.select :health_condition, ["normal", "disabled", "mentally retarded"]%>
 		</div>
 	</div>
-	<div class="row">
-		<div class="small-12 large-2 columns">
-			<%= f.label "Occupation", :class => "inline"%>
-		</div>
-		<div class="small-12 large-10 columns">
-			<%= f.select :occupation, ["none", "student", "agricultural coolie", "small farmer", "industrial worker", "government employee", "other"]%>
-		</div>
-	</div>
+    <div class="row">
+        <div class="small-12 large-2 columns">
+            <%= f.label "Occupation", :class => "inline" %>
+        </div>
+        <div class="small-12 large-10 columns">
+            <div class="row selectWithOtherField">
+                <%= f.select_with_other_field("person", :occupation, {:selectContainerClass => 'small-6 column', :textFieldContainerClass => 'small-6 column'}) %>
+            </div>
+        </div>
+    </div>
 	<div class="row">
 		<div class="small-12 large-12 column">
 			<%= f.number_field :income, :placeholder => "Income per month in Rupee" %>
@@ -125,7 +132,7 @@
 		</div>
 	</div>
 	<div class="row">
-	<h2>Beneficiary Questioins:</h2>
+	<h2>Beneficiary Questions:</h2>
 	</div>
 	<div class="row">
 		<div class="small-12 large-2 columns">

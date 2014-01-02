@@ -83,3 +83,13 @@ creches.benefits << [b4,b6,b8,b9,b11,b24,b26,b35,b37,b38]
 # Possible choices for other fields
 PossibleChoices.create(property: "religion", value: "Hindi")
 PossibleChoices.create(property: "religion", value: "Christian")
+PossibleChoices.create(property: "religion", value: "Muslim")
+PossibleChoices.create(property: "caste", value: "Scheduled Caste")
+PossibleChoices.create(property: "caste", value: "Most Backward Class")
+PossibleChoices.create(property: "caste", value: "Backward Class")
+PossibleChoices.create(property: "occupation", value: "none")
+PossibleChoices.create(property: "occupation", value: "student")
+PossibleChoices.create(property: "occupation", value: "agricultural coolie")
+PossibleChoices.create(property: "occupation", value: "small farmer")
+PossibleChoices.create(property: "occupation", value: "industrial worker")
+PossibleChoices.create(property: "occupation", value: "government employee")
