@@ -1,6 +1,5 @@
 MamadataRails4::Application.routes.draw do
 
-  devise_for :users
   get 'families/addpeople', to: 'families#addpeople'
   put 'families/create', to: 'families#create'
   put 'people/create', to: 'people#create'
@@ -30,7 +29,12 @@ MamadataRails4::Application.routes.draw do
   resources :supporters
 
   root 'people#index'
-  resources :dashboard
+
+  devise_for :users, :skip => [:registrations]                                          
+    as :user do
+      get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'    
+      put 'users/:id' => 'devise/registrations#update', :as => 'user_registration'            
+    end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

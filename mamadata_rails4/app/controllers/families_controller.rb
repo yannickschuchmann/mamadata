@@ -1,5 +1,6 @@
 class FamiliesController < ApplicationController
-	# before_action :set_family, only: [:show, :edit, :update, :destroy]
+	  before_filter :authenticate_user!
+	  # before_action :set_family, only: [:show, :edit, :update, :destroy]
 	
 	def index
 		@families = Family.all

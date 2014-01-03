@@ -1,6 +1,7 @@
 class BenefitsController < ApplicationController
   before_action :set_benefit, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_user!
+  
   # GET /benefits
   # GET /benefits.json
   def index

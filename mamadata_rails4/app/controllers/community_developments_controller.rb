@@ -1,6 +1,7 @@
 class CommunityDevelopmentsController < ApplicationController
   before_action :set_community_development, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_user!
+  
   # GET /community_developments
   # GET /community_developments.json
   def index
