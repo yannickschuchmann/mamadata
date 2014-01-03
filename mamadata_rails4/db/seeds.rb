@@ -7,6 +7,10 @@ mother = Role.create(name: "Mother")
 brother = Role.create(name: "Brother")
 sister = Role.create(name: "Sister")
 
+#User creating
+u1 = User.create(email: "dariusch@freenet.de", password: "test", password_confirmation: "test").save!(:validate => false)
+u2 = User.create(email: "test@test.de", password: "test", password_confirmation: "test").save!(:validate => false)
+
 simpsons = Family.create(name:"Simpsons")
 simpsons.people.create(name: "Homer", gender: "male", role: head)
 simpsons.people.create(name: "Marge",gender: "female",role: wife)
