@@ -8,6 +8,7 @@ brother = Role.create(name: "Brother")
 sister = Role.create(name: "Sister")
 
 #User creating
+
 #4 Roles, admin, supporter, editor, guest => default
 staff1 = User.create(email: "admin@sharana.com", 		password: "admin", 		password_confirmation: "admin", 	role: "admin").save!(:validate => false)
 staff2 = User.create(email: "supporter@sharana.com", 	password: "supporter", 	password_confirmation: "supporter", role: "supporter").save!(:validate => false)
