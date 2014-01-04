@@ -15,6 +15,7 @@
       <![endif]-->
 
       <%= stylesheet_link_tag "application", :media => "all" %>
+      <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
       <!-- For third-generation iPad with high-resolution Retina display: -->
       <!-- Size should be 144 x 144 pixels -->
@@ -49,38 +50,39 @@
         <section class="top-bar-section">
           <ul class="nav">
             <% if user_signed_in? %>
-            <ul class="right">
-              <li class="has-dropdown">
-                <a href="#">Hello <%= current_user.email %></a>
-                <ul class="dropdown">
-                  <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %> </li>
-                  <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
-                </ul>
-              </li>              
-              <li class="has-form">
-                <div class="row collapse">
-                  <div class="large-8 small-9 columns">
-                    <input type="text" placeholder="Find Stuff">
-                  </div>
-                  <div class="large-4 small-3 columns">
-                    <a href="#" class="alert button expand">Search</a>
-                  </div>
-                </div>
-              </li>
+                <ul class="right">
+                  <li class="has-dropdown">
+                    <a href="#">Hello <%= current_user.email %></a>
+                    <ul class="dropdown">
+                      <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %> </li>
+                      <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+                    </ul>
+                  </li>              
+                  <li class="has-form">
+                    <div class="row collapse">
+                      <div class="large-8 small-9 columns">
+                        <input type="text" placeholder="Find Stuff">
+                      </div>
+                      <div class="large-4 small-3 columns">
+                        <a href="#" class="alert button expand">Search</a>
+                      </div>
+                    </div>
+                  </li>
 
-            </ul>
-            <ul class="left">
-              <!-- <li><%= link_to 'Community Development', community_developments_path %></li> -->
-              <li><%= link_to 'Families', families_path %></li>
-              <li><%= link_to 'People', people_path %></li>
-              <li><%= link_to 'Roles', roles_path %></li>
-              <li><%= link_to 'People', people_path %></li>
-              <li><%= link_to 'Supporters', supporters_path %></li>
-              <li><%= link_to 'Programs', programs_path %></li>
-              <li><%= link_to 'Benefits', benefits_path %></li>
-              <% else %>
-                <li><%= link_to 'Sign in', new_user_session_path %></li>
-              <% end %>
+                </ul>
+                <ul class="left">
+                  <!-- <li><%= link_to 'Community Development', community_developments_path %></li> -->
+                  <li><%= link_to 'Families', families_path %></li>
+                  <li><%= link_to 'People', people_path %></li>
+                  <li><%= link_to 'Roles', roles_path %></li>
+                  <li><%= link_to 'People', people_path %></li>
+                  <li><%= link_to 'Supporters', supporters_path %></li>
+                  <li><%= link_to 'Programs', programs_path %></li>
+                  <li><%= link_to 'Benefits', benefits_path %></li>
+                  <li><%= link_to 'Users/Staff', users_path %></li>
+            <% else %>
+               <li><%= link_to 'Sign in', new_user_session_path %></li>
+            <% end %>
             </ul>
           </ul>
         </section>
