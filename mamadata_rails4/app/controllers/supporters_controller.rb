@@ -1,6 +1,7 @@
 class SupportersController < ApplicationController
   before_action :set_supporter, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_user!
+  
   # GET /supporters
   # GET /supporters.json
   def index

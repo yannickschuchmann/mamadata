@@ -10,9 +10,6 @@ MamadataRails4::Application.routes.draw do
   get 'benefit_incidents/list/:person_id', to: 'benefit_incidents#list', as: :benefit_incidents_list
   get 'benefit_incidents/new/:person_id', to: 'benefit_incidents#new', as: :new_benefit_incident
 
-
-
-
   resources :benefits do
     member do
       get :programs
@@ -32,6 +29,13 @@ MamadataRails4::Application.routes.draw do
   resources :supporters
 
   root 'people#index'
+
+  devise_for :users, :skip => [:registrations]                                          
+    as :user do
+      get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'    
+      put 'users/:id' => 'devise/registrations#update', :as => 'user_registration'            
+    end
+  resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

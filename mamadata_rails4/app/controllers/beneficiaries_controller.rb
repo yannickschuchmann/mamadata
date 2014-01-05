@@ -1,5 +1,6 @@
 class BeneficiariesController < ApplicationController
   before_action :set_beneficiary, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   # GET /beneficiaries
   def index
