@@ -2,14 +2,6 @@
 
 load(Rails.root.join( 'db', 'seeds', "#{Rails.env.downcase}.rb"))
 
-head = Role.create(name: "Head of the Household")
-wife = Role.create(name: "Wife")
-child = Role.create(name: "Child")
-father = Role.create(name: "Father")
-mother = Role.create(name: "Mother")
-brother = Role.create(name: "Brother")
-sister = Role.create(name: "Sister")
-
 #User creating
 
 #4 Roles, admin, supporter, editor, guest => default
@@ -19,6 +11,15 @@ staff3 = User.create(email: "editor@sharana.com", 		password: "editor", 	passwor
 
 u1 = User.create(email: "dariusch@freenet.de", password: "test", password_confirmation: "test", role: "supporter").save!(:validate => false)
 u2 = User.create(email: "test@test.de", password: "test", password_confirmation: "test").save!(:validate => false)
+
+
+head = Role.create(name: "Head of the Household")
+wife = Role.create(name: "Wife")
+child = Role.create(name: "Child")
+father = Role.create(name: "Father")
+mother = Role.create(name: "Mother")
+brother = Role.create(name: "Brother")
+sister = Role.create(name: "Sister")
 
 simpsons = Family.create(name:"Simpsons")
 simpsons.people.create(name: "Homer", gender: "male", role: head)
