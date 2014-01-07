@@ -1,104 +1,116 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+	<div class="medium-2 columns">
+		4
+	</div>
+	<div class="medium-10 columns">
+		<h2><%= @person.name %></h2>
+		<h5><b>File: <%= @person.id %></b></h5>
+		<ul>
+			<% Program.all.each do |p| %>
+				<% if @person.programs.include?(p) %>
+					<li><%= p.name %></li>
+				<% end %>
+			<% end %>
+		</ul>
+	</div>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @person.name %>
-</p>
+<div class="row">
+	<div class="small-12 column">
+		<dl class="tabs" data-tab>
+			<dd class="active"><a href="#panel2-1">General Information</a></dd>
+			<dd><a href="#panel2-2">Extended</a></dd>
+			<dd><a href="#panel2-3">School</a></dd>
+			<dd><a href="#panel2-4">Community Development</a></dd>
+		</dl>
+		<div class="tabs-content">
+			<div class="content active" id="panel2-1" style="width: 100%">
+				<table class="small-12">
+					<tbody>
+						<tr>
+							<td class="medium-6"><b>Father's name:</b> <br /><%= @person.fathers_name %></td>
+							<td class="mkedium-6"><b>Name of the house:</b> <br /> <%= @person.name_of_the_house %></td>
+						</tr>
+						<tr>
+							<td><b>Head of Household:</b><br />???????????</td>
+							<td><b>Number of the house:</b><br /><%= @person.number_of_the_house %></td>
+						</tr>
+						<tr>
+							<td><b>Relation to Head of Household:</b><br />
+								<% if !@person.role_id.nil?
+									b = Role.find (@person.role_id) %>
+									<%= b.name %>
+									<% else %>
+									<%= "not given" %>
+									<% end %>
+									<%#= @person.role.name %>
+								</td>
+								<td><b>Name of the street:</b><br /><%= @person.name_of_the_street %></td>
+							</tr>
+							<tr>
+								<td><b>Gender:</b><br /><%= @person.gender %></td>
+								<td><b>City:</b><br /><%= @person.city %></td>
+							</tr>
+							<tr>
+								<td><b>Date of birth:</b><br /><%= @person.date_of_birth %></td>
+								<td><b>Pin code:</b><br /><%= @person.pin_code %></td>
+							</tr>
+							<tr>
+								<td><b>Place of birth:</b><br /><%= @person.place_of_birth %></td>
+								<td><b>Native place:</b><br /><%= @person.native_place %></td>
+							</tr>
+							<tr>
+								<td><b>Marital status:</b><br /><%= @person.marital_status %></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="content" id="panel2-2" style="width: 100%">
+					<table class="small-12">
+						<tbody>
+							<tr>
+								<td class="medium-2"><b>Religion:</b></td>
+								<td class="medium-10"><%= @person.religion %></td>
+							</tr>
+							<tr>
+								<td><b>Caste:</b></td>
+								<td><%= @person.caste %></td>
+							</tr>
+							<tr>
+								<td><b>Education:</b></td>
+								<td><%= @person.education %></td>
+							</tr>
+							<tr>
+								<td><b>Health condition:</b></td>
+								<td><%= @person.health_condition %></td>
+							</tr>
+							<tr>
+								<td><b>Occupation:</b></td>
+								<td><%= @person.occupation %></td>
+							</tr>
+							<tr>
+								<td><b>Income:</b></td>
+								<td><%= @person.income %></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="content" id="panel2-3">
+					<p>Third panel content goes here...</p>
+				</div>
+				<div class="content" id="panel2-4">
+					<p>Fourth panel content goes here...</p>
+				</div>
+			</div>
 
-<p>
-  <strong>Father's name:</strong>
-  <%= @person.fathers_name %>
-</p>
-
-<p>
-  <strong>Gender:</strong>
-  <%= @person.gender %>
-</p>
-
-<p>
-  <strong>Date of birth:</strong>
-  <%= @person.date_of_birth %>
-</p>
-
-<p>
-  <strong>Place of birth:</strong>
-  <%= @person.place_of_birth %>
-</p>
-
-<p>
-  <strong>Native place:</strong>
-  <%= @person.native_place %>
-</p>
-
-<p>
-  <strong>Name of the house:</strong>
-  <%= @person.name_of_the_house %>
-</p>
-
-<p>
-  <strong>Number of the house:</strong>
-  <%= @person.number_of_the_house %>
-</p>
-
-<p>
-  <strong>Name of the street:</strong>
-  <%= @person.name_of_the_street %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @person.city %>
-</p>
-
-<p>
-  <strong>Pin code:</strong>
-  <%= @person.pin_code %>
-</p>
-
-<p>
-  <strong>Religion:</strong>
-  <%= @person.religion %>
-</p>
-
-<p>
-  <strong>Caste:</strong>
-  <%= @person.caste %>
-</p>
-
-<p>
-  <strong>Education:</strong>
-  <%= @person.education %>
-</p>
-
-<p>
-  <strong>Marital status:</strong>
-  <%= @person.marital_status %>
-</p>
-
-<p>
-  <strong>Health condition:</strong>
-  <%= @person.health_condition %>
-</p>
-
-<p>
-  <strong>Occupation:</strong>
-  <%= @person.occupation %>
-</p>
-
-<p>
-  <strong>Income:</strong>
-  <%= @person.income %>
-</p>
-
-<p>
-  <strong>Role:</strong>
-  <% if !@person.role_id.nil?
-            b = Role.find (@person.role_id) %>
-           <%= b.name %>
-          <% end %>
-  <%#= @person.role.name %>
-</p>
-
-<%= link_to 'Edit', edit_person_path(@person) %> |
-<%= link_to 'Back', people_path %>
-<%= link_to 'New Incident', new_benefit_incident_path(@person.id) %>
+		</div>
+	</div>
+<div class="row">
+	<div class="small-12 column">
+		<%= link_to 'Edit', edit_person_path(@person), :class => "button" %>
+		<%= link_to 'Back', people_path, :class => "button" %>
+		<%= link_to 'New Incident', new_benefit_incident_path(@person.id), :class => "button" %>
+	</div>
+</div>
