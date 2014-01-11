@@ -22,6 +22,6 @@ class BenefitIncident < ActiveRecord::Base
 		end
 
 		def set_date_granted
-			self.date_granted = DateTime.now if self.status == true
+			self.date_granted = DateTime.now.to_s(:long) if self.status == true
 		end
 end

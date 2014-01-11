@@ -45,7 +45,7 @@
     <% if is_admin? %>
     <div class="field">
     <div class="span3"><%= f.label :status %></div>
-      <div class="span9"><%= f.select :status, [['Granted',true],['Pending', false]] %></div>
+      <div class="span9"><%= f.select :status, [['Granted',true],['Pending', false]], :selected =>  ['Pending', false] %></div>
     </div>
   <% else %>
     <div class="field">
