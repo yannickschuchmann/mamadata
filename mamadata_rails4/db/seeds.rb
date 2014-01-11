@@ -12,7 +12,6 @@ staff3 = User.create(email: "editor@sharana.com", 		password: "editor", 	passwor
 u1 = User.create(email: "dariusch@freenet.de", password: "test", password_confirmation: "test", role: "supporter").save!(:validate => false)
 u2 = User.create(email: "test@test.de", password: "test", password_confirmation: "test").save!(:validate => false)
 
-
 head = Role.create(name: "Head of the Household")
 wife = Role.create(name: "Wife")
 child = Role.create(name: "Child")
