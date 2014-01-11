@@ -9,6 +9,7 @@
       <th>Benefit</th>
       <th>Amount</th>
       <th>Remark</th>
+      <th>Status</th>
       <th></th>
     </tr>
   </thead>
@@ -21,6 +22,7 @@
         <td><%= benefit_incident.benefit.name %></td>
         <td><%= benefit_incident.amount %></td>
         <td><%= benefit_incident.remark %></td>
+        <td><%= benefit_incident.status == true ? 'Granted' : 'Pending' %></td>
         <td><%= link_to 'Show', benefit_incident %>
         <%= link_to 'Edit', edit_benefit_incident_path(benefit_incident) %>
         <%= link_to 'Delete', benefit_incident, method: :delete, data: { confirm: 'Are you sure?' } %></td>
