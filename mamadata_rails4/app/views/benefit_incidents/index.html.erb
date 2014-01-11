@@ -1,6 +1,18 @@
 <h1>Listing Incidents</h1>
+<div
 
-
+  <% if is_admin? %>
+    <div class="button-center">
+    <%= link_to benefit_incidents_pending_path, :class => 'button [tiny small large]' do %>
+    Show All Pending
+    <% end %>
+  </div>
+  <div class="button-center">
+    <%= link_to benefit_incidents_granted_path, :class => 'button [tiny small large]' do %>
+    Show All Granted
+    <% end %>
+  </div>
+  <% end %>
 <table class="table">
   <thead>
     <tr>
