@@ -20,11 +20,10 @@ pre {
 
 a {
   color: #000;
+  cursor: pointer;
   &:visited {
   }
   &:hover {
-    color: #fff;
-    background-color: #000;
   }
 }
 

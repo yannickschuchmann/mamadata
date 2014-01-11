@@ -3,15 +3,18 @@
 	<div class="medium-2 columns">
 		4
 	</div>
-	<div class="medium-10 columns">
+	<div class="medium-6 columns">
 		<h2><%= @person.name %></h2>
 		<h5><b>File: <%= @person.id %></b></h5>
-		<ul>
+	</div>
+	<div class="medium-4 columns">
+		<ul class="no-bullet">
 			<% Program.all.each do |p| %>
-				<% if @person.programs.include?(p) %>
-					<li><%= p.name %></li>
-				<% end %>
+			<% if @person.programs.include?(p) %>
+			<li><%= p.name %></li>
 			<% end %>
+			<% end %>
+			<li><br><a href="" class="button tiny">Add to Program</a></li>
 		</ul>
 	</div>
 </div>
@@ -22,7 +25,7 @@
 			<dd class="active"><a href="#panel2-1">General Information</a></dd>
 			<dd><a href="#panel2-2">Extended</a></dd>
 			<dd><a href="#panel2-3">School</a></dd>
-			<dd><a href="#panel2-4">Community Development</a></dd>
+			<dd><a href="#panel2-4">Benefit History</a></dd>
 		</dl>
 		<div class="tabs-content">
 			<div class="content active" id="panel2-1" style="width: 100%">
@@ -30,7 +33,7 @@
 					<tbody>
 						<tr>
 							<td class="medium-6"><b>Father's name:</b> <br /><%= @person.fathers_name %></td>
-							<td class="mkedium-6"><b>Name of the house:</b> <br /> <%= @person.name_of_the_house %></td>
+							<td class="medium-6"><b>Name of the house:</b> <br /> <%= @person.name_of_the_house %></td>
 						</tr>
 						<tr>
 							<td><b>Head of Household:</b><br />???????????</td>
@@ -44,7 +47,6 @@
 									<% else %>
 									<%= "not given" %>
 									<% end %>
-									<%#= @person.role.name %>
 								</td>
 								<td><b>Name of the street:</b><br /><%= @person.name_of_the_street %></td>
 							</tr>
@@ -98,19 +100,59 @@
 					</table>
 				</div>
 				<div class="content" id="panel2-3">
-					<p>Third panel content goes here...</p>
+					<table class="small-12">
+						<tbody>
+							<tr>
+								<td class="medium-2"><b>Language:</b></td>
+								<td class="medium-10"><%= @person.school_language %></td>
+							</tr>
+							<tr>
+								<td><b>Type:</b></td>
+								<td><%= @person.school_type %></td>
+							</tr>
+							<tr>
+								<td><b>Class:</b></td>
+								<td><%= @person.school_class %></td>
+							</tr>
+
+						</tbody>
+					</table>
 				</div>
 				<div class="content" id="panel2-4">
-					<p>Fourth panel content goes here...</p>
+					<table class="small-12">
+						<thead>
+							<td>Program</td>
+							<td>Benefit</td>
+							<td>Date granted</td>
+							<td>Amount</td>
+							<td>Type</td>
+						</thead>
+						<tbody>
+							<% @person.benefit_incidents.each do |incident| %>
+							<tr>
+								<td><% p = Program.find (incident.program_id) %>
+									<%= p.name %>
+								</td>
+								<td><% b = Benefit.find (incident.benefit_id) %>
+									<%= b.name %>
+								</td>
+								<td> <%= incident.updated_at.to_formatted_s(:long_ordinal) %> </td>
+								<td> <%= incident.amount %> </td>
+								<td> <%= incident.remark %> </td>
+							</tr>
+							<% end %>
+						</tbody>
+					</table>
 				</div>
 			</div>
 
 		</div>
 	</div>
-<div class="row">
-	<div class="small-12 column">
-		<%= link_to 'Edit', edit_person_path(@person), :class => "button" %>
-		<%= link_to 'Back', people_path, :class => "button" %>
-		<%= link_to 'New Incident', new_benefit_incident_path(@person.id), :class => "button" %>
+
+	<div class="row">
+		<div class="small-12 column">
+			<%= link_to 'Edit', edit_person_path(@person), :class => "button" %>
+			<%= link_to 'Back', people_path, :class => "button" %>
+			<%= link_to 'New Incident', new_benefit_incident_path(@person.id), :class => "button" %>
+		</div>
 	</div>
-</div>
