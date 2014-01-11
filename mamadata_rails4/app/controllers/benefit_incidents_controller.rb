@@ -82,6 +82,6 @@ class BenefitIncidentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def benefit_incident_params
-      params.require(:benefit_incident).permit(:person_id, :program_id, :benefit_id, :amount, :remark)
+      params.require(:benefit_incident).permit(:person_id, :program_id, :benefit_id, :amount, :remark, :status, :date_granted)
     end
 end

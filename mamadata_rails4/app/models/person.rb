@@ -1,5 +1,5 @@
 class Person < ActiveRecord::Base
-	has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+	has_attached_file :avatar, :styles => { :medium => "300x300>", :small => "160>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   belongs_to :role
   belongs_to :family
   has_many :beneficiary_program_relationships
