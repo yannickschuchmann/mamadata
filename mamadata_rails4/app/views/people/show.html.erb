@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 <div class="row">
 	<div class="medium-2 columns">
-		4
+		<%= image_tag @person.avatar.url(:medium) %>
+    <%= image_tag @person.avatar.url(:thumb) %>
 	</div>
 	<div class="medium-6 columns">
 		<h2><%= @person.name %></h2>

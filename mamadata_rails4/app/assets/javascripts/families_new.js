@@ -28,9 +28,26 @@ function addPeople (){
 						</div>\
 						</div>'
 	);
-	$("#familyList").append("<ul>Person"+peopleNumber+"</ul>");
 	peopleNumber = peopleNumber + 1;
 }
+$("#search").click(function(event){
+	var name = $("#sName").val();
+	var fname = $("#sFname").val();
+	dataToSend = {"name": name, "fname": fname};
+	$.ajax({
+		url: "http://"+window.location.host+"/people/search",   // I'm doing the proper routing later, since '/make_suggestion' routes to 'items/1/make_suggestion'
+		type: "PUT",
+		dataType: 'json',
+		async: 'false',
+		data: dataToSend,
+		success: function(returned_value){
+			console.log(returned_value);
+		},
+		error: function(returned_value){
+			alert("Something went Wrong during the sending of the data please retry later");
+		}
+	});
+});
 $("#submitFamily").click(function(event){
 	event.preventDefault();
 	var dataToSend = {};
