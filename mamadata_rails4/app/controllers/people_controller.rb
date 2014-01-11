@@ -26,7 +26,7 @@ class PeopleController < ApplicationController
   # POST /people.json
   def create
     personParameters = ActionController::Parameters.new(params["person"])
-    @person = Person.create(personParameters.permit(:name, :fathers_name, :gender, :date_of_birth, :place_of_birth, :native_place, :name_of_the_house, :number_of_the_house, :name_of_the_street, :city, :pin_code, :religion, :caste, :education, :marital_status, :health_condition, :occupation, :income, :role_id, :school_name, :school_type, :school_language, :school_class, :narrative_text, :status,:program_ids => []))
+    @person = Person.create(personParameters.permit(:name, :fathers_name, :gender, :date_of_birth, :place_of_birth, :native_place, :name_of_the_house, :number_of_the_house, :name_of_the_street, :city, :pin_code, :religion, :caste, :education, :marital_status, :health_condition, :occupation, :income, :role_id, :school_name, :school_type, :school_language, :school_class, :narrative_text,:avatar ,:avatar_file_name, :status,:program_ids => []))
 #    if params["beneficiary"]
 #     beneficiaryParameters = ActionController::Parameters.new(params["beneficiary"])
 #    @beneficiary = Beneficiary.create(beneficiaryParameters.permit(:school_name))
