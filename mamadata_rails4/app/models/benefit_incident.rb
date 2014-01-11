@@ -8,6 +8,12 @@ class BenefitIncident < ActiveRecord::Base
 	before_save :set_default_status
 	before_save :set_date_granted
 
+
+
+
+
+
+
 	protected
 		
 		def set_default_status
@@ -18,6 +24,4 @@ class BenefitIncident < ActiveRecord::Base
 		def set_date_granted
 			self.date_granted = DateTime.now if self.status == true
 		end
-
-
 end
