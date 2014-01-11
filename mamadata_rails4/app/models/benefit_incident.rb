@@ -6,12 +6,17 @@ class BenefitIncident < ActiveRecord::Base
 	validates :program_id, presence: true
 	validates :benefit_id, presence: true
 	before_save :set_default_status
+	before_save :set_date_granted
 
 	protected
 		
 		def set_default_status
 			self.status = false unless self.status
 			self.date_granted = nil unless self.date_granted
+		end
+
+		def set_date_granted
+			self.date_granted = DateTime.now if self.status == true
 		end
 
 
