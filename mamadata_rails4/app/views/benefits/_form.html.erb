@@ -22,7 +22,23 @@
 
 <div class="row">
   <div class="small-12 column">
-    <%= f.submit :class => 'button' %>
+    <div class="row-fluid">
+      <span class="ul">
+
+        <% Program.all.each_slice(10) do |slice| %>
+        <div class="span3">
+          <% slice.each do |b| %>
+          <label class="li"><%= check_box_tag :program_ids, b.id, @benefit.programs.include?(b), :name => 'benefit[program_ids][]' %> <%= b.name %></label>
+          <% end %>
+        </div>
+
+        <% end %>
+
+      </span>
+    </div>
+    <div class="actions">
+      <%= f.submit :class => 'button' %>
+    </div>
   </div>
 </div>
 <% end %>

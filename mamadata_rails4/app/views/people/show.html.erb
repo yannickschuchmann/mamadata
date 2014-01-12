@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<<<<<<< HEAD
 <div class="row">
 	<div class="medium-2 columns">
 		<%= image_tag @person.avatar.url(:small) %>
@@ -158,5 +159,6 @@
 			<%= link_to 'Edit', edit_person_path(@person), :class => "button" %>
 			<%= link_to 'Back', people_path, :class => "button" %>
 			<%= link_to 'New Incident', new_benefit_incident_path(@person.id), :class => "button" %>
+			<%= link_to 'List All Incidents', benefit_incidents_list_path(@person.id), :class => "button" %>
 		</div>
 	</div>

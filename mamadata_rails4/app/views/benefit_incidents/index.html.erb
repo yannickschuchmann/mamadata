@@ -1,6 +1,16 @@
 <h1 class="text-center">Listing Incidents</h1>
-
-
+  <% if is_admin? %>
+    <div class="button-center">
+    <%= link_to benefit_incidents_pending_path, :class => 'button [tiny small large]' do %>
+    Show All Pending
+    <% end %>
+  </div>
+  <div class="button-center">
+    <%= link_to benefit_incidents_granted_path, :class => 'button [tiny small large]' do %>
+    Show All Granted
+    <% end %>
+  </div>
+  <% end %>
 <table class="table">
   <thead>
     <tr>
@@ -10,6 +20,7 @@
       <th>Amount</th>
       <th>Remark</th>
       <th>Status</th>
+      <th>Date Granted</th>
       <th></th>
     </tr>
   </thead>
@@ -23,6 +34,7 @@
         <td><%= benefit_incident.amount %></td>
         <td><%= benefit_incident.remark %></td>
         <td><%= benefit_incident.status == true ? 'Granted' : 'Pending' %></td>
+        <td><%= benefit_incident.date_granted %></td>
         <td><%= link_to 'Show', benefit_incident %>
         <%= link_to 'Edit', edit_benefit_incident_path(benefit_incident) %>
         <%= link_to 'Delete', benefit_incident, method: :delete, data: { confirm: 'Are you sure?' } %></td>
