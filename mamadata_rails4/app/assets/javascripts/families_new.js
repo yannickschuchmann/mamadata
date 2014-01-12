@@ -4,7 +4,6 @@ $("#addpeople").click(function(){
 	addPeople();
 });
 function addPeople (){
-	/*jshint multistr: true */
 	$("#people").append('<div class="person"> \
 						<h1>Person'+peopleNumber+'</h1>\
 						<div class="field">\
@@ -33,7 +32,11 @@ function addPeople (){
 $("#search").click(function(event){
 	var name = $("#sName").val();
 	var fname = $("#sFname").val();
-	dataToSend = {"name": name, "fname": fname};
+	var city = $("#sCity").val();
+	var zipcode = $("#sZipcode").val();
+	console.log(zipcode)
+	dataToSend = {"name": name, "fname": fname,"city": city, "zipcode": zipcode };
+
 	$.ajax({
 		url: "http://"+window.location.host+"/people/search",   // I'm doing the proper routing later, since '/make_suggestion' routes to 'items/1/make_suggestion'
 		type: "PUT",

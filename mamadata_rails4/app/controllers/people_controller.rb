@@ -67,9 +67,18 @@ class PeopleController < ApplicationController
   end
 
   def search
+    name = params['name']
+    fname = params['fname']
+    city = params['city']
+    zipcode = params['zipcode']
+
+    result = []
+    
+    result = Person.where("name LIKE ? AND fathers_name LIKE ? ", "%#{name}%","%#{fname}%")
+    
     respond_to do |format|
       # format.html # index.html.erb
-      format.json { render json: params }
+      format.json { render json: result }
     end
   end
 
