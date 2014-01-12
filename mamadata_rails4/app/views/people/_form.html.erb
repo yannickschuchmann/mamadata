@@ -139,9 +139,7 @@
 			<%= f.select :role_id, Role.all.map{|role| [role.name, role.id]}, :placeholder => "Income per month in Rupee" %>
 		</div>
 	</div>
-	<div class="row">
-	<h2>Beneficiary Questions:</h2>
-	</div>
+	<h2 class="text-center">Beneficiary Questions:</h2>
 	<div class="row">
 		<div class="small-12 large-2 columns">
 			<%= f.label "School Type", :class => "inline"%>
@@ -182,7 +180,7 @@
 			<%= f.select :godfather_id, Supporter.where(:godfather => 1).map{|role| [role.name, role.id]} %>
 		</div>
 	</div>
-	<h2>Programs</h2>
+	<h2 class="text-center">Programs</h2>
 	<div class="row">
 		<div class="large-12 column">
 		<div class="row">

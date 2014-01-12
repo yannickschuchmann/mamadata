@@ -1,22 +1,23 @@
 <h1 class="text-center">Users</h1>
+<div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Role</th>
+        <th></th>
+      </tr>
+    </thead>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>Role</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-    <tr>
-      <td><%= user.email %></td>
-      <td><%= user.role %></td>
-      <td>
-        <%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_user_path(user) %>
-        <%= link_to (content_tag(:i, '', :class => 'icon-trash')), user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.role %></td>
+        <td>
+          <%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_user_path(user) %>
+          <%= link_to (content_tag(:i, '', :class => 'icon-trash')), user, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
       <% end %>
     </tbody>
@@ -27,4 +28,4 @@
       <%= link_to "New User", new_user_path, :class => "button" %>
     </div>
   </div>
-
+</div>
