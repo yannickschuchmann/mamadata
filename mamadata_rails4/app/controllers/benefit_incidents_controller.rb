@@ -10,7 +10,16 @@ class BenefitIncidentsController < ApplicationController
 
   def list
     @benefit_incidents = BenefitIncident.where(person_id: params[:person_id])
-    render action: 'index'
+  end
+
+  def granted_for_user
+    @benefit_incidents = BenefitIncident.where(person_id: params[:person_id], status: true)
+    render action: 'list'
+  end
+
+  def pending_for_user
+    @benefit_incidents = BenefitIncident.where(person_id: params[:person_id], status: false)
+    render action: 'list'
   end
 
   def granted
