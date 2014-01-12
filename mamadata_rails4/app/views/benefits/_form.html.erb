@@ -1,26 +1,28 @@
 <%= form_for(@benefit) do |f| %>
-  <% if @benefit.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@benefit.errors.count, "error") %> prohibited this benefit from being saved:</h2>
+<% if @benefit.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@benefit.errors.count, "error") %> prohibited this benefit from being saved:</h2>
 
-      <ul>
-      <% @benefit.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <ul>
+    <% @benefit.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-  <div class="field">
-    <div class="span3"><%= f.label :name %></div>
-    <div class="span9"><%= f.text_field :name %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label :description %></div>
-    <div class="span9"><%= f.text_field :description %></div>
-  </div>
+<div class="row">
+  <div class="small-12 large-2 column"><%= f.label :name %></div>
+  <div class="small-12 large-10 column"><%= f.text_field :name %></div>
+</div>
+<div class="row">
+  <div class="small-12 large-2 column"><%= f.label :description %></div>
+  <div class="small-12 large-10 column"><%= f.text_field :description %></div>
+</div>
 
-  <div class="actions">
-    <%= f.submit :class => 'btn btn-primary' %>
+<div class="row">
+  <div class="small-12 column">
+    <%= f.submit :class => 'button' %>
   </div>
+</div>
 <% end %>

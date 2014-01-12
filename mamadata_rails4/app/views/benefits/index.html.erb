@@ -23,8 +23,8 @@
 </table>
 
 <br>
-
-<%= link_to new_benefit_path, :class => 'btn btn-primary' do %>
-  <%= (content_tag(:i, "", :class => "icon-pencil")) %>
-  New Benefit
-<% end %>
+<div class="row">
+  <div class="small-12 column">
+   <%= link_to "New Benefit", new_benefit_path, :class => 'button'%>
+  </div>
+</div>

@@ -1,6 +1,9 @@
 <h1 class="text-center">Editing benefit</h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @benefit %> |
-<%= link_to 'Back', benefits_path %>
+<div class="row">
+	<div class="small-12 column">
+		<%= link_to 'Show', @benefit, :class => "button tiny" %>
+		<%= link_to 'Back', benefits_path, :class => "button tiny" %>
+	</div>
+</div>

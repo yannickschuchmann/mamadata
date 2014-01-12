@@ -11,20 +11,20 @@
 
   <tbody>
     <% @users.each do |user| %>
-      <tr>
-        <td><%= user.email %></td>
-        <td><%= user.role %></td>
-       <td>
+    <tr>
+      <td><%= user.email %></td>
+      <td><%= user.role %></td>
+      <td>
         <%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_user_path(user) %>
         <%= link_to (content_tag(:i, '', :class => 'icon-trash')), user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      <% end %>
+    </tbody>
+  </table>
 
-<br>
+  <div class="row">
+    <div class="small-12 column">
+      <%= link_to "New User", new_user_path, :class => "button" %>
+    </div>
+  </div>
 
-<%= link_to new_user_path, :class => 'button' do %>
-  <%= (content_tag(:i, '', :class => 'icon-pencil')) %>
-  New User
-<% end %>

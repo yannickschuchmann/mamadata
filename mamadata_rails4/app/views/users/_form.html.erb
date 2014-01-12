@@ -1,34 +1,51 @@
 <%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<% if @user.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+  <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="small-12 large-2 columns">
+    <%= f.label :email %>
+  </div>
+  <div class="small-12 large-10 columns">
+    <%= f.email_field :email %>
+  </div>
+</div>
+<div class="row">
+  <div class="small-12 large-2 columns">
+    <%= f.label :password %>
+  </div>
+  <div class="small-12 large-10 columns">
+    <%= f.password_field :password %>
+  </div>
+</div>
+<div class="row">
+  <div class="small-12 large-2 columns">
+    <%= f.label :password_confirmation %>
+  </div>
+  <div class="small-12 large-10 columns">
+    <%= f.text_field :password_confirmation %>
+  </div>
+</div>
+<div class="row">
+  <div class="small-12 large-2 columns">
+    <%= f.label :role %></div>
+    <div class="small-12 large-10 columns">
+      <%= f.select :role, ["admin", "supporter", "editor"]%>
     </div>
-  <% end %>
-
-  <div class="field">
-    <div class="span3"><%= f.label :email %></div>
-    <div class="span9"><%= f.email_field :email %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label :password %></div>
-    <div class="span9"><%= f.password_field :password %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label :password_confirmation %></div>
-    <div class="span9"><%= f.text_field :password_confirmation %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label :role %></div>
-    <div class="span9"><%= f.select :role, ["admin", "supporter", "editor"]%></div>
   </div>
   
-  <div class="actions">
-    <%= f.submit :class => 'btn btn-primary' %>
+  <div class="row">
+    <div class="small-12 large-12 columns">
+      <%= f.submit :class => 'button' %>
+    </div>
   </div>
-<% end %>
+  <% end %>

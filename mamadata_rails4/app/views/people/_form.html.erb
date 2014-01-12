@@ -3,7 +3,6 @@
 	<% if @person.errors.any? %>
 		<div id="error_explanation">
 			<h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
-
 			<ul>
 			<% @person.errors.full_messages.each do |msg| %>
 				<li><%= msg %></li>
@@ -18,9 +17,13 @@
 		</div>
 	</div>
 	<div class="row">
-    <%= f.label :avatar %><br>
-    <%= f.file_field :avatar %>
-</div>
+		<div class="small-12 large-2 columns">
+			<%= f.label :avatar %>
+		</div>
+		<div class="small-12 large-10 columns">
+			<%= f.file_field :avatar %>
+		</div>
+	</div>
 	<div class="row">
 		<div class="small-12 column">
 			<%= f.text_field :fathers_name, :placeholder => :fathers_name%>

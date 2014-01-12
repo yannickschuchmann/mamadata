@@ -23,3 +23,6 @@ table {
 .button-center{
 	text-align: center;
 }
+#notice {
+	text-align: center !important;	
+}

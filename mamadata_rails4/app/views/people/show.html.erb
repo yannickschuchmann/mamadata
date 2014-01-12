@@ -10,11 +10,10 @@
 	<div class="medium-4 columns">
 		<ul class="no-bullet">
 			<% Program.all.each do |p| %>
-			<% if @person.programs.include?(p) %>
-			<li><%= p.name %></li>
+				<% if @person.programs.include?(p) %>
+					<li><%= p.name %></li>
+				<% end %>
 			<% end %>
-			<% end %>
-			<li><br><a href="" class="button tiny">Add to Program</a></li>
 		</ul>
 	</div>
 </div>
@@ -136,7 +135,13 @@
 								<td><% b = Benefit.find (incident.benefit_id) %>
 									<%= b.name %>
 								</td>
-								<td> <%= incident.updated_at.to_formatted_s(:long_ordinal) %> </td>
+								<td>
+									<% if incident.status === false %>
+									<%= "pending" %>
+									<% else %>
+									<%= incident.date_granted %>
+									<% end %>
+								</td>
 								<td> <%= incident.amount %> </td>
 								<td> <%= incident.remark %> </td>
 							</tr>
@@ -148,7 +153,6 @@
 
 		</div>
 	</div>
-
 	<div class="row">
 		<div class="small-12 column">
 			<%= link_to 'Edit', edit_person_path(@person), :class => "button" %>

@@ -1,23 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @benefit.name %>
-</p>
+<div class="row">
+  <div class="small-12 large-3 column">Name:</div>
+  <div class="small-12 large-9 column"><%= @benefit.name %></div>
+</div>
 
-<p>
-  <strong>Descriptioin:</strong>
-  <%= @benefit.description %>
-</p>
-<p>
-  <strong>Belongs to Programs:</strong>
-  <ul>
-  <% @benefit.programs.each do |program| %>
-  <li><%= program.name %></li>
-  <% end %>
-  </ul>
-</p>
+<div class="row">
+  <div class="small-12 large-3 column">Descriptioin:</div>
+  <div class="small-12 large-9 column"><%= @benefit.description %></div>
+</div>
 
+<div class="row">
+  <div class="small-12 large-3 column">Belongs to Programs:</div>
+  <div class="small-12 large-9 column">
+    <ul class="no-bullet">
+      <% @benefit.programs.each do |program| %>
+      <li><%= program.name %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_benefit_path(@benefit) %> |
-<%= link_to 'Back', benefits_path %>
+<div class="row">
+  <div class="small-12 column">
+    <%= link_to 'Edit', edit_benefit_path(@benefit), :class => "button tiny" %>
+    <%= link_to 'Back', benefits_path, :class => "button tiny" %>
+  </div>
+</div>
