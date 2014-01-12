@@ -19,6 +19,10 @@
   <strong>Remark:</strong>
   <%= @benefit_incident.remark %>
 </p>
+<p>
+  <strong>Status:</strong>
+  <%= @benefit_incident.status == true ? 'Granted' : 'Pending' %>
+</p>
 
 <%= link_to 'Edit', edit_benefit_incident_path(@benefit_incident) %> |
 <%= link_to 'List All Incidents', benefit_incidents_list_path(person_id: @benefit_incident.person_id) %>

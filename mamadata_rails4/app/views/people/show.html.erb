@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<%= image_tag @person.avatar.url(:medium) %>
 <p>
   <strong>Name:</strong>
   <%= @person.name %>
@@ -102,3 +103,4 @@
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>
 <%= link_to 'New Incident', new_benefit_incident_path(@person.id) %>
+<%= link_to 'List All Incidents', benefit_incidents_list_path(@person.id) %>

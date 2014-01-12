@@ -80,6 +80,10 @@
                   <li><%= link_to 'Programs', programs_path %></li>
                   <li><%= link_to 'Benefits', benefits_path %></li>
                   <li><%= link_to 'Users/Staff', users_path %></li>
+
+                  <% if is_admin? %>
+                  <li><%= link_to 'List Incidents', benefit_incidents_path %></li>
+                  <%end%>
             <% else %>
                <li><%= link_to 'Sign in', new_user_session_path %></li>
             <% end %>

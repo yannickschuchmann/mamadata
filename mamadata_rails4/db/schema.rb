@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140103220418) do
+ActiveRecord::Schema.define(version: 20140111145512) do
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20140103220418) do
     t.text     "remark"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "date_granted"
+    t.boolean  "status"
   end
 
   add_index "benefit_incidents", ["benefit_id"], name: "index_benefit_incidents_on_benefit_id"
@@ -122,6 +124,10 @@ ActiveRecord::Schema.define(version: 20140103220418) do
     t.integer  "godfather_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "people", ["family_id"], name: "index_people_on_family_id"

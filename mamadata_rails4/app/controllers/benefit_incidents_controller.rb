@@ -10,6 +10,17 @@ class BenefitIncidentsController < ApplicationController
 
   def list
     @benefit_incidents = BenefitIncident.where(person_id: params[:person_id])
+    render action: 'index'
+  end
+
+  def granted
+    @benefit_incidents = BenefitIncident.where(status: true)
+    render action: 'index'
+  end
+
+  def pending
+    @benefit_incidents = BenefitIncident.where(status: false)
+    render action: 'index'
   end
 
   # GET /benefit_incidents/1
@@ -82,6 +93,6 @@ class BenefitIncidentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def benefit_incident_params
-      params.require(:benefit_incident).permit(:person_id, :program_id, :benefit_id, :amount, :remark)
+      params.require(:benefit_incident).permit(:person_id, :program_id, :benefit_id, :amount, :remark, :status, :date_granted)
     end
 end
