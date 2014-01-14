@@ -11,71 +11,71 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <div class="span3"><%= f.label :organisation %></div>
-    <div class="span9"><%= f.text_field :organisation %></div>
+  <div class="row">
+    <div class="small-12 large-3 columns"><%= f.label :organisation %></div>
+    <div class="small-12 large-9 columns"><%= f.text_field :organisation %></div>
   </div>
-  <div class="field">
-    <div class="span3"><%= f.label :name %></div>
-    <div class="span9"><%= f.text_field :name %></div>
+  <div class="row">
+    <div class="small-12 large-3 columns"><%= f.label :name %></div>
+    <div class="small-12 large-9 columns"><%= f.text_field :name %></div>
   </div>
-  <div class="field">
-    <div class="span3"><%= f.label :family_name %></div>
-    <div class="span9"><%= f.text_field :family_name %></div>
+  <div class="row">
+    <div class="small-12 large-3 columns"><%= f.label :family_name %></div>
+    <div class="small-12 large-9 columns"><%= f.text_field :family_name %></div>
   </div>
-  <div class="field">
-    <div class="span3"><%= f.label :date_of_birth %></div>
-    <div class="span9"><%= f.date_select :date_of_birth %></div>
+  <div class="row">
+    <div class="small-12 large-3 columns"><%= f.label :date_of_birth %></div>
+    <div class="small-12 large-9 columns"><%= f.date_select  :date_of_birth, {:order => [:day, :month, :year], :start_year => 1910}, :class => "small-4 column" %></div>
   </div>
-  <div class="field">
-    <div class="span3"><%= f.label :country %></div>
-    <div class="span9"><%= f.text_field :country %></div>
+  <div class="row">
+    <div class="small-12 large-3 columns"><%= f.label :country %></div>
+    <div class="small-12 large-9 columns"><%= f.text_field :country %></div>
   </div>
-    <div class="field">
-    <div class="span3"><%= f.label :city %></div>
-    <div class="span9"><%= f.text_field :city %></div>
+    <div class="row">
+    <div class="spsmall-12 large-3 columns"><%= f.label :city %></div>
+    <div class="small-12 large-9 columns"><%= f.text_field :city %></div>
   </div>
-  <div class="field">
-    <div class="span3"><%= f.label :street %></div>
-    <div class="span9"><%= f.text_field :street %></div>
+  <div class="row">
+    <div class="small-12 large-3 columns"><%= f.label :street %></div>
+    <div class="small-12 large-9 columns"><%= f.text_field :street %></div>
   </div>
-  <div class="field">
-    <div class="span3"><%= f.label :zipcode %></div>
-    <div class="span9"><%= f.number_field :zipcode %></div>
+  <div class="row">
+    <div class="small-12 large-3 columns"><%= f.label :zipcode %></div>
+    <div class="small-12 large-9 columns"><%= f.number_field :zipcode %></div>
   </div>
-  <div class="field">
-    <div class="span3"><%= f.label :email %></div>
-    <div class="span9"><%= f.text_field :email %></div>
+  <div class="row">
+    <div class="small-12 large-3 columns"><%= f.label :email %></div>
+    <div class="small-12 large-9 columns"><%= f.text_field :email %></div>
   </div>
-  <div class="field">
-    <div class="span3"><%= f.label :website %></div>
-    <div class="span9"><%= f.text_field :website %></div>
+  <div class="row">
+    <div class="small-12 large-3 columns"><%= f.label :website %></div>
+    <div class="small-12 large-9 columns"><%= f.text_field :website %></div>
   </div>
-  <div class="field">
-    <div class="span3"><%= f.label :telephone_number %></div>
-    <div class="span9"><%= f.number_field :telephone_number %></div>
+  <div class="row">
+    <div class="small-12 large-3 columns"><%= f.label :telephone_number %></div>
+    <div class="small-12 large-9 columns"><%= f.number_field :telephone_number %></div>
   </div>
-  <div class="field">
-    <div class="span3"><%= f.label :godfather %></div>
-    <div class="span9"><%= f.check_box :godfather %></div>
+  <div class="row">
+    <div class="small-12 large-3 columns"><%= f.label :godfather %></div>
+    <div class="small-12 large-9 columns"><%= f.check_box :godfather %></div>
   </div>
-    <div class="field">
-    <div class="span3"><%= f.label :is_volunteer %></div>
-    <div class="span9"><%= f.check_box :is_volunteer %></div>
+    <div class="row">
+    <div class="spsmall-12 large-3 columns"><%= f.label :is_volunteer %></div>
+    <div class="small-12 large-9 columns"><%= f.check_box :is_volunteer %></div>
   </div>
-  <div class="field">
-    <div class="span3"><%= f.label :begin_of_work %></div>
-    <div class="span9"><%= f.date_select :begin_of_work %></div>
+  <div class="row">
+    <div class="small-12 large-3 columns"><%= f.label :begin_of_work %></div>
+    <div class="small-12 large-9 columns"><%= f.date_select :begin_of_work, {:order => [:day, :month, :year], :start_year => 1910}, :class => "small-4 column" %></div>
   </div>
-    <div class="field">
-    <div class="span3"><%= f.label :end_of_work %></div>
-    <div class="span9"><%= f.date_select :end_of_work %></div>
+    <div class="row">
+    <div class="spsmall-12 large-3 columns"><%= f.label :end_of_work %></div>
+    <div class="small-12 large-9 columns"><%= f.date_select :end_of_work, {:order => [:day, :month, :year], :start_year => 1910}, :class => "small-4 column" %></div>
   </div>
-  <div class="field">
-    <div class="span3"><%= f.label :type_of_work %></div>
-    <div class="span9"><%= f.text_field :type_of_work %></div>
+  <div class="row">
+    <div class="small-12 large-3 columns"><%= f.label :type_of_work %></div>
+    <div class="small-12 large-9 columns"><%= f.text_field :type_of_work %></div>
   </div>
-  <div class="actions">
-    <%= f.submit :class => 'btn btn-primary' %>
+  <div class="button-center">
+    <%= f.submit :class => 'button' %>
   </div>
 <% end %>

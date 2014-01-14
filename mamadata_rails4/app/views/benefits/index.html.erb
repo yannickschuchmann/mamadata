@@ -11,20 +11,18 @@
 
   <tbody>
     <% @benefits.each do |benefit| %>
-      <tr>
-        <td><%= benefit.name %></td>
-        <td><%= benefit.description %></td>
-        <td><%= link_to (content_tag(:i, "", :class => "icon-file")), benefit %>
+    <tr>
+      <td><%= benefit.name %></td>
+      <td><%= benefit.description %></td>
+      <td><%= link_to (content_tag(:i, "", :class => "icon-file")), benefit %>
         <%= link_to (content_tag(:i, "", :class => "icon-edit")), edit_benefit_path(benefit) %>
-        <%= link_to (content_tag(:i, "", :class => "icon-trash")), benefit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <%= link_to (content_tag(:i, "", :class => "icon-trash")), benefit, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-<div class="row">
-  <div class="small-12 column">
-   <%= link_to "New Benefit", new_benefit_path, :class => 'button'%>
-  </div>
+<div class="button-center">
+  <%= link_to "New Benefit", new_benefit_path, :class => 'button'%>
 </div>

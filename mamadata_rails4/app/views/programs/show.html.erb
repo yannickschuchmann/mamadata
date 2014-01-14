@@ -1,20 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @program.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @program.description %>
-</p>
-<p>
-<strong>Has Following Benefits</strong>
-<% @program.benefits.each do |benefit| %>
-<li><%=	benefit.name %></li>
-	<% end %>
-</p>
-
-<%= link_to 'Edit', edit_program_path(@program) %> |
-<%= link_to 'Back', programs_path %>
+<table class="table">
+	<tr>
+		<td>Name:</td>
+		<td><%= @program.name %></td>
+	</tr>
+	<tr>
+		<td>Description:</td>
+		<td><%= @program.description %></td>
+	</tr>
+	<tr>
+		<td>Has Following Benefits</td>
+		<td>
+			<ul class="no-bullet">
+				<% @program.benefits.each do |benefit| %>
+				<li><%=	benefit.name %></li>
+				<% end %>
+			</ul>
+		</td>
+	</tr>
+</table>
+<div class="button-center">
+	<%= link_to 'Edit', edit_program_path(@program), :class => "button tiny" %>
+	<%= link_to 'Back', programs_path, :class => "button tiny" %>
+</div>

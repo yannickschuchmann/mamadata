@@ -6,18 +6,12 @@
       <th>Organisation</th>
       <th>Name</th>
       <th>Family name</th>
-      <th>Date of birth</th>
       <th>Country</th>
       <th>City</th>
-      <th>Street</th>
-      <th>Zipcode</th>
       <th>E-Mail</th>
-      <th>Website</th>
       <th>Telephone Number</th>
       <th>Godfather</th>
       <th>Is Volunteer?</th>
-      <th>Begin of Work</th>
-      <th>End of Work</th>
       <th>Type of Work</th>
       <th></th>
     </tr>
@@ -25,34 +19,29 @@
 
   <tbody>
     <% @supporters.each do |supporter| %>
-      <tr>
-        <td><%= supporter.organisation %></td>
-        <td><%= supporter.name %></td>
-        <td><%= supporter.family_name %></td>
-        <td><%= supporter.date_of_birth %></td>
-        <td><%= supporter.country %></td>
-        <td><%= supporter.city %></td>
-        <td><%= supporter.street %></td>
-        <td><%= supporter.zipcode %></td>
-        <td><%= supporter.email %></td>
-        <td><%= supporter.website %></td>
-        <td><%= supporter.telephone_number %></td>
-        <td><%= supporter.godfather %></td>
-        <td><%= supporter.is_volunteer %></td>
-        <td><%= supporter.begin_of_work %></td>
-        <td><%= supporter.end_of_work %></td>
-        <td><%= supporter.type_of_work %></td>
-        <td><%= link_to (content_tag(:i, '', :class => 'icon-file')), supporter %>
+    <tr>
+      <td><%= supporter.organisation %></td>
+      <td><%= supporter.name %></td>
+      <td><%= supporter.family_name %></td>
+      <td><%= supporter.country %></td>
+      <td><%= supporter.city %></td>
+      <td><%= supporter.email %></td>
+      <td><%= supporter.telephone_number %></td>
+      <td><%= supporter.godfather %></td>
+      <td><%= supporter.is_volunteer %></td>
+      <td><%= supporter.type_of_work %></td>
+      <td><%= link_to (content_tag(:i, '', :class => 'icon-file')), supporter %>
         <%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_supporter_path(supporter) %>
         <%= link_to (content_tag(:i, '', :class => 'icon-trash')), supporter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+  <div class="button-center">
+    <%= link_to new_supporter_path, :class => 'button' do %>
+    <%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+    New Supporter
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to new_supporter_path, :class => 'btn btn-primary' do %>
-  <%= (content_tag(:i, '', :class => 'icon-pencil')) %>
-  New Supporter
-<% end %>
+  </div>

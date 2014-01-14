@@ -2,5 +2,7 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @role %> |
-<%= link_to 'Back', roles_path %>
+<div class="button-center">
+	<%= link_to 'Show', @role, :class => "button tiny" %>
+	<%= link_to 'Back', roles_path, :class => "button tiny" %>
+</div>

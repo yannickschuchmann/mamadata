@@ -1,15 +1,21 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @role.name %>
-</p>
-<p>
-<strong>Has Following Persons</strong>
-<% @role.people.each do |benefit| %>
-<li><%=	benefit.name %></li>
-	<% end %>
-</p>
-
-<%= link_to 'Edit', edit_role_path(@role) %> |
-<%= link_to 'Back', roles_path %>
+<table class="table">
+	<tr>
+		<td>Role: </td>
+		<td><%= @role.name %></td>
+	</tr>
+	<tr>
+		<td>Has Following Persons</td>
+		<td>
+			<ul class="no-bullet">
+				<% @role.people.each do |benefit| %>
+				<li><%=	benefit.name %></li>
+				<% end %>
+			</ul>
+		</td>
+	</tr>
+</table>
+<div class="button-center">
+<%= link_to 'Edit', edit_role_path(@role), :class => "button tiny" %>
+<%= link_to 'Back', roles_path, :class => "button tiny" %>
+</div>
