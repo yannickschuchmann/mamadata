@@ -85,12 +85,17 @@ PossibleChoices.create(property: "occupation", value: "industrial worker")
 PossibleChoices.create(property: "occupation", value: "government employee")
 
 
-staff1 = User.create(email: "admin@sharana.com", 		password: "admin", 		password_confirmation: "admin", 	role: "admin").save!(:validate => false)
-staff2 = User.create(email: "supporter@sharana.com", 	password: "supporter", 	password_confirmation: "supporter", role: "supporter").save!(:validate => false)
-staff3 = User.create(email: "editor@sharana.com", 		password: "editor", 	password_confirmation: "editor", 	role: "editor").save!(:validate => false)
+#staff1 = User.create(email: "admin@sharana.com", 		password: "admin", 		password_confirmation: "admin", 	role: "admin").save!(:validate => false)
+#staff2 = User.create(email: "supporter@sharana.com", 	password: "supporter", 	password_confirmation: "supporter", role: "supporter").save!(:validate => false)
+#staff3 = User.create(email: "editor@sharana.com", 		password: "editor", 	password_confirmation: "editor", 	role: "editor").save!(:validate => false)
 
-u1 = User.create(email: "dariusch@freenet.de", password: "test", password_confirmation: "test", role: "supporter").save!(:validate => false)
-u2 = User.create(email: "test@test.de", password: "test", password_confirmation: "test").save!(:validate => false)
+#u1 = User.create(email: "dariusch@freenet.de", password: "test", password_confirmation: "test", role: "supporter").save!(:validate => false)
+#u2 = User.create(email: "test@test.de", password: "test", password_confirmation: "test").save!(:validate => false)
+
+Supporter.create(organisation: "none", name: "Thomas", family_name: "Gottschalk",email: "thomas@gottschalk.de", godfather: true, is_volunteer: false, type_of_work: "marketing").save!(:validate => false)
+Supporter.create(organisation: "none", name: "Guenther", family_name: "Jauch",email: "guenther@jauch.de", godfather: true, is_volunteer: false, type_of_work: "marketing").save!(:validate => false)
+Supporter.create(organisation: "none", name: "Oliver", family_name: "Geissen",email: "oliver@geissen.de", godfather: false, is_volunteer: true, type_of_work: "volunteering").save!(:validate => false)
+
 
 simpsons = Family.create(name:"Simpsons")
 simpsons.people.create(name: "Homer", gender: "male", role: head)

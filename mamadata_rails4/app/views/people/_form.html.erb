@@ -177,7 +177,7 @@
 			<%= f.label "Godfather", :class => "inline"%>
 		</div>
 		<div class="small-12 large-10 column">
-			<%= f.select :godfather_id, Supporter.where(:godfather => 1).map{|role| [role.name, role.id]} %>
+			<%= f.select :godfather_id, Supporter.where(:godfather => true).map{|role| [role.name.to_s + " " + role.family_name.to_s, role.id]} %>
 		</div>
 	</div>
 	<h2 class="text-center">Programs</h2>
