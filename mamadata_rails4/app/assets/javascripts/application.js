@@ -18,6 +18,7 @@
 //= require jquery.ui.all
 //= require jquery.turbolinks
 //= require turbolinks
+//= require jquery.tablesorter.min
 $(function(){
 	$(document).foundation();
 });

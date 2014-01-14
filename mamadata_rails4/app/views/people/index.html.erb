@@ -1,44 +1,52 @@
 <p id="notice"><%= notice %></p>
-<div id="peopleIndex">
-	<h1 class="text-center">People</h1>
-	<table id="peopleTable" class="responsive">
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Fathers name</th>
-				<th>Gender</th>
-				<th>Date of birth</th>
-				<th>Place of birth</th>
-				<th>City</th>
-				<th>PIN code</th>
-				<th>Role</th>
-				<th></th>
-			</tr>
-		</thead>
+<div class="row">
+	<div id="peopleIndex">
+		<h1 class="text-center">People</h1>
+		<table id="peopleTable" class="responsive tablesorter">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Fathers name</th>
+					<th>Gender</th>
+					<th>Date of birth</th>
+					<th>Place of birth</th>
+					<th>City</th>
+					<th>PIN code</th>
+					<th>Role</th>
+					<th></th>
+				</tr>
+			</thead>
 
-		<tbody>
-			<% @people.each do |person| %>
-			<tr>
-				<td><a href="/people/<%= person.id %>"><%= person.name %></a></td>
-				<td><%= person.fathers_name %></td>
-				<td><%= person.gender %></td>
-				<td><%= person.date_of_birth %></td>
-				<td><%= person.place_of_birth %></td>
-				<td><%= person.city %></td>
-				<td><%= person.pin_code %></td>
-				<td>
-					<% if !person.role_id.nil? %>
-					<%  b = Role.find (person.role_id) %>
-					<%= b.name %>
-					<% end %>
-				</td>
-				<td> <a class="button [tiny small large] button-edit" href="/people/<%= person.id %>/edit"> Edit </a></td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
-	<br>
-	<div class="button-center">
-		<%= link_to "New Person", new_person_path, :class => 'button' %>
+			<tbody>
+				<% @people.each do |person| %>
+				<tr>
+					<td><a href="/people/<%= person.id %>"><%= person.name %></a></td>
+					<td><%= person.fathers_name %></td>
+					<td><%= person.gender %></td>
+					<td><%= person.date_of_birth %></td>
+					<td><%= person.place_of_birth %></td>
+					<td><%= person.city %></td>
+					<td><%= person.pin_code %></td>
+					<td>
+						<% if !person.role_id.nil? %>
+						<%  b = Role.find (person.role_id) %>
+						<%= b.name %>
+						<% end %>
+					</td>
+					<td> <a class="button [tiny small large] button-edit" href="/people/<%= person.id %>/edit"> Edit </a></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<br>
+		<div class="button-center">
+			<%= link_to "New Person", new_person_path, :class => 'button' %>
+		</div>
 	</div>
+	<script type="text/javascript">
+
+	$(document).ready(function(){ 
+		$("#peopleTable").tablesorter(); 
+	});
+	</script>
 </div>
