@@ -92,3 +92,17 @@ spirulina.benefits << [b4,b7,b9,b11,b28,b35]
 vtc.benefits << [b2,b4,b7,b9,b10,b11,b22,b24,b25,b27,b32,b33,b35,b36,b38]
 community.benefits << [b1,b2,b4,b5,b6,b7,b8,b9,b11,b13,b17,b21,b23,b24,b25,b26,b27,b28,b30,b31,b32,b35,b36]
 creches.benefits << [b4,b6,b8,b9,b11,b24,b26,b35,b37,b38]
+
+# Possible choices for other fields
+PossibleChoices.create(property: "religion", value: "Hindi")
+PossibleChoices.create(property: "religion", value: "Christian")
+PossibleChoices.create(property: "religion", value: "Muslim")
+PossibleChoices.create(property: "caste", value: "Scheduled Caste")
+PossibleChoices.create(property: "caste", value: "Most Backward Class")
+PossibleChoices.create(property: "caste", value: "Backward Class")
+PossibleChoices.create(property: "occupation", value: "none")
+PossibleChoices.create(property: "occupation", value: "student")
+PossibleChoices.create(property: "occupation", value: "agricultural coolie")
+PossibleChoices.create(property: "occupation", value: "small farmer")
+PossibleChoices.create(property: "occupation", value: "industrial worker")
+PossibleChoices.create(property: "occupation", value: "government employee")
