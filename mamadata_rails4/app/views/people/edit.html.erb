@@ -1,6 +1,7 @@
 <h1 class="text-center">Editing person</h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @person %> |
-<%= link_to 'Back', people_path %>
+<div class="button-center">
+	<%= link_to 'Show', @person, :class => "button tiny" %>
+	<%= link_to 'Back', people_path, :class => "button tiny" %>
+</div>
