@@ -1,7 +1,3 @@
-#encoding: utf-8 
-
-load(Rails.root.join( 'db', 'seeds', "#{Rails.env.downcase}.rb"))
-
 head = Role.create(name: "Head of the Household")
 wife = Role.create(name: "Wife")
 child = Role.create(name: "Child")
