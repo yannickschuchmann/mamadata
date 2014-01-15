@@ -19,7 +19,7 @@
 
 			<tbody>
 				<% @people.each do |person| %>
-				<tr>
+				<tr data-link="<%= person_path(person) %>">
 					<td><a href="/people/<%= person.id %>"><%= person.name %></a></td>
 					<td><%= person.fathers_name %></td>
 					<td><%= person.gender %></td>

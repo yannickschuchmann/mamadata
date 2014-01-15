@@ -26,3 +26,6 @@ table {
 #notice {
 	text-align: center !important;	
 }
+tr[data-link] {
+    cursor: pointer;
+}

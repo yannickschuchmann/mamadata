@@ -17,8 +17,14 @@
 //= require foundation
 //= require jquery.ui.all
 //= require jquery.turbolinks
+$(function(){
+	$("tr[data-link]").click(function() {
+		window.location = $(this).data("link")
+	})
+});
 //= require turbolinks
 //= require jquery.tablesorter.min
 $(function(){
+
 	$(document).foundation();
 });
