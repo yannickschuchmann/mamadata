@@ -1,28 +1,34 @@
 <p id="notice"><%= notice %></p>
+<table class="table">
+  <tr>
+    <td><b>User:</b></td>
+    <td><%= @benefit_incident.person.name %></td>
+  </tr>
+  <tr>
+    <td><b>Amount:</b></td>
+    <td><%= @benefit_incident.amount %></td>
+  </tr>
+  <tr>
+    <td><b>Program:</b></td>
+    <td><%= @benefit_incident.program.name %></td>
+  </tr>
+  <tr>
+    <td><b>Benefit:</b></td>
+    <td><%= @benefit_incident.benefit.name %></td>
+  </tr>
 
-<p>
-  <strong>User:</strong>
-  <%= @benefit_incident.person.name %>
-</p>
-<p>
-  <strong>Amount:</strong>
-  <%= @benefit_incident.amount %>
-</p>
-  <strong>Program:</strong>
-  <%= @benefit_incident.program.name %>
-</p>
-  <strong>Benefit:</strong>
-  <%= @benefit_incident.benefit.name %>
-</p>
+  <tr>
+    <td><b>Remark:</b></td>
+    <td><%= @benefit_incident.remark %></td>
+  </tr>
+  <tr>
+    <td><b>Status:</b></td>
+    <td><%= @benefit_incident.status == true ? 'Granted' : 'Pending' %></td>
+  </tr>
+</table>
 
-<p>
-  <strong>Remark:</strong>
-  <%= @benefit_incident.remark %>
-</p>
-<p>
-  <strong>Status:</strong>
-  <%= @benefit_incident.status == true ? 'Granted' : 'Pending' %>
-</p>
-
-<%= link_to 'Edit', edit_benefit_incident_path(@benefit_incident) %> |
-<%= link_to 'List All Incidents', benefit_incidents_list_path(person_id: @benefit_incident.person_id) %>
+<div class="button-center">
+  <%= link_to 'Edit', edit_benefit_incident_path(@benefit_incident), :class => "button tiny" %>
+  <br />
+  <%= link_to 'List All Incidents', benefit_incidents_list_path(person_id: @benefit_incident.person_id), :class => "button" %>
+</div>
