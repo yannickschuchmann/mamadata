@@ -1,6 +1,6 @@
 <h1 class="text-center">Users</h1>
 <div class="row">
-  <table class="table">
+  <table id="usersIndexTable" class="table tablesorter">
     <thead>
       <tr>
         <th>Email</th>
@@ -26,4 +26,9 @@
   <div class="button-center">
     <%= link_to "New User", new_user_path, :class => "button" %>
   </div>
+  <script type="text/javascript">
+  $(document).ready(function(){ 
+    $("#usersIndexTable").tablesorter(); 
+  });
+  </script>
 </div>

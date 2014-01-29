@@ -1,48 +1,55 @@
 <h1 class="text-center">Listing Incidents</h1>
-<% if is_admin? %>
-<div class="button-center">
-	<%= link_to benefits_person_pending_path(params[:person_id]), :class => 'button [tiny small large]' do %>
-	Show Pending Incidents for Person
-	<% end %>
-</div>
-<div class="button-center">
-	<%= link_to benefits_person_granted_path(params[:person_id]), :class => 'button [tiny small large]' do %>
-	Show Granted Incidents for Person
-	<% end %>
-</div>
-<% end %>
-<table class="table">
-	<thead>
-		<tr>
-			<th>User</th>
-			<th>Program</th>
-			<th>Benefit</th>
-			<th>Amount</th>
-			<th>Remark</th>
-			<th>Status</th>
-			<th>Date Granted</th>
-			<th></th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<% @benefit_incidents.each do |benefit_incident| %>
-		<tr>
-			<td><%= benefit_incident.person.name %></td>
-			<td><%= benefit_incident.program.name %></td>
-			<td><%= benefit_incident.benefit.name %></td>
-			<td><%= benefit_incident.amount %></td>
-			<td><%= benefit_incident.remark %></td>
-			<td><%= benefit_incident.status == true ? 'Granted' : 'Pending' %></td>
-			<td><%= benefit_incident.date_granted %></td>
-			<td>
-				<%= link_to (content_tag(:i, '', :class => 'icon-file')), benefit_incident %>
-				<%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_benefit_incident_path(benefit_incident) %>
-				<%= link_to (content_tag(:i, '', :class => 'icon-trash')), benefit_incident, method: :delete, data: { confirm: 'Are you sure?' } %>
-			</td>
-		</tr>
+<div class="row">
+	<% if is_admin? %>
+	<div class="button-center">
+		<%= link_to benefits_person_pending_path(params[:person_id]), :class => 'button [tiny small large]' do %>
+		Show Pending Incidents for Person
 		<% end %>
-	</tbody>
-</table>
+	</div>
+	<div class="button-center">
+		<%= link_to benefits_person_granted_path(params[:person_id]), :class => 'button [tiny small large]' do %>
+		Show Granted Incidents for Person
+		<% end %>
+	</div>
+	<% end %>
+	<table id="benefitTable" class="table tabesorter">
+		<thead>
+			<tr>
+				<th>User</th>
+				<th>Program</th>
+				<th>Benefit</th>
+				<th>Amount</th>
+				<th>Remark</th>
+				<th>Status</th>
+				<th>Date Granted</th>
+				<th></th>
+			</tr>
+		</thead>
 
+		<tbody>
+			<% @benefit_incidents.each do |benefit_incident| %>
+			<tr>
+				<td><%= benefit_incident.person.name %></td>
+				<td><%= benefit_incident.program.name %></td>
+				<td><%= benefit_incident.benefit.name %></td>
+				<td><%= benefit_incident.amount %></td>
+				<td><%= benefit_incident.remark %></td>
+				<td><%= benefit_incident.status == true ? 'Granted' : 'Pending' %></td>
+				<td><%= benefit_incident.date_granted %></td>
+				<td>
+					<%= link_to (content_tag(:i, '', :class => 'icon-file')), benefit_incident %>
+					<%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_benefit_incident_path(benefit_incident) %>
+					<%= link_to (content_tag(:i, '', :class => 'icon-trash')), benefit_incident, method: :delete, data: { confirm: 'Are you sure?' } %>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
 
+	<script type="text/javascript">
+
+	$(document).ready(function(){ 
+		$("#benefitTable").tablesorter(); 
+	});
+	</script>
+</div>

@@ -1,20 +1,22 @@
 <h1 class="text-center">Roles</h1>
+<div class="row">
+  <table id="rolesIndexTable" class="table tablesorter">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th></th>
+      </tr>
+    </thead>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @roles.each do |role| %>
-    <tr>
-      <td><%= role.name %></td>
-      <td><%= link_to (content_tag(:i, '', :class => 'icon-file')), role %>
-        <%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_role_path(role) %>
-        <%= link_to (content_tag(:i, '', :class => 'icon-trash')), role, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <tbody>
+      <% @roles.each do |role| %>
+      <tr>
+        <td><%= role.name %></td>
+        <td>
+          <%= link_to (content_tag(:i, '', :class => 'icon-file')), role %>
+          <%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_role_path(role) %>
+          <%= link_to (content_tag(:i, '', :class => 'icon-trash')), role, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
       <% end %>
     </tbody>
@@ -27,3 +29,10 @@
     New Role
     <% end %>
   </div>
+
+  <script type="text/javascript">
+  $(document).ready(function(){ 
+   $("#rolesIndexTable").tablesorter(); 
+ });
+  </script>
+</div>

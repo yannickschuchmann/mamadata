@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 <div class="row">
 	<div id="peopleIndex">
-		<h1 class="text-center">People</h1>
-		<table id="peopleTable" class="responsive tablesorter">
+		<h1 class="text-center">Beneficiaries</h1>
+		<table id="peopleIndexTable" class="responsive tablesorter">
 			<thead>
 				<tr>
 					<th>Name</th>
@@ -13,6 +13,7 @@
 					<th>City</th>
 					<th>PIN code</th>
 					<th>Role</th>
+					<th>Total Expense</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -29,9 +30,18 @@
 					<td><%= person.pin_code %></td>
 					<td>
 						<% if !person.role_id.nil? %>
-						<%  b = Role.find (person.role_id) %>
+						<% b = Role.find (person.role_id) %>
 						<%= b.name %>
 						<% end %>
+					</td>
+					<td>
+						<% total = 0 %>
+						<% person.benefit_incidents.each do |incident| %>
+							<% if incident.status != false %>
+								<% total = total + incident.amount %>
+							<% end %>
+						<% end %>
+						<%= total %>
 					</td>
 					<td> <a class="button [tiny small large] button-edit" href="/people/<%= person.id %>/edit"> Edit </a></td>
 				</tr>
@@ -44,9 +54,8 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-
 	$(document).ready(function(){ 
-		$("#peopleTable").tablesorter(); 
+		$("#peopleIndexTable").tablesorter(); 
 	});
 	</script>
 </div>

@@ -1,6 +1,6 @@
 <h1 class="text-center">Benefits</h1>
-
-<table class="table">
+<div class="row">
+<table id="benefitsIndexTable" class="table tablesorter">
   <thead>
     <tr>
       <th>Name</th>
@@ -25,4 +25,11 @@
 
 <div class="button-center">
   <%= link_to "New Benefit", new_benefit_path, :class => 'button'%>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){ 
+    $("#benefitsIndexTable").tablesorter(); 
+  });
+</script>
 </div>

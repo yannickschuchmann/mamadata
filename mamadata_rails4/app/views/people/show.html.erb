@@ -35,7 +35,7 @@
 							<td class="medium-6"><b>Name of the house:</b> <br /> <%= @person.name_of_the_house %></td>
 						</tr>
 						<tr>
-							<td><b>Head of Household:</b><br />???????????</td>
+							<td><b>Relation to Head of Household:</b><br />???????????</td>
 							<td><b>Number of the house:</b><br /><%= @person.number_of_the_house %></td>
 						</tr>
 						<tr>
@@ -106,7 +106,7 @@
 								<td class="medium-10"><%= @person.school_language %></td>
 							</tr>
 							<tr>
-								<td><b>Type:</b></td>
+								<td><b>Remark:</b></td>
 								<td><%= @person.school_type %></td>
 							</tr>
 							<tr>
@@ -124,7 +124,7 @@
 							<td>Benefit</td>
 							<td>Date granted</td>
 							<td>Amount</td>
-							<td>Type</td>
+							<td>Remark</td>
 						</thead>
 						<tbody>
 							<% @person.benefit_incidents.each do |incident| %>
@@ -136,7 +136,7 @@
 									<%= b.name %>
 								</td>
 								<td>
-									<% if incident.status === false %>
+									<% if incident.status == false %>
 									<%= "pending" %>
 									<% else %>
 									<%= incident.date_granted %>

@@ -1,29 +1,33 @@
 <h1 class="text-center">Family</h1>
-<table class="table">
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Head of the Household</th>
-			<th>Family Member</th>
-		</tr>
-	</thead>
+<div class="row">
+	<table id="familiesIndexTable" class="table tablesorter">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Head of the Household</th>
+				<th>Family Member</th>
+			</tr>
+		</thead>
 
-	<tbody>
-		<% @families.each_with_index do |family,key| %>
+		<tbody>
+			<% @families.each_with_index do |family,key| %>
 			<tr>
 				<td><%= family.name %></td>
 				<td><%= @heads[key].name %></td>
 				<td><% family.people.each do |people| %>
 					<%= people.name %> <br>
-				<% end %>
+					<% end %>
 				</td>
 			</tr>
-		<% end %>
-	</tbody>
-</table>
-<div class="button-center">
-	<%= link_to "New Family", new_family_path, :class => 'button' %>
+			<% end %>
+		</tbody>
+	</table>
+	<div class="button-center">
+		<%= link_to "New Family", new_family_path, :class => 'button' %>
+	</div>
+	<script type="text/javascript">
+	$(document).ready(function(){ 
+		$("#familiesIndexTable").tablesorter(); 
+	});
+	</script>
 </div>
-<script type="text/javascript">
-
-</script>
