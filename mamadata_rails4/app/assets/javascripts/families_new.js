@@ -45,6 +45,12 @@ $("#search").click(function(event){
 		data: dataToSend,
 		success: function(returned_value){
 			console.log(returned_value);
+			str = "<ul>"
+			for (var i = returned_value.length - 1; i >= 0; i--) {
+				str += "<li>Name:" + returned_value[i].name +"</li>";
+			};
+			str += '</ul>'
+			$("#searchResult").html(str);
 		},
 		error: function(returned_value){
 			alert("Something went Wrong during the sending of the data please retry later");
