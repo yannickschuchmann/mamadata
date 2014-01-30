@@ -14,6 +14,7 @@ class BenefitIncident < ActiveRecord::Base
 
 
 
+
 	protected
 		
 		def set_default_status
@@ -24,4 +25,6 @@ class BenefitIncident < ActiveRecord::Base
 		def set_date_granted
 			self.date_granted = DateTime.now.to_s(:long) if self.status == true
 		end
+
+
 end

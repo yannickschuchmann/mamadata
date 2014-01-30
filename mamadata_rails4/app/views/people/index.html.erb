@@ -37,8 +37,8 @@
 					<td>
 						<% total = 0 %>
 						<% person.benefit_incidents.each do |incident| %>
-							<% if incident.status != false %>
-								<% total = total + incident.amount %>
+							<% if incident.status %>
+								<% incident.amount ? total += incident.amount : total += 0%>
 							<% end %>
 						<% end %>
 						<%= total %>
