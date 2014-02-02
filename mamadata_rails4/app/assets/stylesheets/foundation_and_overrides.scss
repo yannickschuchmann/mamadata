@@ -495,8 +495,8 @@
 // $tabbar-header-margin: 0;
 
 // Off Canvas Menu Variables
-// $off-canvas-width: 250px;
-// $off-canvas-bg: #333;
+$off-canvas-width: 150px;
+$off-canvas-bg: #494949;
 
 // Off Canvas Menu List Variables
 // $off-canvas-label-padding: 0.3rem rem-calc(15);
@@ -835,11 +835,11 @@
 
 // These control the background color for the table and even rows
 // $table-bg: #fff;
-// $table-even-row-bg: #f9f9f9  ;
+ $table-even-row-bg: #f5f5f5  ;
 
 // These control the table cell border style
 // $table-border-style: solid;
-// $table-border-size: 1px;
+$table-border-size: 0;
 // $table-border-color: #ddd;
 
 // These control the table head styles

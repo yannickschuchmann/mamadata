@@ -12,10 +12,8 @@
 //
 //= require jquery
 //= require modules/selectWithOtherField
-//= require jquery_ujs
 //= require responsive-tables
 //= require foundation
-//= require jquery.ui.all
 //= require jquery.turbolinks
 //= require turbolinks
 //= require jquery.tablesorter.min

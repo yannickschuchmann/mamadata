@@ -1,57 +1,56 @@
-<p id="notice"><%= notice %></p>
-<div class="row">
-	<div id="peopleIndex">
-		<h1 class="text-center">Beneficiaries</h1>
-		<table id="peopleIndexTable" class="responsive tablesorter">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Fathers name</th>
-					<th>Gender</th>
-					<th>Date of birth</th>
-					<th>Place of birth</th>
-					<th>City</th>
-					<th>PIN code</th>
-					<th>Role</th>
-					<th>Total Expense</th>
-					<th></th>
-				</tr>
-			</thead>
+<%= render '/shared/bsu_sidebar' %>
+<div id="contenter">
+	<p id="notice"><%= notice %></p>
+	<h1 class="text-center">Beneficiaries</h1>
+	<table id="peopleIndexTable" class="responsive tablesorter">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Fathers name</th>
+				<th>Gender</th>
+				<th>Date of birth</th>
+				<th>Place of birth</th>
+				<th>City</th>
+				<th>PIN code</th>
+				<th>Role</th>
+				<th>Total Expense</th>
+				<th></th>
+			</tr>
+		</thead>
 
-			<tbody>
-				<% @people.each do |person| %>
-				<tr>
-					<td><a href="/people/<%= person.id %>"><%= person.name %></a></td>
-					<td><%= person.fathers_name %></td>
-					<td><%= person.gender %></td>
-					<td><%= person.date_of_birth %></td>
-					<td><%= person.place_of_birth %></td>
-					<td><%= person.city %></td>
-					<td><%= person.pin_code %></td>
-					<td>
-						<% if !person.role_id.nil? %>
-						<% b = Role.find (person.role_id) %>
-						<%= b.name %>
-						<% end %>
-					</td>
-					<td>
-						<% total = 0 %>
-						<% person.benefit_incidents.each do |incident| %>
-							<% if incident.status != false %>
-								<% total = total + incident.amount %>
-							<% end %>
-						<% end %>
-						<%= total %>
-					</td>
-					<td> <a class="button [tiny small large] button-edit" href="/people/<%= person.id %>/edit"> Edit </a></td>
-				</tr>
-				<% end %>
-			</tbody>
-		</table>
-		<br>
-		<div class="button-center">
-			<%= link_to "New Person", new_person_path, :class => 'button' %>
-		</div>
+		<tbody>
+			<% @people.each do |person| %>
+			<tr>
+				<td><a href="/people/<%= person.id %>"><%= person.name %></a></td>
+				<td><%= person.fathers_name %></td>
+				<td><%= person.gender %></td>
+				<td><%= person.date_of_birth %></td>
+				<td><%= person.place_of_birth %></td>
+				<td><%= person.city %></td>
+				<td><%= person.pin_code %></td>
+				<td>
+					<% if !person.role_id.nil? %>
+					<% b = Role.find (person.role_id) %>
+					<%= b.name %>
+					<% end %>
+				</td>
+				<td>
+					<% total = 0 %>
+					<% person.benefit_incidents.each do |incident| %>
+					<% if incident.status != false %>
+					<% total = total + incident.amount %>
+					<% end %>
+					<% end %>
+					<%= total %>
+				</td>
+				<td> <a class="button [tiny small large] button-edit" href="/people/<%= person.id %>/edit"> Edit </a></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<br>
+	<div class="button-center">
+		<%= link_to "New Person", new_person_path, :class => 'button' %>
 	</div>
 	<script type="text/javascript">
 	$(document).ready(function(){ 

@@ -1,34 +1,35 @@
-<h1 class="text-center">Users</h1>
-<div class="row">
-  <table id="usersIndexTable" class="table tablesorter">
-    <thead>
-      <tr>
-        <th>Email</th>
-        <th>Role</th>
-        <th></th>
-      </tr>
-    </thead>
+<%= render '/shared/bsu_sidebar' %>
+<div id="contenter">
+	<h1 class="text-center">Users</h1>
+	<table id="usersIndexTable" class="table tablesorter">
+		<thead>
+			<tr>
+				<th>Email</th>
+				<th>Role</th>
+				<th></th>
+			</tr>
+		</thead>
 
-    <tbody>
-      <% @users.each do |user| %>
-      <tr>
-        <td><%= user.email %></td>
-        <td><%= user.role %></td>
-        <td>
-          <%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_user_path(user) %>
-          <%= link_to (content_tag(:i, '', :class => 'icon-trash')), user, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+		<tbody>
+			<% @users.each do |user| %>
+			<tr>
+				<td><%= user.email %></td>
+				<td><%= user.role %></td>
+				<td>
+					<%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_user_path(user) %>
+					<%= link_to (content_tag(:i, '', :class => 'icon-trash')), user, method: :delete, data: { confirm: 'Are you sure?' } %>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
 
-  <div class="button-center">
-    <%= link_to "New User", new_user_path, :class => "button" %>
-  </div>
-  <script type="text/javascript">
-  $(document).ready(function(){ 
-    $("#usersIndexTable").tablesorter(); 
-  });
-  </script>
+	<div class="button-center">
+		<%= link_to "New User", new_user_path, :class => "button" %>
+	</div>
+	<script type="text/javascript">
+	$(document).ready(function(){ 
+		$("#usersIndexTable").tablesorter(); 
+	});
+	</script>
 </div>
