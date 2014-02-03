@@ -33,6 +33,15 @@
 					<%= b.name %>
 					<% end %>
 				</td>
+				<td>
+					<% total = 0 %>
+					<% person.benefit_incidents.each do |incident| %>
+					<% if incident.status != false %>
+					<% total = total + incident.amount %>
+					<% end %>
+					<% end %>
+					<%= total %>
+				</td>
 				<td> <a class="button [tiny small large] button-edit" href="/people/<%= person.id %>/edit"> Edit </a></td>
 			</tr>
 			<% end %>
@@ -43,8 +52,3 @@
 		<%= link_to "New Person", new_person_path, :class => 'button' %>
 	</div>
 </div>
-<script type="text/javascript">
-$(document).ready(function(){ 
-	$("#peopleIndexTable").tablesorter(); 
-});
-</script>

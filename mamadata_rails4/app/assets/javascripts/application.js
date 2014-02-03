@@ -13,6 +13,7 @@
 //= require jquery
 //= require modules/selectWithOtherField
 //= require responsive-tables
+//= require jquery.tablesorter.min
 //= require foundation
 //= require jquery.turbolinks
 $(function(){
