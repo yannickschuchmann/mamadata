@@ -26,3 +26,12 @@ table {
 #notice {
 	text-align: center !important;	
 }
+#off-side {
+	background-color: #333;
+	position: fixed;
+	width: 200px;
+	left: -200px;
+	top: 45px;
+	bottom: 0px;
+	height: 100%;
+}

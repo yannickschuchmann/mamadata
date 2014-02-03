@@ -35,23 +35,23 @@
 	<%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 </head>
 <body>
-	<div class="off-canvas-wrap">
-		<div class="inner-wrap">
-			<!-- Off Canvas Menu -->
-			<aside class="left-off-canvas-menu">
-				<ul class="off-canvas-list">
-					<li><%= link_to 'Overviews', people_path %></li>
-					<li><%= link_to 'Programs', programs_path %></li>
-					<li><%= link_to 'Benefits', benefits_path %></li>
-					<li><%= link_to "Edit Profile", edit_user_registration_path %></li>
-					<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %> </li>
-				</ul>
-			</aside>
-			<!-- Nav Title -->
+	
+	<div id="off-side">
+		<ul class="off-canvas-list">
+			<li><%= link_to 'Overviews', people_path %></li>
+			<li><%= link_to 'Programs', programs_path %></li>
+			<li><%= link_to 'Benefits', benefits_path %></li>
+			<li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+			<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %> </li>
+		</ul>
+	</div>
+	<div id="wrapper">
+		<!-- Nav Title -->
+		<div class="fixed">
 			<nav class="top-bar" data-topbar>
 				<ul class="title-area">
 					<li class="menu-icon">
-						<a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+						<a class="menu-icon" id="canvas-toggle"><span></span></a>
 					</li>
 				</ul>
 				<ul class="title-area">
@@ -67,13 +67,6 @@
 						<ul class="right">
 							<li><%= link_to 'New Report', people_path %></li>
 							<li><%= link_to 'New Beneficiary', people_path %></li>							
-							<!--<li class="has-dropdown">
-								<a href="#">Hello <%= current_user.email %></a>
-								<ul class="dropdown">
-									<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %> </li>
-									<li><%= link_to "Edit Profile", edit_user_registration_path %></li>
-								</ul>
-							</li> -->
 							<li class="has-form">
 								<div class="row collapse">
 									<div class="large-10 small-11 columns">
@@ -85,43 +78,49 @@
 								</div>
 							</li>
 						</ul>
-						<ul class="left">
-								<!-- <li><%= link_to 'Community Development', community_developments_path %></li> 
-								<li><%= link_to 'Families', families_path %></li>
-								<li><%= link_to 'Beneficiaries', people_path %></li>
-								<li><%= link_to 'Roles', roles_path %></li>
-								<li><%= link_to 'Supporters', supporters_path %></li>
-								<li><%= link_to 'Programs', programs_path %></li>
-								<li><%= link_to 'Benefits', benefits_path %></li>
-								<li><%= link_to 'Users/Staff', users_path %></li>
-								<% if is_admin? %>
-								<li><%= link_to 'List Incidents', benefit_incidents_path %></li>
-								<%end%>
-								<% else %>
-								<li><%= link_to 'Sign in', new_user_session_path %></li>
-								<% end %>-->
-							</ul>
-						</ul>
-					</section>
-				</nav>
-
-				<%= javascript_include_tag "application" %>
-				<section class="main-section">
-
-					<%= yield %>
-
-
-					<a class="exit-off-canvas"></a>
-					<%= yield :js %>
-					<script type="text/javascript">
-					$(function () {
-						$sideWidth = $('#side').outerWidth();
-						$('#contenter').css("margin-left", ($sideWidth + 10)+"px");
-					});
-					</script>
+						<% end %>
+					</ul>
 				</section>
-			</div>
+			</nav>
 		</div>
 
-	</body>
-	</html>
+		<%= yield %>
+
+
+	</div>
+
+
+
+
+	<%= javascript_include_tag "application" %>
+	<%= yield :js %>
+	<script type="text/javascript">
+	$(function () {
+		$sideWidth = $('#side').outerWidth();
+		$('#contenter').css("margin-left", ($sideWidth + 10)+"px");
+	});
+
+	var canvas_toggle 	= $('#canvas-toggle'),
+		off_canvas 		= $('#off-side'),
+		side 			= $('#side'),
+		wrapper			= $('#wrapper');
+	
+
+	canvas_toggle.click( function() {
+		if (off_canvas.hasClass("is_active")) {
+			off_canvas.removeClass("is_active");
+			off_canvas.css("left", "-200px");
+			wrapper.css("margin-left", "0px")
+			side.css("left", "0px");
+		}else {
+			off_canvas.addClass("is_active");
+			off_canvas.css("left", "0px");
+			wrapper.css("margin-left", "210px")
+			side.css("left", "200px");
+		};
+	});
+
+	</script>
+
+</body>
+</html>
