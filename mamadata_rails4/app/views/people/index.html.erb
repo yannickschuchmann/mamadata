@@ -1,6 +1,8 @@
 <%= render '/shared/overview_sidebar' %>
 <div id="content">
-	<p id="notice"><%= notice %></p>
+	<% if notice %>
+		<p id="notice"><%= notice %></p>
+	<% end %>
 	<h1 class="text-center">Beneficiaries</h1>
 	<table id="peopleIndexTable" class="responsive tablesorter">
 		<thead>

@@ -1,85 +1,88 @@
+<% if notice %>
 <p id="notice"><%= notice %></p>
+<% end %>
+
 <table class="table">
-  <tr>
-    <td><b>Organisation:</b></td>
-    <td><%= @supporter.organisation %></td>
-  </tr>
+	<tr>
+		<td><b>Organisation:</b></td>
+		<td><%= @supporter.organisation %></td>
+	</tr>
 
-  <tr>
-    <td><b>Name:</b></td>
-    <td><%= @supporter.name %></td>
-  </tr>
+	<tr>
+		<td><b>Name:</b></td>
+		<td><%= @supporter.name %></td>
+	</tr>
 
-  <tr>
-    <td><b>Family name:</b></td>
-    <td><%= @supporter.family_name %></td>
-  </tr>
+	<tr>
+		<td><b>Family name:</b></td>
+		<td><%= @supporter.family_name %></td>
+	</tr>
 
-  <tr>
-    <td><b>Date of birth:</b></td>
-    <td><%= @supporter.date_of_birth %></td>
-  </tr>
+	<tr>
+		<td><b>Date of birth:</b></td>
+		<td><%= @supporter.date_of_birth %></td>
+	</tr>
 
-  <tr>
-    <td><b>Country:</b></td>
-    <td><%= @supporter.country %></td>
-  </tr>
+	<tr>
+		<td><b>Country:</b></td>
+		<td><%= @supporter.country %></td>
+	</tr>
 
-  <tr>
-    <td><b>City:</b></td>
-    <td><%= @supporter.city %></td>
-  </tr>
+	<tr>
+		<td><b>City:</b></td>
+		<td><%= @supporter.city %></td>
+	</tr>
 
-  <tr>
-    <td><b>Street:</b></td>
-    <td><%= @supporter.street %></td>
-  </tr>
+	<tr>
+		<td><b>Street:</b></td>
+		<td><%= @supporter.street %></td>
+	</tr>
 
-  <tr>
-    <td><b>Zipcode:</b></td>
-    <td><%= @supporter.zipcode %></td>
-  </tr>
+	<tr>
+		<td><b>Zipcode:</b></td>
+		<td><%= @supporter.zipcode %></td>
+	</tr>
 
-  <tr>
-    <td><b>E-Mail:</b></td>
-    <td><%= @supporter.email %></td>
-  </tr>
+	<tr>
+		<td><b>E-Mail:</b></td>
+		<td><%= @supporter.email %></td>
+	</tr>
 
-  <tr>
-    <td><b>website:</b></td>
-    <td><%= @supporter.website %></td>
-  </tr>
+	<tr>
+		<td><b>website:</b></td>
+		<td><%= @supporter.website %></td>
+	</tr>
 
-  <tr>
-    <td><b>Telephone Number:</b></td>
-    <td><%= @supporter.telephone_number %></td>
-  </tr>
+	<tr>
+		<td><b>Telephone Number:</b></td>
+		<td><%= @supporter.telephone_number %></td>
+	</tr>
 
-  <tr>
-    <td><b>Godfather:</b></td>
-    <td><%= @supporter.godfather %></td>
-  </tr>
+	<tr>
+		<td><b>Godfather:</b></td>
+		<td><%= @supporter.godfather %></td>
+	</tr>
 
-  <tr>
-    <td><b>Is Volunteer?:</b></td>
-    <td><%= @supporter.is_volunteer %></td>
-  </tr>
+	<tr>
+		<td><b>Is Volunteer?:</b></td>
+		<td><%= @supporter.is_volunteer %></td>
+	</tr>
 
-  <tr>
-    <td><b>Begin of Work:</b></td>
-    <td><%= @supporter.begin_of_work %></td>
-  </tr>
+	<tr>
+		<td><b>Begin of Work:</b></td>
+		<td><%= @supporter.begin_of_work %></td>
+	</tr>
 
-  <tr>
-    <td><b>End of Work:</b></td>
-    <td><%= @supporter.end_of_work %></td>
-  </tr>
-  <tr>
-    <td><b>Type of Work:</b></td>
-    <td><%= @supporter.type_of_work %></td>
-  </tr>
+	<tr>
+		<td><b>End of Work:</b></td>
+		<td><%= @supporter.end_of_work %></td>
+	</tr>
+	<tr>
+		<td><b>Type of Work:</b></td>
+		<td><%= @supporter.type_of_work %></td>
+	</tr>
 </table>
 <div class="button-center">
-  <%= link_to 'Edit', edit_supporter_path(@supporter), :class => "button" %>
-  <%= link_to 'Back', supporters_path, :class => "button" %>
+	<%= link_to 'Edit', edit_supporter_path(@supporter), :class => "button" %>
+	<%= link_to 'Back', supporters_path, :class => "button" %>
 </div>

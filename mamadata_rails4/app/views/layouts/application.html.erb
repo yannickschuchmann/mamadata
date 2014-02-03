@@ -69,10 +69,10 @@
 							<li><%= link_to 'New Beneficiary', people_path %></li>							
 							<li class="has-form">
 								<div class="row collapse">
-									<div class="large-10 small-11 columns">
+									<div class="large-10 small-9 columns">
 										<input type="text" placeholder="Find Stuff">
 									</div>
-									<div class="large-2 small-1 columns">
+									<div class="large-2 small-3 columns">
 										<a href="#" class="alert button expand"><span class="icon-search"></span></a>
 									</div>
 								</div>
@@ -87,13 +87,7 @@
 		<%= javascript_include_tag "application" %>
 
 		<%= yield %>
-
-
 	</div>
-
-
-
-
 	
 	<%= yield :js %>
 	<script type="text/javascript">
@@ -111,25 +105,18 @@
 	canvas_toggle.click( function() {
 		if (off_canvas.hasClass("is_active")) {
 			off_canvas.removeClass("is_active");
-			off_canvas.css("left", "-200px");
+			off_canvas.css("left", "-150px");
 			wrapper.css("margin-left", "0px")
 			side.css("left", "0px");
 		}else {
 			off_canvas.addClass("is_active");
 			off_canvas.css("left", "0px");
-			wrapper.css("margin-left", "210px")
-			side.css("left", "200px");
+			wrapper.css("margin-left", "160px")
+			side.css("left", "150px");
 		};
 	});
-	$(document).ready(function(){ 
-		$("#benefitsIndexTable").tablesorter(); 
-		$("#benefitIndexTable").tablesorter();
-		$("#familiesIndexTable").tablesorter();
-		$("#peopleIndexTable").tablesorter();
-		$("#programsIndexTable").tablesorter();
-		$("#rolesIndexTable").tablesorter();
-		$("#supporterIndexTable").tablesorter();
-		$("#usersIndexTable").tablesorter();
+	$(document).ready(function(){
+		$(".tablesorter").tablesorter();
 	});
 	</script>
 
