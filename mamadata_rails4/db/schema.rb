@@ -27,8 +27,9 @@ ActiveRecord::Schema.define(version: 20140111145512) do
     t.integer  "person_id"
     t.integer  "benefit_id"
     t.integer  "program_id"
-    t.integer  "amount"
+    t.integer  "amount_paisas"
     t.text     "remark"
+    t.string   "amount_currency", default: "INR", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "date_granted"

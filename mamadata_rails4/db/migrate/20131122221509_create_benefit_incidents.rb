@@ -4,8 +4,9 @@ class CreateBenefitIncidents < ActiveRecord::Migration
       t.references :person, index: true
       t.references :benefit, index: true
       t.references :program, index: true
-      t.integer :amount
+      t.integer :amount_paisas, amount: { null: true, default: nil }
       t.text :remark
+      t.money :amount
 
       t.timestamps
     end
