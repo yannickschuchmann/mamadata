@@ -17,10 +17,9 @@
 				<th></th>
 			</tr>
 		</thead>
-
 		<tbody>
 			<% @people.each do |person| %>
-			<tr>
+			<tr data-link="<%= person_path(person) %>">
 				<td><a href="/people/<%= person.id %>"><%= person.name %></a></td>
 				<td><%= person.fathers_name %></td>
 				<td><%= person.gender %></td>
@@ -30,18 +29,9 @@
 				<td><%= person.pin_code %></td>
 				<td>
 					<% if !person.role_id.nil? %>
-					<% b = Role.find (person.role_id) %>
+					<%  b = Role.find (person.role_id) %>
 					<%= b.name %>
 					<% end %>
-				</td>
-				<td>
-					<% total = 0 %>
-					<% person.benefit_incidents.each do |incident| %>
-					<% if incident.status != false %>
-					<% total = total + incident.amount %>
-					<% end %>
-					<% end %>
-					<%= total %>
 				</td>
 				<td> <a class="button [tiny small large] button-edit" href="/people/<%= person.id %>/edit"> Edit </a></td>
 			</tr>
@@ -52,9 +42,9 @@
 	<div class="button-center">
 		<%= link_to "New Person", new_person_path, :class => 'button' %>
 	</div>
-	<script type="text/javascript">
-	$(document).ready(function(){ 
-		$("#peopleIndexTable").tablesorter(); 
-	});
-	</script>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){ 
+	$("#peopleIndexTable").tablesorter(); 
+});
+</script>

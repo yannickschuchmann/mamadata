@@ -35,3 +35,6 @@ table {
 	bottom: 0px;
 	height: 100%;
 }
+tr[data-link] {
+    cursor: pointer;
+}
