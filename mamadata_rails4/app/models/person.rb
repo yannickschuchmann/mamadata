@@ -6,4 +6,8 @@ class Person < ActiveRecord::Base
   has_many :programs, through: :beneficiary_program_relationships
   belongs_to :godfather, :class_name => "Supporter"
   has_many :benefit_incidents
+  monetize :income_paisas, allow_nil: true,  :numericality => {
+    :greater_than_or_equal_to => 0 }
+  monetize :total_expenses_paisas, allow_nil: true,  :numericality => {
+    :greater_than_or_equal_to => 0 }
 end
