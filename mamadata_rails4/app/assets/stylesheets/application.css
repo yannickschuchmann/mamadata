@@ -35,6 +35,27 @@ table {
 	bottom: 0px;
 	height: 100%;
 }
+#side {
+	width: 100px;
+	position:fixed;
+	top: 0px;
+	bottom: 0px;
+	left:0px;
+	background-color: #333333;
+	z-index: 999;
+	margin-top: 45px;
+	z-index: 1;
+}
+#side-nav { text-align: center;}
+#side-nav > li{
+	padding: 15px 0;
+	margin: 15px 0;
+}
+#side-nav > li > a {
+	color: #fff;
+	padding: 15px 0;
+}
+
 tr[data-link] {
     cursor: pointer;
 }
