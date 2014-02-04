@@ -58,9 +58,9 @@ class BenefitIncidentsController < ApplicationController
   # POST /benefit_incidents.json
   def create
     @benefit_incident = BenefitIncident.new(benefit_incident_params)
-
     respond_to do |format|
       if @benefit_incident.save
+        update_total_expense_for_user
         format.html { redirect_to @benefit_incident, notice: 'Benefit incident was successfully created.' }
         format.json { render action: 'show', status: :created, location: @benefit_incident }
       else
@@ -75,6 +75,7 @@ class BenefitIncidentsController < ApplicationController
   def update
     respond_to do |format|
       if @benefit_incident.update(benefit_incident_params)
+        update_total_expense_for_user
         format.html { redirect_to @benefit_incident, notice: 'Benefit incident was successfully updated.' }
         format.json { head :no_content }
       else
@@ -88,6 +89,7 @@ class BenefitIncidentsController < ApplicationController
   # DELETE /benefit_incidents/1.json
   def destroy
     @benefit_incident.destroy
+    update_total_expense_for_user
     respond_to do |format|
       format.html { redirect_to benefit_incidents_url }
       format.json { head :no_content }
@@ -103,5 +105,13 @@ class BenefitIncidentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def benefit_incident_params
       params.require(:benefit_incident).permit(:person_id, :program_id, :benefit_id, :amount, :remark, :status, :date_granted)
+    end
+
+    def update_total_expense_for_user
+      @benefit_incident.person.total_expenses=0
+      @benefit_incident.person.benefit_incidents.each do |benefit|
+          @benefit_incident.person.total_expenses+=benefit.amount
+      end
+      @benefit_incident.person.save
     end
 end
