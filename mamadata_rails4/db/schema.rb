@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20140111145512) do
     t.integer  "person_id"
     t.integer  "benefit_id"
     t.integer  "program_id"
-    t.integer  "amount_paisas"
+    t.integer  "amount_paise"
     t.text     "remark"
     t.string   "amount_currency", default: "INR", null: false
     t.datetime "created_at"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20140111145512) do
   create_table "benefits", force: true do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "optional_amount_paisas"
+    t.integer  "optional_amount_paise"
     t.string   "optional_amount_currency", default: "INR", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -115,9 +115,9 @@ ActiveRecord::Schema.define(version: 20140111145512) do
     t.string   "marital_status",          default: ""
     t.string   "health_condition",        default: ""
     t.string   "occupation",              default: ""
-    t.integer  "income_paisas"
+    t.integer  "income_paise"
     t.string   "income_currency",         default: "INR", null: false
-    t.integer  "total_expenses_paisas"
+    t.integer  "total_expenses_paise"
     t.string   "total_expenses_currency", default: "INR", null: false
     t.integer  "family_id"
     t.integer  "role_id"

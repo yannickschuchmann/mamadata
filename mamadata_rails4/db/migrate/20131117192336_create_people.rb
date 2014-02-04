@@ -18,9 +18,9 @@ class CreatePeople < ActiveRecord::Migration
       t.string :marital_status, :default => ""
       t.string :health_condition, :default => ""
       t.string :occupation, :default => ""
-      t.integer :income_paisas, amount: { null: true, default: nil }
+      t.integer :income_paise, amount: { null: true, default: nil }
       t.money :income
-      t.integer :total_expenses_paisas, amount: { null: true, default: nil }
+      t.integer :total_expenses_paise, amount: { null: true, default: nil }
       t.money :total_expenses
       t.references :family, index:true
       t.references :role, index: true
