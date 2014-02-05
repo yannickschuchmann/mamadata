@@ -30,7 +30,7 @@
   </div>
   <div class="row">
     <div class="small-12 large-3 columns"><%= f.label :amount %></div>
-    <div class="small-12 large-9 columns"><%= f.text_field :amount, readonly: true %></div>
+    <div class="small-12 large-9 columns"><%= f.text_field :amount %></div>
   </div>
   <div class="row">
     <div class="small-12 large-3 columns"><%= f.label :remark %></div>
@@ -93,6 +93,7 @@
 
   });
   $('#benefit_incident_benefit_id').on('change', function(){
-    $('#benefit_incident_amount').val("1005");
+    $('#benefit_incident_amount').val("10");
+    $('#benefit_incident_amount').attr("readonly", true)
   });
   </script>
