@@ -25,7 +25,7 @@ class CreatePeople < ActiveRecord::Migration
       t.string :school_type, :default => ""
       t.string :school_language, :default => ""
       t.string :school_class, :default => ""
-      t.text :narrative_text, :default => ""
+      t.text :narrative_text, :default
       t.string :status, :default => ""
       t.references :godfather, index: true
       t.timestamps
