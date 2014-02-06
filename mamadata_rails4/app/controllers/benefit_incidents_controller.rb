@@ -43,7 +43,7 @@ class BenefitIncidentsController < ApplicationController
     @all_programs = Hash[Program.all.map { |p| [p.id, p.name] }]
     @data = Hash[Program.all.map{|p| [p.id, p.benefits]}]
     @person = Person.find(params[:person_id])
-    @programs_for_user = Hash[BeneficiaryProgramRelationship.where(person_id: @person.id).map { |e| [e.id, e.program_id]  }]
+    @programs_for_user = Hash[BeneficiaryProgramRelationship.where(person_id: @person.id).map { |e| [e.program_id, e.id]  }]
     @benefits_with_calculated_amount = Benefit.where("optional_amount_paise IS NOT NULL")
   end
 
@@ -52,7 +52,7 @@ class BenefitIncidentsController < ApplicationController
     @all_programs = Hash[Program.all.map { |p| [p.id, p.name] }]
     @person = @benefit_incident.person
     @data = Hash[Program.all.map{|p| [p.id, p.benefits]}]
-    @programs_for_user = Hash[BeneficiaryProgramRelationship.where(person_id: @person.id).map { |e| [e.id, e.program_id]  }]
+    @programs_for_user = Hash[BeneficiaryProgramRelationship.where(person_id: @person.id).map { |e| [e.program_id, e.id]  }]
     @benefits_with_calculated_amount = Benefit.where("optional_amount_paise IS NOT NULL")
   end
 
