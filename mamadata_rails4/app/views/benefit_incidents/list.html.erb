@@ -3,14 +3,17 @@
 	<% if is_admin? %>
 	<div class="button-center">
 		<%= link_to benefits_person_pending_path(params[:person_id]), :class => 'button [tiny small large]' do %>
-		Show Pending Incidents for Person
+		Show Pending Incidents for <%= Person.find(params[:person_id]).name %>
 		<% end %>
 	</div>
 	<div class="button-center">
 		<%= link_to benefits_person_granted_path(params[:person_id]), :class => 'button [tiny small large]' do %>
-		Show Granted Incidents for Person
+		Show Granted Incidents for <%= Person.find(params[:person_id]).name %>
 		<% end %>
-	</div>
+</div>
+<div class="button-center">
+		<%= link_to 'New Incident', new_benefit_incident_path(params[:person_id]), :class => "button" %>
+		</div>
 	<% end %>
 	<table id="benefitTable" class="table tabesorter">
 		<thead>
@@ -29,7 +32,7 @@
 		<tbody>
 			<% @benefit_incidents.each do |benefit_incident| %>
 			<tr>
-				<td><%= benefit_incident.person.name %></td>
+				<td><%= link_to benefit_incident.person.name, person_path(params[:person_id]) %></td>
 				<td><%= benefit_incident.program.name %></td>
 				<td><%= benefit_incident.benefit.name %></td>
 				<td><%= benefit_incident.amount %></td>
