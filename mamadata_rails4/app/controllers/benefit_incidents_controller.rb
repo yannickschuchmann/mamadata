@@ -53,6 +53,7 @@ class BenefitIncidentsController < ApplicationController
     @person = @benefit_incident.person
     @data = Hash[Program.all.map{|p| [p.id, p.benefits]}]
     @programs_for_user = Hash[BeneficiaryProgramRelationship.where(person_id: @person.id).map { |e| [e.id, e.program_id]  }]
+    @benefits_with_calculated_amount = Benefit.where("optional_amount_paise IS NOT NULL")
   end
 
   # POST /benefit_incidents
