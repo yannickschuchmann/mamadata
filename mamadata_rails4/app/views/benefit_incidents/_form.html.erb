@@ -15,11 +15,6 @@
   <div class="small-12 large-12 columns"><%= f.hidden_field :person_id, value: @benefit_incident.person_id %></div>
 </div>
 
-
-
-
-
-
 <div class="row">
   <div class="small-12 large-12 columns"><%= f.hidden_field :date_granted, value: @benefit_incident.date_granted %></div>
 </div>
@@ -35,13 +30,14 @@
   </div>
   <div class="row">
     <div class="small-12 large-3 columns"><%= f.label :amount %></div>
-    <div class="small-12 large-9 columns"><%= f.number_field :amount %></div>
+    <div class="small-12 large-9 columns"><%= f.text_field :amount %></div>
   </div>
   <div class="row">
     <div class="small-12 large-3 columns"><%= f.label :remark %></div>
     <div class="small-12 large-9 columns"><%= f.text_field :remark%></div>
   </div>
-
+  <div>
+ 
   <% if is_admin? %>
   <div class="row">
     <div class="small-12 large-3 columns"><%= f.label :status %></div>
@@ -62,7 +58,9 @@
   var data = <%= @data.to_json.html_safe %>;
   var programsOfPerson = <%= @programs_for_user.to_json.html_safe %>;
   var allPrograms = <%= @all_programs.to_json.html_safe %>;
+
   $('#benefit_incident_program_id').empty();
+
   $.each(programsOfPerson, function( value) {   
    $('#benefit_incident_program_id')
    .append($("<option></option>")
@@ -83,6 +81,8 @@
     $('#benefit_incident_benefit_id').empty();
     var benefitsOfSelectedProgram = data[this.value];
 
+
+
     $.each(benefitsOfSelectedProgram, function(key, value) {   
      $('#benefit_incident_benefit_id')
      .append($("<option></option>")
@@ -90,5 +90,11 @@
        .text(value.name));
    });
 
+    
+
+  });
+  $('#benefit_incident_benefit_id').on('change', function(){
+    //$('#benefit_incident_amount').val("10");
+    //$('#benefit_incident_amount').attr("readonly", true)
   });
   </script>
