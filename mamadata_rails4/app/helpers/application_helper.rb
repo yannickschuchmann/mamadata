@@ -23,6 +23,9 @@ module ApplicationHelper
 			return false
 		end
 	end
+
+
+
 end
 
 class EnhancedFormBuilder < ActionView::Helpers::FormBuilder

@@ -44,6 +44,7 @@ class BenefitIncidentsController < ApplicationController
     @data = Hash[Program.all.map{|p| [p.id, p.benefits]}]
     @person = Person.find(params[:person_id])
     @programs_for_user = Hash[BeneficiaryProgramRelationship.where(person_id: @person.id).map { |e| [e.id, e.program_id]  }]
+    @benefits_with_calculated_amount = Benefit.where("optional_amount_paise IS NOT NULL")
   end
 
   # GET /benefit_incidents/1/edit
@@ -58,7 +59,6 @@ class BenefitIncidentsController < ApplicationController
   # POST /benefit_incidents.json
   def create
     @benefit_incident = BenefitIncident.new(benefit_incident_params)
-
     respond_to do |format|
       if @benefit_incident.save
         format.html { redirect_to @benefit_incident, notice: 'Benefit incident was successfully created.' }
@@ -104,4 +104,6 @@ class BenefitIncidentsController < ApplicationController
     def benefit_incident_params
       params.require(:benefit_incident).permit(:person_id, :program_id, :benefit_id, :amount, :remark, :status, :date_granted)
     end
+
+
 end

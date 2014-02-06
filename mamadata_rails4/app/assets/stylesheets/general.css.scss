@@ -1,0 +1,37 @@
+@import "side";
+
+body .row {
+  max-width: 100%; /* overrides 62.5rem foundation default for app-like full screen */
+}
+
+#notice {
+  padding: 20px;
+  background-color: #F5F5F5;
+  font-size: 15px;
+  text-align: center !important;
+  color: green;
+}
+
+#content {
+  margin-top: 20px;
+}
+
+.person-picture {
+  padding-top: 10px;
+}
+
+table {
+  margin: 0 auto;
+}
+
+.button-edit {
+  margin: 0 !important;
+}
+
+.button-center {
+  text-align: center;
+}
+
+tr[data-link] {
+  cursor: pointer;
+}

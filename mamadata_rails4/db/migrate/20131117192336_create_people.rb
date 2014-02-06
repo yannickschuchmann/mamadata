@@ -18,7 +18,8 @@ class CreatePeople < ActiveRecord::Migration
       t.string :marital_status, :default => ""
       t.string :health_condition, :default => ""
       t.string :occupation, :default => ""
-      t.integer :income
+      t.integer :income_paise
+      t.money :income
       t.references :family, index:true
       t.references :role, index: true
       t.string :school_name, :default => ""

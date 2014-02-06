@@ -1,3 +1,4 @@
+<%= content_for :js do %><%= javascript_include_tag "benefit_incidents" %> <% end %>
 <%= form_for(@benefit_incident) do |f| %>
 <% if @benefit_incident.errors.any? %>
 <div id="error_explanation">
@@ -11,21 +12,19 @@
 </div>
 <% end %>
 <h2 class="text-center">Person: <%=@benefit_incident.person.name %></h2>
+
+  <div class="button-center">
+    <%= link_to 'Add Person to Program', edit_person_path(@benefit_incident.person_id), :class => 'button small' %></div>
+    <% if !@benefit_incident.person.programs.empty?%>
 <div class="row">
   <div class="small-12 large-12 columns"><%= f.hidden_field :person_id, value: @benefit_incident.person_id %></div>
 </div>
-
-
-
-
-
 
 <div class="row">
   <div class="small-12 large-12 columns"><%= f.hidden_field :date_granted, value: @benefit_incident.date_granted %></div>
 </div>
 <div class="row">
-  <div class="button-center">
-    <%= link_to 'Add Person to Program', edit_person_path(@benefit_incident.person_id), :class => 'button small' %></div>
+
     <div class="small-12 large-3 columns"><%= f.label :program_id %></div>
     <div class="small-12 large-9 columns"><%= f.select :program_id, Program.all.map{|program| [program.name, program.id]}%></div>
   </div>
@@ -35,13 +34,14 @@
   </div>
   <div class="row">
     <div class="small-12 large-3 columns"><%= f.label :amount %></div>
-    <div class="small-12 large-9 columns"><%= f.number_field :amount %></div>
+    <div class="small-12 large-9 columns"><%= f.text_field :amount %></div>
   </div>
   <div class="row">
     <div class="small-12 large-3 columns"><%= f.label :remark %></div>
     <div class="small-12 large-9 columns"><%= f.text_field :remark%></div>
   </div>
-
+  <div>
+ 
   <% if is_admin? %>
   <div class="row">
     <div class="small-12 large-3 columns"><%= f.label :status %></div>
@@ -57,38 +57,12 @@
     <%= f.submit :class => 'button' %>
   </div>
   <% end %>
+<%end%>
+   <script>
 
-  <script>
   var data = <%= @data.to_json.html_safe %>;
   var programsOfPerson = <%= @programs_for_user.to_json.html_safe %>;
   var allPrograms = <%= @all_programs.to_json.html_safe %>;
-  $('#benefit_incident_program_id').empty();
-  $.each(programsOfPerson, function( value) {   
-   $('#benefit_incident_program_id')
-   .append($("<option></option>")
-     .attr("value",value)
-     .text(allPrograms[value]));
- });
+  var benefits_calculated =<%= @benefits_with_calculated_amount.to_json.html_safe %>;
 
-  var initialProgram = $('#benefit_incident_program_id').val();
-  $.each(data[initialProgram], function(key, value) {   
-   $('#benefit_incident_benefit_id')
-   .append($("<option></option>")
-     .attr("value",value.id)
-     .text(value.name));
- });
-
-
-  $('#benefit_incident_program_id').on('change', function(){
-    $('#benefit_incident_benefit_id').empty();
-    var benefitsOfSelectedProgram = data[this.value];
-
-    $.each(benefitsOfSelectedProgram, function(key, value) {   
-     $('#benefit_incident_benefit_id')
-     .append($("<option></option>")
-       .attr("value",value.id)
-       .text(value.name));
-   });
-
-  });
-  </script>
+ </script>

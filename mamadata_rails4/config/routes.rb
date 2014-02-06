@@ -5,7 +5,7 @@ MamadataRails4::Application.routes.draw do
   put 'people/create', to: 'people#create'
   put 'people/search', to: 'people#search'
 
-  resources :benefit_incidents, only: [:show, :edit, :index, :create, :update]
+  resources :benefit_incidents, only: [:show, :edit, :index, :create, :update, :destroy]
 
   get 'benefit_incidents/list/:person_id', to: 'benefit_incidents#list', as: :benefit_incidents_list
   get 'benefit_incidents/list/:person_id/granted', to: 'benefit_incidents#granted_for_user', as: :benefits_person_granted
