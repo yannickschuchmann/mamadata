@@ -1,116 +1,156 @@
-<p id="notice"><%= notice %></p>
-<div class="row">
-	<div class="medium-2 columns">
-		<%= image_tag @person.avatar.url(:medium) %>
-	</div>
-	<div class="medium-6 columns">
-		<h2><%= @person.name %></h2>
-		<h5><b>File: <%= @person.id %></b></h5>
-	</div>
-	<div class="medium-4 columns">
-		<ul class="no-bullet">
-			<% Program.all.each do |p| %>
-				<% if @person.programs.include?(p) %>
-					<li><%= p.name %></li>
-				<% end %>
-			<% end %>
-		</ul>
-	</div>
+<div id="side">
+	<dl id="side-nav" data-tab>
+		<dd class="active"><a href="#panel2-1">General Information</a></dd>
+		<dd><a href="#panel2-2">Narrative Text</a></dd>
+		<dd><a href="#panel2-3">School</a></dd>
+		<dd><a href="#panel2-4">Benefit History</a></dd>
+	</dl>
 </div>
+<div id="content">
+	<% if notice %>
+	<p id="notice"><%= notice %></p>
+	<% end %>
+	<div class="row"style="background-color: #f4f4f4;">
+		<div class="medium-2 column">
+			<%= image_tag @person.avatar.url(:medium), :class => "person-picture" %>
+		</div>
+		<div class="medium-10 column">
+			<h3><%= @person.name %></h3>
+			<h5><b>File: <%= @person.id %></b></h5>
+			<ul class="no-bullet">
+				<% Program.all.each do |p| %>
+				<% if @person.programs.include?(p) %>
+				<span class="label"><%= p.name %></span>
+				<% end %>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	<div class="row">
+		<div class="small-12 column">			
+			<div class="tabs-content">
+				<div class="content active" id="panel2-1">
 
-<div class="row">
-	<div class="small-12 column">
-		<dl class="tabs" data-tab>
-			<dd class="active"><a href="#panel2-1">General Information</a></dd>
-			<dd><a href="#panel2-2">Extended</a></dd>
-			<dd><a href="#panel2-3">School</a></dd>
-			<dd><a href="#panel2-4">Benefit History</a></dd>
-		</dl>
-		<div class="tabs-content">
-			<div class="content active" id="panel2-1" style="width: 100%">
-				<table class="small-12">
-					<tbody>
+					<h5>Personal Information</h5>
+					<table class="small-12">
 						<tr>
-							<td class="medium-6"><b>Father's name:</b> <br /><%= @person.fathers_name %></td>
-							<td class="medium-6"><b>Name of the house:</b> <br /> <%= @person.name_of_the_house %></td>
+							<td class="medium-4">Father's name</td>
+							<td class="medium-8"><%= @person.fathers_name %></td>
 						</tr>
 						<tr>
-							<td><b>Relation to Head of Household:</b><br />???????????</td>
-							<td><b>Number of the house:</b><br /><%= @person.number_of_the_house %></td>
+							<td>Gender</td>
+							<td><%= @person.gender %></td>
 						</tr>
 						<tr>
-							<td><b>Relation to Head of Household:</b><br />
-								<% if !@person.role_id.nil?
-									b = Role.find (@person.role_id) %>
-									<%= b.name %>
-									<% else %>
-									<%= "not given" %>
-									<% end %>
-								</td>
-								<td><b>Name of the street:</b><br /><%= @person.name_of_the_street %></td>
-							</tr>
-							<tr>
-								<td><b>Gender:</b><br /><%= @person.gender %></td>
-								<td><b>City:</b><br /><%= @person.city %></td>
-							</tr>
-							<tr>
-								<td><b>Date of birth:</b><br /><%= @person.date_of_birth %></td>
-								<td><b>Pin code:</b><br /><%= @person.pin_code %></td>
-							</tr>
-							<tr>
-								<td><b>Place of birth:</b><br /><%= @person.place_of_birth %></td>
-								<td><b>Native place:</b><br /><%= @person.native_place %></td>
-							</tr>
-							<tr>
-								<td><b>Marital status:</b><br /><%= @person.marital_status %></td>
-								<td></td>
-							</tr>
-						</tbody>
+							<td>Date of birth</td>
+							<td><%= @person.date_of_birth %></td>
+						</tr>
+						<tr>
+							<td>Place of birth</td>
+							<td><%= @person.place_of_birth %></td>
+						</tr>
+						<tr>
+							<td>Relation to Head of Household</td>
+							<td>
+								<% if !@person.role_id.nil? %>
+								<%	b = Role.find (@person.role_id) %>
+								<%= b.name %>
+								<% else %>
+								<%= "not given" %>
+								<% end %>
+							</td>
+						</tr>
+						<tr>
+							<td>Marital status</td>
+							<td><%= @person.marital_status %></td>
+						</tr>
 					</table>
-				</div>
-				<div class="content" id="panel2-2" style="width: 100%">
+
+					<h5>Household Information</h5>
+					<table class="small-12">
+						<tr>
+							<td class="medium-4">Name of the house</td>
+							<td class="medium-8"><%= @person.name_of_the_house %></td>
+						</tr>
+						<tr>
+							<td>Number of the house</td>
+							<td><%= @person.number_of_the_house %></td>
+						</tr>
+						<tr>
+							<td>Name of the street</td>
+							<td><%= @person.name_of_the_street %></td>
+						</tr>
+						<tr>
+							<td>City</td>
+							<td><%= @person.city %></td>
+						</tr>						
+						<tr>
+							<td>Pin code</td>
+							<td><%= @person.pin_code %></td>
+						</tr>						
+						<tr>
+							<td>Native place</td>
+							<td><%= @person.native_place %></td>
+						</tr>
+					</table>
+
+					<h5>Additional Information</h5>
 					<table class="small-12">
 						<tbody>
 							<tr>
-								<td class="medium-2"><b>Religion:</b></td>
-								<td class="medium-10"><%= @person.religion %></td>
+								<td class="medium-4">Religion</td>
+								<td class="medium-8"><%= @person.religion %></td>
 							</tr>
 							<tr>
-								<td><b>Caste:</b></td>
+								<td>Caste</td>
 								<td><%= @person.caste %></td>
 							</tr>
 							<tr>
-								<td><b>Education:</b></td>
+								<td>Education</td>
 								<td><%= @person.education %></td>
 							</tr>
 							<tr>
-								<td><b>Health condition:</b></td>
+								<td>Health condition</td>
 								<td><%= @person.health_condition %></td>
 							</tr>
 							<tr>
-								<td><b>Occupation:</b></td>
+								<td>Occupation</td>
 								<td><%= @person.occupation %></td>
 							</tr>
 							<tr>
-								<td><b>Income:</b></td>
+								<td>Income</td>
 								<td><%= @person.income %></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
+				<div class="content" id="panel2-2">
+					<h5>Narrative Text</h5>
+
+					<p>
+						<% if @person.narrative_text? %>
+							<%= @person.narrative_text%>
+						<% else %>
+							none
+						<% end%>
+					</p>
+				</div>
 				<div class="content" id="panel2-3">
+					
+					<h5>School Information</h5>
 					<table class="small-12">
 						<tbody>
 							<tr>
-								<td class="medium-2"><b>Language:</b></td>
+								<td class="medium-2">Language</td>
 								<td class="medium-10"><%= @person.school_language %></td>
 							</tr>
 							<tr>
-								<td><b>Remark:</b></td>
+								<td>Remark</td>
 								<td><%= @person.school_type %></td>
 							</tr>
 							<tr>
-								<td><b>Class:</b></td>
+								<td>Class</td>
 								<td><%= @person.school_class %></td>
 							</tr>
 
@@ -118,7 +158,9 @@
 					</table>
 				</div>
 				<div class="content" id="panel2-4">
-					<table class="small-12">
+
+					<h5>Benefit History</h5>
+					<table class="tablesorter">
 						<thead>
 							<td>Program</td>
 							<td>Benefit</td>
@@ -137,13 +179,13 @@
 								</td>
 								<td>
 									<% if incident.status == false %>
-									<%= "pending" %>
+										pending
 									<% else %>
-									<%= incident.date_granted %>
+										<%= incident.date_granted %>
 									<% end %>
 								</td>
-								<td> <%= incident.amount %> </td>
-								<td> <%= incident.remark %> </td>
+								<td><%= incident.amount %></td>
+								<td><%= incident.remark %></td>
 							</tr>
 							<% end %>
 						</tbody>
@@ -161,3 +203,4 @@
 			<%= link_to 'List All Incidents', benefit_incidents_list_path(@person.id), :class => "button" %>
 		</div>
 	</div>
+</div>

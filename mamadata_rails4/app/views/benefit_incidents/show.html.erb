@@ -1,34 +1,36 @@
+<% if notice %>
 <p id="notice"><%= notice %></p>
+<% end %>
 <table class="table">
-  <tr>
-    <td><b>User:</b></td>
-    <td><%= @benefit_incident.person.name %></td>
-  </tr>
-  <tr>
-    <td><b>Amount:</b></td>
-    <td><%= @benefit_incident.amount %></td>
-  </tr>
-  <tr>
-    <td><b>Program:</b></td>
-    <td><%= @benefit_incident.program.name %></td>
-  </tr>
-  <tr>
-    <td><b>Benefit:</b></td>
-    <td><%= @benefit_incident.benefit.name %></td>
-  </tr>
+	<tr>
+		<td><b>User:</b></td>
+		<td><%= @benefit_incident.person.name %></td>
+	</tr>
+	<tr>
+		<td><b>Amount:</b></td>
+		<td><%= @benefit_incident.amount %></td>
+	</tr>
+	<tr>
+		<td><b>Program:</b></td>
+		<td><%= @benefit_incident.program.name %></td>
+	</tr>
+	<tr>
+		<td><b>Benefit:</b></td>
+		<td><%= @benefit_incident.benefit.name %></td>
+	</tr>
 
-  <tr>
-    <td><b>Remark:</b></td>
-    <td><%= @benefit_incident.remark %></td>
-  </tr>
-  <tr>
-    <td><b>Status:</b></td>
-    <td><%= @benefit_incident.status == true ? 'Granted' : 'Pending' %></td>
-  </tr>
+	<tr>
+		<td><b>Remark:</b></td>
+		<td><%= @benefit_incident.remark %></td>
+	</tr>
+	<tr>
+		<td><b>Status:</b></td>
+		<td><%= @benefit_incident.status == true ? 'Granted' : 'Pending' %></td>
+	</tr>
 </table>
 
 <div class="button-center">
-  <%= link_to 'Edit', edit_benefit_incident_path(@benefit_incident), :class => "button tiny" %>
-  <br />
-  <%= link_to 'List All Incidents', benefit_incidents_list_path(person_id: @benefit_incident.person_id), :class => "button" %>
+	<%= link_to 'Edit', edit_benefit_incident_path(@benefit_incident), :class => "button tiny" %>
+	<br />
+	<%= link_to 'List All Incidents', benefit_incidents_list_path(person_id: @benefit_incident.person_id), :class => "button" %>
 </div>
