@@ -36,13 +36,7 @@
 					<% end %>
 				</td>
 				<td>
-					<% total = 0 %>
-					<% person.benefit_incidents.each do |incident| %>
-					<% if incident.status != false %>
-					<% total = total + incident.amount %>
-					<% end %>
-					<% end %>
-					<%= total %>
+					<%= person.get_total_expenses %>
 				</td>
 				<td> <a class="button [tiny small large] button-edit" href="/people/<%= person.id %>/edit"> Edit </a></td>
 			</tr>
@@ -52,6 +46,7 @@
 	<br>
 	<div class="button-center">
 		<%= link_to "New Person", new_person_path, :class => 'button' %>
+
 
 	</div>
 </div>

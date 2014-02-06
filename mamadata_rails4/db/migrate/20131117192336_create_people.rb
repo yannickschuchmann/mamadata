@@ -20,8 +20,6 @@ class CreatePeople < ActiveRecord::Migration
       t.string :occupation, :default => ""
       t.integer :income_paise
       t.money :income
-      t.integer :total_expenses_paise
-      t.money :total_expenses
       t.references :family, index:true
       t.references :role, index: true
       t.string :school_name, :default => ""

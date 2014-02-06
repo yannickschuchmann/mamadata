@@ -5,9 +5,9 @@ class CreateBenefitIncidents < ActiveRecord::Migration
       t.references :benefit, index: true
       t.references :program, index: true
       t.integer :amount_paise
-      t.text :remark
       t.money :amount
-
+      t.text :remark
+      
       t.timestamps
     end
   end
