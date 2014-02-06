@@ -11,7 +11,7 @@ protected
 		def update_calculated_amount
 			if self.optional_amount
 				total_numer_of_benefits = BenefitIncident.count(conditions: ["benefit_id = ?", self.id])
-				amount=self.optional_amount_paise/total_numer_of_benefits
+				amount=self.optional_amount_paise/total_numer_of_benefits unless total_numer_of_benefits <=0
 				BenefitIncident.update_all(["amount_paise = ? ", amount], ["benefit_id = ?", self.id])
 			end
 		end
