@@ -1,3 +1,11 @@
+@import "foundation/components/global";
+
+#wrapper, #side, #off-side {
+  position: relative;
+  left: 0;
+  @include single-transition(left);
+}
+
 #side {
   overflow: auto;
   width: 100px;

@@ -8,38 +8,8 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require general
  *= require_tree .
  *= require_self
  */
 
-#notice {
-    padding: 20px;
-    background-color: #F5F5F5;
-    font-size: 15px;
-    text-align: center !important;
-    color: green;
-}
-
-#content {
-    margin-top: 20px;
-}
-
-.person-picture {
-    padding-top: 10px;
-}
-
-table {
-    margin: 0 auto;
-}
-
-.button-edit {
-    margin: 0 !important;
-}
-
-.button-center {
-    text-align: center;
-}
-
-tr[data-link] {
-    cursor: pointer;
-}
