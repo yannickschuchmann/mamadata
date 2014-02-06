@@ -27,7 +27,8 @@ ActiveRecord::Schema.define(version: 20140111145512) do
     t.integer  "person_id"
     t.integer  "benefit_id"
     t.integer  "program_id"
-    t.integer  "amount"
+    t.integer  "amount_paise",    default: 0
+    t.string   "amount_currency", default: "INR", null: false
     t.text     "remark"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -42,6 +43,8 @@ ActiveRecord::Schema.define(version: 20140111145512) do
   create_table "benefits", force: true do |t|
     t.string   "name"
     t.string   "description"
+    t.integer  "optional_amount_paise"
+    t.string   "optional_amount_currency", default: "INR", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -112,7 +115,8 @@ ActiveRecord::Schema.define(version: 20140111145512) do
     t.string   "marital_status",      default: ""
     t.string   "health_condition",    default: ""
     t.string   "occupation",          default: ""
-    t.integer  "income"
+    t.integer  "income_paise",        default: 0
+    t.string   "income_currency",     default: "INR", null: false
     t.integer  "family_id"
     t.integer  "role_id"
     t.string   "school_name",         default: ""

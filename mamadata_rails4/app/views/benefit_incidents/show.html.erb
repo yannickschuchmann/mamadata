@@ -2,22 +2,24 @@
 <p id="notice"><%= notice %></p>
 <% end %>
 <table class="table">
-	<tr>
-		<td><b>User:</b></td>
-		<td><%= @benefit_incident.person.name %></td>
-	</tr>
-	<tr>
-		<td><b>Amount:</b></td>
-		<td><%= @benefit_incident.amount %></td>
-	</tr>
-	<tr>
-		<td><b>Program:</b></td>
-		<td><%= @benefit_incident.program.name %></td>
-	</tr>
-	<tr>
-		<td><b>Benefit:</b></td>
-		<td><%= @benefit_incident.benefit.name %></td>
-	</tr>
+
+  <tr>
+    <td><b>User:</b></td>
+    <td><%= @benefit_incident.person.name %></td>
+  </tr>
+  <tr>
+    <td><b>Amount:</b></td>
+    <td><%= money_without_cents_and_with_symbol @benefit_incident.amount %></td>
+  </tr>
+  <tr>
+    <td><b>Program:</b></td>
+    <td><%= @benefit_incident.program.name %></td>
+  </tr>
+  <tr>
+    <td><b>Benefit:</b></td>
+    <td><%= @benefit_incident.benefit.name %></td>
+  </tr>
+
 
 	<tr>
 		<td><b>Remark:</b></td>

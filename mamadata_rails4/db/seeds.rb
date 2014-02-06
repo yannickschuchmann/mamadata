@@ -98,6 +98,6 @@ Supporter.create(organisation: "none", name: "Oliver", family_name: "Geissen",em
 
 
 simpsons = Family.create(name:"Simpsons")
-simpsons.people.create(name: "Homer", gender: "male", role: head)
+simpsons.people.create(name: "Homer", gender: "male", role: head, program_ids: ["8"])
 simpsons.people.create(name: "Marge",fathers_name: "Homer", gender: "female",role: wife)
 simpsons.people.create(name: "Bart",fathers_name: "Homer", gender: "male", role: child)
