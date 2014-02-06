@@ -5,14 +5,14 @@ $("#addpeople").click(function(){
 });
 function addPeople (){
 	$("#people").append('<div class="person"> \
-						<h1>Person'+peopleNumber+'</h1>\
+						<h1 class="h1person'+peopleNumber+'">Person'+peopleNumber+'</h1>\
 						<div class="field">\
 							<div class="span3"><label for="name">Name</label></div>\
-							<div class="span9"><input id="name" name="person[name]" type="text"></div>\
+							<div class="span9"><input id="name" name="person'+peopleNumber+'" class="person'+peopleNumber+'" type="text"></div>\
 						</div>\
 						<div class="field">\
 							<div class="span3"><label for="person_Father\'s Name">Father\'s name</label></div>\
-							<div class="span9"><input id="fathers_name" name="person[fathers_name]" type="text"></div>\
+							<div class="span9"><input id="fathers_name" class="personsfathername'+peopleNumber+'" name="person[fathers_name]" type="text"></div>\
 						</div>\
 						<div class="field">\
 						<div class="span3"><label for="Role in context of Sharana">Role in the Household</label></div>\
@@ -27,7 +27,30 @@ function addPeople (){
 						</div>\
 						</div>'
 	);
+
+	var $h1 = $(".h1person"+peopleNumber);
+	var $person = $('.person'+peopleNumber);
+	var $fathers_name = $(".personsfathername"+peopleNumber);
+	var $familyList = $("#familyList");
+	$familyList.append('<li class="ListPerson'+peopleNumber+'">Person'+peopleNumber+'</li>');
+	var $familyListPerson = $(".ListPerson"+peopleNumber);
+
+	$person.keyup(function() {
+		if ($fathers_name.val() === undefined) {
+			$fathers_name.text('');
+		};
+		$h1.html($person.val() +" "+ $fathers_name.val());
+		$familyListPerson.html($person.val() +" "+ $fathers_name.val())
+	});
+
+	$fathers_name.keyup(function() {
+		$h1.html($person.val()+" "+ $fathers_name.val());
+		$familyListPerson.html($person.val() +" "+ $fathers_name.val())
+	});
+
 	peopleNumber = peopleNumber + 1;
+
+	return true;
 }
 $("#search").click(function(event){
 	var name = $("#sName").val();
@@ -40,6 +63,7 @@ $("#search").click(function(event){
 	$.ajax({
 		url: "http://"+window.location.host+"/people/search",   // I'm doing the proper routing later, since '/make_suggestion' routes to 'items/1/make_suggestion'
 		type: "PUT",
+		beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
 		dataType: 'json',
 		async: 'false',
 		data: dataToSend,
@@ -75,6 +99,7 @@ $("#submitFamily").click(function(event){
 	$.ajax({
 		url: "http://"+window.location.host+"/families/create",   // I'm doing the proper routing later, since '/make_suggestion' routes to 'items/1/make_suggestion'
 		type: "PUT",
+		beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
 		dataType: 'json',
 		async: 'false',
 		data: dataToSend,
