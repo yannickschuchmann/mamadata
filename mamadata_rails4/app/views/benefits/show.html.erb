@@ -1,27 +1,29 @@
+<% if notice %>
 <p id="notice"><%= notice %></p>
+<% end %>
 <table class="table">
-  <tr>
-    <td>Name:</td>
-    <td><%= @benefit.name %></td>
-  </div>
+	<tr>
+		<td>Name:</td>
+		<td><%= @benefit.name %></td>
+	</div>
 
-  <tr>
-    <td>Descriptioin:</td>
-    <td><%= @benefit.description %></td>
-  </div>
+	<tr>
+		<td>Descriptioin:</td>
+		<td><%= @benefit.description %></td>
+	</div>
 
-  <tr>
-    <td>Belongs to Programs:</td>
-    <td>
-      <ul class="no-bullet">
-        <% @benefit.programs.each do |program| %>
-        <li><%= program.name %></li>
-        <% end %>
-      </ul>
-    </td>
-  </tr>
+	<tr>
+		<td>Belongs to Programs:</td>
+		<td>
+			<ul class="no-bullet">
+				<% @benefit.programs.each do |program| %>
+				<li><%= program.name %></li>
+				<% end %>
+			</ul>
+		</td>
+	</tr>
 </table>
 <div class="button-center">
-    <%= link_to 'Edit', edit_benefit_path(@benefit), :class => "button tiny" %>
-    <%= link_to 'Back', benefits_path, :class => "button tiny" %>
+	<%= link_to 'Edit', edit_benefit_path(@benefit), :class => "button tiny" %>
+	<%= link_to 'Back', benefits_path, :class => "button tiny" %>
 </div>

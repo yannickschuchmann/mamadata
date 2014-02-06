@@ -1,4 +1,7 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+	<p id="notice"><%= notice %></p>
+<% end %>
+
 <table class="table">
 	<tr>
 		<td>Role: </td>
@@ -15,6 +18,7 @@
 		</td>
 	</tr>
 </table>
+
 <div class="button-center">
 <%= link_to 'Edit', edit_role_path(@role), :class => "button tiny" %>
 <%= link_to 'Back', roles_path, :class => "button tiny" %>

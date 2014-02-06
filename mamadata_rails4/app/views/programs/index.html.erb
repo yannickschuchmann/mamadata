@@ -1,40 +1,37 @@
-<h1 class="text-center">Programs</h1>
-<div class="row">
-  <table id="programsIndexTable" class="table tablesorter">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
+<%= render '/shared/overview_sidebar' %>
+<div id="content">
+	<h1 class="text-center">Programs</h1>
+	<table id="programsIndexTable" class="table tablesorter">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
 
-    <tbody>
-      <% @programs.each do |program| %>
-      <tr>
-        <td><%= program.name %></td>
-        <td><%= program.description %></td>
-        <td><%= link_to 'Show Benefits', benefits_program_path(program), :class => 'btn btn-small btn-primary' %></td>
-        <td><%= link_to (content_tag(:i, '', :class => 'icon-file')), program %>
-          <%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_program_path(program) %>
-          <%= link_to (content_tag(:i, '', :class => 'icon-trash')), program, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+		<tbody>
+			<% @programs.each do |program| %>
+			<tr>
+				<td><%= program.name %></td>
+				<td><%= program.description %></td>
+				<td><%= link_to 'Show Benefits', benefits_program_path(program), :class => 'btn btn-small btn-primary' %></td>
+				<td>
+					<%= link_to (content_tag(:i, '', :class => 'icon-file')), program %>
+					<%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_program_path(program) %>
+					<%= link_to (content_tag(:i, '', :class => 'icon-trash')), program, method: :delete, data: { confirm: 'Are you sure?' } %>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
 
-    <br>
-    <div class="button-center">
-      <%= link_to new_program_path, :class => 'button' do %>
-      <%= (content_tag(:i, '', :class => 'icon-pencil')) %>
-      New Program
-      <% end %>
-    </div>
-
-    <script type="text/javascript">
-    $(document).ready(function(){ 
-      $("#programsIndexTable").tablesorter(); 
-    });
-    </script>
-  </div>
+	<br>
+	<div class="button-center">
+		<%= link_to new_program_path, :class => 'button' do %>
+		<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+		New Program
+		<% end %>
+	</div>
+</div>

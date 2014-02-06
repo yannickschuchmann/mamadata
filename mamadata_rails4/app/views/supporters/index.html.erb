@@ -1,55 +1,51 @@
-<h1 class="text-center">Supporters</h1>
-<div class="row">
-  <table id="supporterIndexTable" class="table tablesorter">
-    <thead>
-      <tr>
-        <th>Organisation</th>
-        <th>Name</th>
-        <th>Family name</th>
-        <th>Country</th>
-        <th>City</th>
-        <th>E-Mail</th>
-        <th>Telephone Number</th>
-        <th>Godfather</th>
-        <th>Is Volunteer?</th>
-        <th>Type of Work</th>
-        <th></th>
-      </tr>
-    </thead>
+<%= render '/shared/overview_sidebar' %>
+<div id="content">
+	<h1 class="text-center">Supporters</h1>
+	<table id="supporterIndexTable" class="table tablesorter">
+		<thead>
+			<tr>
+				<th>Organisation</th>
+				<th>Name</th>
+				<th>Family name</th>
+				<th>Country</th>
+				<th>City</th>
+				<th>E-Mail</th>
+				<th>Telephone Number</th>
+				<th>Godfather</th>
+				<th>Is Volunteer?</th>
+				<th>Type of Work</th>
+				<th></th>
+			</tr>
+		</thead>
 
-    <tbody>
-      <% @supporters.each do |supporter| %>
-      <tr>
-        <td><%= supporter.organisation %></td>
-        <td><%= supporter.name %></td>
-        <td><%= supporter.family_name %></td>
-        <td><%= supporter.country %></td>
-        <td><%= supporter.city %></td>
-        <td><%= supporter.email %></td>
-        <td><%= supporter.telephone_number %></td>
-        <td><%= supporter.godfather %></td>
-        <td><%= supporter.is_volunteer %></td>
-        <td><%= supporter.type_of_work %></td>
-        <td>
-          <%= link_to (content_tag(:i, '', :class => 'icon-file')), supporter %>
-          <%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_supporter_path(supporter) %>
-          <%= link_to (content_tag(:i, '', :class => 'icon-trash')), supporter, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+		<tbody>
+			<% @supporters.each do |supporter| %>
+			<tr>
+				<td><%= supporter.organisation %></td>
+				<td><%= supporter.name %></td>
+				<td><%= supporter.family_name %></td>
+				<td><%= supporter.country %></td>
+				<td><%= supporter.city %></td>
+				<td><%= supporter.email %></td>
+				<td><%= supporter.telephone_number %></td>
+				<td><%= supporter.godfather %></td>
+				<td><%= supporter.is_volunteer %></td>
+				<td><%= supporter.type_of_work %></td>
+				<td>
+					<%= link_to (content_tag(:i, '', :class => 'icon-file')), supporter %>
+					<%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_supporter_path(supporter) %>
+					<%= link_to (content_tag(:i, '', :class => 'icon-trash')), supporter, method: :delete, data: { confirm: 'Are you sure?' } %>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
 
-  <br>
-  <div class="button-center">
-    <%= link_to new_supporter_path, :class => 'button' do %>
-    <%= (content_tag(:i, '', :class => 'icon-pencil')) %>
-    New Supporter
-    <% end %>
-  </div>
-  <script type="text/javascript">
-  $(document).ready(function(){ 
-    $("#supporterIndexTable").tablesorter(); 
-  });
-  </script>
+	<br>
+	<div class="button-center">
+		<%= link_to new_supporter_path, :class => 'button' do %>
+		<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+		New Supporter
+		<% end %>
+	</div>
 </div>
