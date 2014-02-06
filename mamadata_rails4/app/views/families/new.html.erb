@@ -4,23 +4,6 @@
 	<div class="small-10 medium-10 large-10 columns">
 		<div id="people"></div>
 	</div>
-	<div class="small-12 medium-2 large-2 columns">
-		<strong>Search for Exsisting People</strong>
-		<p>Name</p>
-		<input id="sName" type="text">
-		<p>Fathers Name</p>
-		<input id="sFname" type="text"> 
-		<p>City</p>
-		<input id="sCity" type="text"> 
-		<p>Zipcode</p>
-		<input id="sZipcode" type="text">
-
-		<button id="search">Search</button>
-		
-		<div id="searchResult">
-			
-		</div>
-	</div>
 </div>
 <div class="row">
 	<div class="small-12 medium-12 large-12 button-center">
@@ -29,4 +12,31 @@
 			<input id="submitFamily" class="button" name="commit" type="submit" value="Submit Family">
 		</div>
 	</div>
+	<dl class="accordion" data-accordion>
+		<dd>
+			<a href="#panel1">Search for Exsisting People</a>
+			<div class="content">
+				<p>Name</p>
+				<input id="sName" type="text">
+				<p>Fathers Name</p>
+				<input id="sFname" type="text"> 
+				<p>City</p>
+				<input id="sCity" type="text"> 
+				<p>Zipcode</p>
+				<input id="sZipcode" type="text">
+
+				<button id="search">Search</button>
+				<div id="searchResult">
+					
+				</div>
+			</div>
+		</dd>
+	</dl>
+</div>
+
+<div id="FamilyListView">
+	<h3>FAMILYLIST</h3>
+	<ul id="familyList">
+		
+	</ul>
 </div>
