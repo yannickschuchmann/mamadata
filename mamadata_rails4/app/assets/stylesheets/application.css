@@ -8,72 +8,38 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *
- *= require foundation_and_overrides
- *= require responsive-tables
  *= require_tree .
  *= require_self
  */
 
 #notice {
-	padding: 20px;
-	background-color: #F5F5F5;
-	font-size: 15px;
-	text-align: center !important;
-	color: green;
-}
-#content { margin-top: 20px;}
-.person-picture { padding-top: 10px;}
-table { margin: 0 auto;}
-.button-edit{ margin: 0 !important;}
-.button-center{
-	text-align: center;
-}
-#off-side {
-	background-color: #333;
-	position: fixed;
-	width: 150px;
-	left: -150px;
-	top: 45px;
-	bottom: 0px;
-	height: 100%;
-	border-right: 1px solid #262626;
-}
-ul.off-canvas-list li a {
-	color: #fff;
-	border-bottom: 0px;
-	padding: 20px;
+    padding: 20px;
+    background-color: #F5F5F5;
+    font-size: 15px;
+    text-align: center !important;
+    color: green;
 }
 
-#side {
-	overflow: auto;
-	width: 100px;
-	position:fixed;
-	top: 0px;
-	bottom: 0px;
-	left:0px;
-	background-color: #333333;
-	z-index: 999;
-	margin-top: 45px;
-	z-index: 1;
-}
-#side-nav { text-align: center;}
-#side-nav > li{
-	padding: 10px 0;
-	margin: 10px 0;
-}
-#side-nav > li > a {
-	color: #fff;
-	padding: 15px 0;
+#content {
+    margin-top: 20px;
 }
 
-#side-nav > dd {
-	font-size: 13px;
-	padding: 10px 5px;
-	margin: 10px 0;
+.person-picture {
+    padding-top: 10px;
 }
-#side-nav > dd > a {
-	color: #fff;
-	padding: 10px 0;
+
+table {
+    margin: 0 auto;
 }
-tr[data-link] {cursor: pointer;}
+
+.button-edit {
+    margin: 0 !important;
+}
+
+.button-center {
+    text-align: center;
+}
+
+tr[data-link] {
+    cursor: pointer;
+}
