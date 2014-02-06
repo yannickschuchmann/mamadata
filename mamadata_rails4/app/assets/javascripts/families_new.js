@@ -40,6 +40,7 @@ $("#search").click(function(event){
 	$.ajax({
 		url: "http://"+window.location.host+"/people/search",   // I'm doing the proper routing later, since '/make_suggestion' routes to 'items/1/make_suggestion'
 		type: "PUT",
+		beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
 		dataType: 'json',
 		async: 'false',
 		data: dataToSend,
@@ -75,6 +76,7 @@ $("#submitFamily").click(function(event){
 	$.ajax({
 		url: "http://"+window.location.host+"/families/create",   // I'm doing the proper routing later, since '/make_suggestion' routes to 'items/1/make_suggestion'
 		type: "PUT",
+		beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
 		dataType: 'json',
 		async: 'false',
 		data: dataToSend,
