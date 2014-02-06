@@ -36,7 +36,7 @@
 					<% end %>
 				</td>
 				<td>
-					<%= person.get_total_expenses %>
+					<%= money_without_cents_and_with_symbol person.get_total_expenses %>
 				</td>
 				<td> <a class="button [tiny small large] button-edit" href="/people/<%= person.id %>/edit"> Edit </a></td>
 			</tr>
