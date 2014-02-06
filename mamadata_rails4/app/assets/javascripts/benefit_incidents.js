@@ -36,7 +36,6 @@
 
   });
   $('#benefit_incident_benefit_id').on('change', function(){
-    alert(benefits_calculated[0].id);
     for (var i=0;i<benefits_calculated.length;i++){
       if (benefits_calculated[i].id == $('#benefit_incident_benefit_id').val()) {
         $('#benefit_incident_amount').val("calculated");
