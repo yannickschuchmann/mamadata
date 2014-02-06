@@ -44,6 +44,7 @@ class BenefitIncidentsController < ApplicationController
     @data = Hash[Program.all.map{|p| [p.id, p.benefits]}]
     @person = Person.find(params[:person_id])
     @programs_for_user = Hash[BeneficiaryProgramRelationship.where(person_id: @person.id).map { |e| [e.id, e.program_id]  }]
+    @benefits_with_calculated_amount = Benefit.where("optional_amount_paise IS NOT NULL")
   end
 
   # GET /benefit_incidents/1/edit
