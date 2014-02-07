@@ -22,6 +22,16 @@
 			</ul>
 		</td>
 	</tr>
+		<tr>
+		<td>Has Beneficiaries:</td>
+		<td>
+			<ul class="no-bullet">
+				<% @benefit.people.distinct.each do |p| %>
+				<li><%= link_to p.name, person_path(p.id) %></li>
+				<% end %>
+			</ul>
+		</td>
+	</tr>
 </table>
 <div class="button-center">
 	<%= link_to 'Edit', edit_benefit_path(@benefit), :class => "button tiny" %>

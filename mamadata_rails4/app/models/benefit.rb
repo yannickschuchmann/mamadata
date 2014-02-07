@@ -2,6 +2,7 @@ class Benefit < ActiveRecord::Base
 	has_many :program_benefit_relationships
 	has_many :programs, through: :program_benefit_relationships 
 	has_many :benefit_incidents
+	has_many :people, through: :programs
 	validates :name, presence: true
 	monetize :optional_amount_paise, allow_nil: true,  :numericality => {
     :greater_than_or_equal_to => 0 }

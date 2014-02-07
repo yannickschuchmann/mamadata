@@ -40,6 +40,9 @@
       if (benefits_calculated[i].id == $('#benefit_incident_benefit_id').val()) {
         $('#benefit_incident_amount').val("calculated");
         $('#benefit_incident_amount').attr("readonly", true)
+      } else {
+        $('#benefit_incident_amount').val("0.00");
+        $('#benefit_incident_amount').attr("readonly", false)
       }
 
     }
