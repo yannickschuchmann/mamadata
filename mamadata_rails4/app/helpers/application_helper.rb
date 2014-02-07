@@ -8,8 +8,8 @@ module ApplicationHelper
 		end
 	end
 
-	def is_editor?
-		if current_user.role == "editor"
+	def is_accountant?
+		if current_user.role == "accountant"
 			return true
 		else
 			return false

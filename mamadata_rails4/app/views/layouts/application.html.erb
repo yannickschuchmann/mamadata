@@ -35,16 +35,19 @@
 	<%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 </head>
 <body>
-	
-	<div id="off-side">
-		<ul class="off-canvas-list">
-			<li><%= link_to 'Overviews', people_path %></li>
-			<li><%= link_to 'Programs', programs_path %></li>
-			<li><%= link_to 'Benefits', benefits_path %></li>
-			<li><%= link_to "Edit Profile", edit_user_registration_path %></li>
-			<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %> </li>
-		</ul>
-	</div>
+	<% if user_signed_in? %>
+		<div id="off-side">
+			<ul class="off-canvas-list">
+				<li><%= link_to 'Overviews', people_path %></li>
+				<% if is_admin? || is_accountant? %>
+					<li><%= link_to 'Programs', programs_path %></li>
+					<li><%= link_to 'Benefits', benefits_path %></li>
+				<% end %>
+				<li><%= link_to 'Settings', edit_user_registration_path %></li>
+				<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %> </li>
+			</ul>
+		</div>
+	<% end %>
 	<div id="wrapper">
 		<!-- Nav Title -->
 		<div class="fixed">
