@@ -1,3 +1,5 @@
+<%= content_for :js do %><%= javascript_include_tag "benefits" %> <% end %>
+
 <%= form_for(@benefit) do |f| %>
 <% if @benefit.errors.any? %>
 <div id="error_explanation">
@@ -21,25 +23,24 @@
 </div>
 
 <div class="row">
-  <%= radio_button(:benefit, :category, "yes") %> 
-<%= label_tag :category, 'Calculated Amount' %>
-<%= radio_button_tag :category, "blubb", "456" %> 
+  <%= radio_button(:benefit, :category, "calculated") %> 
+<%= label_tag :benefit_category_calculated, 'Calculated Amount' %>
+<%= radio_button :benefit, :category, "fixed" %> 
 <%= label_tag :category, 'Fixed Amount' %>
-<%= radio_button_tag :category, "blubb", "123123" %> 
-<%= label_tag :fixed_amount, 'none' %>
+<%= radio_button :benefit, :category, "none",checked: true %> 
+<%= label_tag :category, 'none' %>
 </div>
 
-<div class="row">
+<div class="row" id="fixed_amount" style="display:none">
   <div class="small-12 large-2 column"><%= f.label :fixed_amount, "Fixed Amount" %></div>
-  <div class="small-12 large-10 column"><%= f.text_field :fixed_amount %></div>
+  <div class="small-12 large-10 column reset"><%= f.text_field :fixed_amount %></div>
 </div>
-<div class="row">
+<div class="row" id="calculated_amount" style="display:none">
   <div class="small-12 large-2 column"><%= f.label :optional_amount, "Calculated Amount" %></div>
-  <div class="small-12 large-10 column"><%= f.text_field :optional_amount %></div>
-</div>
-<div class="row">
+  <div class="small-12 large-10 column reset"><%= f.text_field :optional_amount %></div>
+
   <div class="small-12 large-2 column"><%= f.label :max_people, "Number of Beneficiaries" %></div>
-  <div class="small-12 large-10 column"><%= f.number_field :max_people %></div>
+  <div class="small-12 large-10 column reset"><%= f.number_field :max_people %></div>
 </div>
 
 <div class="row">

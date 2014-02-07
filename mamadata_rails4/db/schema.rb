@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20140207191100) do
     t.string   "optional_amount_currency", default: "INR", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "fixed_amount_paise",       default: 0
+    t.integer  "fixed_amount_paise"
     t.string   "fixed_amount_currency",    default: "INR", null: false
     t.integer  "max_people"
     t.string   "category"
