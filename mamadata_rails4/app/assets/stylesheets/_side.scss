@@ -13,7 +13,7 @@
   top: 0px;
   bottom: 0px;
   left: 0px;
-  background-color: #333333;
+  background-color: #e67e22;
   z-index: 999;
   margin-top: 45px;
   z-index: 1;
@@ -29,6 +29,12 @@
         color: #fff;
         padding: 15px 0;
       }
+    }
+    li.active {
+      background-color: #d35400;
+    }
+    li:hover {
+      background-color: #d35400;
     }
     dd {
       font-size: 13px;
