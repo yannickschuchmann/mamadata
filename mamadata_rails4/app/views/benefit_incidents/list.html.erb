@@ -33,8 +33,8 @@
 			<% @benefit_incidents.each do |benefit_incident| %>
 			<tr>
 				<td><%= link_to benefit_incident.person.name, person_path(params[:person_id]) %></td>
-				<td><%= benefit_incident.program.name %></td>
-				<td><%= benefit_incident.benefit.name %></td>
+				<td><%= link_to benefit_incident.program.name, program_path(benefit_incident.program) %></td>
+				<td><%= link_to benefit_incident.benefit.name, benefit_path(benefit_incident.benefit) %></td>
 				<td><%= benefit_incident.amount %></td>
 				<td><%= benefit_incident.remark %></td>
 				<td><%= benefit_incident.status == true ? 'Granted' : 'Pending' %></td>

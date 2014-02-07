@@ -19,9 +19,18 @@
   <div class="small-12 large-2 column"><%= f.label :description %></div>
   <div class="small-12 large-10 column"><%= f.text_field :description %></div>
 
+
+<div class="row">
+  <div class="small-12 large-2 column"><%= f.label :fixed_amount, "Fixed Amount" %></div>
+  <div class="small-12 large-10 column"><%= f.text_field :fixed_amount %></div>
+</div>
 <div class="row">
   <div class="small-12 large-2 column"><%= f.label :optional_amount, "Calculated Amount" %></div>
   <div class="small-12 large-10 column"><%= f.text_field :optional_amount %></div>
+</div>
+<div class="row">
+  <div class="small-12 large-2 column"><%= f.label :max_people, "Number of Beneficiaries" %></div>
+  <div class="small-12 large-10 column"><%= f.number_field :max_people %></div>
 </div>
 
 <div class="row">

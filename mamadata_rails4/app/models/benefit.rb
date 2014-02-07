@@ -6,6 +6,8 @@ class Benefit < ActiveRecord::Base
 	validates :name, presence: true
 	monetize :optional_amount_paise, allow_nil: true,  :numericality => {
     :greater_than_or_equal_to => 0 }
+    monetize :fixed_amount_paise, allow_nil: true,  :numericality => {
+    :greater_than_or_equal_to => 0 }
   after_save :update_calculated_amount
 
 protected
