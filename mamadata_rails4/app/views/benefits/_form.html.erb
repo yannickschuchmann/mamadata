@@ -38,10 +38,10 @@
     <div class="row-fluid">
       <span class="ul">
 
-        <% Program.all.each_slice(10) do |slice| %>
+        <% Program.all.each_slice(5) do |slice| %>
         <div class="span3">
           <% slice.each do |b| %>
-          <label class="li"><%= check_box_tag :program_ids, b.id, @benefit.programs.include?(b), :name => 'benefit[program_ids][]' %> <%= b.name %></label>
+          <label class="small-12 medium-6 large-4 column"><%= check_box_tag :program_ids, b.id, @benefit.programs.include?(b), :name => 'benefit[program_ids][]' %> <%= b.name %></label>
           <% end %>
         </div>
 
