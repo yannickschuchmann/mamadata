@@ -59,7 +59,7 @@ b36 = Benefit.create(name: "Spirulina", description: "Nutrition Support")
 b37 = Benefit.create(name: "Cerelac/ Milk/ Horlicks", description: "Nutrition Support")
 b38 = Benefit.create(name: "Microcredit", description: "Nutrition Support")
 
-benefit_with_amount1 = Benefit.create(name: "Benefit with Calculated Amount 1", description: "", optional_amount: 123456)
+benefit_with_amount1 = Benefit.create(name: "Benefit with Calculated Amount 1", description: "", optional_amount: 20000, max_people: 10)
 
 sponsorship.benefits << [b2,b3,b4,b7,b8,b9,b11,b12,b13,b14,b16,b17,b18,b19,b20,b24,b25,b26,b27,b28,b29,b30,b32,b33,b34,b35,b36,b37]
 homework.benefits <<[b4,b5,b7,b11,b32,b35]

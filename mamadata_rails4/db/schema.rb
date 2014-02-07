@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140207174444) do
+ActiveRecord::Schema.define(version: 20140207191100) do
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
@@ -40,8 +40,18 @@ ActiveRecord::Schema.define(version: 20140207174444) do
   add_index "benefit_incidents", ["person_id"], name: "index_benefit_incidents_on_person_id"
   add_index "benefit_incidents", ["program_id"], name: "index_benefit_incidents_on_program_id"
 
-# Could not dump table "benefits" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "benefits", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "optional_amount_paise"
+    t.string   "optional_amount_currency", default: "INR", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "fixed_amount_paise"
+    t.string   "fixed_amount_currency",    default: "INR", null: false
+    t.integer  "max_people"
+    t.string   "category"
+  end
 
   create_table "community_developments", force: true do |t|
     t.integer  "head_of_household_id"

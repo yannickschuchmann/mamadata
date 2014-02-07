@@ -1,3 +1,5 @@
+<%= content_for :js do %><%= javascript_include_tag "benefits" %> <% end %>
+
 <%= form_for(@benefit) do |f| %>
 <% if @benefit.errors.any? %>
 <div id="error_explanation">
@@ -18,19 +20,27 @@
 <div class="row">
   <div class="small-12 large-2 column"><%= f.label :description %></div>
   <div class="small-12 large-10 column"><%= f.text_field :description %></div>
-
+</div>
 
 <div class="row">
+  <%= radio_button(:benefit, :category, "calculated") %> 
+<%= label_tag :benefit_category_calculated, 'Calculated Amount' %>
+<%= radio_button :benefit, :category, "fixed" %> 
+<%= label_tag :category, 'Fixed Amount' %>
+<%= radio_button :benefit, :category, "none",checked: true %> 
+<%= label_tag :category, 'none' %>
+</div>
+
+<div class="row" id="fixed_amount" style="display:none">
   <div class="small-12 large-2 column"><%= f.label :fixed_amount, "Fixed Amount" %></div>
-  <div class="small-12 large-10 column"><%= f.text_field :fixed_amount %></div>
+  <div class="small-12 large-10 column reset"><%= f.text_field :fixed_amount %></div>
 </div>
-<div class="row">
+<div class="row" id="calculated_amount" style="display:none">
   <div class="small-12 large-2 column"><%= f.label :optional_amount, "Calculated Amount" %></div>
-  <div class="small-12 large-10 column"><%= f.text_field :optional_amount %></div>
-</div>
-<div class="row">
+  <div class="small-12 large-10 column reset"><%= f.text_field :optional_amount %></div>
+
   <div class="small-12 large-2 column"><%= f.label :max_people, "Number of Beneficiaries" %></div>
-  <div class="small-12 large-10 column"><%= f.number_field :max_people %></div>
+  <div class="small-12 large-10 column reset"><%= f.number_field :max_people %></div>
 </div>
 
 <div class="row">
@@ -38,10 +48,10 @@
     <div class="row-fluid">
       <span class="ul">
 
-        <% Program.all.each_slice(10) do |slice| %>
+        <% Program.all.each_slice(5) do |slice| %>
         <div class="span3">
           <% slice.each do |b| %>
-          <label class="li"><%= check_box_tag :program_ids, b.id, @benefit.programs.include?(b), :name => 'benefit[program_ids][]' %> <%= b.name %></label>
+          <label class="small-12 medium-6 large-4 column"><%= check_box_tag :program_ids, b.id, @benefit.programs.include?(b), :name => 'benefit[program_ids][]' %> <%= b.name %></label>
           <% end %>
         </div>
 

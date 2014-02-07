@@ -9,7 +9,7 @@ class BenefitIncident < ActiveRecord::Base
     :greater_than_or_equal_to => 0 }
 	before_save :set_default_status
 	before_save :set_date_granted
-	after_save :update_calculated_amount
+	before_save :update_calculated_amount
 
 
 
@@ -21,9 +21,7 @@ class BenefitIncident < ActiveRecord::Base
 
 		def update_calculated_amount
 			if self.benefit.optional_amount
-				total_numer_of_benefits = BenefitIncident.count(conditions: ["benefit_id = ?", self.benefit.id])
-				amount=benefit.optional_amount_paise/total_numer_of_benefits
-				BenefitIncident.update_all(["amount_paise = ? ", amount], ["benefit_id = ?", self.benefit.id])
+				self.amount=self.benefit.optional_amount/self.benefit.max_people unless benefit.max_people <= 0
 			end
 		end
 		

@@ -8,7 +8,7 @@ class Person < ActiveRecord::Base
   belongs_to :godfather, :class_name => "Supporter"
   has_many :benefit_incidents
   monetize :income_paise, :numericality => {
-    :greater_than_or_equal_to => 0 }
+    greater_than_or_equal_to: 0 }
   
 
     def get_total_expenses
