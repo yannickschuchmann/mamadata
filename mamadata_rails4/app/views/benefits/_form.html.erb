@@ -18,7 +18,16 @@
 <div class="row">
   <div class="small-12 large-2 column"><%= f.label :description %></div>
   <div class="small-12 large-10 column"><%= f.text_field :description %></div>
+</div>
 
+<div class="row">
+  <%= radio_button(:benefit, :category, "yes") %> 
+<%= label_tag :category, 'Calculated Amount' %>
+<%= radio_button_tag :category, "blubb", "456" %> 
+<%= label_tag :category, 'Fixed Amount' %>
+<%= radio_button_tag :category, "blubb", "123123" %> 
+<%= label_tag :fixed_amount, 'none' %>
+</div>
 
 <div class="row">
   <div class="small-12 large-2 column"><%= f.label :fixed_amount, "Fixed Amount" %></div>
