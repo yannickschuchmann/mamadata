@@ -60,6 +60,11 @@ class BenefitIncidentsController < ApplicationController
   # POST /benefit_incidents.json
   def create
     @benefit_incident = BenefitIncident.new(benefit_incident_params)
+    @all_programs = Hash[Program.all.map { |p| [p.id, p.name] }]
+    @person = @benefit_incident.person
+    @data = Hash[Program.all.map{|p| [p.id, p.benefits]}]
+    @programs_for_user = Hash[BeneficiaryProgramRelationship.where(person_id: @person.id).map { |e| [e.program_id, e.id]  }]
+    @benefits_with_calculated_amount = Benefit.where("optional_amount_paise IS NOT NULL")
     respond_to do |format|
       if @benefit_incident.save
         format.html { redirect_to @benefit_incident, notice: 'Benefit incident was successfully created.' }
