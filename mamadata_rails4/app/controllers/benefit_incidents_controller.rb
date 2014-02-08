@@ -40,31 +40,19 @@ class BenefitIncidentsController < ApplicationController
   # GET /benefit_incidents/new
   def new
     @benefit_incident = BenefitIncident.new(person_id: params[:person_id])
-    @all_programs = Hash[Program.all.map { |p| [p.id, p.name] }]
-    @data = Hash[Program.all.map{|p| [p.id, p.benefits]}]
-    @person = Person.find(params[:person_id])
-    @programs_for_user = Hash[BeneficiaryProgramRelationship.where(person_id: @person.id).map { |e| [e.program_id, e.id]  }]
-    @benefits_with_calculated_amount = Benefit.where("optional_amount_paise IS NOT NULL")
+    set_variables_for_javascript
   end
 
   # GET /benefit_incidents/1/edit
   def edit
-    @all_programs = Hash[Program.all.map { |p| [p.id, p.name] }]
-    @person = @benefit_incident.person
-    @data = Hash[Program.all.map{|p| [p.id, p.benefits]}]
-    @programs_for_user = Hash[BeneficiaryProgramRelationship.where(person_id: @person.id).map { |e| [e.program_id, e.id]  }]
-    @benefits_with_calculated_amount = Benefit.where("optional_amount_paise IS NOT NULL")
+    set_variables_for_javascript
   end
 
   # POST /benefit_incidents
   # POST /benefit_incidents.json
   def create
     @benefit_incident = BenefitIncident.new(benefit_incident_params)
-    @all_programs = Hash[Program.all.map { |p| [p.id, p.name] }]
-    @person = @benefit_incident.person
-    @data = Hash[Program.all.map{|p| [p.id, p.benefits]}]
-    @programs_for_user = Hash[BeneficiaryProgramRelationship.where(person_id: @person.id).map { |e| [e.program_id, e.id]  }]
-    @benefits_with_calculated_amount = Benefit.where("optional_amount_paise IS NOT NULL")
+    set_variables_for_javascript
     respond_to do |format|
       if @benefit_incident.save
         format.html { redirect_to @benefit_incident, notice: 'Benefit incident was successfully created.' }
@@ -109,6 +97,14 @@ class BenefitIncidentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def benefit_incident_params
       params.require(:benefit_incident).permit(:person_id, :program_id, :benefit_id, :amount, :remark, :status, :date_granted)
+    end
+
+    def set_variables_for_javascript
+      @all_programs = Hash[Program.all.map { |p| [p.id, p.name] }]
+      @person = @benefit_incident.person
+      @data = Hash[Program.all.map{|p| [p.id, p.benefits]}]
+      @programs_for_user = Hash[BeneficiaryProgramRelationship.where(person_id: @person.id).map { |e| [e.program_id, e.id]  }]
+      @benefits_with_calculated_amount = Benefit.where("optional_amount_paise IS NOT NULL")
     end
 
 
