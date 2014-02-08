@@ -43,11 +43,13 @@
   var setAmountBasedOnBenefit = function () {
     for (var i=0;i<benefits_calculated.length;i++){
       if (benefits_calculated[i].id == $('#benefit_incident_benefit_id').val()) {
-        $('#benefit_incident_amount').val(benefits_calculated[i].optional_amount_paise/100);
+        $('#benefit_incident_amount').val(benefits_calculated[i].optional_amount_paise/100) ;
         $('#benefit_incident_amount').attr("readonly", true)
+        $('#amountlabel').html('Amount (Calculated)');
       } else {
         $('#benefit_incident_amount').val("0.00");
         $('#benefit_incident_amount').attr("readonly", false)
+        $('#amountlabel').html('Amount');
       }
 
     }
@@ -55,9 +57,11 @@
       if (benefits_fixed[i].id == $('#benefit_incident_benefit_id').val()) {
         $('#benefit_incident_amount').val(benefits_calculated[i].fixed_amount_paise/100);
         $('#benefit_incident_amount').attr("readonly", true)
+        $('#amountlabel').html('Amount (Fixed)');
       } else {
         $('#benefit_incident_amount').val("0.00");
         $('#benefit_incident_amount').attr("readonly", false)
+        $('#amountlabel').html('Amount');
       }
 
     }
