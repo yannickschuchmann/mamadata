@@ -67,6 +67,7 @@ class BenefitIncidentsController < ApplicationController
   # PATCH/PUT /benefit_incidents/1
   # PATCH/PUT /benefit_incidents/1.json
   def update
+    set_variables_for_javascript
     respond_to do |format|
       if @benefit_incident.update(benefit_incident_params)
         format.html { redirect_to @benefit_incident, notice: 'Benefit incident was successfully updated.' }
@@ -104,7 +105,8 @@ class BenefitIncidentsController < ApplicationController
       @person = @benefit_incident.person
       @data = Hash[Program.all.map{|p| [p.id, p.benefits]}]
       @programs_for_user = Hash[BeneficiaryProgramRelationship.where(person_id: @person.id).map { |e| [e.program_id, e.id]  }]
-      @benefits_with_calculated_amount = Benefit.where("optional_amount_paise IS NOT NULL")
+      @benefits_with_calculated_amount = Benefit.where(category: "calculated")
+      @benefits_with_fixed_amount = Benefit.where(category: "fixed")
     end
 
 
