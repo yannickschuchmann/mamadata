@@ -8,4 +8,9 @@ FactoryGirl.define do
   	name "Sample Benefit"
   	description "Sample Benefit Description"
   end
+
+  factory :person do
+  	name "Homer"
+  	gender "male"
+  end
 end
