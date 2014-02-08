@@ -1,6 +1,13 @@
-    $("#fixed_amount").hide();
-    $("#calculated_amount").hide();
- 
+var checkedInput = $("input:checked").val();
+
+
+if(checkedInput == "calculated") {
+	$("#calculated_amount").show();
+} else if (checkedInput == "fixed") {
+	$("#fixed_amount").show();
+}
+
+
 $("#benefit_category_fixed").click(function() {
 		clearOtherFields();
 		$("#fixed_amount").show();

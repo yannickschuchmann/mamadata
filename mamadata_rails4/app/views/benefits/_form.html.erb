@@ -23,11 +23,19 @@
 </div>
 
 <div class="row">
-  <%= radio_button(:benefit, :category, "calculated") %> 
+<% if @benefit.category == "calculated" %>
+<%= radio_button(:benefit, :category, "calculated", checked: true) %>
+<% else %> 
+<%= radio_button(:benefit, :category, "calculated") %>
+<% end %>
 <%= label_tag :benefit_category_calculated, 'Calculated Amount' %>
 <%= radio_button :benefit, :category, "fixed" %> 
 <%= label_tag :category, 'Fixed Amount' %>
-<%= radio_button :benefit, :category, "none",checked: true %> 
+<% if !@benefit.category || @benefit.category == "none" %>
+<%= radio_button :benefit, :category, "none",checked: true %>
+<% else %>
+<%= radio_button :benefit, :category, "none" %>
+<% end %> 
 <%= label_tag :category, 'none' %>
 </div>
 

@@ -5,6 +5,7 @@ class BenefitIncident < ActiveRecord::Base
 	validates :person_id, presence: true
 	validates :program_id, presence: true
 	validates :benefit_id, presence: true
+	validate :check_max_users
 	monetize :amount_paise, :numericality => {
     :greater_than_or_equal_to => 0 }
 	before_save :set_default_status
@@ -24,6 +25,15 @@ class BenefitIncident < ActiveRecord::Base
 				self.amount=self.benefit.optional_amount/self.benefit.max_people unless benefit.max_people <= 0
 			end
 		end
+
+		def check_max_users
+			if self.benefit.optional_amount
+				num_of_incidents_with_benefit = BenefitIncident.where(benefit_id: self.benefit_id).count
+				errors.add(:benefit_incident, "max number of users reached") unless num_of_incidents_with_benefit < self.benefit.max_people	
+			end
+
+		end
+
 		
 		
 		def set_default_status
