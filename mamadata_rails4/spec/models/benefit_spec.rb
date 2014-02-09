@@ -45,4 +45,9 @@ describe Benefit do
     @benefit.fixed_amount=10000
     expect(@benefit).not_to be_valid
   end
+
+  it "should be possible to set a fixed amount" do
+    @benefit.fixed_amount = 100
+    expect(@benefit).to be_valid
+  end
 end
