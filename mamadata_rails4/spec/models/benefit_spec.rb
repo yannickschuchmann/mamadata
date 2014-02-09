@@ -19,8 +19,10 @@ describe Benefit do
   it "should be deleted from a program" do
   	@benefit.programs << @program
   	expect(@benefit.programs).to include(@program)
+    expect(@program.benefits).to include(@benefit)
   	@benefit.programs.delete(@program)
   	expect(@benefit.programs).not_to include(@program)
+    expect(@program.benefits).not_to include(@benefit)
   end
 
   it "should have an entry in join table when associated with program" do
@@ -49,5 +51,32 @@ describe Benefit do
   it "should be possible to set a fixed amount" do
     @benefit.fixed_amount = 100
     expect(@benefit).to be_valid
+  end
+
+  it "should have valid numbers for fixed amounts" do
+    @benefit.fixed_amount = 'aaa'
+    expect(@benefit).not_to be_valid
+    @benefit.fixed_amount = -1
+    expect(@benefit).not_to be_valid
+    @benefit.fixed_amount = '   '
+    expect(@benefit).to be_valid
+    @benefit.fixed_amount = 0
+    expect(@benefit).to be_valid
+  end
+
+  it "should have valid numbers for calculated amounts" do
+    @benefit.max_people = 10
+    @benefit.optional_amount = 'aaa'
+    expect(@benefit).not_to be_valid
+    @benefit.optional_amount = -1
+    expect(@benefit).not_to be_valid
+    @benefit.optional_amount = 0
+    expect(@benefit).to be_valid
+    @benefit.optional_amount = '   '
+    expect(@benefit).to be_valid
+    @benefit.max_people = 0
+    expect(@benefit).not_to be_valid
+    @benefit.max_people = -1
+    expect(@benefit).not_to be_valid
   end
 end
