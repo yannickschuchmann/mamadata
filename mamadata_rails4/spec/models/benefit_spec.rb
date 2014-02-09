@@ -79,4 +79,16 @@ describe Benefit do
     @benefit.max_people = -1
     expect(@benefit).not_to be_valid
   end
+
+  # it "should update the calculated amount of incidents" do
+  #   incident = double("BenefitIncident", :benefit => @benefit)
+  #   @benefit.max_people = 10    
+  #   @benefit.optional_amount = 10000
+  #   allow(incident).to receive(:amount).and_return(@benefit.optional_amount/@benefit.max_people)
+  #   expect(incident.amount).to eq(@benefit.optional_amount/@benefit.max_people)
+  #   @benefit.max_people = 20
+  #   @benefit.save
+  #   allow(incident).to receive(:amount).and_return(@benefit.optional_amount/@benefit.max_people)
+  #   expect(incident.amount).to eq(@benefit.optional_amount/@benefit.max_people)
+  # end
 end
