@@ -32,4 +32,17 @@ describe Benefit do
   	expect{@benefit.programs.delete(@program)}.to change{ProgramBenefitRelationship.count}.by(-1)
   end
 
+  it "should have max people set when optional amount is selected" do
+    @benefit.optional_amount=1000
+    expect(@benefit).not_to be_valid
+    @benefit.max_people = 1
+    expect(@benefit).to be_valid
+  end
+
+  it "should not have optional amount and fixed amount set at the same time" do
+    @benefit.optional_amount=1000 
+    @benefit.max_people= 1
+    @benefit.fixed_amount=10000
+    expect(@benefit).not_to be_valid
+  end
 end
