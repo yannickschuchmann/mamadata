@@ -33,6 +33,16 @@ it "should caluclate the right amount based on benefit optional_amount" do
 	expect(@benefit_incident.amount).to eq(Money.new(@benefit.optional_amount/@benefit.max_people))
 end
 
+it "should caluclate the right amount based on benefit optional_amount" do
+	@benefit_incident = BenefitIncident.new
+	@benefit_incident.program = @program
+	@benefit_incident.person = @person
+	@benefit.fixed_amount = 1000
+	@benefit_incident.benefit = @benefit
+	@benefit_incident.save
+	expect(@benefit_incident.amount).to eq(@benefit.fixed_amount)
+end
+
 
 
 

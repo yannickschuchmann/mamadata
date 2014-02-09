@@ -11,6 +11,7 @@ class BenefitIncident < ActiveRecord::Base
 	before_save :set_default_status
 	before_save :set_date_granted
 	before_save :update_calculated_amount
+	before_save :set_fixed_amount
 
 
 
@@ -31,9 +32,13 @@ class BenefitIncident < ActiveRecord::Base
 				num_of_incidents_with_benefit = BenefitIncident.where(benefit_id: self.benefit_id).count
 				errors.add(:benefit_incident, "max number of users reached") unless num_of_incidents_with_benefit < self.benefit.max_people	
 			end
-
 		end
 
+		def set_fixed_amount
+			if self.benefit.fixed_amount
+				self.amount = self.benefit.fixed_amount
+			end
+		end
 		
 		
 		def set_default_status
