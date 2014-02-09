@@ -32,7 +32,9 @@
 		<tbody>
 			<% @benefit_incidents.each do |benefit_incident| %>
 			<tr>
-				<td><%= link_to benefit_incident.person.name, person_path(params[:person_id]) %></td>
+				<td>
+				
+				<%= link_to benefit_incident.person.name, person_path(params[:person_id]) %></td>
 				<td><%= link_to benefit_incident.program.name, program_path(benefit_incident.program) %></td>
 				<td><%= link_to benefit_incident.benefit.name, benefit_path(benefit_incident.benefit) %></td>
 				<td><%= money_without_cents_and_with_symbol benefit_incident.amount %></td>
@@ -43,7 +45,10 @@
 					<%= link_to (content_tag(:i, '', :class => 'icon-file')), benefit_incident %>
 					<%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_benefit_incident_path(benefit_incident) %>
 					<%= link_to (content_tag(:i, '', :class => 'icon-trash')), benefit_incident, method: :delete, data: { confirm: 'Are you sure?' } %>
+
 				</td>
+				<td><%= check_box_tag :checked_incident %></td>
+
 			</tr>
 			<% end %>
 		</tbody>
