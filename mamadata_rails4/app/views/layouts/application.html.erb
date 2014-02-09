@@ -10,26 +10,20 @@
 	<%= javascript_include_tag "vendor/modernizr" %>
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
 	<!--[if lt IE 9]> <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script><![endif] -->
-
 	<%= stylesheet_link_tag "application", :media => "all" %>
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-
 	<!-- For third-generation iPad with high-resolution Retina display: -->
 	<!-- Size should be 144 x 144 pixels -->
 	<%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
-
 	<!-- For iPhone with high-resolution Retina display: -->
 	<!-- Size should be 114 x 114 pixels -->
 	<%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
-
 	<!-- For first- and second-generation iPad: -->
 	<!-- Size should be 72 x 72 pixels -->
 	<%= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
-
 	<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
 	<!-- Size should be 57 x 57 pixels -->
 	<%= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
-
 	<!-- For all other devices -->
 	<!-- Size should be 32 x 32 pixels -->
 	<%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
@@ -42,6 +36,8 @@
 				<% if is_admin? || is_accountant? %>
 					<li><%= link_to 'Programs', programs_path %></li>
 					<li><%= link_to 'Benefits', benefits_path %></li>
+					<li><%= link_to 'Benefit Incidents', benefit_incidents_path %></li>
+					<li><%= link_to 'Roles', roles_path %></li>
 				<% end %>
 				<li><%= link_to 'Settings', edit_user_registration_path %></li>
 				<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %> </li>
@@ -66,21 +62,36 @@
 				<!-- Nav Menu Points -->
 				<section class="top-bar-section">
 					<ul class="nav">
-						<% if user_signed_in? %>
 						<ul class="right">
-							<li><%= link_to 'New Report', people_path %></li>
-							<li><%= link_to 'New Beneficiary', people_path %></li>
+							<% if user_signed_in? %>
+								<% if controller_name == "people" %>
+									<%= render '/shared/people_navigation' %>
+								<% elsif controller_name == "programs" %>
+									<%= render '/shared/program_navigation' %>
+								<% elsif controller_name == "roles" %>
+									<%= render '/shared/role_navigation' %>
+								<% elsif controller_name == "families" %>
+									<%= render '/shared/family_navigation' %>
+								<% elsif controller_name == "supporters" %>
+									<%= render '/shared/supporter_navigation' %>
+								<% elsif controller_name == "benefits" %>
+									<%= render '/shared/benefit_navigation' %>
+								<% elsif controller_name == "benefit_incidents" %>
+									<%= render '/shared/benefit_incidents_navigation' %>
+								<% elsif controller_name == "users" %>
+									<%= render '/shared/user_navigation' %>
+								<% end %>
+							<% end %>
 						</ul>
-						<% end %>
 					</ul>
 				</section>
 			</nav>
 		</div>
 
+
 		<%= yield %>
 		<%= javascript_include_tag "application" %>
-	</div>
-	
+	</div>	
 	<%= yield :js %>
 </body>
 </html>

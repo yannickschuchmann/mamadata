@@ -1,0 +1,9 @@
+<li>
+	<%= link_to new_program_path do %>
+	<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+	New Program
+	<% end %>
+</li>
+<% if params[:action] == "show" %>
+	<li><%= link_to 'Edit', edit_program_path(@program), :class => "button tiny" %></li>
+<% end %>

@@ -38,15 +38,11 @@
 				<td>
 					<%= money_without_cents_and_with_symbol person.get_total_expenses %>
 				</td>
-				<td> <a class="button [tiny small large] button-edit" href="/people/<%= person.id %>/edit"> Edit </a></td>
+				<td style="width: 130px;">
+					<%= link_to (content_tag(:i, '', :class => 'button tiny icon-edit')), edit_person_path(person) %>
+				</td>
 			</tr>
 			<% end %>
 		</tbody>
 	</table>
-	<br>
-	<div class="button-center">
-		<%= link_to "New Person", new_person_path, :class => 'button' %>
-
-
-	</div>
 </div>

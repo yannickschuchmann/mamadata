@@ -20,7 +20,7 @@
 
 		<tbody>
 			<% @supporters.each do |supporter| %>
-			<tr>
+			<tr data-link="<%= supporter_path(supporter) %>">
 				<td><%= supporter.organisation %></td>
 				<td><%= supporter.name %></td>
 				<td><%= supporter.family_name %></td>
@@ -31,21 +31,14 @@
 				<td><%= supporter.godfather %></td>
 				<td><%= supporter.is_volunteer %></td>
 				<td><%= supporter.type_of_work %></td>
-				<td>
-					<%= link_to (content_tag(:i, '', :class => 'icon-file')), supporter %>
-					<%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_supporter_path(supporter) %>
-					<%= link_to (content_tag(:i, '', :class => 'icon-trash')), supporter, method: :delete, data: { confirm: 'Are you sure?' } %>
+				<td style="width: 130px;">
+					<%= link_to (content_tag(:i, '', :class => 'button tiny icon-edit')), edit_supporter_path(supporter) %>
+					<% if is_admin? %>
+						<%= link_to (content_tag(:i, '', :class => 'button tiny icon-trash')), supporter, method: :delete, data: { confirm: 'Are you sure?' } %>
+					<% end %>
 				</td>
 			</tr>
 			<% end %>
 		</tbody>
 	</table>
-
-	<br>
-	<div class="button-center">
-		<%= link_to new_supporter_path, :class => 'button' do %>
-		<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
-		New Supporter
-		<% end %>
-	</div>
 </div>

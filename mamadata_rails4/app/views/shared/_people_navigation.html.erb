@@ -1,0 +1,20 @@
+<li>
+	<%= link_to new_person_path do %>
+	<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+	New Beneficiary
+	<% end %>
+</li>
+<% if params[:action] == "show" %>
+	<li>
+		<%= link_to edit_person_path(@person) do %>
+		<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+		Edit Beneficiary
+		<% end %>
+	</li>
+	<li>
+		<%= link_to new_benefit_incident_path(@person.id) do %>
+		<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+		New Incident
+		<% end %>
+	</li>
+<% end %>

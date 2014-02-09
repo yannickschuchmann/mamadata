@@ -1,5 +1,6 @@
-<h1 class="text-center">Family</h1>
-<div class="row">
+<%= render '/shared/overview_sidebar' %>
+<div id="content">
+	<h1 class="text-center">Family</h1>
 	<table id="familiesIndexTable" class="table tablesorter">
 		<thead>
 			<tr>
@@ -22,7 +23,4 @@
 			<% end %>
 		</tbody>
 	</table>
-	<div class="button-center">
-		<%= link_to "New Family", new_family_path, :class => 'button' %>
-	</div>
 </div>

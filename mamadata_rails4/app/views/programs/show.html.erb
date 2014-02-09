@@ -4,7 +4,7 @@
 
 <table class="table">
 	<tr>
-		<td>Name:</td>
+		<td>Program Name:</td>
 		<td><%= @program.name %></td>
 	</tr>
 	<tr>
@@ -22,8 +22,3 @@
 		</td>
 	</tr>
 </table>
-
-<div class="button-center">
-	<%= link_to 'Edit', edit_program_path(@program), :class => "button tiny" %>
-	<%= link_to 'Back', programs_path, :class => "button tiny" %>
-</div>
