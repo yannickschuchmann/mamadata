@@ -184,7 +184,7 @@
 										<%= incident.date_granted %>
 									<% end %>
 								</td>
-								<td><%= incident.amount %></td>
+								<td><%= money_without_cents_and_with_symbol incident.amount %></td>
 								<td><%= incident.remark %></td>
 							</tr>
 							<% end %>

@@ -32,7 +32,7 @@
 				<td><%= benefit_incident.person.name %></td>
 				<td><%= benefit_incident.program.name %></td>
 				<td><%= benefit_incident.benefit.name %></td>
-				<td><%= benefit_incident.amount %></td>
+				<td><%= money_without_cents_and_with_symbol benefit_incident.amount %></td>
 				<td><%= benefit_incident.remark %></td>
 				<td><%= benefit_incident.status == true ? 'Granted' : 'Pending' %></td>
 				<td><%= benefit_incident.date_granted %></td>
