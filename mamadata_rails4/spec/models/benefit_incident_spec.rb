@@ -1,7 +1,7 @@
 require 'spec_helper'
 	
 describe BenefitIncident do 
-	
+
 	before :each do 
 		@program = FactoryGirl.create(:program)
 		@benefit = FactoryGirl.create(:benefit)
@@ -22,12 +22,18 @@ it "should have a program to belong to" do
 	expect(@benefit_incident).not_to be_valid
 end
 
-it "should raise an error when no benefit is specified" do
+it "should caluclate the right amount based on benefit optional_amount" do
 	@benefit_incident = BenefitIncident.new
 	@benefit_incident.program = @program
 	@benefit_incident.person = @person
-	expect(@benefit_incident).not_to raise_error
+	@benefit.max_people = 10
+	@benefit.optional_amount = 10000
+	@benefit_incident.benefit = @benefit
+	@benefit_incident.save
+	expect(@benefit_incident.amount).to eq(Money.new(@benefit.optional_amount/@benefit.max_people))
 end
+
+
 
 
 end
