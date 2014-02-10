@@ -34,5 +34,5 @@
 <div class="button-center">
 	<%= link_to 'Edit', edit_benefit_incident_path(@benefit_incident), :class => "button tiny" %>
 	<br />
-	<%= link_to 'List All Incidents', benefit_incidents_list_path(person_id: @benefit_incident.person_id), :class => "button" %>
+	<%= link_to 'List All Incidents', person_path(@benefit_incident.person, anchor: "panel2-4"), :class => "button" %>
 </div>
