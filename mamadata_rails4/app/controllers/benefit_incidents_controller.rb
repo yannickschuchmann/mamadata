@@ -1,6 +1,7 @@
 class BenefitIncidentsController < ApplicationController
   before_action :set_benefit_incident, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
+  respond_to :js, :html
   
   # GET /benefit_incidents
   # GET /benefit_incidents.json
@@ -10,16 +11,16 @@ class BenefitIncidentsController < ApplicationController
 
   def list
     @benefit_incidents = BenefitIncident.where(person_id: params[:person_id])
-  end
+    if(params[:status] == "false")
+      @benefit_incidents = BenefitIncident.where(person_id: params[:person_id], status: false)
+    elsif((params[:status] == "true"))
+      @benefit_incidents = BenefitIncident.where(person_id: params[:person_id], status: true)
+    end
 
-  def granted_for_user
-    @benefit_incidents = BenefitIncident.where(person_id: params[:person_id], status: true)
-    render action: 'list'
+   respond_to do |format|
+    format.js {}
   end
-
-  def pending_for_user
-    @benefit_incidents = BenefitIncident.where(person_id: params[:person_id], status: false)
-    render action: 'list'
+    respond_with @benefit_incidents
   end
 
   def granted
