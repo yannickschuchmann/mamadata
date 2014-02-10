@@ -1,20 +1,6 @@
-<h1 class="text-center">Listing Incidents</h1>
 <div class="row">
-	<% if is_admin? %>
-	<div class="button-center">
-		<%= link_to benefits_person_pending_path(params[:person_id]), :class => 'button [tiny small large]' do %>
-		Show Pending Incidents for <%= Person.find(params[:person_id]).name %>
-		<% end %>
-	</div>
-	<div class="button-center">
-		<%= link_to benefits_person_granted_path(params[:person_id]), :class => 'button [tiny small large]' do %>
-		Show Granted Incidents for <%= Person.find(params[:person_id]).name %>
-		<% end %>
+
 </div>
-<div class="button-center">
-		<%= link_to 'New Incident', new_benefit_incident_path(params[:person_id]), :class => "button" %>
-		</div>
-	<% end %>
 	<table id="benefitTable" class="table tabesorter">
 		<thead>
 			<tr>
@@ -34,7 +20,7 @@
 			<tr>
 				<td>
 				
-				<%= link_to benefit_incident.person.name, person_path(params[:person_id]) %></td>
+				<%= link_to benefit_incident.person.name, person_path(@person) %></td>
 				<td><%= link_to benefit_incident.program.name, program_path(benefit_incident.program) %></td>
 				<td><%= link_to benefit_incident.benefit.name, benefit_path(benefit_incident.benefit) %></td>
 				<td><%= money_without_cents_and_with_symbol benefit_incident.amount %></td>
@@ -56,8 +42,6 @@
 
 	<script type="text/javascript">
 
-	$(document).ready(function(){ 
-		$("#benefitTable").tablesorter(); 
-	});
+
 	</script>
 </div>

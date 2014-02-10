@@ -17,6 +17,7 @@
 //= require jquery.tablesorter.min
 //= require foundation
 //= require jquery.turbolinks
+//= require jquery_ujs
 $(function(){
 	$("tr[data-link]").click(function() {
 		window.location = $(this).data("link")
@@ -30,3 +31,5 @@ $(function(){
 $(document).ready(function(){
 	$(".tablesorter").tablesorter();
 });
+
+
