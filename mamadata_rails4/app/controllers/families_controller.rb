@@ -33,7 +33,8 @@ class FamiliesController < ApplicationController
 		@persons = params[:person]
 		@family = Family.create(name:params[:familyname])
 		@persons.each do |key,value|
-			people = @family.people.create(name: value["name"], fathers_name: value["fname"], role: Role.find_by_id(value["role_id"].to_i))
+			    people = @family.people.find_or_initialize_by(name: value["name"], fathers_name: value["fname"])
+    			people.update(name: value["name"], fathers_name: value["fname"], role: Role.find_by_id(value["role_id"].to_i))
 			if value["role_id"].to_i == 1
 				@family.head_id = people.id
 				@family.save
