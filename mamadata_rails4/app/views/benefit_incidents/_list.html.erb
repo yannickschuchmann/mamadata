@@ -1,7 +1,7 @@
 <div class="row">
 
 </div>
-	<table id="benefitTable" class="table tabesorter">
+	<table id="benefitTable" class="tablesorter">
 		<thead>
 			<tr>
 				<th>User</th>
@@ -18,9 +18,7 @@
 		<tbody>
 			<% @benefit_incidents.each do |benefit_incident| %>
 			<tr>
-				<td>
-				
-				<%= link_to benefit_incident.person.name, person_path(@person) %></td>
+				<td><%= link_to benefit_incident.person.name, person_path(@person) %></td>
 				<td><%= link_to benefit_incident.program.name, program_path(benefit_incident.program) %></td>
 				<td><%= link_to benefit_incident.benefit.name, benefit_path(benefit_incident.benefit) %></td>
 				<td><%= money_without_cents_and_with_symbol benefit_incident.amount %></td>

@@ -24,6 +24,9 @@
 				<% end %>
 				<% end %>
 			</ul>
+			<span class="">Total Expenses: 
+			<%= money_without_cents_and_with_symbol @person.get_total_expenses %>
+			</span>
 		</div>
 	</div>
 	<div class="clearfix"></div>
