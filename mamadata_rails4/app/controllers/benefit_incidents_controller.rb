@@ -85,7 +85,7 @@ class BenefitIncidentsController < ApplicationController
   def destroy
     @benefit_incident.destroy
     respond_to do |format|
-      format.html { redirect_to benefit_incidents_url }
+      format.html { redirect_to person_path(@benefit_incident.person, anchor: "panel2-4") }
       format.json { head :no_content }
     end
   end
