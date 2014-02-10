@@ -6,31 +6,43 @@
 	</div>
 </div>
 <div class="row">
-	<div class="small-12 medium-12 large-12 button-center">
+	<div class="small-12 medium-6 large-6 button-center">
 		<div class="button" id="addpeople"> Add People </div>
 		<div class="actions">
 			<input id="submitFamily" class="button" name="commit" type="submit" value="Submit Family">
 		</div>
 	</div>
-	<dl class="accordion" data-accordion>
-		<dd class="active">
-			<a href="#panel1">Search for Exsisting People</a>
-			<div id="panel1" class="content">
-				<p>Name</p>
-				<input id="sName" type="text">
-				<p>Fathers Name</p>
-				<input id="sFname" type="text"> 
-				<p>City</p>
-				<input id="sCity" type="text"> 
-				<p>Zipcode</p>
-				<input id="sZipcode" type="text">
-				<button id="search">Search</button>
-				<div id="searchResult">
-					
+</div>
+<div class="row">
+	<div class="small-12 medium-6 large-6 columns">
+		<dl class="accordion" data-accordion>
+			<dd class="active">
+				<a href="#panel1">Search for Exsisting People</a>
+				<div id="panel1" class="content">
+					<p>Name</p>
+					<input id="sName" type="text">
+					<p>Fathers Name</p>
+					<input id="sFname" type="text"> 
+					<p>City</p>
+					<input id="sCity" type="text"> 
+					<p>Zipcode</p>
+					<input id="sZipcode" type="text">
+					<button id="search">Search</button>
 				</div>
-			</div>
-		</dd>
-	</dl>
+			</dd>
+		</dl>
+	</div>
+	<div class="small-12 medium-6 large-6 columns">
+		<table>
+			<thead> 
+				<tr>
+					<th>Name</th> <th>Fathers Name</th> <th>City</th> <th>Zipcode</th> <th></th> 
+				</tr>
+			</thead>
+			<tbody id="searchResult">
+			</tbody>
+		</table>
+	</div>
 </div>
 
 <div id="FamilyListView">
