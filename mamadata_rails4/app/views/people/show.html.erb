@@ -163,10 +163,14 @@
 				<div class="content" id="panel2-4">
 				<%= javascript_tag "var personId = #{@person.id};" %>
 					<h5>Benefit History</h5>
+					<div class="row">
 		<%= select_tag(:incident_status, options_for_select([['All', nil], ['Pending', "false"], ['Granted', "true"]]),:class => "small-2") %>
 
+
 		<% if is_admin? %>
-		<%= link_to "Grant Checked Incidents", benefit_incidents_list_path(@person, :format => :js), :remote => true, :class => 'button tiny button right' %>
+		
+		<%= link_to "Grant Checked Incidents", benefit_incidents_list_path(@person, :format => :js), :remote => true, :class => 'button tiny' %>
+		</div>
 		<% end %>
 						<div id="incidents">
 							<%= render "/benefit_incidents/list"%>

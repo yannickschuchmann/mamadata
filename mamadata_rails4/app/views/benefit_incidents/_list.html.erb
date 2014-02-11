@@ -4,6 +4,7 @@
 	<table id="benefitTable" class="tablesorter">
 		<thead>
 			<tr>
+			<th></th>
 				<th>User</th>
 				<th>Program</th>
 				<th>Benefit</th>
@@ -18,6 +19,7 @@
 		<tbody>
 			<% @benefit_incidents.each do |benefit_incident| %>
 			<tr>
+			<td><%= check_box_tag :checked_incident %></td>
 				<td><%= link_to benefit_incident.person.name, person_path(@person) %></td>
 				<td><%= link_to benefit_incident.program.name, program_path(benefit_incident.program) %></td>
 				<td><%= link_to benefit_incident.benefit.name, benefit_path(benefit_incident.benefit) %></td>
@@ -31,7 +33,7 @@
 					<%= link_to (content_tag(:i, '', :class => 'icon-trash')), benefit_incident, method: :delete, data: { confirm: 'Are you sure?' } %>
 
 				</td>
-				<td><%= check_box_tag :checked_incident %></td>
+				
 
 			</tr>
 			<% end %>
