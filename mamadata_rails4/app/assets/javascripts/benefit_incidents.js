@@ -1,5 +1,5 @@
-  var benefitsOfSelectedProgram;
   var currentlySelected;
+
   $('#benefit_incident_program_id').empty();
 
   // set values for programs select box
@@ -19,10 +19,11 @@
      .text(value.name));
  });
 
+
   // check for changes in programs select box
   $('#benefit_incident_program_id').on('change', function(){
     $('#benefit_incident_benefit_id').empty();
-    benefitsOfSelectedProgram = data[this.value];
+    var benefitsOfSelectedProgram = data[this.value];
 
 
     // set values for benefits select box, based on selected program
@@ -43,7 +44,7 @@
   });
 
   var setAmountBasedOnBenefit = function () {
-
+    
     if(hasCalculatedAmount()){
         $('#benefit_incident_amount').val(benefits_calculated[currentlySelected]/100) ;
         $('#benefit_incident_amount').attr("readonly", true)
@@ -57,17 +58,16 @@
         $('#benefit_incident_amount').attr("readonly", false)
         $('#amountlabel').html('Amount');      
     }
-
-  }
+  };
 
   var hasFixedAmount = function() {
     currentlySelected = $('#benefit_incident_benefit_id :selected').val();
     return allBenefits[currentlySelected] == 'fixed';
-  }
+  };
 
   var hasCalculatedAmount = function() {
     currentlySelected = $('#benefit_incident_benefit_id :selected').val();
     return allBenefits[currentlySelected] == 'calculated';
-  }
+  };
 
-
+setAmountBasedOnBenefit();
