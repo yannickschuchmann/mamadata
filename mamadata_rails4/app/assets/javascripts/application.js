@@ -32,4 +32,12 @@ $(document).ready(function(){
 	$(".tablesorter").tablesorter();
 });
 
+$('#incident_status').change(function(){
+  $.ajax({
+    url: "/benefit_incidents/list/"+personId,
+    type: "GET",
+    data: {status: $('#incident_status option:selected').val()},
+  })
+});
+
 

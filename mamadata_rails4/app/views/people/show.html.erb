@@ -161,13 +161,10 @@
 					</table>
 				</div>
 				<div class="content" id="panel2-4">
-
+				<%= javascript_tag "var personId = #{@person.id};" %>
 					<h5>Benefit History</h5>
-					 	
+		<%= select_tag(:incident_status, options_for_select([['All', nil], ['Pending', "false"], ['Granted', "true"]]),:class => "small-2") %>
 
-		<%= link_to "Show Pending", benefit_incidents_list_path(@person, status: false, :format => :js), :remote => true, :class => 'button tiny' %>
-		<%= link_to "Show Granted", benefit_incidents_list_path(@person, status: true, :format => :js), :remote => true, :class => 'button tiny' %>
-		<%= link_to "Show All", benefit_incidents_list_path(@person, :format => :js), :remote => true, :class => 'button tiny' %>
 		<% if is_admin? %>
 		<%= link_to "Grant Checked Incidents", benefit_incidents_list_path(@person, :format => :js), :remote => true, :class => 'button tiny button right' %>
 		<% end %>
@@ -181,3 +178,6 @@
 		</div>
 	</div>
 </div>
+<script>
+
+</script>

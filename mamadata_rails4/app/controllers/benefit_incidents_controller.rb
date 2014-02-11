@@ -10,6 +10,9 @@ class BenefitIncidentsController < ApplicationController
   end
 
   def list
+    puts "@@@@@@"
+    puts params
+    puts "@@@@@@"
     @benefit_incidents = BenefitIncident.where(person_id: params[:person_id])
     if(params[:status] == "false")
       @benefit_incidents = BenefitIncident.where(person_id: params[:person_id], status: false)
