@@ -45,7 +45,11 @@
   <% if is_admin? %>
   <div class="row">
     <div class="small-12 large-3 columns"><%= f.label :status %></div>
-    <div class="small-12 large-9 columns"><%= f.select :status, [['Granted',true],['Pending', false]], :selected =>  ['Pending', false] %></div>
+    <% if @benefit_incident.status %>
+      <div class="small-12 large-9 columns"><%= f.select :status, [['Granted',true],['Pending', false]], :selected =>  ['Granted', true] %></div>
+    <% else %>
+      <div class="small-12 large-9 columns"><%= f.select :status, [['Granted',true],['Pending', false]], :selected =>  ['Pending', false] %></div>
+    <% end %>
   </div>
   <% else %>
   <div class="row">

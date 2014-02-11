@@ -1,14 +1,14 @@
   var currentlySelected;
 
-  $('#benefit_incident_program_id').empty();
+ //  $('#benefit_incident_program_id').empty();
 
-  // set values for programs select box
-  $.each(programsOfPerson, function( value) {   
-   $('#benefit_incident_program_id')
-   .append($("<option></option>")
-     .attr("value",value)
-     .text(allPrograms[value]));
- });
+ //  // set values for programs select box
+ //  $.each(programsOfPerson, function( value) {   
+ //   $('#benefit_incident_program_id')
+ //   .append($("<option></option>")
+ //     .attr("value",value)
+ //     .text(allPrograms[value]));
+ // });
 
   // set values for benefits select box, dependent on first program in list
   var initialProgram = $('#benefit_incident_program_id').val();
