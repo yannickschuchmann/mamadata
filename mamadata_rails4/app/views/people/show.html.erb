@@ -167,6 +167,7 @@
 		<%= select_tag(:incident_status, options_for_select([['Show All', nil], ['Show Pending', "false"], ['Show Granted', "true"]]),:class => "small-2") %>
 
 
+	
 		<% if is_admin? %>
 		
 		<%= link_to "Grant Checked Incidents", benefit_incidents_list_path(@person, :format => :js), :remote => true, :class => 'button tiny' %>

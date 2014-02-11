@@ -7,9 +7,8 @@ MamadataRails4::Application.routes.draw do
 
   resources :benefit_incidents, only: [:show, :edit, :index, :create, :update, :destroy]
 
+  get 'benefit_incidents/add_user_to_program/:person_id', to: 'benefit_incidents#add_user_to_program', as: :add_user_to_program
   get 'benefit_incidents/list/:person_id', to: 'benefit_incidents#list', as: :benefit_incidents_list
-  get 'benefit_incidents/list/:person_id/granted', to: 'benefit_incidents#granted_for_user', as: :benefits_person_granted
-  get 'benefit_incidents/list/:person_id/pending', to: 'benefit_incidents#pending_for_user', as: :benefits_person_pending
   get 'benefit_incidents/new/:person_id', to: 'benefit_incidents#new', as: :new_benefit_incident
   get 'benefit_incidents_pending', to: 'benefit_incidents#pending', as: :benefit_incidents_pending
   get 'benefit_incidents_granted', to: 'benefit_incidents#granted', as: :benefit_incidents_granted

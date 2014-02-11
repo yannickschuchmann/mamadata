@@ -1,7 +1,19 @@
 <h1 class="text-center">New Incident</h1>
+  <div class="button-center">
+    <%= link_to 'Add Person to Program', add_user_to_program_path(@benefit_incident.person), :class => 'button small'
+    %></div>
+
+
+
+
+
+<% if !@benefit_incident.person.programs.empty?%>
+
 
 <%= render 'form' %>
 
+<% end %>
+
 <div class="button-center">
-	<%= link_to 'Back', benefit_incidents_list_path(@benefit_incident.person_id), :class => "button tiny" %>
+	<%= link_to 'Back', person_path(@benefit_incident.person_id), :class => "button tiny" %>
 </div>

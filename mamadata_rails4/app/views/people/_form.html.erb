@@ -180,19 +180,7 @@
 			<%= f.select :godfather_id, Supporter.where(:godfather => true).map{|role| [role.name.to_s + " " + role.family_name.to_s, role.id]} %>
 		</div>
 	</div>
-	<h2 class="text-center">Programs</h2>
-	<div class="row">
-		<div class="large-12 column">
-		<div class="row">
-			<% Program.all.each_slice(10) do |slice| %>
-				<% slice.each do |p| %>
-				<label class="small-12 medium-6 large-4 column"><%= check_box_tag :program_ids, p.id, @person.programs.include?(p), :name => 'person[program_ids][]' %> <%= p.name %>
-				</label>
-				<% end %>
-			<% end %>
-		</div>
-		</div>
-	</div>
+	<%= render 'program_checkboxes' %>
 
 	<!-- TODO: AJAX ! -->
 	<div class="row button-center">

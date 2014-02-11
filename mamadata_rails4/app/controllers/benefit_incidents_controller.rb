@@ -10,9 +10,6 @@ class BenefitIncidentsController < ApplicationController
   end
 
   def list
-    puts "@@@@@@"
-    puts params
-    puts "@@@@@@"
     @benefit_incidents = BenefitIncident.where(person_id: params[:person_id])
     if(params[:status] == "false")
       @benefit_incidents = BenefitIncident.where(person_id: params[:person_id], status: false)
@@ -34,6 +31,10 @@ class BenefitIncidentsController < ApplicationController
   def pending
     @benefit_incidents = BenefitIncident.where(status: false)
     render action: 'index'
+  end
+
+  def add_user_to_program
+    @person = Person.find(params[:person_id])
   end
 
   # GET /benefit_incidents/1

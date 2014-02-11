@@ -12,10 +12,7 @@
 </div>
 <% end %>
 <h2 class="text-center">Person: <%=@benefit_incident.person.name %></h2>
-
-  <div class="button-center">
-    <%= link_to 'Add Person to Program', edit_person_path(@benefit_incident.person_id), :class => 'button small' %></div>
-    <% if !@benefit_incident.person.programs.empty?%>
+    
 <div class="row">
   <div class="small-12 large-12 columns"><%= f.hidden_field :person_id, value: @benefit_incident.person_id %></div>
 </div>
@@ -61,7 +58,7 @@
     <%= f.submit :class => 'button' %>
   </div>
   <% end %>
-<%end%>
+
 
    <script>
 

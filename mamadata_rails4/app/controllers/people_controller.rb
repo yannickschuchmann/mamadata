@@ -21,6 +21,9 @@ class PeopleController < ApplicationController
 
   # GET /people/1/edit
   def edit
+    if params[:section] == "programs"
+      render partial: 'program_checkboxes'
+    end
   end
 
   # POST /people
@@ -48,6 +51,9 @@ class PeopleController < ApplicationController
   def update
     respond_to do |format|
       if @person.update(person_params)
+        if params[:redirect_to_incident] == 'true'
+          format.html { redirect_to new_benefit_incident_path(@person), notice: 'Person was successfully updated.' }
+        end
         format.html { redirect_to @person, notice: 'Person was successfully updated.' }
         format.json { head :no_content }
       else

@@ -40,4 +40,11 @@ $('#incident_status').change(function(){
   })
 });
 
+// $('#addbutton').on('click', function(e){
+// 	e.preventDefault();
+//   alert("lame");
+//   $('#content-form').html(
+
+// )
+// });
 
