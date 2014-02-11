@@ -106,7 +106,7 @@ class BenefitIncidentsController < ApplicationController
       @person = @benefit_incident.person
       @data = Hash[Program.all.map{|p| [p.id, p.benefits]}]
       @programs_for_user = Hash[BeneficiaryProgramRelationship.where(person_id: @person.id).map { |e| [e.program_id, e.id]  }]
-      @benefits_with_calculated_amount = Hash[Benefit.where(category: "calculated").map {|b| [b.id, b.optional_amount_paise]}]
+      @benefits_with_calculated_amount = Hash[Benefit.where(category: "calculated").map {|b| [b.id, (b.optional_amount_paise/b.max_people)]}]
       @benefits_with_fixed_amount = Hash[Benefit.where(category: "fixed").map {|b| [b.id, b.fixed_amount_paise]}]
       @all_benefits = Hash[Benefit.all.map { |p| [p.id, p.category] }]
     end
