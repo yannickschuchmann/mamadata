@@ -170,7 +170,7 @@
 	
 		<% if is_admin? %>
 		
-		<%= link_to "Grant Checked Incidents", benefit_incidents_list_path(@person, :format => :js), :remote => true, :class => 'button tiny' %>
+		<%= link_to "set granted", benefit_incidents_granted_path, id: 'setgrantedbtn' %>
 		</div>
 		<% end %>
 						<div id="incidents">

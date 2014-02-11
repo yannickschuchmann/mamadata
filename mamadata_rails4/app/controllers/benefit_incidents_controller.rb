@@ -72,12 +72,14 @@ class BenefitIncidentsController < ApplicationController
   # PATCH/PUT /benefit_incidents/1
   # PATCH/PUT /benefit_incidents/1.json
   def update
-    
+    puts "@@@@@@@2"
+    puts params
     set_variables_for_javascript
     respond_to do |format|
       if @benefit_incident.update(benefit_incident_params)
         format.html { redirect_to @benefit_incident, notice: 'Benefit incident was successfully updated.' }
         format.json { head :no_content }
+        format.js {}
       else
         format.html { render action: 'edit' }
         format.json { render json: @benefit_incident.errors, status: :unprocessable_entity }

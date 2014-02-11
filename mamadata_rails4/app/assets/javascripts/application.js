@@ -36,15 +36,28 @@ $('#incident_status').change(function(){
   $.ajax({
     url: "/benefit_incidents/list/"+personId,
     type: "GET",
-    data: {status: $('#incident_status option:selected').val()},
+    data: {status: $('#incident_status option:selected').val()}
   })
 });
 
-// $('#addbutton').on('click', function(e){
-// 	e.preventDefault();
-//   alert("lame");
-//   $('#content-form').html(
+$('#setgrantedbtn').on('click', function(e){
+	e.preventDefault();
+$(".chk").each(function() {
+	if($(this).is(':checked')){
+	alert($(this).val());
+	  $.ajax({
+    url: "/benefit_incidents/"+ $(this).val(),
+    type: "PATCH",
+    data: {benefit_incident: {status: true}},
+    dataType: "json"
+  })
+	}
+});
+  $.ajax({
+    url: "/benefit_incidents/list/"+personId,
+    type: "GET",
+    data: {status: $('#incident_status option:selected').val()}
+  })
 
-// )
-// });
+});
 
