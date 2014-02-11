@@ -17,7 +17,7 @@ class BenefitIncidentsController < ApplicationController
       @benefit_incidents = BenefitIncident.where(person_id: params[:person_id], status: true)
     end
 
-   respond_to do |format|
+  respond_to do |format|
     format.js {}
   end
     respond_with @benefit_incidents
@@ -68,6 +68,7 @@ class BenefitIncidentsController < ApplicationController
   # PATCH/PUT /benefit_incidents/1
   # PATCH/PUT /benefit_incidents/1.json
   def update
+    
     set_variables_for_javascript
     respond_to do |format|
       if @benefit_incident.update(benefit_incident_params)

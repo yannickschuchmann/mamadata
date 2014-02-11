@@ -26,7 +26,7 @@
 <div class="row">
 
     <div class="small-12 large-3 columns"><%= f.label :program_id %></div>
-    <div class="small-12 large-9 columns"><%= f.select :program_id, Program.all.map{|program| [program.name, program.id]}%></div>
+    <div class="small-12 large-9 columns"><%= f.select :program_id, @person.programs.map{|program| [program.name, program.id]}%></div>
   </div>
   <div class="row">
     <div class="small-12 large-3 columns"><%= f.label :benefit_id %></div>
