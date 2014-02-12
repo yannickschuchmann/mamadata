@@ -67,12 +67,18 @@ $(".chk").each(function() {
 
 $('#calculatebtn').on('click', function(e){
 	e.preventDefault();
-	var toalAmountChecked = 0;
-$("#incident_amount").each(function() {
-		alert($('#incident_amount').text());
-		$('#calculated_amount').html($('#incident_amount').text());
+	var ids = new Array();
+$(".chk").each(function() {
+	if($(this).is(':checked')){
+		ids.push($(this).val());
+	}
 });
-
+$("#calculated_amount").show();
+$.ajax({
+    url: "/benefit_incidents/test/calculated",
+    type: "GET",
+    data: {array: ids},
+  })
 });
 
 

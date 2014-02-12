@@ -9,6 +9,18 @@ class BenefitIncidentsController < ApplicationController
     @benefit_incidents = BenefitIncident.all
   end
 
+  def calculated
+    @amount = Money.new(0);
+    @benefit_incidents = BenefitIncident.find(params[:array])
+    @benefit_incidents.each do |b|
+      @amount += b.amount
+    end
+  respond_to do |format|
+    format.js {}
+  end
+    respond_with @amount
+  end
+
   def list
     @benefit_incidents = BenefitIncident.where(person_id: params[:person_id])
     @benefit_incidents=@benefit_incidents.where("created_at >= ?",  params[:list_date]) if params[:list_date]
