@@ -171,8 +171,10 @@
 		<% if is_admin? %>
 		
 		<%= link_to "set granted", benefit_incidents_granted_path, id: 'setgrantedbtn' %>
-		</div>
+
 		<% end %>
+		</div>
+		
 						<div id="incidents">
 							<%= render "/benefit_incidents/list"%>
 						</div>
