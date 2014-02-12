@@ -172,6 +172,10 @@
 		
 		<%= link_to "set granted", benefit_incidents_granted_path, id: 'setgrantedbtn' %>
 
+		<%= date_field(:benefit_incident, :created_at) %>
+
+		<!-- <%= select_date Date.today, prefix: :start_date %> -->
+
 		<% end %>
 		</div>
 		

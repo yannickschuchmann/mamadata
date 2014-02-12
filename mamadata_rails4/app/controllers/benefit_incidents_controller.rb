@@ -11,10 +11,13 @@ class BenefitIncidentsController < ApplicationController
 
   def list
     @benefit_incidents = BenefitIncident.where(person_id: params[:person_id])
+    @benefit_incidents=@benefit_incidents.where("created_at >= ?",  params[:list_date]) if params[:list_date]
     if(params[:status] == "false")
       @benefit_incidents = BenefitIncident.where(person_id: params[:person_id], status: false)
+      @benefit_incidents=@benefit_incidents.where("created_at >= ?",  params[:list_date]) if params[:list_date]
     elsif((params[:status] == "true"))
       @benefit_incidents = BenefitIncident.where(person_id: params[:person_id], status: true)
+      @benefit_incidents=@benefit_incidents.where("created_at >= ?",  params[:list_date]) if params[:list_date]
     end
 
   respond_to do |format|

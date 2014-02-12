@@ -33,11 +33,7 @@ $(document).ready(function(){
 });
 
 $('#incident_status').change(function(){
-  $.ajax({
-    url: "/benefit_incidents/list/"+personId,
-    type: "GET",
-    data: {status: $('#incident_status option:selected').val()}
-  })
+	updateIncidentList();
 });
 
 $('#setgrantedbtn').on('click', function(e){
@@ -52,11 +48,25 @@ $(".chk").each(function() {
   })
 	}
 });
-  $.ajax({
+	updateIncidentList();
+});
+
+$('#benefit_incident_created_at').change(function(){
+	alert($('#benefit_incident_created_at').val());
+		  $.ajax({
     url: "/benefit_incidents/list/"+personId,
     type: "GET",
-    data: {status: $('#incident_status option:selected').val()}
+    data: {list_date: $('#benefit_incident_created_at').val(), status: $('#incident_status option:selected').val()}
   })
 
 });
 
+
+
+var updateIncidentList = function() {
+	  $.ajax({
+    url: "/benefit_incidents/list/"+personId,
+    type: "GET",
+    data: {status: $('#incident_status option:selected').val()}
+  })
+	};
