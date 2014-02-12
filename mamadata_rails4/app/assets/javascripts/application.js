@@ -33,6 +33,16 @@ $(document).ready(function(){
 	$(".tablesorter").tablesorter();
 });
 
+
+/* Person Show */ 
+var updateIncidentList = function() {
+	  $.ajax({
+    url: "/benefit_incidents/list/"+ personId,
+    type: "GET",
+    data: {status: $('#incident_status option:selected').val(), list_date: $('#benefit_incident_created_at').val()}
+  })
+	};
+
 $('#incident_status').change(function(){
 	updateIncidentList();
 });
@@ -42,7 +52,7 @@ $('#setgrantedbtn').on('click', function(e){
 $(".chk").each(function() {
 	if($(this).is(':checked')){
 	  $.ajax({
-    url: "/benefit_incidents/"+ $(this).val(),
+    url: "/benefit_incidents/" + $(this).val(),
     type: "PATCH",
     data: {benefit_incident: {status: true}},
     dataType: "json"
@@ -52,18 +62,28 @@ $(".chk").each(function() {
 	updateIncidentList();
 });
 
+
+
+
+$('#calculatebtn').on('click', function(e){
+	e.preventDefault();
+	var toalAmountChecked = 0;
+$("#incident_amount").each(function() {
+		alert($('#incident_amount').text());
+		$('#calculated_amount').html($('#incident_amount').text());
+});
+
+});
+
+
+
+
 $('#benefit_incident_created_at').change(function(){
 updateIncidentList();
 
 });
 
-var updateIncidentList = function() {
-	  $.ajax({
-    url: "/benefit_incidents/list/"+personId,
-    type: "GET",
-    data: {status: $('#incident_status option:selected').val(), list_date: $('#benefit_incident_created_at').val()}
-  })
-	};
+
 
 
 $('#benefit_incident_created_at').datepicker({
