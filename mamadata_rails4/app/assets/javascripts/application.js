@@ -53,11 +53,7 @@ $(".chk").each(function() {
 });
 
 $('#benefit_incident_created_at').change(function(){
-		  $.ajax({
-    url: "/benefit_incidents/list/"+personId,
-    type: "GET",
-    data: {list_date: $('#benefit_incident_created_at').val(), status: $('#incident_status option:selected').val()}
-  })
+updateIncidentList();
 
 });
 
@@ -65,7 +61,7 @@ var updateIncidentList = function() {
 	  $.ajax({
     url: "/benefit_incidents/list/"+personId,
     type: "GET",
-    data: {status: $('#incident_status option:selected').val()}
+    data: {status: $('#incident_status option:selected').val(), list_date: $('#benefit_incident_created_at').val()}
   })
 	};
 
@@ -82,10 +78,12 @@ $('#benefit_incident_created_at').datepicker({
 
 });
 
-$('#filter_date').on('click', function(){
+$('#filter_date').change( function(){
 	if($(this).is(':checked')){
 		$('#benefit_incident_created_at').show();
 	} else {
 		$('#benefit_incident_created_at').hide();
+		$('#benefit_incident_created_at').val('');
+		updateIncidentList();
 	}
 });
