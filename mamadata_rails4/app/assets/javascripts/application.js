@@ -18,6 +18,7 @@
 //= require foundation
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery.ui.all
 $(function(){
 	$("tr[data-link]").click(function() {
 		window.location = $(this).data("link")
@@ -52,7 +53,6 @@ $(".chk").each(function() {
 });
 
 $('#benefit_incident_created_at').change(function(){
-	alert($('#benefit_incident_created_at').val());
 		  $.ajax({
     url: "/benefit_incidents/list/"+personId,
     type: "GET",
@@ -61,8 +61,6 @@ $('#benefit_incident_created_at').change(function(){
 
 });
 
-
-
 var updateIncidentList = function() {
 	  $.ajax({
     url: "/benefit_incidents/list/"+personId,
@@ -70,3 +68,24 @@ var updateIncidentList = function() {
     data: {status: $('#incident_status option:selected').val()}
   })
 	};
+
+
+$('#benefit_incident_created_at').datepicker({
+    dateFormat:'yy-mm-dd',
+    duration: 'normal',
+    changeMonth: true,
+    changeYear: true,
+    gotoCurrent: true,
+    autoSize: true,
+    showButtonPanel: true,
+    inline: true
+
+});
+
+$('#filter_date').on('click', function(){
+	if($(this).is(':checked')){
+		$('#benefit_incident_created_at').show();
+	} else {
+		$('#benefit_incident_created_at').hide();
+	}
+});
