@@ -170,14 +170,16 @@
 	
 		<% if is_admin? %>
 		
-		<%= link_to "set granted", benefit_incidents_granted_path, id: 'setgrantedbtn' %>
+		<p><a href='#' id='setgrantedbtn'>Set Granted</a></p>
+		<% end %>
+		<p><a href='#'>Calcualte</a></p>
 
 		<!-- <%= date_field(:benefit_incident, :created_at) %> -->
 		<p>Filter Date: <input type="checkbox" id="filter_date"><input type="text" id="benefit_incident_created_at" style="display:none"></p>
 
 		<!-- <%= select_date Date.today, prefix: :start_date %> -->
 
-		<% end %>
+		
 		</div>
 		
 						<div id="incidents">
