@@ -44,7 +44,6 @@ $('#setgrantedbtn').on('click', function(e){
 	e.preventDefault();
 $(".chk").each(function() {
 	if($(this).is(':checked')){
-	alert($(this).val());
 	  $.ajax({
     url: "/benefit_incidents/"+ $(this).val(),
     type: "PATCH",
