@@ -1,14 +1,17 @@
 
 var updateIncidentList = function() {
-	  $.ajax({
+	$.ajax({
     url: "/benefit_incidents/list/"+ personId,
     type: "GET",
     data: {status: $('#incident_status option:selected').val(), list_date: $('#benefit_incident_created_at').val()}
-  })
-	};
+    })
+};
 
 $('#incident_status').change(function(){
 	updateIncidentList();
+    $('#calculated_amount').val('');
+    $('#calculated_amount').hide();
+
 });
 
 $('#setgrantedbtn').on('click', function(e){

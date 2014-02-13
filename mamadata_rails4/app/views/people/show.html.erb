@@ -161,22 +161,27 @@
 						</tbody>
 					</table>
 				</div>
+
+
 				<div class="content" id="panel2-4">
 				<%= javascript_tag "var personId = #{@person.id};" %>
 					<h5>Benefit History</h5>
+
+
 	<div class="row">
 		<%= select_tag(:incident_status, options_for_select([['Show All', nil], ['Show Pending', "false"], ['Show Granted', "true"]]),:class => "small-3") %>
-
-
 	
 		<% if is_admin? %>
 		
 		<a href='#' id='setgrantedbtn' class="button tiny small-3">Set Granted</a>
+
 		<% end %>
+
 		<a href='#' id='calculatebtn' class="button tiny small-3">Calcualte</a>
 		<div id='calculated_amount' style="display:none"></div>
 
-		<p>Date Filter <input type="checkbox" id="filter_date"><input type="text" id="benefit_incident_created_at" style="display:none"></p>
+		<p>Filter by Date<input type="checkbox" id="filter_date">
+		<input type="text" id="benefit_incident_created_at" style="display:none"></p>
 
 
 		
