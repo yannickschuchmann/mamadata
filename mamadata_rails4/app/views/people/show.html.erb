@@ -19,10 +19,8 @@
 			<h3><%= @person.name %></h3>
 			<h5><b>File: <%= @person.id %></b></h5>
 			<ul class="no-bullet">
-				<% Program.all.each do |p| %>
-				<% if @person.programs.include?(p) %>
+				<% @person.programs.each do |p| %>
 				<span class="label"><%= p.name %></span>
-				<% end %>
 				<% end %>
 			</ul>
 			<span class="">Total Expenses: 

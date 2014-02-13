@@ -1,4 +1,3 @@
-
   var currentlySelected;
  
   // set values for benefits select box, dependent on first program in list
@@ -36,7 +35,6 @@
   });
 
   var setAmountBasedOnBenefit = function () {
-    
     if(hasCalculatedAmount()){
         $('#benefit_incident_amount').val(benefits_calculated[currentlySelected]/100) ;
         $('#benefit_incident_amount').attr("readonly", true)
@@ -51,7 +49,6 @@
         }
         $('#benefit_incident_amount').attr("readonly", false)
         $('#amountlabel').html('Amount'); 
-
     }
   };
 
