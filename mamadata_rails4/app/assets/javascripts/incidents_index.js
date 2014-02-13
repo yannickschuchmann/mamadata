@@ -80,3 +80,4 @@ $(function () {
         $(".chk").prop('checked', $(this).prop('checked'));
     });
 });
+
