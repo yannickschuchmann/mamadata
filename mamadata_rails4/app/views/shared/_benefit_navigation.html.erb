@@ -1,9 +1,11 @@
+<% if params[:action] == "index" %>
 <li>
 	<%= link_to new_benefit_path do %>
 	<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
 	New Benefit
 	<% end %>
 </li>
+<% end %>
 <% if params[:action] == "show" %>
 	<li>
 		<%= link_to  edit_supporter_path(@supporter) do %>
