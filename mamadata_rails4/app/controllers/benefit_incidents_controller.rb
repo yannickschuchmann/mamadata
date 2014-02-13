@@ -22,16 +22,21 @@ class BenefitIncidentsController < ApplicationController
   end
 
   def list
-    @benefit_incidents = BenefitIncident.where(person_id: params[:person_id])
-    @benefit_incidents=@benefit_incidents.where("created_at >= ?",  params[:list_date]) if params[:list_date]
+    if params[:person_id] == "all"
+      @benefit_incidents = BenefitIncident.all
+      @is_all = true
+      puts @is_all
+    else
+      @benefit_incidents = BenefitIncident.where(person_id: params[:person_id])
+    end
+    @benefit_incidents = @benefit_incidents.where("created_at >= ?",  params[:list_date]) if params[:list_date]
     if(params[:status] == "false")
-      @benefit_incidents = BenefitIncident.where(person_id: params[:person_id], status: false)
+      @benefit_incidents = @is_all ? BenefitIncident.where(status: false) : BenefitIncident.where(person_id: params[:person_id], status: false)
       @benefit_incidents=@benefit_incidents.where("created_at >= ?",  params[:list_date]) if params[:list_date]
     elsif((params[:status] == "true"))
-      @benefit_incidents = BenefitIncident.where(person_id: params[:person_id], status: true)
+      @benefit_incidents = @is_all ? BenefitIncident.where(status: true) :  BenefitIncident.where(person_id: params[:person_id], status: true) 
       @benefit_incidents=@benefit_incidents.where("created_at >= ?",  params[:list_date]) if params[:list_date]
     end
-
   respond_to do |format|
     format.js {}
   end
