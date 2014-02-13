@@ -27,7 +27,7 @@
   </div>
   <div class="row">
     <div class="small-12 large-3 columns"><%= f.label :benefit_id %></div>
-    <div class="small-12 large-9 columns" id="benefit_select"><%= f.select :benefit_id, []%></div>
+    <div class="small-12 large-9 columns" id="benefit_select"><%= f.select :benefit_id, @benefits.map{|b| [b.name, b.id]}%></div>
   </div>
   <div class="row">
     <div class="small-12 large-3 columns" id="amountlabel"><%= f.label :amount %></div>
@@ -42,7 +42,7 @@
   <% if is_admin? %>
   <div class="row">
     <div class="small-12 large-3 columns"><%= f.label :status %></div>
-    <% if @benefit_incident.status %>
+    <% if @benefit_incident.status == 'true'%>
       <div class="small-12 large-9 columns"><%= f.select :status, [['Granted',true],['Pending', false]], :selected =>  ['Granted', true] %></div>
     <% else %>
       <div class="small-12 large-9 columns"><%= f.select :status, [['Granted',true],['Pending', false]], :selected =>  ['Pending', false] %></div>
@@ -67,5 +67,6 @@
   var allBenefits = <%= @all_benefits.to_json.html_safe %>;
   var benefits_calculated =<%= @benefits_with_calculated_amount.to_json.html_safe %>;
   var benefits_fixed =<%= @benefits_with_fixed_amount.to_json.html_safe %>;
+  var action = '<%= action_name %>';
 
  </script>

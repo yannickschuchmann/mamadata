@@ -66,6 +66,7 @@ class BenefitIncidentsController < ApplicationController
   # GET /benefit_incidents/1/edit
   def edit
     set_variables_for_javascript
+    @benefits = @benefit_incident.program.benefits
   end
 
   # POST /benefit_incidents
@@ -87,8 +88,6 @@ class BenefitIncidentsController < ApplicationController
   # PATCH/PUT /benefit_incidents/1
   # PATCH/PUT /benefit_incidents/1.json
   def update
-    puts "@@@@@@@2"
-    puts params
     set_variables_for_javascript
     respond_to do |format|
       if @benefit_incident.update(benefit_incident_params)
@@ -130,6 +129,7 @@ class BenefitIncidentsController < ApplicationController
       @benefits_with_calculated_amount = Hash[Benefit.where(category: "calculated").map {|b| [b.id, (b.optional_amount_paise/b.max_people)]}]
       @benefits_with_fixed_amount = Hash[Benefit.where(category: "fixed").map {|b| [b.id, b.fixed_amount_paise]}]
       @all_benefits = Hash[Benefit.all.map { |p| [p.id, p.category] }]
+      @benefits = []
     end
 
 
