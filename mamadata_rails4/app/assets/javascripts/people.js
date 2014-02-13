@@ -5,12 +5,13 @@ var updateIncidentList = function() {
     type: "GET",
     data: {status: $('#incident_status option:selected').val(), list_date: $('#benefit_incident_created_at').val()}
     })
+    $('#calculated_amount').val('');
+    $('#calculated_amount').hide();
 };
 
 $('#incident_status').change(function(){
 	updateIncidentList();
-    $('#calculated_amount').val('');
-    $('#calculated_amount').hide();
+
 
 });
 
