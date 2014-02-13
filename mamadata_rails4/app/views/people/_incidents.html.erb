@@ -1,24 +1,30 @@
-				<%= javascript_tag "var personId = #{@person.id};" %>
-					<h5>Benefit History</h5>
-
-
-	<div class="row">
-		<%= select_tag(:incident_status, options_for_select([['Show All', nil], ['Show Pending', "false"], ['Show Granted', "true"]]),:class => "small-3") %>
-	
-		<% if is_admin? %>
-		
-		<a href='#' id='setgrantedbtn' class="button tiny small-3">Set Granted</a>
-
+<h5>Benefit History</h5>
+<div class="row">
+	<%= select_tag(:incident_status, options_for_select([['Show All', nil], ['Show Pending', "false"], ['Show Granted', "true"]]),:class => "small-2 column") %>
+<div class="button-bar">
+  <ul class="button-group">
+    <li>	
+    <% if is_admin? %>
+			<a href='#' id="setgrantedbtn" class="tiny button">Set Granted</a>
 		<% end %>
+		</li>
+    <li><a href='#' id='calculatebtn' class="tiny button">Calcualte</a></li>
 
-		<a href='#' id='calculatebtn' class="button tiny small-3">Calcualte</a>
-		<div id='calculated_amount' style="display:none"></div>
+  </ul>
+    <ul class="button-group right">
+	    <li><a href='#' id='filter_date' class="tiny button">Filter by Date</a></li>
+    <li><input type="text" id="benefit_incident_created_at" value="Set Filter Date"></li>
+    </ul>
+</div>
 
-		<p>Filter by Date<input type="checkbox" id="filter_date">
-		<input type="text" id="benefit_incident_created_at" style="display:none"></p>
-		
-		</div>
-		
-						<div id="incidents">
-							<%= render "/benefit_incidents/list"%>
-						</div>
+
+
+</div>
+	<div id="calculated_amount" style="display:none"></div>
+
+
+
+<div id="incidents">
+	<%= render "/benefit_incidents/list"%>
+</div>
+<%= javascript_tag "var personId = #{@person.id};" %>

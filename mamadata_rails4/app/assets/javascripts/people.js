@@ -52,9 +52,9 @@ $.ajax({
 
 
 /* update incidents when dateFilter applied */
-$('#benefit_incident_created_at').change(function(){
-    updateIncidentList();
-});
+// $('#benefit_incident_created_at').change(function(){
+//     updateIncidentList();
+// });
 
 
 /* initialize datepicker */
@@ -71,12 +71,6 @@ $('#benefit_incident_created_at').datepicker({
 
 
 /* checkox shows datepicker */
-$('#filter_date').change( function(){
-	if($(this).is(':checked')){
-		$('#benefit_incident_created_at').show();
-	} else {
-		$('#benefit_incident_created_at').hide();
-		$('#benefit_incident_created_at').val('');
-		updateIncidentList();
-	}
+$('#filter_date').on('click', function(){
+	updateIncidentList();
 });
