@@ -1,0 +1,92 @@
+<h5>Personal Information</h5>
+					<table class="small-12">
+						<tr>
+							<td class="medium-4">Father's name</td>
+							<td class="medium-8"><%= @person.fathers_name %></td>
+						</tr>
+						<tr>
+							<td>Gender</td>
+							<td><%= @person.gender %></td>
+						</tr>
+						<tr>
+							<td>Date of birth</td>
+							<td><%= @person.date_of_birth %></td>
+						</tr>
+						<tr>
+							<td>Place of birth</td>
+							<td><%= @person.place_of_birth %></td>
+						</tr>
+						<tr>
+							<td>Relation to Head of Household</td>
+							<td>
+								<% if !@person.role_id.nil? %>
+								<%	b = Role.find (@person.role_id) %>
+								<%= b.name %>
+								<% else %>
+								<%= "not given" %>
+								<% end %>
+							</td>
+						</tr>
+						<tr>
+							<td>Marital status</td>
+							<td><%= @person.marital_status %></td>
+						</tr>
+					</table>
+
+					<h5>Household Information</h5>
+					<table class="small-12">
+						<tr>
+							<td class="medium-4">Name of the house</td>
+							<td class="medium-8"><%= @person.name_of_the_house %></td>
+						</tr>
+						<tr>
+							<td>Number of the house</td>
+							<td><%= @person.number_of_the_house %></td>
+						</tr>
+						<tr>
+							<td>Name of the street</td>
+							<td><%= @person.name_of_the_street %></td>
+						</tr>
+						<tr>
+							<td>City</td>
+							<td><%= @person.city %></td>
+						</tr>						
+						<tr>
+							<td>Pin code</td>
+							<td><%= @person.pin_code %></td>
+						</tr>						
+						<tr>
+							<td>Native place</td>
+							<td><%= @person.native_place %></td>
+						</tr>
+					</table>
+
+					<h5>Additional Information</h5>
+					<table class="small-12">
+						<tbody>
+							<tr>
+								<td class="medium-4">Religion</td>
+								<td class="medium-8"><%= @person.religion %></td>
+							</tr>
+							<tr>
+								<td>Caste</td>
+								<td><%= @person.caste %></td>
+							</tr>
+							<tr>
+								<td>Education</td>
+								<td><%= @person.education %></td>
+							</tr>
+							<tr>
+								<td>Health condition</td>
+								<td><%= @person.health_condition %></td>
+							</tr>
+							<tr>
+								<td>Occupation</td>
+								<td><%= @person.occupation %></td>
+							</tr>
+							<tr>
+								<td>Income</td>
+								<td><%= @person.income %></td>
+							</tr>
+						</tbody>
+					</table>

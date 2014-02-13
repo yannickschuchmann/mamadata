@@ -1,0 +1,9 @@
+					<h5>Narrative Text</h5>
+
+					<p>
+						<% if @person.narrative_text? %>
+							<%= @person.narrative_text%>
+						<% else %>
+							none
+						<% end%>
+					</p>
