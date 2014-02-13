@@ -74,3 +74,9 @@ $('#benefit_incident_created_at').datepicker({
 $('#filter_date').on('click', function(){
   updateIncidentList();
 });
+
+$(function () {
+    $("#chkall").click(function () {
+        $(".chk").prop('checked', $(this).prop('checked'));
+    });
+});

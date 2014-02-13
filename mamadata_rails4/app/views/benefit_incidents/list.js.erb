@@ -1,1 +1,18 @@
 $("#incidents").html('<%= escape_javascript(render "/benefit_incidents/list", benefit_incidents: @benefit_incidents) %>');
+	$(function(){
+	$(".tablesorter").tablesorter({
+	headers: { 
+            // assign the secound column (we start counting zero) 
+            0: { 
+                // disable it by setting the property sorter to false 
+                sorter: false 
+            }
+          }});
+});
+
+	
+$(function () {
+    $("#chkall").click(function () {
+        $(".chk").prop('checked', $(this).prop('checked'));
+    });
+});

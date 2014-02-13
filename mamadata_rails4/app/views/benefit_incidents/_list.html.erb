@@ -4,7 +4,7 @@
 	<table id="benefitTable" class="tablesorter">
 		<thead>
 			<tr>
-			<th></th>
+			<th id="nosort"><%= check_box_tag :checked_incident,'#', false, id: 'chkall' %></th>
 				<th>User</th>
 				<th>Program</th>
 				<th>Benefit</th>
@@ -17,8 +17,10 @@
 		</thead>
 
 		<tbody>
+
 			<% @benefit_incidents.each do |benefit_incident| %>
 			<tr>
+
 				<td><%= check_box_tag :checked_incident, benefit_incident.id, false, class: 'chk' %></td>
 				<td><%= link_to benefit_incident.person.name, person_path(benefit_incident.person) %></td>
 				<td><%= link_to benefit_incident.program.name, program_path(benefit_incident.program) %></td>
@@ -41,3 +43,4 @@
 	</table>
 
 </div>
+
