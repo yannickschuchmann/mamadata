@@ -88,5 +88,8 @@ $(function () {
             0: { 
                 // disable it by setting the property sorter to false 
                 sorter: false 
+           },
+           8: {
+            sorter: false
            }
           }});

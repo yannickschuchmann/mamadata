@@ -22,12 +22,12 @@ class BenefitIncidentsController < ApplicationController
   end
 
   def list
-      @benefit_incidents = BenefitIncident.where(person_id: params[:person_id])
+      @benefit_incidents = BenefitIncident.where(person_id: params[:person_id]) unless list_for_all_users?
       @benefit_incidents = BenefitIncident.all if list_for_all_users?
       
       all_benefits_with_status false if params[:status] == "false"
       all_benefits_with_status true if params[:status] == "true"
-      add_date_filter if params[:list_date]
+      add_date_filter unless params[:list_date].empty?
 
   respond_to do |format|
     format.js {}
