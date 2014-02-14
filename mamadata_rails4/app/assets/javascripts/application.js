@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require modules/selectWithOtherField
+//= require form-validator
 //= require offcanvas
 //= require responsive-tables
 //= require jquery.tablesorter.min
@@ -19,6 +20,15 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery.ui.all
+
+var APP = {
+    Incidents: {},
+    Modules: {
+        FormValidator: {}
+    }
+};
+
+
 $(function(){
 	$("tr[data-link]").click(function() {
 		window.location = $(this).data("link")
@@ -32,5 +42,6 @@ $(function(){
 $(document).ready(function(){
 	$(".tablesorter").tablesorter();
 });
+
 
 
