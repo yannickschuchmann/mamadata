@@ -128,5 +128,8 @@ class BenefitIncidentsController < ApplicationController
       @benefits = []
     end
 
+    def is_person_params_all?
+    end
+
 
 end

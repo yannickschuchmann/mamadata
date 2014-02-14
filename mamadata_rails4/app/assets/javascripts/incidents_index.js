@@ -75,6 +75,7 @@ $('#filter_date').on('click', function(){
   updateIncidentList();
 });
 
+/* checkbox und check/uncheck all */
 $(function () {
     $("#chkall").click(function () {
         $(".chk").prop('checked', $(this).prop('checked'));
