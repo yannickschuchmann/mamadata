@@ -22,15 +22,12 @@ class BenefitIncidentsController < ApplicationController
   end
 
   def list
-    @benefit_incidents = BenefitIncident.where(person_id: params[:person_id])
-    @benefit_incidents=@benefit_incidents.where("created_at >= ?",  params[:list_date]) if params[:list_date]
-    if(params[:status] == "false")
-      @benefit_incidents = BenefitIncident.where(person_id: params[:person_id], status: false)
-      @benefit_incidents=@benefit_incidents.where("created_at >= ?",  params[:list_date]) if params[:list_date]
-    elsif((params[:status] == "true"))
-      @benefit_incidents = BenefitIncident.where(person_id: params[:person_id], status: true)
-      @benefit_incidents=@benefit_incidents.where("created_at >= ?",  params[:list_date]) if params[:list_date]
-    end
+      @benefit_incidents = BenefitIncident.where(person_id: params[:person_id]) unless list_for_all_users?
+      @benefit_incidents = BenefitIncident.all if list_for_all_users?
+      
+      all_benefits_with_status false if params[:status] == "false"
+      all_benefits_with_status true if params[:status] == "true"
+      add_date_filter unless params[:list_date].empty?
 
   respond_to do |format|
     format.js {}
@@ -38,15 +35,6 @@ class BenefitIncidentsController < ApplicationController
     respond_with @benefit_incidents
   end
 
-  def granted
-    @benefit_incidents = BenefitIncident.where(status: true)
-    render action: 'index'
-  end
-
-  def pending
-    @benefit_incidents = BenefitIncident.where(status: false)
-    render action: 'index'
-  end
 
   def add_user_to_program
     @person = Person.find(params[:person_id])
@@ -132,5 +120,20 @@ class BenefitIncidentsController < ApplicationController
       @benefits = []
     end
 
+    def all_benefits_with_status(status)
+      @benefit_incidents = @is_all ? BenefitIncident.where(status: status) : BenefitIncident.where(person_id: params[:person_id], status: status)
+    end
+
+    def add_date_filter
+      @benefit_incidents=@benefit_incidents.where("created_at >= ?",  params[:list_date])
+    end
+
+    def list_for_all_users?
+      if params[:person_id] == "all"
+        @is_all = true
+        return true
+      end
+      return false
+    end
 
 end

@@ -4,7 +4,7 @@
 	<table id="benefitTable" class="tablesorter">
 		<thead>
 			<tr>
-			<th></th>
+			<th id="nosort"><%= check_box_tag :checked_incident,'#', false, id: 'chkall' %></th>
 				<th>User</th>
 				<th>Program</th>
 				<th>Benefit</th>
@@ -17,13 +17,15 @@
 		</thead>
 
 		<tbody>
+
 			<% @benefit_incidents.each do |benefit_incident| %>
 			<tr>
+
 				<td><%= check_box_tag :checked_incident, benefit_incident.id, false, class: 'chk' %></td>
-				<td><%= link_to benefit_incident.person.name, person_path(@person) %></td>
+				<td><%= link_to benefit_incident.person.name, person_path(benefit_incident.person) %></td>
 				<td><%= link_to benefit_incident.program.name, program_path(benefit_incident.program) %></td>
 				<td><%= link_to benefit_incident.benefit.name, benefit_path(benefit_incident.benefit) %></td>
-				<td id='incident_amount'><%= money_without_cents_and_with_symbol benefit_incident.amount %></td>
+				<td><%= money_without_cents_and_with_symbol benefit_incident.amount %></td>
 				<td><%= benefit_incident.remark %></td>
 				<td><%= benefit_incident.status == true ? 'Granted' : 'Pending' %></td>
 				<td><%= benefit_incident.date_granted %></td>
@@ -40,8 +42,5 @@
 		</tbody>
 	</table>
 
-	<script type="text/javascript">
-
-
-	</script>
 </div>
+
