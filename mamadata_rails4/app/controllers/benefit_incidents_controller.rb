@@ -43,15 +43,6 @@ class BenefitIncidentsController < ApplicationController
     respond_with @benefit_incidents
   end
 
-  def granted
-    @benefit_incidents = BenefitIncident.where(status: true)
-    render action: 'index'
-  end
-
-  def pending
-    @benefit_incidents = BenefitIncident.where(status: false)
-    render action: 'index'
-  end
 
   def add_user_to_program
     @person = Person.find(params[:person_id])
