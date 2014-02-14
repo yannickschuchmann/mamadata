@@ -1,5 +1,4 @@
 $("#incidents").html('<%= escape_javascript(render "/benefit_incidents/list", benefit_incidents: @benefit_incidents) %>');
-	$(function(){
 	$(".tablesorter").tablesorter({
 	headers: { 
             // assign the secound column (we start counting zero) 
@@ -8,11 +7,8 @@ $("#incidents").html('<%= escape_javascript(render "/benefit_incidents/list", be
                 sorter: false 
             }
           }});
-});
 
 	
-$(function () {
     $("#chkall").click(function () {
         $(".chk").prop('checked', $(this).prop('checked'));
     });
-});

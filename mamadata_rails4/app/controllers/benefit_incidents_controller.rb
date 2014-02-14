@@ -22,21 +22,13 @@ class BenefitIncidentsController < ApplicationController
   end
 
   def list
-    if params[:person_id] == "all"
-      @benefit_incidents = BenefitIncident.all
-      @is_all = true
-      puts @is_all
-    else
       @benefit_incidents = BenefitIncident.where(person_id: params[:person_id])
-    end
-    @benefit_incidents = @benefit_incidents.where("created_at >= ?",  params[:list_date]) if params[:list_date]
-    if(params[:status] == "false")
-      @benefit_incidents = @is_all ? BenefitIncident.where(status: false) : BenefitIncident.where(person_id: params[:person_id], status: false)
-      @benefit_incidents=@benefit_incidents.where("created_at >= ?",  params[:list_date]) if params[:list_date]
-    elsif((params[:status] == "true"))
-      @benefit_incidents = @is_all ? BenefitIncident.where(status: true) :  BenefitIncident.where(person_id: params[:person_id], status: true) 
-      @benefit_incidents=@benefit_incidents.where("created_at >= ?",  params[:list_date]) if params[:list_date]
-    end
+      @benefit_incidents = BenefitIncident.all if list_for_all_users?
+      
+      all_benefits_with_status false if params[:status] == "false"
+      all_benefits_with_status true if params[:status] == "true"
+      add_date_filter if params[:list_date]
+
   respond_to do |format|
     format.js {}
   end
@@ -128,8 +120,20 @@ class BenefitIncidentsController < ApplicationController
       @benefits = []
     end
 
-    def is_person_params_all?
+    def all_benefits_with_status(status)
+      @benefit_incidents = @is_all ? BenefitIncident.where(status: status) : BenefitIncident.where(person_id: params[:person_id], status: status)
     end
 
+    def add_date_filter
+      @benefit_incidents=@benefit_incidents.where("created_at >= ?",  params[:list_date])
+    end
+
+    def list_for_all_users?
+      if params[:person_id] == "all"
+        @is_all = true
+        return true
+      end
+      return false
+    end
 
 end
