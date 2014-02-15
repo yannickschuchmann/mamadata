@@ -1,21 +1,21 @@
-APP = {};
+// APP = {};
 
-APP.Modules = {};
+// APP.Modules = {};
 
-APP.Modules.FormValidator = {
-    $el: $('form'),
-    events: {
-        'keyup input': 'validate'
-    },
-    init: function() {
-        setEvents();
-    },
-    setEvents: function() {
-        this.events.forEach(function(event) {
+// APP.Modules.FormValidator = {
+//     $el: $('form'),
+//     events: {
+//         'keyup input': 'validate'
+//     },
+//     init: function() {
+//         setEvents();
+//     },
+//     setEvents: function() {
+//         this.events.forEach(function(event) {
 
-        });
-        // $('input', this.$el).on('focus', )
-    }
-};
+//         });
+//         // $('input', this.$el).on('focus', )
+//     }
+// };
 
-APP.Modules.FormValidator.init();
+// APP.Modules.FormValidator.init();
