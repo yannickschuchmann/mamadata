@@ -40,3 +40,12 @@ table {
 tr[data-link] {
   cursor: pointer;
 }
+
+.selectWithOtherField {
+  div >input[type="text"] {
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+}

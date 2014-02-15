@@ -24,9 +24,9 @@ var selectWithOtherField = {
 			var $this = $(this),
 				val = $this.val();
 			if(val === 'Other') {
-				$this.closest('.selectWithOtherField').find('input').prop('disabled', false).focus();
+				$this.closest('.selectWithOtherField').find('input').addClass('active').prop('disabled', false).focus();
 			}else{
-				$this.closest('.selectWithOtherField').find('input').prop('disabled', true);
+				$this.closest('.selectWithOtherField').find('input').removeClass('active').prop('disabled', true);
 			}
 		});
 	}
