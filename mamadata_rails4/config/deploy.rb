@@ -6,7 +6,7 @@ set :repo_url, 'git@git.lazarski.me:mamadata/mamadata.git'
 
 # Default branch is :master
 set :branch, "devel"
-
+set :group, 'deployers'
 # Default deploy_to directory is /var/www/my_app
 set :deploy_to, '/home/mamadata/'
 
