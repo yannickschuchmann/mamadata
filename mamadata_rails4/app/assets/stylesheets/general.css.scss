@@ -1,4 +1,5 @@
 @import "side";
+@import "base";
 
 body .row {
   max-width: 100%; /* overrides 62.5rem foundation default for app-like full screen */
@@ -10,6 +11,10 @@ body .row {
   font-size: 15px;
   text-align: center !important;
   color: green;
+}
+
+.button {
+  background: navy!important;
 }
 
 #content {
@@ -34,4 +39,13 @@ table {
 
 tr[data-link] {
   cursor: pointer;
+}
+
+.selectWithOtherField {
+  div >input[type="text"] {
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
 }

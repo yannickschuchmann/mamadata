@@ -1,7 +1,10 @@
 // Off-Canvas function
 $(function () {
 	$sideWidth = $('#side').outerWidth();
-	$('#content').css("margin-left", ($sideWidth + 10)+"px");
+	$('#content').css({
+        "margin-left": ($sideWidth + 10)+"px",
+        "opacity": 1
+    });
 });
 
 var $canvas_toggle 	= $('#canvas-toggle'),
@@ -15,7 +18,7 @@ $canvas_toggle.click( function() {
 		$off_canvas.css("left", "-150px");
 		$wrapper.css("left", "0px")
 		$side.css("left", "0px");
-	}else {
+	} else {
 		$off_canvas.addClass("is_active");
 		$off_canvas.css("left", "0px");
 		$wrapper.css("left", "160px")

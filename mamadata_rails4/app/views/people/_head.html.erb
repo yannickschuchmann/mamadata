@@ -7,7 +7,7 @@
 			<h5><b>File: <%= @person.id %></b></h5>
 			<ul class="no-bullet">
 				<% @person.programs.each do |p| %>
-				<span class="label"><%= p.name %></span>
+				<span class="label button"><%= p.name %></span>
 				<% end %>
 			</ul>
 			<span class="">Total Expenses: 
