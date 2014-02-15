@@ -1,3 +1,7 @@
+APP = {};
+
+APP.Modules = {};
+
 APP.Modules.FormValidator = {
     $el: $('form'),
     events: {
