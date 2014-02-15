@@ -1,7 +1,7 @@
 # config valid only for Capistrano 3.1
 lock '3.1.0'
 
-set :application, 'mamadata'
+set :application, 'mamadata_micha'
 set :repo_url, 'git@git.lazarski.me:mamadata/mamadata.git'
 
 # Default branch is :master
@@ -50,8 +50,10 @@ namespace :deploy do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
       within release_path do
-        execute :rake, 'cache:clear'
-        execute :rake, 'assets:precompile'
+        execute "chgrp -R deployers #{release_path}/"
+        execute "mkdir #{release_path}/mamadata_rails4/tmp && chgrp -R deployers #{release_path}/mamadata_rails4/tmp"
+        execute "cd #{release_path}/mamadata_rails4/ && rake assets:precompile"
+        execute "chgrp -R deployers #{release_path}/mamadata_rails4/tmp"
       end
     end
   end

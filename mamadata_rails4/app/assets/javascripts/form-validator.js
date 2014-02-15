@@ -10,7 +10,7 @@ APP.Modules.FormValidator = {
         this.events.forEach(function(event) {
 
         });
-        $('input', this.$el).on('focus', )
+        // $('input', this.$el).on('focus', )
     }
 };
 
