@@ -63,3 +63,8 @@ ul.off-canvas-list li a {
   border-bottom: 0px;
   padding: 20px;
 }
+
+#content {
+//  @include single-transition(opacity, 0.2s);
+  opacity: 0;
+}
