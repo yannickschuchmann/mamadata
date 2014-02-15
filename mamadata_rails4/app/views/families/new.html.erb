@@ -1,7 +1,7 @@
 <%= content_for :js do %><%= javascript_include_tag "families_new.js" %> <% end %>
 <h2 class="text-center">Family</h2>
 <div class="row">
-	<div class="small-10 columns">
+	<div class="small-8 columns">
 		<div id="people"></div>
 	</div>
 </div>
@@ -17,18 +17,33 @@
 	<div class="small-12 medium-6 large-6 columns">
 		<dl class="accordion" data-accordion>
 			<dd class="active">
-				<a href="#panel1">Search for Exsisting People</a>
-				<div id="panel1" class="content">
-					<p>Name</p>
-					<input id="sName" type="text">
-					<p>Fathers Name</p>
-					<input id="sFname" type="text"> 
-					<p>City</p>
-					<input id="sCity" type="text"> 
-					<p>Zipcode</p>
-					<input id="sZipcode" type="text">
-					<button id="search">Search</button>
+				<a href="#searchExistingPeople">Search for Exsisting People</a>
+
+                <form action="" id="searchExistingPeopleForm">
+				<div id="searchExistingPeople" class="content">
+                    <div class="row">
+                        <div class="small-12 medium-4 column">
+                            Name
+                        </div>
+                        <div class="small-12 medium-8 column">
+                            <input id="sName" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-12 medium-4 column">Fathers Name</div>
+                        <div class="small-12 medium-8 column"><input type="text" id=""sFname/></div>
+                    </div>
+                    <div class="row">
+                        <div class="small-12 medium-4 column">City</div>
+                        <div class="small-12 medium-8 column"><input id="sCity" type="text"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="small-12 medium-4 column">Zipcode</div>
+                        <div class="small-12 medium-8 column"><input id="sZipcode" type="text"/></div>
+                    </div>
+					<button type="submit">Search</button>
 				</div>
+                </form>
 			</dd>
 		</dl>
 	</div>
@@ -45,9 +60,13 @@
 	</div>
 </div>
 
-<div id="FamilyListView">
-	<h3>FAMILYLIST</h3>
-	<ul id="familyList">
-		
-	</ul>
+<div id="FamilyListView" class="small-4 column">
+    <div class="row">
+        <div class="small-12">
+            <h3>FAMILYLIST</h3>
+            <ul id="familyList">
+
+            </ul>
+        </div>
+    </div>
 </div>

@@ -14,7 +14,7 @@ body .row {
 }
 
 .button {
-  background: navy!important;
+  background: $color-deco3!important;
 }
 
 #content {
@@ -47,5 +47,11 @@ tr[data-link] {
     &.active {
       display: block;
     }
+  }
+}
+
+#searchExistingPeople {
+  &.content {
+    padding: 0;
   }
 }

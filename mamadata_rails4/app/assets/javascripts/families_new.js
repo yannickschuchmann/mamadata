@@ -53,7 +53,8 @@ function addPeople (){
 	return true;
 }
 var searchResult;
-$("#search").click(function(event){
+$("#searchExistingPeopleForm").submit(function(e){
+    e.preventDefault();
 	var name = $("#sName").val();
 	var fname = $("#sFname").val();
 	var city = $("#sCity").val();
@@ -89,37 +90,36 @@ $("#search").click(function(event){
 			alert("Something went Wrong during the sending of the data please retry later");
 		}
 	});
+    return false;
 });
 
 function addFromSearch(pid) {
 	var person = searchResult[pid];
-	console.log(searchResult[pid]);
 	/*jshint multistr: true */
 	$("#people").append('<div class="person"> \
 					<h1 class="h1person'+peopleNumber+'">'+person.name +' '+ person.fathers_name +'</h1>\
-					<div class="field">\
-						<div class="span3"><label for="name">Name</label></div>\
-						<div class="span9"><input id="name" name="person'+peopleNumber+'" class="person'+peopleNumber+'" type="text"  value="'+person.name +'"></div>\
+					<div class="row">\
+						<div class="small-12 medium-4 column"><label for="name">Name</label></div>\
+						<div class="small-12 medium-8 column"><input id="name" disabled="disabled" name="person'+peopleNumber+'" class="person'+peopleNumber+'" type="text"  value="'+person.name +'"></div>\
 					</div>\
-					<div class="field">\
-						<div class="span3"><label for="person_Father\'s Name">Father\'s name</label></div>\
-						<div class="span9"><input id="fathers_name" class="personsfathername'+peopleNumber+'" name="person[fathers_name]" type="text" value="'+ person.fathers_name +'"></div>\
+					<div class="row">\
+						<div class="small-12 medium-4 column"><label for="person_Father\'s Name">Father\'s name</label></div>\
+						<div class="small-12 medium-8 column"><input id="fathers_name" disabled="disabled" class="personsfathername'+peopleNumber+'" name="person[fathers_name]" type="text" value="'+ person.fathers_name +'"></div>\
 					</div>\
-					<div class="field">\
-					<div class="span3"><label for="Role in context of Sharana">Role in the Household</label></div>\
-					<div class="span9"><select id="role_id" name="person[role_id]"><option value="1">Head of the Household</option>\
-								<option value="2">Wife</option>\
-								<option value="3">Child</option>\
-								<option value="4">Father</option>\
-								<option value="5">Mother</option>\
-								<option value="6">Brother</option>\
-								<option value="7">Sister</option>\
-						</select></div>\
+					<div class="row">\
+					    <div class="small-12 medium-4 column"><label for="Role in context of Sharana">Role in the Household</label></div>\
+                        <div class="small-12 medium-8 column"><select id="role_id" disabled="disabled" name="person[role_id]"><option value="1">Head of the Household</option>\
+                                    <option value="2">Wife</option>\
+                                    <option value="3">Child</option>\
+                                    <option value="4">Father</option>\
+                                    <option value="5">Mother</option>\
+                                    <option value="6">Brother</option>\
+                                    <option value="7">Sister</option>\
+                            </select>\
+                        </div>\
 					</div>\
 					</div>');
 
-	console.log($(".h1person"+peopleNumber).parent().find("#role_id")[0][searchResult[pid].role_id])
-	//.attr('selected','selected');
 
 	var $h1 = $(".h1person"+peopleNumber);
 	var $person = $('.person'+peopleNumber);
