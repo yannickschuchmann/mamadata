@@ -1,19 +1,50 @@
-<h1 class="text-center">New Incident</h1>
-  <div class="button-center">
-    <%= link_to 'Add Person to Program', add_user_to_program_path(@benefit_incident.person), :class => 'button small'
-    %></div>
+<div id="content">
+    <div class="row">
+        <% if @benefit_incident.errors.any? %>
+            <div id="error_explanation" class="small-12">
+                <h2><%= pluralize(@benefit_incident.errors.count, "error") %> prohibited this benefit_incident from being saved:</h2>
 
-
-
-
-
-<% if !@benefit_incident.person.programs.empty?%>
-
-
-<%= render 'form' %>
-
-<% end %>
-
-<div class="button-center">
-	<%= link_to 'Back', person_path(@benefit_incident.person_id), :class => "button tiny" %>
+                <ul>
+                    <% @benefit_incident.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+        <div class="small-12 medium-10 column medium-centered">
+            <div class="small-12 medium-6 column">
+                <h2>Chosen Person</h2>
+                <table class="left table small-12">
+                    <tr>
+                        <th>Name</th>
+                        <td><%=@benefit_incident.person.name %></td>
+                    </tr>
+                    <tr>
+                        <th>Fathers Name</th>
+                        <td><%=@benefit_incident.person.fathers_name %></td>
+                    </tr>
+                    <tr>
+                        <th>Total amount spent on</th>
+                        <td><%= money_without_cents_and_with_symbol @benefit_incident.person.get_total_expenses %></td>
+                    </tr>
+                </table>
+                <div class="clearfix"></div>
+                <%= link_to 'Add Person to Program', add_user_to_program_path(@benefit_incident.person), :class => 'button small' %>
+            </div>
+            <div class="small-12 medium-6 column">
+                <% if !@benefit_incident.person.programs.empty?%>
+                    <%= render 'form' %>
+                <% else %>
+                    <h2>&nbsp;</h2>
+                    <h4 class="text-center">Please add person to a program</h2>
+                    <div class="button-center">
+                        <%= link_to 'Add Person to Program', add_user_to_program_path(@benefit_incident.person), :class => 'button small' %>
+                    </div>
+                <% end %>
+            </div>
+            <div class="small-12 column">
+                <%= link_to 'Cancel', person_path(@benefit_incident.person_id), :class => "button tiny right" %>
+            </div>
+        </div>
+    </div>
 </div>

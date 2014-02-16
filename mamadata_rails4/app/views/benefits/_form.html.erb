@@ -12,47 +12,43 @@
   </ul>
 </div>
 <% end %>
-
 <div class="row">
-  <div class="small-12 large-2 column"><%= f.label :name %></div>
-  <div class="small-12 large-10 column"><%= f.text_field :name %></div>
-</div>
-<div class="row">
-  <div class="small-12 large-2 column"><%= f.label :description %></div>
-  <div class="small-12 large-10 column"><%= f.text_field :description %></div>
-</div>
+    <div class="small-12 medium-6 column">
+        <div class="row">
+          <div class="small-12 medium-4 column"><%= f.label :name %></div>
+          <div class="small-12 medium-8 column"><%= f.text_field :name %></div>
+        </div>
+        <div class="row">
+          <div class="small-12 medium-4 column"><%= f.label :description %></div>
+          <div class="small-12 medium-8 column"><%= f.text_field :description %></div>
+        </div>
+    </div>
+    <div class="small-12 medium-6 column">
+        <div class="row">
+            <div class="small-12 medium-4 column">
+                <%= f.label :category, "Amount for each incident" %>
+            </div>
+            <div class="small-12 medium-8 column">
+                <%= f.select :category, [["Calculated Amount", "calculated"], ["Fixed Amount","fixed"], ["Individual","none"]]%>
+            </div>
+        </div>
+        <div class="row" id="fixed_amount" style="display:none">
+          <div class="small-12 medium-4 column"><%= f.label :fixed_amount, "Fixed Amount" %></div>
+          <div class="small-12 medium-8 column"><%= f.text_field :fixed_amount %></div>
+        </div>
+        <div class="row" id="calculated_amount" style="display:none">
+          <div class="small-12 medium-4 column"><%= f.label :optional_amount, "Calculated Amount" %></div>
+          <div class="small-12 medium-8 column"><%= f.text_field :optional_amount %></div>
 
-<div class="row">
-<% if @benefit.category == "calculated" %>
-<%= radio_button(:benefit, :category, "calculated", checked: true) %>
-<% else %> 
-<%= radio_button(:benefit, :category, "calculated") %>
-<% end %>
-<%= label_tag :benefit_category_calculated, 'Calculated Amount' %>
-<%= radio_button :benefit, :category, "fixed" %> 
-<%= label_tag :category, 'Fixed Amount' %>
-<% if !@benefit.category || @benefit.category == "none" %>
-<%= radio_button :benefit, :category, "none",checked: true %>
-<% else %>
-<%= radio_button :benefit, :category, "none" %>
-<% end %> 
-<%= label_tag :category, 'none' %>
-</div>
-
-<div class="row" id="fixed_amount" style="display:none">
-  <div class="small-12 large-2 column"><%= f.label :fixed_amount, "Fixed Amount" %></div>
-  <div class="small-12 large-10 column reset"><%= f.text_field :fixed_amount %></div>
-</div>
-<div class="row" id="calculated_amount" style="display:none">
-  <div class="small-12 large-2 column"><%= f.label :optional_amount, "Calculated Amount" %></div>
-  <div class="small-12 large-10 column reset"><%= f.text_field :optional_amount %></div>
-
-  <div class="small-12 large-2 column"><%= f.label :max_people, "Number of Beneficiaries" %></div>
-  <div class="small-12 large-10 column reset"><%= f.number_field :max_people %></div>
+          <div class="small-12 medium-4 column"><%= f.label :max_people, "Number of Beneficiaries" %></div>
+          <div class="small-12 medium-8 column"><%= f.number_field :max_people %></div>
+        </div>
+    </div>
 </div>
 
 <div class="row">
   <div class="small-12 column">
+    <h2>Programs</h2>
     <div class="row-fluid">
       <span class="ul">
 
