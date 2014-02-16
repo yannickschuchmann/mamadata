@@ -1,26 +1,25 @@
 <h5>Benefit History</h5>
 <div class="row">
-	<%= select_tag(:incident_status, options_for_select([['Show All', nil], ['Show Pending', "false"], ['Show Granted', "true"]]),:class => "small-2 column") %>
-<div class="button-bar">
-  <ul class="button-group">
-    <li>	
-    <% if is_admin? %>
-			<a href='#' id="setgrantedbtn" class="tiny button">Set Granted</a>
-		<% end %>
-		</li>
-    <li><a href='#' id='calculatebtn' class="tiny button">Calcualte</a></li>
+    <div class="small-12 column">
+        <%= select_tag(:incident_status, options_for_select([['Show All', nil], ['Show Pending', "false"], ['Show Granted', "true"]]),:class => "small-2 column") %>
+        <div class="button-bar">
+          <ul class="button-group">
+            <li>
+            <% if is_admin? %>
+                    <a href='#' id="setgrantedbtn" class="tiny button">Set Granted</a>
+                <% end %>
+                </li>
+            <li><a href='#' id='calculatebtn' class="tiny button">Calcualte</a></li>
 
-  </ul>
-    <ul class="button-group right">
-	    <li><a href='#' id='filter_date' class="tiny button">Filter by Date Granted</a></li>
-    <li>from:<input type="text" id="benefit_incident_date_from"></li>
-    <li>to:<input type="text" id="benefit_incident_date_to"></li>
-    </ul>
+          </ul>
+            <ul class="button-group right">
+                <li><a href='#' id='filter_date' class="tiny button">Filter by Date Granted</a></li>
+            <li>from:<input type="text" id="benefit_incident_date_from"></li>
+            <li>to:<input type="text" id="benefit_incident_date_to"></li>
+            </ul>
+        </div>
+    </div>
 </div>
-
-
-
-</div>	
 	<div id="calculated_amount" style="display:none"></div>
 
 

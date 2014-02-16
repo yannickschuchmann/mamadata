@@ -2,7 +2,7 @@
 $(function () {
 	$sideWidth = $('#side').outerWidth();
 	$('#content').css({
-        "margin-left": ($sideWidth + 10)+"px",
+        "padding-left": ($sideWidth + 10)+"px",
         "opacity": 1
     });
 });

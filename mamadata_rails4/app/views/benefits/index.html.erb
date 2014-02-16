@@ -1,27 +1,27 @@
 <%= render '/shared/overview_sidebar' %>
 <div id="content">
-<h1 class="text-center">Benefits</h1>
-<div class="row">
-<table id="benefitsIndexTable" class="table tablesorter">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th></th>
-    </tr>
-  </thead>
+    <h1 class="text-center">Benefits</h1>
+    <div class="row">
+    <table id="benefitsIndexTable" class="table tablesorter">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @benefits.each do |benefit| %>
-    <tr data-link="<%= benefit_path(benefit) %>">
-      <td><%= benefit.name %></td>
-      <td><%= benefit.description %></td>
-      <td style="width: 130px;">
-        <%= link_to (content_tag(:i, "", :class => "icon-edit")), edit_benefit_path(benefit) %>
-        <%= link_to (content_tag(:i, "", :class => "icon-trash")), benefit, method: :delete, data: { confirm: 'Are you sure?' } %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @benefits.each do |benefit| %>
+        <tr data-link="<%= benefit_path(benefit) %>">
+          <td><%= benefit.name %></td>
+          <td><%= benefit.description %></td>
+          <td style="width: 130px;">
+            <%= link_to (content_tag(:i, "", :class => "icon-edit")), edit_benefit_path(benefit) %>
+            <%= link_to (content_tag(:i, "", :class => "icon-trash")), benefit, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
 </div>

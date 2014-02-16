@@ -24,6 +24,8 @@ body .row {
 
 #content {
   margin-top: 20px;
+  @include box-sizing(border-box);
+  padding-right: 10px;
 }
 
 .person-picture {
