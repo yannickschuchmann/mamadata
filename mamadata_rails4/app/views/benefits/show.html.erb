@@ -19,12 +19,12 @@
 		Granted: <%= money_without_cents_and_with_symbol @total_amount_granted %></td>
 		<td rowspan="3">
 			<% @benefit.programs.each_slice(3) do |slice| %>
-			<ul class="no-bullet">
+			<div style="padding-bottom: 5px;">
 				<% slice.each do |program| %>
-				<%=link_to program.name, program_path(program), class:  "label button"%>
-				<% end %>
-				</ul>
-				<br>
+					<%=link_to program.name, program_path(program), class:  "label button"%>
+			<% end %>
+			<br>
+			</div>
 			<% end %>
 		</td>
 	</tr>
