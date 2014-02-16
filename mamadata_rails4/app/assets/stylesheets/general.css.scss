@@ -4,7 +4,12 @@
 body .row {
   max-width: 100%; /* overrides 62.5rem foundation default for app-like full screen */
 }
-
+.sharana_logo {
+  margin: 0 auto;
+  width: 315px;
+  height:66px;
+  background: url("/images/sharana_logo.png");
+}
 #notice {
   padding: 20px;
   background-color: #F5F5F5;
@@ -14,7 +19,7 @@ body .row {
 }
 
 .button {
-  background: $color-deco3!important;
+  background: $color-deco3 !important;
 }
 
 #content {

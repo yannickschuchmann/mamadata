@@ -2,78 +2,87 @@
 @import "base";
 
 #wrapper, #side, #off-side {
-  position: relative;
-  left: 0;
-  @include single-transition(left);
+	position: relative;
+	left: 0;
+	@include single-transition(left);
 }
 
 #side {
-  overflow: auto;
-  width: 100px;
-  position: fixed;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  background-color: #e67e22;
-  z-index: 999;
-  margin-top: 45px;
-  z-index: 1;
+	overflow: auto;
+	width: 100px;
+	position: fixed;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	background-color: #e67e22;
+	z-index: 999;
+	margin-top: 45px;
+	z-index: 1;
 }
 
 #side-nav {
-  text-align: center;
-  > {
-    li {
-      padding: 20px 0;
-      > a {
-        color: #fff;
-        padding: 15px 0;
-      }
-    }
-    li.active {
-      background-color: #d35400;
-    }
-    li:hover {
-      background-color: #d35400;
-    }
-    dd {
-      font-size: 13px;
-      padding: 20px 5px;
-      > a {
-        color: #fff;
-        padding: 20px 0;
-      }
-    }
-    dd.active, dd:hover {
-      background-color: $color-active;
-    }
-  }
+	text-align: center;
+	> {
+		li {
+			> a {
+				display: block;
+				padding: 5px 0;
+				color: #fff;
+				padding: 15px 0;
+			}
+		}
+		li.active {
+			background-color: #d35400;
+		}
+		li:hover {
+			background-color: #d35400;
+		}
+		dd {
+			font-size: 13px;
+			> a {
+				display: block;
+				padding: 5px 5px;
+				color: #fff;
+			}
+		}
+		dd.active, dd:hover {
+			background-color: $color-active;
+		}
+	}
 }
 
 #off-side {
-  background-color: #333;
-  position: fixed;
-  width: 150px;
-  left: -150px;
-  top: 45px;
-  z-index: 1;
-  bottom: 0px;
-  height: 100%;
-  border-right: 1px solid #262626;
+	background-color: #333;
+	position: fixed;
+	width: 150px;
+	left: -150px;
+	top: 45px;
+	z-index: 1;
+	bottom: 0px;
+	height: 100%;
+	border-right: 1px solid #262626;
+	> {
+		ul > li:hover{
+			background-color: $color-active;
+		}
+		ul > li.active{
+			background-color: $color-active;
+		}
+	}
 }
 
 ul.off-canvas-list li a {
-  color: #fff;
-  border-bottom: 0px;
-  padding: 20px;
+	color: #fff;
+	border-bottom: 0px;
+	padding: 20px;
 }
 
 #content {
 //  @include single-transition(opacity, 0.2s);
-  opacity: 0;
+opacity: 0;
 }
 
 dl dd {
-  margin-bottom: 0px !important;
+	margin-bottom: 0px !important;
 }
 
