@@ -1001,3 +1001,23 @@ select.column, select.columns {
 input[type="file"] {
   padding: 0.5rem 0;
 }
+
+.custom-prefix-class {
+  @include prefix-postfix-base();
+  @include grid-column(
+    $columns:12,
+    $float:left
+  );
+}
+.custom-postfix-class {
+  @include prefix-postfix-base();
+  @include grid-column(
+    $columns:12,
+    $float:left
+  );
+  padding-right: 0.8rem;
+}
+.button-group li select {
+	display: inline-block;
+	height: 37px;
+}
