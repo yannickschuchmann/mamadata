@@ -37,12 +37,14 @@
     }
     dd {
       font-size: 13px;
-      padding: 10px 5px;
-      margin: 10px 0;
+      padding: 20px 5px;
       > a {
         color: #fff;
-        padding: 10px 0;
+        padding: 20px 0;
       }
+    }
+    dd.active, dd:hover {
+      background-color: #d35400;
     }
   }
 }
@@ -69,3 +71,8 @@ ul.off-canvas-list li a {
 //  @include single-transition(opacity, 0.2s);
   opacity: 0;
 }
+
+dl dd {
+  margin-bottom: 0px !important;
+}
+

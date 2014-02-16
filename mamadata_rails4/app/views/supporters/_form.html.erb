@@ -1,3 +1,4 @@
+<%= content_for :js do %><%= javascript_include_tag "supporter_new.js" %> <% end %>
 <%= form_for(@supporter) do |f| %>
   <% if @supporter.errors.any? %>
     <div id="error_explanation">

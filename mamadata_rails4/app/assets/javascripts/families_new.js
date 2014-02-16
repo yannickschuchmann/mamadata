@@ -29,7 +29,7 @@ function addPeople (){
 						</div>'
 	);
 	
-		var $h1 = $(".h1person"+peopleNumber);
+	var $h1 = $(".h1person"+peopleNumber);
 	var $person = $('.person'+peopleNumber);
 	var $fathers_name = $(".personsfathername"+peopleNumber);
 	var $familyList = $("#familyList");
@@ -107,7 +107,7 @@ function addFromSearch(pid) {
 						<div class="small-12 medium-8 column"><input id="fathers_name" disabled="disabled" class="personsfathername'+peopleNumber+'" name="person[fathers_name]" type="text" value="'+ person.fathers_name +'"></div>\
 					</div>\
 					<div class="row">\
-					    <div class="small-12 medium-4 column"><label for="Role in context of Sharana">Role in the Household</label></div>\
+						<div class="small-12 medium-4 column"><label for="Role in context of Sharana">Role in the Household</label></div>\
                         <div class="small-12 medium-8 column"><select id="role_id" disabled="disabled" name="person[role_id]"><option value="1">Head of the Household</option>\
                                     <option value="2">Wife</option>\
                                     <option value="3">Child</option>\

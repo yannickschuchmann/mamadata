@@ -1,3 +1,7 @@
+APP = {};
+
+APP.Modules = {};
+
 APP.Modules.FormValidator = {
     $el: $('form'),
     events: {
@@ -10,8 +14,8 @@ APP.Modules.FormValidator = {
         this.events.forEach(function(event) {
 
         });
-        $('input', this.$el).on('focus', )
+        // $('input', this.$el).on('focus', )
     }
 };
 
-APP.Modules.FormValidator.init();
+// APP.Modules.FormValidatogr.init();
