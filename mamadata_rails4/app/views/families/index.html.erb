@@ -12,7 +12,7 @@
 
 		<tbody>
 			<% @families.each_with_index do |family,key| %>
-			<tr>
+			<tr data-link="<%= family_path(family) %>">
 				<td><%= family.name %></td>
 				<td><%= @heads[key].name %></td>
 				<td><% family.people.each do |people| %>

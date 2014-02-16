@@ -26,7 +26,10 @@ MamadataRails4::Application.routes.draw do
   end
 
   resources :community_developments
-  resources :families
+  resources :families do
+    resources :community_developments
+  end
+
   resources :roles
   resources :people do
     resources :journals

@@ -1,0 +1,4 @@
+<% @family.people.each do |f| %>
+	<p><%= f.name %></p><a href="/families" class="button tiny"> delete Relation</a>
+		<%#= link_to delete_person_relation(f.id), data: { confirm: 'Are you sure?' } %>
+<% end %>

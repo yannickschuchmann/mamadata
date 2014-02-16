@@ -1,3 +1,4 @@
+<%= puts params.inspect %>
 <% if params[:action] == "index" %>
 <li>
 	<%= link_to new_family_path do %>
@@ -8,15 +9,15 @@
 <% end %>
 <% if params[:action] == "show" %>
 	<li>
-		<%= link_to edit_person_path(@person) do %>
+		<%= link_to edit_family_path(@family) do %>
 		<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
-		Edit Beneficiary
+		Edit Family
 		<% end %>
 	</li>
 	<li>
-		<%= link_to new_benefit_incident_path(@person.id) do %>
+		<%= link_to edit_community_development_path(@family.community_development_id) do %>
 		<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
-		New Incident
+		Edit Community Development
 		<% end %>
 	</li>
 <% end %>

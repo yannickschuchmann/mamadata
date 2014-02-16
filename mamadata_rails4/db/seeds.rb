@@ -102,8 +102,9 @@ Supporter.create(organisation: "none", name: "Thomas", family_name: "Gottschalk"
 Supporter.create(organisation: "none", name: "Guenther", family_name: "Jauch",email: "guenther@jauch.de", godfather: true, is_volunteer: false, type_of_work: "marketing").save!(:validate => false)
 Supporter.create(organisation: "none", name: "Oliver", family_name: "Geissen",email: "oliver@geissen.de", godfather: false, is_volunteer: true, type_of_work: "volunteering").save!(:validate => false)
 
+CommunityDevelopment.create()
 
-simpsons = Family.create(name:"Simpsons")
+simpsons = Family.create(name:"Simpsons", community_development_id: 1)
 simpsons.people.create(name: "Homer", gender: "male", role: head, program_ids: ["8"])
 simpsons.people.create(name: "Marge",fathers_name: "Homer", gender: "female",role: wife)
 simpsons.people.create(name: "Bart",fathers_name: "Homer", gender: "male", role: child)
