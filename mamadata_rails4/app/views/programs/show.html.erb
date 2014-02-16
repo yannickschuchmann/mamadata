@@ -14,11 +14,31 @@
 	<tr>
 		<td>Has Following Benefits</td>
 		<td>
-			<ul class="no-bullet">
 				<% @program.benefits.each do |benefit| %>
-				<li><%=	benefit.name %></li>
+				<span class="label"><%=	benefit.name %></span>
 				<% end %>
-			</ul>
 		</td>
 	</tr>
 </table>
+
+<table id="peopleIndexTable" class="responsive tablesorter">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Fathers name</th>
+				<th>In Program Since</th>
+				<th>In Program To</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @program.people.each do |person| %>
+			<tr data-link="<%= person_path(person) %>">
+				<td><a href="/people/<%= person.id %>"><%= person.name %></a></td>
+				<td><%= person.fathers_name %></td>
+
+				<td>	<%= BeneficiaryProgramRelationship.where(person_id: person.id, program_id: @program.id).first.created_at %></td>
+				<td> <%= Date.today %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
