@@ -5,12 +5,13 @@ class Person < ActiveRecord::Base
   has_many :journals
   has_many :beneficiary_program_relationships
   has_many :programs, through: :beneficiary_program_relationships
+  has_many  :active_programs, -> { where is_active: true }, class_name: 'BeneficiaryProgramRelationship'
   has_many :benefits, through: :programs
   belongs_to :godfather, :class_name => "Supporter"
   has_many :benefit_incidents
   monetize :income_paise, :numericality => {
     greater_than_or_equal_to: 0 }
-  
+  after_save :set_active_programs
 
     def get_total_expenses
       total_expenses=Money.new(0)
@@ -20,5 +21,19 @@ class Person < ActiveRecord::Base
       return total_expenses
     end
 
+
+
+  protected
+
+    def set_active_programs
+      BeneficiaryProgramRelationship.where(person_id: self.id).each do |r|
+        if self.program_ids.include?(r.program_id)
+          r.is_active = true
+        else
+          r.is_active = false
+        end
+        r.save
+      end
+    end
 
 end

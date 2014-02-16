@@ -4,7 +4,8 @@ APP.Incidents.updateIncidentList = function() {
 	$.ajax({
     url: "/benefit_incidents/list/"+ personId,
         type: "GET",
-        data: {status: $('#incident_status option:selected').val(), list_date: $('#benefit_incident_created_at').val()}
+        data: {status: $('#incident_status option:selected').val(), date_from: $('#benefit_incident_date_from').val(),
+                date_to:$('#benefit_incident_date_to').val()}
     });
     $calcAmount.val('');
     $calcAmount .hide();
@@ -62,7 +63,17 @@ APP.Incidents.init = function() {
 
 
     /* initialize datepicker */
-    $('#benefit_incident_created_at').datepicker({
+    $('#benefit_incident_date_from').datepicker({
+        dateFormat:'yy-mm-dd',
+        duration: 'normal',
+        changeMonth: true,
+        changeYear: true,
+        gotoCurrent: true,
+        autoSize: true,
+        showButtonPanel: true,
+        inline: true
+    });
+        $('#benefit_incident_date_to').datepicker({
         dateFormat:'yy-mm-dd',
         duration: 'normal',
         changeMonth: true,

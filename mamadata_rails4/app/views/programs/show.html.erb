@@ -15,7 +15,7 @@
 		<td>Has Following Benefits</td>
 		<td>
 				<% @program.benefits.each do |benefit| %>
-				<span class="label"><%=	benefit.name %></span>
+				<span class="label"><%=	link_to benefit.name, benefit_path(benefit) %></span>
 				<% end %>
 		</td>
 	</tr>

@@ -16,6 +16,11 @@ class Benefit < ActiveRecord::Base
 
   after_save :update_calculated_amount_for_incidents
 
+
+
+
+
+
 protected
 	def optional_amount_xor_fixed_amount
 		if self.optional_amount || self.fixed_amount
@@ -31,6 +36,8 @@ protected
 			errors.add(:benefit, "has to specify max users for calculated amount")
 		end
 	end
+
+
 
 
 

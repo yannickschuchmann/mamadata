@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140216130850) do
+ActiveRecord::Schema.define(version: 20140216155323) do
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "exit_date"
+    t.boolean  "is_active",  default: false
   end
 
   add_index "beneficiary_program_relationships", ["person_id"], name: "index_beneficiary_program_relationships_on_person_id"
