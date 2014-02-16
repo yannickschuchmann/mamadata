@@ -14,25 +14,21 @@
 	<% end %>
 	<%= render 'head' %>
 	<div class="clearfix"></div>
-	<div class="row">
-		<div>			
-			<div class="tabs-content small-12">
-				<div class="small-12 content active" id="panel2-1">
-					<%= render 'personal' %>
-				</div>
-				<div class="small-12 content" id="panel2-2">
-					<%= render 'narrativetext' %>
-				</div>
-				<div class="small-12 content" id="panel2-3">
-					<%= render 'school' %>
-				</div>
-				<div class="small-12 content" id="panel2-5">
-					<%= render 'journal' %>
-				</div>
-				<div class="small-12 content" id="panel2-4">
-					<%= render 'incidents' %>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="tabs-content row">
+        <div class="small-12 column content active" id="panel2-1">
+            <%= render 'personal' %>
+        </div>
+        <div class="small-12 column content" id="panel2-2">
+            <%= render 'narrativetext' %>
+        </div>
+        <div class="small-12 column content" id="panel2-3">
+            <%= render 'school' %>
+        </div>
+        <div class="small-12 column content" id="panel2-5">
+            <%= render 'journal' %>
+        </div>
+        <div class="small-12 column content" id="panel2-4">
+            <%= render 'incidents' %>
+        </div>
+    </div>
 </div>

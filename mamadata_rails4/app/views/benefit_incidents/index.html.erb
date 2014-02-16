@@ -1,32 +1,34 @@
-<%= content_for :js do %><%= javascript_include_tag "incidents_index" %> <% end %>
-<h1 class="text-center">Listing Incidents</h1>
-<div class="row">
-	<%= select_tag(:incident_status, options_for_select([['Show All', nil], ['Show Pending', "false"], ['Show Granted', "true"]]),:class => "small-2 column") %>
-<div class="button-bar">
-  <ul class="button-group">
-    <li>	
-    <% if is_admin? %>
-			<a href='#' id="setgrantedbtn" class="tiny button">Set Granted</a>
-		<% end %>
-		</li>
-    <li><a href='#' id='calculatebtn' class="tiny button">Calcualte</a></li>
+<div id="content">
+    <%= content_for :js do %><%= javascript_include_tag "incidents_index" %> <% end %>
+    <h1 class="text-center">Listing Incidents</h1>
+    <div class="row">
+        <%= select_tag(:incident_status, options_for_select([['Show All', nil], ['Show Pending', "false"], ['Show Granted', "true"]]),:class => "small-2 column") %>
+    <div class="button-bar">
+      <ul class="button-group">
+        <li>
+        <% if is_admin? %>
+                <a href='#' id="setgrantedbtn" class="tiny button">Set Granted</a>
+            <% end %>
+            </li>
+        <li><a href='#' id='calculatebtn' class="tiny button">Calcualte</a></li>
 
-  </ul>
-    <ul class="button-group right">
-	    <li><a href='#' id='filter_date' class="tiny button">Filter by Date</a></li>
-    <li><input type="text" id="benefit_incident_created_at"></li>
-    </ul>
+      </ul>
+        <ul class="button-group right">
+            <li><a href='#' id='filter_date' class="tiny button">Filter by Date</a></li>
+        <li><input type="text" id="benefit_incident_created_at"></li>
+        </ul>
+    </div>
+
+
+
+    </div>
+        <div id="calculated_amount" style="display:none"></div>
+
+    <div id="incidents">
+        <%= render "/benefit_incidents/list"%>
+    </div>
+
+    <script type="text/javascript">
+        var action = '<%= action_name %>';
+    </script>
 </div>
-
-
-
-</div>
-	<div id="calculated_amount" style="display:none"></div>
-
-<div id="incidents">
-	<%= render "/benefit_incidents/list"%>
-</div>
-
-<script type="text/javascript">
-	var action = '<%= action_name %>';
-</script>
