@@ -1,95 +1,4 @@
-/* update incidents via ajax function */
-APP.Incidents.updateIncidentList = function() {
-    var $calcAmount = $('#calculated_amount');
-	$.ajax({
-    url: "/benefit_incidents/list/"+ personId,
-        type: "GET",
-        data: {status: $('#incident_status option:selected').val(), date_from: $('#benefit_incident_date_from').val(),
-                date_to:$('#benefit_incident_date_to').val()}
-    });
-    $calcAmount.val('');
-    $calcAmount .hide();
-};
 
-APP.Incidents.init = function() {
-
-    /* update incidents when status of select box changes */
-    $('#incident_status').change(function(){
-        APP.Incidents.updateIncidentList();
-    });
-
-
-    /* update checked incidents with status true via ajax */
-    $('#setgrantedbtn').on('click', function(e){
-        e.preventDefault();
-        $(".chk").each(function() {
-            var $this = $(this);
-            if($this.is(':checked')){
-               $.ajax({
-                    url: "/benefit_incidents/" + $this.val(),
-                    type: "PATCH",
-                    data: {benefit_incident: {status: true}},
-                    dataType: "json"
-                })
-            }
-        });
-        APP.Incidents.updateIncidentList();
-    });
-
-
-    /* send array of ids to calculate amount on via ajax */
-    $('#calculatebtn').on('click', function(e) {
-        e.preventDefault();
-        var ids = new Array();
-        $(".chk").each(function() {
-            var $this = $(this);
-            if($this.is(':checked')){
-              ids.push($this.val());
-            }
-        });
-        $("#calculated_amount").show();
-        $.ajax({
-            url: "/benefit_incidents/test/calculated",
-            type: "GET",
-            data: {array: ids}
-        });
-    });
-
-
-    /* update incidents when dateFilter applied */
-    // $('#benefit_incident_created_at').change(function(){
-    //     updateIncidentList();
-    // });
-
-
-    /* initialize datepicker */
-    $('#benefit_incident_date_from').datepicker({
-        dateFormat:'yy-mm-dd',
-        duration: 'normal',
-        changeMonth: true,
-        changeYear: true,
-        gotoCurrent: true,
-        autoSize: true,
-        showButtonPanel: true,
-        inline: true
-    });
-        $('#benefit_incident_date_to').datepicker({
-        dateFormat:'yy-mm-dd',
-        duration: 'normal',
-        changeMonth: true,
-        changeYear: true,
-        gotoCurrent: true,
-        autoSize: true,
-        showButtonPanel: true,
-        inline: true
-    });
-
-
-    /* checkox shows datepicker */
-    $('#filter_date').on('click', function(){
-        APP.Incidents.updateIncidentList();
-    });
-};
   $(".tablesorter").tablesorter({
   headers: { 
             // assign the secound column (we start counting zero) 
@@ -113,7 +22,7 @@ APP.Persons.AmounttoView = {
 }
 
 $(document).ready(function() {
-    APP.Incidents.init();
+    APP.Incidents.init(personId);
     APP.Persons.AmounttoView.init();
 });
 
