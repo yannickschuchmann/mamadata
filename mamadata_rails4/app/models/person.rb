@@ -13,14 +13,26 @@ class Person < ActiveRecord::Base
     greater_than_or_equal_to: 0 }
   after_save :set_active_programs
 
-    def get_total_expenses
+    def get_total_expenses (date = nil)
       total_expenses=Money.new(0)
-      self.benefit_incidents.each do |benefit|
+      if date.nil?
+        benefit_incidents = self.benefit_incidents
+      else
+        benefit_incidents = self.benefit_incidents.where('date_granted >= :date', :date => date)
+      end
+      benefit_incidents.each do |benefit|
           total_expenses+=benefit.amount
       end
       return total_expenses
     end
 
+    def year_to_date
+      self.get_total_expenses Date.today.beginning_of_financial_year
+    end
+
+    def month_to_date
+      self.get_total_expenses Date.today.beginning_of_month
+    end
 
 
   protected
