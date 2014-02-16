@@ -32,7 +32,7 @@
 	<% if user_signed_in? %>
 		<div id="off-side">
 			<ul class="off-canvas-list">
-				<% overviews 		= 	(controller_name == "people" || controller_name == "families" || controller_name == "supporters" || controller_name == "users"|| controller_name == "programs")  ? "active" : "" %>
+				<% overviews 		= 	(controller_name == "people" || controller_name == "families" || controller_name == "supporters" || controller_name == "users")  ? "active" : "" %>
 				<% users 			= 	(controller_name == "registrations") ? "active" : "" %>
 				<% roles 			= 	(controller_name == "roles") ? "active" : "" %>
 				<% benefit_incidents= 	(controller_name == "benefit_incidents") ? "active" : "" %>
