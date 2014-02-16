@@ -7,7 +7,7 @@
 			<h5><b>File: <%= @person.id %></b></h5>
 			<ul class="no-bullet">
 				<% @person.programs.each do |p| %>
-				<span class="label button"><%= p.name %></span>
+				    <%= link_to p.name, program_path(p), {class: 'label button'} %>
 				<% end %>
 			</ul>
             <div id="amount-to-date" class="button-bar">
