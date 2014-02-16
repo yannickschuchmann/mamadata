@@ -992,4 +992,12 @@ $topbar-link-bg-hover: $color-active  ;
 // Sticky Class
 // $topbar-sticky-class: ".sticky";
 // $topbar-arrows: true; //Set false to remove the triangle icon from the menu item
+
 @import 'foundation';
+
+select.column, select.columns {
+  padding: 0.5rem 0.9375rem!important;
+}
+input[type="file"] {
+  padding: 0.5rem 0;
+}

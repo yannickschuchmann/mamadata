@@ -32,9 +32,9 @@
 				<td><%= supporter.is_volunteer %></td>
 				<td><%= supporter.type_of_work %></td>
 				<td style="width: 130px;">
-					<%= link_to (content_tag(:i, '', :class => 'button tiny icon-edit')), edit_supporter_path(supporter) %>
+					<%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_supporter_path(supporter) %>
 					<% if is_admin? %>
-						<%= link_to (content_tag(:i, '', :class => 'button tiny icon-trash')), supporter, method: :delete, data: { confirm: 'Are you sure?' } %>
+						<%= link_to (content_tag(:i, '', :class => 'icon-trash')), supporter, method: :delete, data: { confirm: 'Are you sure?' } %>
 					<% end %>
 				</td>
 			</tr>

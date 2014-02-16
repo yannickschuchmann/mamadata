@@ -18,9 +18,9 @@
 				<td><%= program.description %></td>
 				<td><%= link_to 'Show Benefits', benefits_program_path(program), :class => 'btn btn-small btn-primary' %></td>
 				<td style="width: 130px;">
-					<%= link_to (content_tag(:i, '', :class => 'button tiny icon-edit')), edit_program_path(program) %>
+					<%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_program_path(program) %>
 					<% if is_admin? %>
-						<%= link_to (content_tag(:i, '', :class => 'button tiny icon-trash')), program, method: :delete, data: { confirm: 'Are you sure?' } %>
+						<%= link_to (content_tag(:i, '', :class => 'icon-trash')), program, method: :delete, data: { confirm: 'Are you sure?' } %>
 					<% end %>
 				</td>
 			</tr>
