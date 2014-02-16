@@ -22,6 +22,7 @@
 //= require jquery.ui.all
 
 var APP = {
+    Persons: {},
     Incidents: {},
     Modules: {
         FormValidator: {}
