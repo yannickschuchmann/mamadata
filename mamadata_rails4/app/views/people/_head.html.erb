@@ -10,7 +10,7 @@
 				<span class="label button"><%= p.name %></span>
 				<% end %>
 			</ul>
-			<span class="">Total Expenses: 
+			<span id="amount-to-date" class="">Total
 			<%= money_without_cents_and_with_symbol @person.get_total_expenses %>
 			</span>
 		</div>

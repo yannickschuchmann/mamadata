@@ -40,6 +40,9 @@
 				</td>
 				<td style="width: 130px;">
 					<%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_person_path(person) %>
+                    <% if is_admin? %>
+                        <%= link_to (content_tag(:i, '', :class => 'icon-trash')), person, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <% end %>
 				</td>
 			</tr>
 			<% end %>

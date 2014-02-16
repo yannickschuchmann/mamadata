@@ -13,8 +13,8 @@
 			<tr data-link="<% role_path(role) %>">
 				<td><%= role.name %></td>
 				<td style="width: 130px;">
-					<%= link_to (content_tag(:i, '', :class => 'button tiny icon-edit')), edit_role_path(role) %>
-					<%= link_to (content_tag(:i, '', :class => 'button tiny icon-trash')), role, method: :delete, data: { confirm: 'Are you sure?' } %>
+					<%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_role_path(role) %>
+					<%= link_to (content_tag(:i, '', :class => 'icon-trash')), role, method: :delete, data: { confirm: 'Are you sure?' } %>
 				</td>
 			</tr>
 			<% end %>
