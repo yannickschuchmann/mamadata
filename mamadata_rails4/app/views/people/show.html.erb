@@ -5,50 +5,34 @@
 		<dd><a href="#panel2-2">Narrative Text</a></dd>
 		<dd><a href="#panel2-3">School</a></dd>
 		<dd><a href="#panel2-4">Benefit History</a></dd>
+		<dd><a href="#panel2-5">Journal Entries</a></dd>
 	</dl>
 </div>
 <div id="content">
-
 	<% if notice %>
 		<p id="notice"><%= notice %></p>
 	<% end %>
-
 	<%= render 'head' %>
-
 	<div class="clearfix"></div>
-
-
 	<div class="row">
 		<div class="small-12 column">			
 			<div class="tabs-content">
-
 				<div class="content active" id="panel2-1">
-
 					<%= render 'personal' %>
-
 				</div>
-
 				<div class="content" id="panel2-2">
-
 					<%= render 'narrativetext' %>
-
 				</div>
-
 				<div class="content" id="panel2-3">
-					
 					<%= render 'school' %>
-
 				</div>
-
 				<div class="content" id="panel2-4">
-
 					<%= render 'incidents' %>
-				
 				</div>
-
-
+				<div class="content" id="panel2-5">
+					<% render 'journal' %>
+				</div>
 			</div>
-
 		</div>
 	</div>
 </div>
