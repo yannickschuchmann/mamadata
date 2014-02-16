@@ -7,5 +7,11 @@
 </li>
 <% end %>
 <% if params[:action] == "show" %>
-	<li><%= link_to 'Edit', edit_program_path(@program), :class => "button tiny" %></li>
+	<li>
+		<%= link_to  edit_program_path(@program) do %>
+		<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+		Edit Program
+		<% end %>
+	</li>
 <% end %>
+
