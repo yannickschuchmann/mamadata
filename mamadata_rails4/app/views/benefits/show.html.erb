@@ -3,44 +3,44 @@
 <% if notice %>
 <p id="notice"><%= notice %></p>
 <% end %>
-		<h2><%= @benefit.name %></h2>
+		<h2 class="text-center"><%= @benefit.name %></h2>
+		<div class="row">
+		<div class="small-12 medium-12 column">
 <table class="table">
 	<tr>
-		<td>Descriptioin:</td>
-		<td><%= @benefit.description %></td>
+		<th>Description:</th>
+		<th>Amounts Spent On</th>
+		<th>Programs</th>
 	</tr>
 
 	<tr>
-		<td>Total Amount Pending</td>
-		<td><%= money_without_cents_and_with_symbol @total_amount_pending %></td>
-	</tr>
-<tr>
-	<td>Total Amount Granted</td>
-	<td><%= money_without_cents_and_with_symbol @total_amount_granted %></td>
-</tr>
-	<tr>
-		<td>Belongs to Programs:</td>
-		<td>
+		<td rowspan="3"><%= @benefit.description %></td>
+		<td rowspan="3">Pending: <%= money_without_cents_and_with_symbol @total_amount_pending %><br />
+		Granted: <%= money_without_cents_and_with_symbol @total_amount_granted %></td>
+		<td rowspan="3">
+			<% @benefit.programs.each_slice(3) do |slice| %>
 			<ul class="no-bullet">
-				<% @benefit.programs.each do |program| %>
-				<span class="label"><%= program.name %></li>
+				<% slice.each do |program| %>
+				<%=link_to program.name, program_path(program), class:  "label button"%>
 				<% end %>
-			</ul>
+				</ul>
+				<br>
+			<% end %>
 		</td>
 	</tr>
 
 </table>
-
-
-
-
+</div>
+</div>
+ 
+<h3 class="text-center">Issued Incidents</h3>
 <div class="row">
 
 </div>
 	<table id="benefitTable" class="tablesorter">
 		<thead>
 			<tr>
-				<th>User</th>
+				<th>Beneficiary</th>
 				<th>Program</th>
 				<th>Amount</th>
 				<th>Status</th>

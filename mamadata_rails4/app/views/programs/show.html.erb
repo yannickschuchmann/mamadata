@@ -1,22 +1,38 @@
+<%= render '/shared/overview_sidebar' %>
+<div id="content">
 <% if notice %>
 <p id="notice"><%= notice %></p>
 <% end %>
-<h1><%= @program.name %></h1>
+		<h2 class="text-center"><%= @program.name %></h2>
+		<div class="row">
+		<div class="small-12 medium-12 column">
 <table class="table">
+	<tr>
+		<th>Description:</th>
+		<th>Amounts Spent On</th>
+		<th>Benefits</th>
+	</tr>
 
 	<tr>
-		<td>Description:</td>
-		<td><%= @program.description %></td>
-	</tr>
-	<tr>
-		<td>Has Following Benefits</td>
-		<td>
-				<% @program.benefits.each do |benefit| %>
-				<span class="label"><%=	link_to benefit.name, benefit_path(benefit) %></span>
+		<td rowspan="3"><%= @program.description %></td>
+		<td rowspan="3">Pending: <%= money_without_cents_and_with_symbol @total_amount_pending %><br />
+		Granted: <%= money_without_cents_and_with_symbol @total_amount_granted %></td>
+		<td rowspan="3">
+			<% @program.benefits.each_slice(6) do |slice| %>
+			<div>
+				<% slice.each do |benefit| %>
+				<span class="label button"><%= benefit.name %></span>
 				<% end %>
+				</div>
+				<br>
+			<% end %>
 		</td>
 	</tr>
+
 </table>
+</div>
+</div>
+<h3 class="text-center">Participating Beneficiaries</h3>
 
 <table id="peopleIndexTable" class="responsive tablesorter">
 		<thead>
@@ -24,7 +40,7 @@
 				<th>Name</th>
 				<th>Fathers name</th>
 				<th>In Program Since</th>
-				<th>In Program To</th>
+				<th>In Program Until</th>
 			</tr>
 		</thead>
 		<tbody>
