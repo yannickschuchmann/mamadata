@@ -1,5 +1,13 @@
+<%= render '/shared/overview_sidebar' %>
+<div id="content">
+
 <h1 class="text-center">New benefit</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', benefits_path %>
+<div class="row">
+    <div class="small-12 column">
+        <%= link_to 'Cancel', benefits_path, {class: 'button tiny'} %>
+    </div>
+</div>
+</div>

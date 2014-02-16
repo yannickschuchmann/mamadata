@@ -1,4 +1,7 @@
+<%= render '/shared/overview_sidebar' %>
 <%= content_for :js do %><%= javascript_include_tag "families_new.js" %> <% end %>
+<div id="content">
+
 <h2 class="text-center">Family</h2>
 <div class="row">
 	<div class="small-8 columns">
@@ -49,9 +52,9 @@
 	</div>
 	<div class="small-12 medium-6 large-6 columns">
 		<table>
-			<thead> 
+			<thead>
 				<tr>
-					<th>Name</th> <th>Fathers Name</th> <th>City</th> <th>Zipcode</th> <th></th> 
+					<th>Name</th> <th>Fathers Name</th> <th>City</th> <th>Zipcode</th> <th></th>
 				</tr>
 			</thead>
 			<tbody id="searchResult">
@@ -69,4 +72,5 @@
             </ul>
         </div>
     </div>
+</div>
 </div>
