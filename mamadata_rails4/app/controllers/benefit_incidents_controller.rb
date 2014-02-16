@@ -1,4 +1,4 @@
-class BenefitIncidentsController < ApplicationController
+  class BenefitIncidentsController < ApplicationController
   before_action :set_benefit_incident, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
   respond_to :js, :html
@@ -27,7 +27,7 @@ class BenefitIncidentsController < ApplicationController
       
       all_benefits_with_status false if params[:status] == "false"
       all_benefits_with_status true if params[:status] == "true"
-      add_date_filter unless params[:list_date].empty?
+      add_date_filter unless (params[:date_from].empty? && params[:date_to].empty?)
 
   respond_to do |format|
     format.js {}
@@ -125,7 +125,8 @@ class BenefitIncidentsController < ApplicationController
     end
 
     def add_date_filter
-      @benefit_incidents=@benefit_incidents.where("created_at >= ?",  params[:list_date])
+      @benefit_incidents=@benefit_incidents.where("date_granted >= ?",  params[:date_from])
+      @benefit_incidents = @benefit_incidents.where("date_granted <= ?",  params[:date_to])
     end
 
     def list_for_all_users?

@@ -11,6 +11,26 @@ class BenefitsController < ApplicationController
   # GET /benefits/1
   # GET /benefits/1.json
   def show
+    @benefit_incidents = BenefitIncident.where(benefit_id: params[:id])
+
+    total_amount_pending=Money.new(0)
+    @benefit_incidents.each do |benefit|
+      if(benefit.status == false)
+        total_amount_pending+=benefit.amount
+      end
+    end
+    @total_amount_pending = total_amount_pending
+
+
+    total_amount_granted=Money.new(0)
+    @benefit_incidents.each do |benefit|
+      if(benefit.status == true)
+        total_amount_granted+=benefit.amount
+      end
+    end
+    @total_amount_granted = total_amount_granted
+
+
   end
 
   # GET /benefits/new
@@ -77,4 +97,11 @@ class BenefitsController < ApplicationController
     def benefit_params
       params.require(:benefit).permit(:name, :description, :optional_amount, :max_people, :fixed_amount, :category, :program_ids => [])
     end
+
+
+  def get_total_amount_granted
+
+      return total_amount_granted
+  end
+
 end

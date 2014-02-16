@@ -5,12 +5,20 @@
 	<tr>
 		<td>Name:</td>
 		<td><%= @benefit.name %></td>
-	</div>
+	</tr>
+	<tr>
+		<td>Total Amount Pending</td>
+		<td><%= money_without_cents_and_with_symbol @total_amount_pending %></td>
+	</tr>
+<tr>
+	<td>Total Amount Granted</td>
+	<td><%= money_without_cents_and_with_symbol @total_amount_granted %></td>
+</tr>
 
 	<tr>
 		<td>Descriptioin:</td>
 		<td><%= @benefit.description %></td>
-	</div>
+	</tr>
 
 	<tr>
 		<td>Belongs to Programs:</td>
@@ -33,3 +41,43 @@
 		</td>
 	</tr>
 </table>
+
+
+
+
+<div class="row">
+
+</div>
+	<table id="benefitTable" class="tablesorter">
+		<thead>
+			<tr>
+				<th>User</th>
+				<th>Program</th>
+				<th>Amount</th>
+				<th>Status</th>
+				<th>Date Created</th>
+				<th>Date Granted</th>
+			</tr>
+		</thead>
+
+		<tbody>
+
+			<% @benefit_incidents.each do |benefit_incident| %>
+			<tr>
+
+				<td><%= link_to benefit_incident.person.name, person_path(benefit_incident.person) %></td>
+				<td><%= link_to benefit_incident.program.name, program_path(benefit_incident.program) %></td>
+				<td><%= money_without_cents_and_with_symbol benefit_incident.amount %></td>
+				<td><%= benefit_incident.status == true ? 'Granted' : 'Pending' %></td>
+				<td><%= l benefit_incident.created_at, :format => :long %></td>
+				<td><%= benefit_incident.date_granted %></td>
+
+				
+
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+</div>
+
