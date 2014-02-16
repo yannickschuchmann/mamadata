@@ -36,12 +36,11 @@ $(function(){
 });
 //= require turbolinks
 //= require jquery.tablesorter.min
-$(function(){
-	$(document).foundation();
-});
+
 $(document).ready(function(){
+    $(document).foundation();
+    if(location.hash !== '') $('a[href="'+location.hash+'"]').trigger('click');
+
 	$(".tablesorter").tablesorter();
+
 });
-
-
-
