@@ -1,11 +1,11 @@
-<h2>Add a Journal Entry:</h2>
+<h5>Add a Journal Entry:</h5>
 <%= form_for([@person, @person.journals.build]) do |f| %>
 <div class="row">
 	<div class="small-12 large-12 columns"><%= f.label "Journal Entry" %></div>
-	<div class="small-12 large-12 columns"><%= f.text_field :text %></div>
+	<div class="small-12 large-12 columns"><%= f.text_area :text %></div>
 </div>
 
-<%= f.submit :class => "button" %>
+<%= f.submit :class => "button tiny" %>
 <% end %>
 
 <% @person.journals.each do |f| %>
