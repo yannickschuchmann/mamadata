@@ -1,11 +1,15 @@
+<%= render '/shared/overview_sidebar' %>
+<div id="content">
 <% if notice %>
 <p id="notice"><%= notice %></p>
 <% end %>
+		<h2><%= @benefit.name %></h2>
 <table class="table">
 	<tr>
-		<td>Name:</td>
-		<td><%= @benefit.name %></td>
+		<td>Descriptioin:</td>
+		<td><%= @benefit.description %></td>
 	</tr>
+
 	<tr>
 		<td>Total Amount Pending</td>
 		<td><%= money_without_cents_and_with_symbol @total_amount_pending %></td>
@@ -14,32 +18,17 @@
 	<td>Total Amount Granted</td>
 	<td><%= money_without_cents_and_with_symbol @total_amount_granted %></td>
 </tr>
-
-	<tr>
-		<td>Descriptioin:</td>
-		<td><%= @benefit.description %></td>
-	</tr>
-
 	<tr>
 		<td>Belongs to Programs:</td>
 		<td>
 			<ul class="no-bullet">
 				<% @benefit.programs.each do |program| %>
-				<li><%= program.name %></li>
+				<span class="label"><%= program.name %></li>
 				<% end %>
 			</ul>
 		</td>
 	</tr>
-		<tr>
-		<td>Has Beneficiaries:</td>
-		<td>
-			<ul class="no-bullet">
-				<% @benefit.people.distinct.each do |p| %>
-				<li><%= link_to p.name, person_path(p.id) %></li>
-				<% end %>
-			</ul>
-		</td>
-	</tr>
+
 </table>
 
 
