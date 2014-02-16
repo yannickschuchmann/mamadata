@@ -26,7 +26,7 @@
 <div class="row">
   <span class="ul">
 
-    <% Benefit.all.each_slice(12) do |slice| %>
+    <% Benefit.all.order('name').each_slice(12) do |slice| %>
     <div class="small-12 large-12 columns">
       <% slice.each do |b| %>
       <label class="small-12 medium-6 large-4 column"><%= check_box_tag :benefit_ids, b.id, @program.benefits.include?(b), :name => 'program[benefit_ids][]' %> <%= b.name %></label>
