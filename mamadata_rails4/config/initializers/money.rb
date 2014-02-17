@@ -1,26 +1,15 @@
 # encoding : utf-8
 
-# Money exchange
-::Money.default_bank = ::EuCentralBank.new
+require 'money'
+require 'money/bank/google_currency'
 
-EU_CENTRAL_BANK_CACHE = 'tmp/eu_bank_exchange_rates.xml'
+# (optional)
+# set the seconds after than the current rates are automatically expired
+# by default, they never expire
+Money::Bank::GoogleCurrency.ttl_in_seconds = 86400
 
-# Right now we update exchange rates on app restart. App is restarted daily after logs rotation,
-# Should be ok for now.
-
-if (!File.exist?(EU_CENTRAL_BANK_CACHE)) || File.mtime(EU_CENTRAL_BANK_CACHE) < 2.minutes.ago
-  p "Updating money exchange rates"
-  ::Money.default_bank.save_rates(EU_CENTRAL_BANK_CACHE)
-end
-
-  ::Money.default_bank.update_rates(EU_CENTRAL_BANK_CACHE)
-
-# saves the rates in a specified location
-# eu_bank.save_rates(cache)
-
-# reads the rates from the specified location
-# eu_bank.update_rates(cache)
-
+# set default bank to instance of GoogleCurrency
+Money.default_bank = Money::Bank::GoogleCurrency.new
 
 MoneyRails.configure do |config|
 
