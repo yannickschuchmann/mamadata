@@ -26,6 +26,7 @@ class BenefitIncident < ActiveRecord::Base
 
 		def set_current_exchange_rates
 			self.amount_in_euro=self.amount.exchange_to(:EUR)
+			self.amount_in_dollar=self.amount.exchange_to(:USD)
 		end
 
 		def update_calculated_amount
@@ -54,7 +55,7 @@ class BenefitIncident < ActiveRecord::Base
 		end
 
 		def set_date_granted
-			if self.status == true 
+			if self.status == true && (self.date_granted == nil)
 				self.date_granted = DateTime.now.to_s(:long)
 			elsif self.status == false
 				self.date_granted = nil

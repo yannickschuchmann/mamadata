@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217091605) do
+ActiveRecord::Schema.define(version: 20140217122158) do
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20140217091605) do
     t.text     "remark"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "date_granted"
+    t.datetime "date_granted"
     t.boolean  "status"
     t.integer  "amount_in_euro_paise",      default: 0
     t.string   "amount_in_euro_currency",   default: "EUR", null: false
