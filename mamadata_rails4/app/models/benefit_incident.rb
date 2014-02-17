@@ -17,6 +17,7 @@ class BenefitIncident < ActiveRecord::Base
 	before_save :set_date_granted
 	before_save :update_calculated_amount
 	before_save :set_fixed_amount
+	before_save :set_current_exchange_rates
 
 
 
@@ -24,8 +25,10 @@ class BenefitIncident < ActiveRecord::Base
 	protected
 
 		def set_current_exchange_rates
-			self.amount_in_euro=self.amount.exchange_to(:EUR)
-			self.amount_in_dollar=self.amount.exchange_to(:USD)
+			if self.changed_attributes.include?("amount_paise")
+				self.amount_in_euro=self.amount.exchange_to(:EUR)
+				self.amount_in_dollar=self.amount.exchange_to(:USD)
+			end
 		end
 
 		def update_calculated_amount
@@ -56,7 +59,6 @@ class BenefitIncident < ActiveRecord::Base
 		def set_date_granted
 			if self.status == true && (self.date_granted == nil)
 				self.date_granted = DateTime.now.to_s(:long)
-				set_current_exchange_rates
 			elsif self.status == false
 				self.date_granted = nil
 			end

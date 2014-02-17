@@ -8,7 +8,7 @@ EU_CENTRAL_BANK_CACHE = 'tmp/eu_bank_exchange_rates.xml'
 # Right now we update exchange rates on app restart. App is restarted daily after logs rotation,
 # Should be ok for now.
 
-if (!File.exist?(EU_CENTRAL_BANK_CACHE)) || File.mtime(EU_CENTRAL_BANK_CACHE) < 23.hours.ago
+if (!File.exist?(EU_CENTRAL_BANK_CACHE)) || File.mtime(EU_CENTRAL_BANK_CACHE) < 2.minutes.ago
   p "Updating money exchange rates"
   ::Money.default_bank.save_rates(EU_CENTRAL_BANK_CACHE)
 end
