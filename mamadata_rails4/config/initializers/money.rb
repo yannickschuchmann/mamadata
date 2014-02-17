@@ -1,14 +1,25 @@
 # encoding : utf-8
 
-eu_bank = EuCentralBank.new
-Money.default_bank = eu_bank
-cache = "public/exchange_rates.xml"
+# Money exchange
+::Money.default_bank = ::EuCentralBank.new
+
+EU_CENTRAL_BANK_CACHE = 'tmp/eu_bank_exchange_rates.xml'
+
+# Right now we update exchange rates on app restart. App is restarted daily after logs rotation,
+# Should be ok for now.
+
+if (!File.exist?(EU_CENTRAL_BANK_CACHE)) || File.mtime(EU_CENTRAL_BANK_CACHE) < 23.hours.ago
+  p "Updating money exchange rates"
+  ::Money.default_bank.save_rates(EU_CENTRAL_BANK_CACHE)
+end
+
+  ::Money.default_bank.update_rates(EU_CENTRAL_BANK_CACHE)
 
 # saves the rates in a specified location
-eu_bank.save_rates(cache)
+# eu_bank.save_rates(cache)
 
 # reads the rates from the specified location
-eu_bank.update_rates(cache)
+# eu_bank.update_rates(cache)
 
 
 MoneyRails.configure do |config|
@@ -20,7 +31,7 @@ MoneyRails.configure do |config|
   # Set default bank object
   #
   # Example:
-   config.default_bank = eu_bank
+   config.default_bank = ::Money.default_bank 
 
   # Add exchange rates to current money bank object.
   # (The conversion rate refers to one direction only)

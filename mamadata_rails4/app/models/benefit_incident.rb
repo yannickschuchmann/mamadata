@@ -17,7 +17,6 @@ class BenefitIncident < ActiveRecord::Base
 	before_save :set_date_granted
 	before_save :update_calculated_amount
 	before_save :set_fixed_amount
-	before_save :set_current_exchange_rates
 
 
 
@@ -57,6 +56,7 @@ class BenefitIncident < ActiveRecord::Base
 		def set_date_granted
 			if self.status == true && (self.date_granted == nil)
 				self.date_granted = DateTime.now.to_s(:long)
+				set_current_exchange_rates
 			elsif self.status == false
 				self.date_granted = nil
 			end
