@@ -14,11 +14,27 @@ class FamiliesController < ApplicationController
 		end
 		#puts @heads
 	end
+	
+	def destroy
+		@family.destroy
+		respond_to do |format|
+			format.html { redirect_to families_url }
+			format.json { head :no_content }
+		end
+	end
+	def delete_relation
+		@person = Person.find(params[:id])
+		if !@person.nil?
+			@person.family_id = nil
+			@person.save
+		end
+		redirect_to families_path
+	end
 
 	def edit
 	end
-	 
-	 def new
+
+	def new
 		# @family = Family.new
 		# @person = Person.new
 		# respond_to do |format|
@@ -52,6 +68,7 @@ class FamiliesController < ApplicationController
 	def show
 		@community = CommunityDevelopment.find(@family.community_development_id)
 	end
+
 	private
 	def set_family
 		@family = Family.find(params[:id])

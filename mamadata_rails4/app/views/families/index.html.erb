@@ -7,6 +7,7 @@
 				<th>Name</th>
 				<th>Head of the Household</th>
 				<th>Family Member</th>
+				<td></td>
 			</tr>
 		</thead>
 
@@ -18,6 +19,9 @@
 				<td><% family.people.each do |people| %>
 					<%= people.name %> <br>
 					<% end %>
+				</td>
+				<td>
+					<%= link_to (content_tag(:i, '', :class => 'icon-trash')), family, method: :delete, data: { confirm: 'Are you sure?' } %>
 				</td>
 			</tr>
 			<% end %>
