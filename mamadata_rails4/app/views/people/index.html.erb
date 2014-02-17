@@ -7,6 +7,7 @@
 	<table id="peopleIndexTable" class="responsive tablesorter">
 		<thead>
 			<tr>
+				<td><%= check_box_tag :checked_person,'#', false, id: 'chkall' %></td>
 				<th>Name</th>
 				<th>Fathers name</th>
 				<th>Gender</th>
@@ -16,12 +17,13 @@
 				<th>PIN code</th>
 				<th>Role</th>
 				<th>Total Expense</th>
-				<th></th>
+				<td></td>
 			</tr>
 		</thead>
 		<tbody>
 			<% @people.each do |person| %>
 			<tr data-link="<%= person_path(person) %>">
+			<td><%= check_box_tag :checked_person, person.id, false, class: 'chk' %></td>
 				<td><a href="/people/<%= person.id %>"><%= person.name %></a></td>
 				<td><%= person.fathers_name %></td>
 				<td><%= person.gender %></td>
