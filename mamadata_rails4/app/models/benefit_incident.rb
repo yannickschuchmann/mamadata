@@ -14,7 +14,11 @@ class BenefitIncident < ActiveRecord::Base
 	before_save :set_fixed_amount
 
 
+# require 'money'
+# require 'money/bank/google_currency'
 
+# bank = Money::Bank::GoogleCurrency.new
+# bank.get_rate(:EUR, :INR).to_f
 
 
 
