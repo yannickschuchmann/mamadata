@@ -1,32 +1,16 @@
-var checkedInput = $("input:checked").val();
+var checkedInput = $("#benefit_category").val();
 
 
-if(checkedInput == "calculated") {
+if(checkedInput === "calculated") {
 	$("#calculated_amount").show();
-} else if (checkedInput == "fixed") {
+} else if (checkedInput === "fixed") {
 	$("#fixed_amount").show();
 }
 
-
-$("#benefit_category_fixed").click(function() {
+$("#benefit_category").on('change', function() {
 		clearOtherFields();
-		$("#fixed_amount").show();
-		$("#calculated_amount").hide();
-
-});
-
-$("#benefit_category_calculated").click(function() {
-		clearOtherFields();
-		$("#fixed_amount").hide();
-		$("#calculated_amount").show();
-
-});
-
-$("#benefit_category_none").click(function() {
-		clearOtherFields();
-		$("#fixed_amount").hide();
-		$("#calculated_amount").hide();
-
+		$("#fixed_amount, #calculated_amount").hide();
+		$($('#'+$('option:selected', this).text().toLowerCase().replace(' ', '_'))).show();
 });
 
 var clearOtherFields = function() {

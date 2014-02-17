@@ -9,7 +9,7 @@ class Person < ActiveRecord::Base
   has_many :benefits, through: :programs
   belongs_to :godfather, :class_name => "Supporter"
   has_many :benefit_incidents
-  monetize :income_paise, :numericality => {
+  monetize :income_paise,:with_currency => :inr, :numericality => {
     greater_than_or_equal_to: 0 }
   after_save :set_active_programs
 

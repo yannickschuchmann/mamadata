@@ -45,3 +45,79 @@ $(document).ready(function(){
 	$(".tablesorter").tablesorter();
 
 });
+
+/* update incidents via ajax function */
+APP.Incidents.updateIncidentList = function() {
+    var $calcAmount = $('#calculated_amount');
+    $.ajax({
+    url: "/benefit_incidents/list/"+ APP.Incidents.personId,
+        type: "GET",
+        data: {status: $('#incident_status option:selected').val(), date_from: $('#benefit_incident_date_from').val(),
+                date_to:$('#benefit_incident_date_to').val()}
+    });
+    $calcAmount.val('');
+    $calcAmount .hide();
+};
+
+APP.Incidents.init = function(personId) {
+    APP.Incidents.personId = personId || "all"
+    /* update incidents when status of select box changes */
+    $('#incident_status').change(function(){
+        APP.Incidents.updateIncidentList();
+    });
+
+
+    /* update checked incidents with status true via ajax */
+    $('#setgrantedbtn').on('click', function(e){
+        e.preventDefault();
+        $(".chk").each(function() {
+            var $this = $(this);
+            if($this.is(':checked')){
+               $.ajax({
+                    url: "/benefit_incidents/" + $this.val(),
+                    type: "PATCH",
+                    data: {benefit_incident: {status: true}},
+                    dataType: "json"
+                })
+            }
+        });
+        APP.Incidents.updateIncidentList();
+    });
+
+
+    /* send array of ids to calculate amount on via ajax */
+    $('#calculatebtn').on('click', function(e) {
+        e.preventDefault();
+        var ids = new Array();
+        $(".chk").each(function() {
+            var $this = $(this);
+            if($this.is(':checked')){
+              ids.push($this.val());
+            }
+        });
+        $("#calculated_amount").show();
+        $.ajax({
+            url: "/benefit_incidents/test/calculated",
+            type: "GET",
+            data: {array: ids}
+        });
+    });
+
+    /* initialize datepicker */
+    $('#benefit_incident_date_from, #benefit_incident_date_to').datepicker({
+        dateFormat:'yy-mm-dd',
+        duration: 'normal',
+        changeMonth: true,
+        changeYear: true,
+        gotoCurrent: true,
+        autoSize: true,
+        showButtonPanel: true,
+        inline: true
+    });
+
+
+    /* checkox shows datepicker */
+    $('#filter_date').on('click', function(){
+        APP.Incidents.updateIncidentList();
+    });
+};

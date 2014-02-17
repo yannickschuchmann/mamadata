@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140216155323) do
+ActiveRecord::Schema.define(version: 20140217122158) do
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
@@ -28,13 +28,17 @@ ActiveRecord::Schema.define(version: 20140216155323) do
     t.integer  "person_id"
     t.integer  "benefit_id"
     t.integer  "program_id"
-    t.integer  "amount_paise",    default: 0
-    t.string   "amount_currency", default: "INR", null: false
+    t.integer  "amount_paise",              default: 0
+    t.string   "amount_currency",           default: "INR", null: false
     t.text     "remark"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "date_granted"
+    t.datetime "date_granted"
     t.boolean  "status"
+    t.integer  "amount_in_euro_paise",      default: 0
+    t.string   "amount_in_euro_currency",   default: "EUR", null: false
+    t.integer  "amount_in_dollar_paise",    default: 0
+    t.string   "amount_in_dollar_currency", default: "USD", null: false
   end
 
   add_index "benefit_incidents", ["benefit_id"], name: "index_benefit_incidents_on_benefit_id"

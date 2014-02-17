@@ -12,6 +12,24 @@ class ProgramsController < ApplicationController
   # GET /programs/1
   # GET /programs/1.json
   def show
+    @benefit_incidents = BenefitIncident.where(program_id: params[:id])
+
+    total_amount_pending=Money.new(0)
+    @benefit_incidents.each do |benefit|
+      if(benefit.status == false)
+        total_amount_pending+=benefit.amount
+      end
+    end
+    @total_amount_pending = total_amount_pending
+
+
+    total_amount_granted=Money.new(0)
+    @benefit_incidents.each do |benefit|
+      if(benefit.status == true)
+        total_amount_granted+=benefit.amount
+      end
+    end
+    @total_amount_granted = total_amount_granted
   end
 
   # GET /programs/new
