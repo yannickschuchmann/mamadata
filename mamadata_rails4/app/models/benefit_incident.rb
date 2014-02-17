@@ -11,8 +11,8 @@ class BenefitIncident < ActiveRecord::Base
 	validate :check_max_users_reached
 	monetize :amount_paise, :with_currency => :inr, :numericality => {
     :greater_than_or_equal_to => 0 }
-  monetize :amount_in_euro_cents, :with_currency => :eur
-  monetize :amount_in_dollar_cents, :with_currency => :usd
+  monetize :amount_in_euro_paise, :with_currency => :eur
+  monetize :amount_in_dollar_paise, :with_currency => :usd
 	before_save :set_default_status
 	before_save :set_date_granted
 	before_save :update_calculated_amount

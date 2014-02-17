@@ -1,6 +1,6 @@
 class AddExchangeRatesToBenefitIncident < ActiveRecord::Migration
   def change
-    add_money :benefit_incidents, :amount_in_euro, amount: {postfix: '_cents'}, currency: {default: "EUR"}
-    add_money :benefit_incidents, :amount_in_dollar, amount: {postfix: '_cents'}, currency: {default: "USD"}
+    add_money :benefit_incidents, :amount_in_euro,  currency: {default: "EUR"}
+    add_money :benefit_incidents, :amount_in_dollar, currency: {default: "USD"}
   end
 end
