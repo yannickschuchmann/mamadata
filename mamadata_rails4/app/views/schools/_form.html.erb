@@ -1,0 +1,40 @@
+<div class="row">
+    <%= form_for(@school) do |f| %>
+        <%= f.hidden_field :person_id %>
+        <div class="row">
+            <div class="small-12 medium-4 column">
+                <%= f.label :name %>
+            </div>
+            <div class="small-12 medium-8 column">
+                <%= f.text_field :name %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-4 column">
+                <%= f.label :type %>
+            </div>
+            <div class="small-12 medium-8 column">
+                <%= f.select :type, ["Government", ["Government-Aided", "GovernmentAided"], "Private", "College"] %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-4 column">
+                <%= f.label :language %>
+            </div>
+            <div class="small-12 medium-8 column">
+                <%= f.select :language, ["English", "Tamil", "French"] %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-4 column">
+                <%= f.label :remark %>
+            </div>
+            <div class="small-12 medium-8 column">
+                <%= f.text_area :remark %>
+            </div>
+        </div>
+        <div class="button-center">
+            <%= f.submit :class => 'button' %>
+        </div>
+    <% end %>
+</div>

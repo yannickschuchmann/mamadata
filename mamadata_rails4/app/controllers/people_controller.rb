@@ -12,6 +12,7 @@ class PeopleController < ApplicationController
   # GET /people/1.json
   def show
     @benefit_incidents = BenefitIncident.where(person_id: params[:id])
+    @schools = School.where(person_id: params[:id])
   end
 
   # GET /people/new

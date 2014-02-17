@@ -1,0 +1,51 @@
+<dl class="accordion" data-accordion>
+    <% @schools.each_with_index do |school, index| %>
+    <dd>
+        <a href="#panel<%= index %>"><%= index == 0 ? "current" : "2007-2009" %></a>
+        <div id="panel<%= index %>" class="content<%= " active" if index == 0 %>">
+            <div class="row">
+                <div class="small-6 column">
+                    <h4><%= school.name %></h4>
+                    <div class="row">
+                        <div class="small-6 column">
+                            Type:
+                        </div>
+                        <div class="small-6 column">
+                            <%= school.type %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-6 column">Language:</div>
+                        <div class="small-6 column">
+                            <%= school.language %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-6 column">Remark:</div>
+                        <div class="small-6 column">
+                            <%= school.remark %>
+                        </div>
+                    </div>
+                </div>
+                <div class="small-6 column">
+                    <table class="table">
+                        <tr>
+                            <th>Class</th>
+                            <th>Remark</th>
+                            <th>File</th>
+                        </tr>
+                        <% school.school_classes.each do |school_class| %>
+                        <tr>
+                            <td><%= school_class.name %></td>
+                            <td><%= school_class.remark %></td>
+                            <td><a href=""></a></td>
+                        </tr>
+                        <% end %>
+                    </table>
+                    <%= link_to "Add new Class", new_school_class_path(id: @person.id, school_id: school.id), {class: 'button'} %>
+                </div>
+            </div>
+        </div>
+    </dd>
+    <% end %>
+</dl>

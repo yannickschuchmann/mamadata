@@ -7,7 +7,7 @@ class Person < ActiveRecord::Base
   has_many :programs, through: :beneficiary_program_relationships
   has_many  :active_programs, -> { where is_active: true }, class_name: 'BeneficiaryProgramRelationship'
   has_many :benefits, through: :programs
-  has_many :school_periods
+  has_many :schools
   belongs_to :godfather, :class_name => "Supporter"
   has_many :benefit_incidents
   monetize :income_paise, :numericality => {

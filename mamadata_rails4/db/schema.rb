@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140216155323) do
+ActiveRecord::Schema.define(version: 20140217113235) do
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
@@ -183,6 +183,32 @@ ActiveRecord::Schema.define(version: 20140216155323) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "school_classes", force: true do |t|
+    t.string   "name"
+    t.integer  "school_id"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
+    t.text     "remark"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "school_classes", ["school_id"], name: "index_school_classes_on_school_id"
+
+  create_table "schools", force: true do |t|
+    t.integer  "person_id"
+    t.string   "name"
+    t.string   "type"
+    t.text     "remark"
+    t.string   "language"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "schools", ["person_id"], name: "index_schools_on_person_id"
 
   create_table "supporters", force: true do |t|
     t.string   "organisation"
