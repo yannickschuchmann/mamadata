@@ -4,7 +4,7 @@ class Person < ActiveRecord::Base
   belongs_to :family
   has_many :journals
   has_many :beneficiary_program_relationships
-  has_many :programs, through: :beneficiary_program_relationships
+  has_many :programs, through: :beneficiary_program_relationships, dependent: :destroy
   has_many  :active_programs, -> { where is_active: true }, class_name: 'BeneficiaryProgramRelationship'
   has_many :benefits, through: :programs
   has_many :godfather_persons

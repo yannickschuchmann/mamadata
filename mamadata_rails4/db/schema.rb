@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217122158) do
+ActiveRecord::Schema.define(version: 20140217211655) do
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140217122158) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_active",  default: false
+    t.datetime "deleted_at"
   end
 
   add_index "beneficiary_program_relationships", ["person_id"], name: "index_beneficiary_program_relationships_on_person_id"
@@ -105,6 +106,14 @@ ActiveRecord::Schema.define(version: 20140217122158) do
   add_index "families", ["community_development_id"], name: "index_families_on_community_development_id"
   add_index "families", ["head_id"], name: "index_families_on_head_id"
   add_index "families", ["person_id"], name: "index_families_on_person_id"
+
+  create_table "godfather_people", force: true do |t|
+    t.integer  "person_id"
+    t.integer  "supporter_id"
+    t.boolean  "is_current_godfather"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "journals", force: true do |t|
     t.integer  "person_id"
@@ -227,5 +236,26 @@ ActiveRecord::Schema.define(version: 20140217122158) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "versions", force: true do |t|
+    t.integer  "versioned_id"
+    t.string   "versioned_type"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.string   "user_name"
+    t.text     "modifications"
+    t.integer  "number"
+    t.integer  "reverted_from"
+    t.string   "tag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "versions", ["created_at"], name: "index_versions_on_created_at"
+  add_index "versions", ["number"], name: "index_versions_on_number"
+  add_index "versions", ["tag"], name: "index_versions_on_tag"
+  add_index "versions", ["user_id", "user_type"], name: "index_versions_on_user_id_and_user_type"
+  add_index "versions", ["user_name"], name: "index_versions_on_user_name"
+  add_index "versions", ["versioned_id", "versioned_type"], name: "index_versions_on_versioned_id_and_versioned_type"
 
 end

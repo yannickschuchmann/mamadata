@@ -1,4 +1,5 @@
 class BeneficiaryProgramRelationship < ActiveRecord::Base
+	acts_as_paranoid
 	belongs_to :program
 	belongs_to :person
 	# before_save :set_active_flag
