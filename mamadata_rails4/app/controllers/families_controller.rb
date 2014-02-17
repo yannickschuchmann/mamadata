@@ -25,7 +25,7 @@ class FamiliesController < ApplicationController
 	def delete_relation
 		@person = Person.find(params[:id])
 		if !@person.nil?
-			@person.family_id = nil
+			@person.family_id = ""
 			@person.save
 		end
 		redirect_to families_path
@@ -56,11 +56,12 @@ class FamiliesController < ApplicationController
 		@community = CommunityDevelopment.create(params[:id])
 		@persons.each do |key,value|
 			Person.find(value["id"]).update(role: Role.find_by_id(value["role_id"].to_i))
+			Person.find(value["id"]).update(family_id: @family.id)
+			@family.community_development_id = @community.id
 			if value["role_id"].to_i == 1
 				@family.head_id = value["id"]
-				@family.community_development_id = @community.id
-				@family.save
 			end
+			@family.save
 		end
 		render :json => @family
 	end
