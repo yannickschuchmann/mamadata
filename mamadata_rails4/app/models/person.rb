@@ -7,7 +7,8 @@ class Person < ActiveRecord::Base
   has_many :programs, through: :beneficiary_program_relationships
   has_many  :active_programs, -> { where is_active: true }, class_name: 'BeneficiaryProgramRelationship'
   has_many :benefits, through: :programs
-  belongs_to :godfather, :class_name => "Supporter"
+  has_many :godfather_persons
+  has_many :godfathers, :class_name => "Supporter", through: :godfather_persons
   has_many :benefit_incidents
   monetize :income_paise,:with_currency => :inr, :numericality => {
     greater_than_or_equal_to: 0 }
