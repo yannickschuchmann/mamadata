@@ -3,7 +3,7 @@
 			<%= image_tag @person.avatar.url(:medium), :class => "person-picture" %>
 		</div>
 		<div class="medium-10 column">
-			<h3><%= @person.name %></h3>
+			<h3><%= @person.name %> <%= @person.fathers_name%></h3>
 			<h5><b>File: <%= @person.id %></b></h5>
 			<ul class="no-bullet">
 				<% @person.programs.each do |p| %>

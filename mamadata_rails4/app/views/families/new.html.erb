@@ -1,72 +1,43 @@
 <%= content_for :js do %><%= javascript_include_tag "families_new.js" %> <% end %>
-<h2 class="text-center">Family</h2>
+<h4 class="text-center">Create new Family</h4>
 <div class="row">
-	<div class="small-8 columns">
-		<div id="people"></div>
-	</div>
-</div>
-<div class="row">
-	<div class="small-12 medium-6 large-6 button-center">
-		<div class="button" id="addpeople"> Add People </div>
-		<div class="actions">
-			<input id="submitFamily" class="button" name="commit" type="submit" value="Submit Family">
-		</div>
-	</div>
-</div>
-<div class="row">
-	<div class="small-12 medium-6 large-6 columns">
-		<dl class="accordion" data-accordion>
-			<dd class="active">
-				<a href="#searchExistingPeople" class="button" style="color:white">Search for Exsisting People</a>
-
-                <form action="" id="searchExistingPeopleForm">
+	<div class="medium-6 columns">
+		<h5>Search for Beneficiaries</h5>
+		<div id="search_results">
+			<form action="" id="searchExistingPeopleForm">
 				<div id="searchExistingPeople" class="content">
-                    <div class="row">
-                        <div class="small-12 medium-4 column">
-                            Name
-                        </div>
-                        <div class="small-12 medium-8 column">
-                            <input id="sName" type="text">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="small-12 medium-4 column">Fathers Name</div>
-                        <div class="small-12 medium-8 column"><input type="text" id="sFname/></div>
-                    </div>
-                    <div class="row">
-                        <div class="small-12 medium-4 column">City</div>
-                        <div class="small-12 medium-8 column"><input id="sCity" type="text"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="small-12 medium-4 column">Zipcode</div>
-                        <div class="small-12 medium-8 column"><input id="sZipcode" type="text"/></div>
-                    </div>
+					<div class="row">
+						<div class="small-12 medium-4 column">Name</div>
+						<div class="small-12 medium-8 column"><input id="sName" type="text"></div>
+						<div class="small-12 medium-4 column">Fathers Name</div>
+						<div class="small-12 medium-8 column"><input type="text" id="sFname"/></div>
+						<div class="small-12 medium-4 column">City</div>
+						<div class="small-12 medium-8 column"><input id="sCity" type="text"/></div>
+						<div class="small-12 medium-4 column">Zipcode</div>
+						<div class="small-12 medium-8 column"><input id="sZipcode" type="text"/></div>
+					</div>
 					<button type="submit">Search</button>
 				</div>
-                </form>
-			</dd>
-		</dl>
+			</form>
+		</div>
+		<div id="search_results">
+			<table>
+				<thead> 
+					<tr>
+						<th>Id</th> <th>Name</th> <th>Fathers Name</th> <th>City</th> <th>Zipcode</th> <th></th> 
+					</tr>
+				</thead>
+				<tbody id="searchResult">
+				</tbody>
+			</table>
+		</div>
 	</div>
-	<div class="small-12 medium-6 large-6 columns">
-		<table>
-			<thead> 
-				<tr>
-					<th>Name</th> <th>Fathers Name</th> <th>City</th> <th>Zipcode</th> <th></th> 
-				</tr>
-			</thead>
-			<tbody id="searchResult">
-			</tbody>
-		</table>
+	<div class="medium-6 columns">
+		<h5>Family Members Added</h5>
+		<div id="people"></div>
+		<ul id="familyList">
+		</ul>
+		<input id="submitFamily" class="button" name="commit" type="submit" value="Submit Family">
 	</div>
 </div>
 
-<div id="FamilyListView" class="small-4 column">
-    <div class="row">
-        <div class="small-12">
-            <h3>Family Members Added</h3>
-            <ul id="familyList">
-
-            </ul>
-        </div>
-    </div>
-</div>
