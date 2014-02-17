@@ -1,11 +1,12 @@
 peopleNumber = 1;
-addPeople();
 $("#addpeople").click(function(){
 	addPeople();
 });
 function addPeople (){
 	/*jshint multistr: true */
 	$("#people").append('<div class="person"> \
+	                    <span class="removePerson">X</span>\
+	                    <input type="hidden" id="personId" value="'+peopleNumber+'"/>\
 						<h1 class="h1person'+peopleNumber+'">Person'+peopleNumber+'</h1>\
 						<div class="row">\
 							<div class="small-12 medium-4 column"><label for="name">Name</label></div>\
@@ -49,10 +50,20 @@ function addPeople (){
 		$familyListPerson.html($person.val() +" "+ $fathers_name.val());
 	});
 
+    $('.removePerson').click(function() {
+        console.log('trig');
+        var $el = $(this).closest('.person'),
+            pid = $el.find('input#personId').val();
+
+        $(".ListPerson"+pid).remove();
+        $el.remove();
+
+    });
 	peopleNumber = peopleNumber + 1;
-	return true;
+    return true;
 }
 var searchResult;
+
 $("#searchExistingPeopleForm").submit(function(e){
     e.preventDefault();
 	var name = $("#sName").val();
@@ -97,6 +108,8 @@ function addFromSearch(pid) {
 	var person = searchResult[pid];
 	/*jshint multistr: true */
 	$("#people").append('<div class="person"> \
+                    <span class="removePerson">X</span>\
+                    <input type="hidden" id="personId" value="'+peopleNumber+'"/>\
 					<h1 class="h1person'+peopleNumber+'">'+person.name +' '+ person.fathers_name +'</h1>\
 					<div class="row">\
 						<div class="small-12 medium-4 column"><label for="name">Name</label></div>\
@@ -140,7 +153,15 @@ function addFromSearch(pid) {
 		$h1.html($person.val()+" "+ $fathers_name.val());
 		$familyListPerson.html($person.val() +" "+ $fathers_name.val());
 	});
+    $('.removePerson').click(function() {
+        console.log('trig');
+        var $el = $(this).closest('.person'),
+            pid = $el.find('input#personId').val();
 
+        $(".ListPerson"+pid).remove();
+        $el.remove();
+
+    });
 	peopleNumber = peopleNumber + 1;
 }
 $("#submitFamily").click(function(event){
