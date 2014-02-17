@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'money-rails'
 gem 'money'
 gem 'fiscali'
-gem 'google_currency'
+gem 'eu_central_bank'
 gem 'debugger'
 
 group :doc do

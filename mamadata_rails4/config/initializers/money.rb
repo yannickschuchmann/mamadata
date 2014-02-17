@@ -1,5 +1,16 @@
 # encoding : utf-8
 
+eu_bank = EuCentralBank.new
+Money.default_bank = eu_bank
+cache = "public/exchange_rates.xml"
+
+# saves the rates in a specified location
+eu_bank.save_rates(cache)
+
+# reads the rates from the specified location
+eu_bank.update_rates(cache)
+
+
 MoneyRails.configure do |config|
 
   # To set the default currency
@@ -9,7 +20,7 @@ MoneyRails.configure do |config|
   # Set default bank object
   #
   # Example:
-  # config.default_bank = EuCentralBank.new
+   config.default_bank = eu_bank
 
   # Add exchange rates to current money bank object.
   # (The conversion rate refers to one direction only)
@@ -33,30 +44,55 @@ MoneyRails.configure do |config|
                             null: true,          # other options will be treated as column options
                             default: 0
                           }
-  #
-  # config.currency_column = { prefix: '',
-  #                            postfix: '_currency',
-  #                            column_name: nil,
-  #                            type: :string,
-  #                            present: true,
-  #                            null: false,
-  #                            default: 'USD'
-  #                          }
+
+  # config.amount_column = { prefix: '',           # column name prefix
+  #                           postfix: '_cents',    # column name  postfix
+  #                           column_name: nil,     # full column name (overrides prefix, postfix and accessor name)
+  #                           type: :integer,       # column type
+  #                           present: true,        # column will be created
+  #                           null: true,          # other options will be treated as column options
+  #                           default: 0
+  #                         }
+
+                          
+  config.currency_column = { prefix: '',
+                             postfix: '_currency',
+                             column_name: nil,
+                             type: :string,
+                             present: true,
+                             null: false,
+                             default: 'INR'
+                           }
 
   # Register a custom currency
   #
   # Example:
-   config.register_currency = {
-     :priority            => 1,
-     :iso_code            => "INR",
-     :name                => "Indian Rupee",
-     :symbol              => "Rs",
-     :symbol_first        => true,
-     :subunit             => "Paisa",
-     :subunit_to_unit     => 100,
-     :thousands_separator => ".",
-     :decimal_mark        => ","
-   }
+  #  config.register_currency = {
+  #    :priority            => 1,
+  #    :iso_code            => "INR",
+  #    :name                => "Indian Rupee",
+  #    :symbol              => "Rs",
+  #    :symbol_first        => true,
+  #    :subunit             => "Paisa",
+  #    :subunit_to_unit     => 100,
+  #    :thousands_separator => ".",
+  #    :decimal_mark        => ","
+  #  }
+
+  # config.register_currency = {
+  #    :priority            => 2,
+  #    :iso_code            => "USD",
+  #    :name                => "US Dollar",
+  #    :symbol              => "$",
+  #    :symbol_first        => true,
+  #    :subunit             => "Cent",
+  #    :subunit_to_unit     => 100,
+  #    :thousands_separator => ".",
+  #    :decimal_mark        => ","
+  #  }
+
+
+
 
   # Set money formatted output globally.
   # Default value is nil meaning "ignore this option".
