@@ -20,6 +20,10 @@ class PeopleController < ApplicationController
     @person = Person.new
   end
 
+  def add_to_program
+    @person = Person.find(params[:id])
+  end
+
   # GET /people/1/edit
   def edit
     if params[:section] == "programs"
@@ -55,6 +59,8 @@ class PeopleController < ApplicationController
       if @person.update(person_params)
         if params[:redirect_to_incident] == 'true'
           format.html { redirect_to new_benefit_incident_path(@person), notice: 'Person was successfully updated.' }
+        elsif params[:redirect_to_user] == 'true'
+          format.html {render action: 'edit'}
         end
         format.html { redirect_to @person, notice: 'Person was successfully updated.' }
         format.json { head :no_content }

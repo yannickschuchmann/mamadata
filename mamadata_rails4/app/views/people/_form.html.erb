@@ -228,8 +228,13 @@
         </div>
     </div>
     <div class="small-12 medium-6 column">
-    <%= link_to 'Add Person to Program', add_user_to_program_path(@person), :class => 'button small' %>
-	    <!-- <%= render 'program_checkboxes' %> -->
+    <% if params[:action] == 'edit' %>
+        <div class="text-center">
+            <%= link_to 'Add Person to Program', add_to_program_path(@person), :class => 'button small' %>
+        </div>
+    <% else %>
+        <%= render 'program_checkboxes' %>
+    <% end %>
     </div>
 </div>
 
