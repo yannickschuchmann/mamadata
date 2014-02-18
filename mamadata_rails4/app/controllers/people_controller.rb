@@ -1,5 +1,6 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
+  before_filter :set_autosuggest, only: [:edit, :new]
   before_filter :authenticate_user!
   
   # GET /people
@@ -18,7 +19,7 @@ class PeopleController < ApplicationController
   # GET /people/new
   def new
     @person = Person.new
-  end
+    end
 
   # GET /people/1/edit
   def edit
@@ -93,6 +94,10 @@ class PeopleController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_autosuggest
+      @AutoCities = Person.select('distinct city').collect { |p| p.city.camelize }
+      @AutoNames  = Person.select('distinct fathers_name').collect { |p| p.fathers_name.camelize }
+    end
     def set_person
       @person = Person.find(params[:id])
     end
