@@ -1,0 +1,9 @@
+<div id="content-form">
+	<%= form_for @person, url: person_path(@person) do |f| %>
+		<%= render "/people/program_checkboxes", f: f %>
+		<%= hidden_field_tag :redirect_to_user, true %>
+		<div class="row button-center">
+			<%= f.submit "Save",:class => 'button' %>
+		</div>
+	<% end %>
+</div>

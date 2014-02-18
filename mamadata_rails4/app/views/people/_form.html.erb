@@ -184,52 +184,58 @@
 </div>
 <hr/>
 <div class="row">
-	<div class="small-12 medium-6 column">
-		<h2 class="text-center">Beneficiary Questions</h2>
-		<div class="row">
-			<div class="small-12 medium-4 columns">
-				<%= f.label :school_type, :class => "inline"%>
-			</div>
-			<div class="small-12 medium-8 column">
-				<%= f.select :school_type, ["government", "government aided", "private"] %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-4 columns">
-				<%= f.label :school_language, :class => "inline"%>
-			</div>
-			<div class="small-12 medium-8 column">
-				<%= f.select :school_language, ["English Medium", "Tamil Medium"] %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-4 columns">
-				<%= f.label :school_class, :class => "inline"%>
-			</div>
-			<div class="small-12 medium-8 column">
-				<%= f.select :school_class, ["LKG", "UKG", 1,2,3,4,5,6,7,8,9,10,11,12, "College"] %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-4 columns">
-				<%= f.label :narrative_text, :class => "inline"%>
-			</div>
-			<div class="small-12 medium-8 column">
-				<%= f.text_area :narrative_text, :cols => 40, :rows => 40 %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-4 columns">
-				<%= f.label "Godfather", :class => "inline"%>
-			</div>
-			<div class="small-12 medium-8 column">
-				<%= f.select :godfather_ids, Supporter.where(:godfather => true).map{|role| [role.name.to_s + " " + role.family_name.to_s, role.id]}, :include_blank => true %>
-			</div>
-		</div>
-	</div>
-	<div class="small-12 medium-6 column">
-	   <%= render 'program_checkboxes' %>
-   </div>
+    <div class="small-12 medium-6 column">
+            <h2 class="text-center">Beneficiary Questions</h2>
+        <div class="row">
+            <div class="small-12 medium-4 columns">
+                <%= f.label :school_type, :class => "inline"%>
+            </div>
+            <div class="small-12 medium-8 column">
+                <%= f.select :school_type, ["government", "government aided", "private"] %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-4 columns">
+                <%= f.label :school_language, :class => "inline"%>
+            </div>
+            <div class="small-12 medium-8 column">
+                <%= f.select :school_language, ["English Medium", "Tamil Medium"] %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-4 columns">
+                <%= f.label :school_class, :class => "inline"%>
+            </div>
+            <div class="small-12 medium-8 column">
+                <%= f.select :school_class, ["LKG", "UKG", 1,2,3,4,5,6,7,8,9,10,11,12, "College"] %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-4 columns">
+                <%= f.label :narrative_text, :class => "inline"%>
+            </div>
+            <div class="small-12 medium-8 column">
+                <%= f.text_area :narrative_text, :cols => 40, :rows => 40 %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-4 columns">
+                <%= f.label "Godfather", :class => "inline"%>
+            </div>
+            <div class="small-12 medium-8 column">
+                <%= f.select :godfather_ids, Supporter.where(:godfather => true).map{|role| [role.name.to_s + " " + role.family_name.to_s, role.id]}, :include_blank => true %>
+            </div>
+        </div>
+    </div>
+    <div class="small-12 medium-6 column">
+    <% if params[:action] == 'edit' %>
+        <div class="text-center">
+            <%= link_to 'Add Person to Program', add_to_program_path(@person), :class => 'button small' %>
+        </div>
+    <% else %>
+        <%= render 'program_checkboxes' %>
+    <% end %>
+    </div>
 </div>
 
 <!-- TODO: AJAX ! -->

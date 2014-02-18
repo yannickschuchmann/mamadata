@@ -10,8 +10,8 @@ MamadataRails4::Application.routes.draw do
   get 'benefit_incidents/add_user_to_program/:person_id', to: 'benefit_incidents#add_user_to_program', as: :add_user_to_program
   get 'benefit_incidents/list/:person_id', to: 'benefit_incidents#list', as: :benefit_incidents_list
   get 'benefit_incidents/new/:person_id', to: 'benefit_incidents#new', as: :new_benefit_incident
-  get 'benefit_incidents_pending', to: 'benefit_incidents#pending', as: :benefit_incidents_pending
-  get 'benefit_incidents_granted', to: 'benefit_incidents#granted', as: :benefit_incidents_granted
+
+  get 'people/:id/add_to_program/', to: 'people#add_to_program', as: :add_to_program
 
   resources :benefits do
     member do
