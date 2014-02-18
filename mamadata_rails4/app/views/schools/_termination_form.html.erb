@@ -4,7 +4,7 @@
         <%= render partial: "termination_fields", locals: {f: f} %>
         <div class="button-center">
             <div>
-                <%= f.submit :class => 'button', data: {confirm: 'Are you sure?'} %>
+                <%= f.submit :class => 'button', data: {confirm: 'This changes can not be reverted! Are you sure?'} %>
             </div>
             <div>
                 <%= link_to 'Cancel', person_school_path(@school), class: 'button tiny' %>

@@ -41,7 +41,16 @@
                     <%= f.label :joined_at %>
                 </div>
                 <div class="small-12 medium-8 column">
-                    <%= f.text_field :joined_at, class: 'datepicker'  %>
+                    <div class="row collapse">
+                        <div class="small-1 column">
+                            <span class="prefix">
+                                <i class="icon-calendar"></i>
+                            </span>
+                        </div>
+                        <div class="small-11 column">
+                            <%= f.text_field :joined_at , class: 'datepicker', placeholder: 'leave empty for today' %>
+                        </div>
+                    </div>
                 </div>
             </div>
             <%= render partial: "termination_fields", locals: {f: f} if @school.terminated?  %>

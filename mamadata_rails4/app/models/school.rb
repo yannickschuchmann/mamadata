@@ -23,12 +23,14 @@ class School < ActiveRecord::Base
 
   def terminate_previous
     school = School.order(created_at: :desc).first
-    school.termination_reason = 'finished'
-    school.save
+    unless school.nil?
+      school.termination_reason = 'finished'
+      school.save
+    end
   end
 
   def validate_termination
-    self.terminated_at = Time.now unless self.termination_reason.nil?
+    self.terminated_at = Time.now unless self.termination_reason.nil? or !self.terminated_at.nil?
   end
 
 end

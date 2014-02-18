@@ -12,7 +12,7 @@ class PeopleController < ApplicationController
   # GET /people/1.json
   def show
     @benefit_incidents = BenefitIncident.where(person_id: params[:id])
-    @schools = School.where(person_id: params[:id]).order(created_at: :desc)
+    @schools = School.where(person_id: params[:id]).order(joined_at: :desc)
   end
 
   # GET /people/new
