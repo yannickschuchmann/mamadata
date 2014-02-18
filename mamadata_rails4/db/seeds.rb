@@ -94,15 +94,15 @@ staff1 = User.create(email: "admin@sharana.org", 		password: "admin", 		password
 staff2 = User.create(email: "supporter@sharana.org", 	password: "supporter", 	password_confirmation: "supporter", role: "supporter").save!(:validate => false)
 staff3 = User.create(email: "accountant@sharana.org", 		password: "accountant", 	password_confirmation: "accountant", 	role: "accountant").save!(:validate => false)
 
-#u1 = User.create(email: "dariusch@freenet.de", password: "test", password_confirmation: "test", role: "supporter").save!(:validate => false)
-#u2 = User.create(email: "test@test.de", password: "test", password_confirmation: "test").save!(:validate => false)
+u1 = User.create(email: "dariusch@freenet.de", password: "test", password_confirmation: "test", role: "supporter").save!(:validate => false)
+u2 = User.create(email: "test@test.de", password: "test", password_confirmation: "test").save!(:validate => false)
 
-# Supporter.create(organisation: "none", name: "Thomas", family_name: "Gottschalk",email: "thomas@gottschalk.de", godfather: true, is_volunteer: false, type_of_work: "marketing").save!(:validate => false)
-# Supporter.create(organisation: "none", name: "Guenther", family_name: "Jauch",email: "guenther@jauch.de", godfather: true, is_volunteer: false, type_of_work: "marketing").save!(:validate => false)
-# Supporter.create(organisation: "none", name: "Oliver", family_name: "Geissen",email: "oliver@geissen.de", godfather: false, is_volunteer: true, type_of_work: "volunteering").save!(:validate => false)
+Supporter.create(organisation: "none", name: "Thomas", family_name: "Gottschalk",email: "thomas@gottschalk.de", godfather: true, is_volunteer: false, type_of_work: "marketing").save!(:validate => false)
+Supporter.create(organisation: "none", name: "Guenther", family_name: "Jauch",email: "guenther@jauch.de", godfather: true, is_volunteer: false, type_of_work: "marketing").save!(:validate => false)
+Supporter.create(organisation: "none", name: "Oliver", family_name: "Geissen",email: "oliver@geissen.de", godfather: false, is_volunteer: true, type_of_work: "volunteering").save!(:validate => false)
 
 
-# simpsons = Family.create(name:"Simpsons")
-# simpsons.people.create(name: "Homer", gender: "male", role: head, program_ids: ["8"])
-# simpsons.people.create(name: "Marge",fathers_name: "Homer", gender: "female",role: wife)
-# simpsons.people.create(name: "Bart",fathers_name: "Homer", gender: "male", role: child)
+simpsons = Family.create(name:"Simpsons")
+simpsons.people.create(name: "Homer", gender: "male", role: head, program_ids: ["8"])
+simpsons.people.create(name: "Marge",fathers_name: "Homer", gender: "female",role: wife)
+simpsons.people.create(name: "Bart",fathers_name: "Homer", gender: "male", role: child)

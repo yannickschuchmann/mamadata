@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217211655) do
+ActiveRecord::Schema.define(version: 20140218051402) do
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
@@ -109,10 +109,10 @@ ActiveRecord::Schema.define(version: 20140217211655) do
 
   create_table "godfather_people", force: true do |t|
     t.integer  "person_id"
-    t.integer  "supporter_id"
-    t.boolean  "is_current_godfather"
+    t.integer  "godfather_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "journals", force: true do |t|

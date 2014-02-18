@@ -5,10 +5,11 @@ class Person < ActiveRecord::Base
   has_many :journals
   has_many :beneficiary_program_relationships
   has_many :programs, through: :beneficiary_program_relationships, dependent: :destroy
-  has_many  :active_programs, -> { where is_active: true }, class_name: 'BeneficiaryProgramRelationship'
+  # has_many  :active_programs, -> { where is_active: true }, class_name: 'BeneficiaryProgramRelationship'
   has_many :benefits, through: :programs
-  has_many :godfather_persons
-  has_many :godfathers, :class_name => "Supporter", through: :godfather_persons
+  has_many :godfather_people
+  has_many :godfathers, :class_name => "Supporter", through: :godfather_people, dependent: :destroy
+  has_one  :current_godfather, -> { where deleted_at: nil }, class_name: 'GodfatherPerson'
   has_many :benefit_incidents
   monetize :income_paise,:with_currency => :inr, :numericality => {
     greater_than_or_equal_to: 0 }
