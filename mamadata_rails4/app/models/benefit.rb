@@ -1,4 +1,5 @@
 class Benefit < ActiveRecord::Base
+	register_currency :inr
 	has_many :program_benefit_relationships
 	has_many :programs, through: :program_benefit_relationships 
 	has_many :benefit_incidents
@@ -8,9 +9,9 @@ class Benefit < ActiveRecord::Base
 	validate :validate_calculated_amount
 	validate :optional_amount_xor_fixed_amount
 
-	monetize :optional_amount_paise, allow_nil: true,  :numericality => {
+	monetize :optional_amount_paise, :with_currency => :inr, allow_nil: true,  :numericality => {
     greater_than_or_equal_to: 0 }
-  monetize :fixed_amount_paise, allow_nil: true,  :numericality => {
+  monetize :fixed_amount_paise, :with_currency => :inr, allow_nil: true,  :numericality => {
     greater_than_or_equal_to: 0 }
 
 

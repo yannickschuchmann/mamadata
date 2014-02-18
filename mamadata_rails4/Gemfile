@@ -33,8 +33,9 @@ gem 'jbuilder', '~> 1.2'
 gem 'money-rails'
 gem 'money'
 gem 'fiscali'
-
+gem 'google_currency'
 gem 'debugger'
+gem 'paranoia', '~> 2.0'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

@@ -8,8 +8,8 @@
 		<div class="small-12 medium-12 column">
 <table class="table">
 	<tr>
-		<th>Description:</th>
-		<th>Amounts Spent On</th>
+		<th>Description</th>
+		<th>Total Amount Spent on Program</th>
 		<th>Benefits</th>
 	</tr>
 
@@ -44,17 +44,18 @@
 				<th>Name</th>
 				<th>Fathers name</th>
 				<th>In Program Since</th>
-				<th>In Program Until</th>
+				<th>Excluded from Program On</th>
 			</tr>
 		</thead>
 		<tbody>
-			<% @program.people.each do |person| %>
-			<tr data-link="<%= person_path(person) %>">
-				<td><a href="/people/<%= person.id %>"><%= person.name %></a></td>
-				<td><%= person.fathers_name %></td>
+			<% @program_participants.each do |participant| %>
+			<% @person = Person.find(participant.person_id) %>
+			<tr data-link="<%= person_path(@person) %>">
+				<td><%= link_to @person.name, person_path(@person) %></a></td>
+				<td><%= @person.fathers_name %></td>
 
-				<td>	<%= BeneficiaryProgramRelationship.where(person_id: person.id, program_id: @program.id).first.created_at %></td>
-				<td> <%= Date.today %></td>
+				<td>	<%= participant.created_at %></td>
+				<td> <%= participant.deleted_at %></td>
 			</tr>
 			<% end %>
 		</tbody>

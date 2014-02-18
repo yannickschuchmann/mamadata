@@ -17,7 +17,7 @@ spirulina = Program.create(name: "Spirulina", description: "")
 vtc = Program.create(name: "VTC", description: "")
 community = Program.create(name: "Community Development", description: "")
 creches = Program.create(name: "Creches", description: "")
-benefit_dependent = Program.create(name: "Benefit Dependent", description: "Has every Benefit")
+# benefit_dependent = Program.create(name: "Benefit Dependent", description: "Has every Benefit")
 
 
 b1 = Benefit.create(name: "Microcredit", description: "Income Generation Programm")
@@ -72,7 +72,7 @@ spirulina.benefits << [b4,b7,b9,b11,b28,b35]
 vtc.benefits << [b2,b4,b7,b9,b10,b11,b22,b24,b25,b27,b32,b33,b35,b36,b38]
 community.benefits << [b1,b2,b4,b5,b6,b7,b8,b9,b11,b13,b17,b21,b23,b24,b25,b26,b27,b28,b30,b31,b32,b35,b36]
 creches.benefits << [b4,b6,b8,b9,b11,b24,b26,b35,b37,b38]
-benefit_dependent.benefits <<[b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16,b17,b18,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b34,b35,b36,b37,b38]
+# benefit_dependent.benefits <<[b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16,b17,b18,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b34,b35,b36,b37,b38]
 
 
 # Possible choices for other fields
@@ -94,8 +94,8 @@ staff1 = User.create(email: "admin@sharana.org", 		password: "admin", 		password
 staff2 = User.create(email: "supporter@sharana.org", 	password: "supporter", 	password_confirmation: "supporter", role: "supporter").save!(:validate => false)
 staff3 = User.create(email: "accountant@sharana.org", 		password: "accountant", 	password_confirmation: "accountant", 	role: "accountant").save!(:validate => false)
 
-#u1 = User.create(email: "dariusch@freenet.de", password: "test", password_confirmation: "test", role: "supporter").save!(:validate => false)
-#u2 = User.create(email: "test@test.de", password: "test", password_confirmation: "test").save!(:validate => false)
+# u1 = User.create(email: "dariusch@freenet.de", password: "test", password_confirmation: "test", role: "supporter").save!(:validate => false)
+# u2 = User.create(email: "test@test.de", password: "test", password_confirmation: "test").save!(:validate => false)
 
 # Supporter.create(organisation: "none", name: "Thomas", family_name: "Gottschalk",email: "thomas@gottschalk.de", godfather: true, is_volunteer: false, type_of_work: "marketing").save!(:validate => false)
 # Supporter.create(organisation: "none", name: "Guenther", family_name: "Jauch",email: "guenther@jauch.de", godfather: true, is_volunteer: false, type_of_work: "marketing").save!(:validate => false)

@@ -1,4 +1,7 @@
 class BenefitIncident < ActiveRecord::Base
+	register_currency :eur
+	register_currency :usd
+	register_currency :inr
 	belongs_to :person
 	belongs_to :program
 	belongs_to :benefit
@@ -6,20 +9,27 @@ class BenefitIncident < ActiveRecord::Base
 	validates :program_id, presence: true
 	validates :benefit_id, presence: true
 	validate :check_max_users_reached
-	monetize :amount_paise, :numericality => {
+	monetize :amount_paise, :with_currency => :inr, :numericality => {
     :greater_than_or_equal_to => 0 }
+  monetize :amount_in_euro_paise, :with_currency => :eur
+  monetize :amount_in_dollar_paise, :with_currency => :usd
 	before_save :set_default_status
 	before_save :set_date_granted
 	before_save :update_calculated_amount
 	before_save :set_fixed_amount
-
-
-
+	# before_save :set_current_exchange_rates
 
 
 
 
 	protected
+
+		def set_current_exchange_rates
+			if self.changed_attributes.include?("amount_paise")
+				self.amount_in_euro=self.amount.exchange_to(:EUR)
+				self.amount_in_dollar=self.amount.exchange_to(:USD)
+			end
+		end
 
 		def update_calculated_amount
 			if self.benefit.optional_amount
@@ -47,7 +57,7 @@ class BenefitIncident < ActiveRecord::Base
 		end
 
 		def set_date_granted
-			if self.status == true 
+			if self.status == true && (self.date_granted == nil)
 				self.date_granted = DateTime.now.to_s(:long)
 			elsif self.status == false
 				self.date_granted = nil

@@ -20,6 +20,10 @@ class PeopleController < ApplicationController
     @person = Person.new
   end
 
+  def add_to_program
+    @person = Person.find(params[:id])
+  end
+
   # GET /people/1/edit
   def edit
     if params[:section] == "programs"
@@ -55,6 +59,8 @@ class PeopleController < ApplicationController
       if @person.update(person_params)
         if params[:redirect_to_incident] == 'true'
           format.html { redirect_to new_benefit_incident_path(@person), notice: 'Person was successfully updated.' }
+        elsif params[:redirect_to_user] == 'true'
+          format.html {render action: 'edit'}
         end
         format.html { redirect_to @person, notice: 'Person was successfully updated.' }
         format.json { head :no_content }
@@ -99,6 +105,6 @@ class PeopleController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-      params.require(:person).permit(:name, :fathers_name, :gender, :date_of_birth, :place_of_birth, :native_place, :name_of_the_house, :number_of_the_house, :name_of_the_street, :city, :pin_code, :religion, :caste, :education, :marital_status, :health_condition, :occupation, :income, :role_id, :narrative_text,:avatar, :status,:program_ids => [])
+      params.require(:person).permit(:name, :fathers_name, :gender, :date_of_birth, :place_of_birth, :native_place, :name_of_the_house, :number_of_the_house, :name_of_the_street, :city, :pin_code, :religion, :caste, :education, :marital_status, :health_condition, :occupation, :income, :role_id, :narrative_text,:avatar, :status,:godfather_ids, :program_ids => [])
     end
 end
