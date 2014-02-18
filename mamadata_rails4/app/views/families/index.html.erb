@@ -1,5 +1,8 @@
 <%= render '/shared/overview_sidebar' %>
 <div id="content">
+	<% if notice %>
+		<p id="notice"><%= notice %></p>
+	<% end %>
 	<h1 class="text-center">Families</h1>
 	<table id="familiesIndexTable" class="table tablesorter">
 		<thead>

@@ -7,7 +7,6 @@ $("#FormToggle").click(function () {
 	$('#search_results_List').css("display", "none");
 });
 
-
 peopleNumber = 1;
 var searchResult;
 // Search People
@@ -79,15 +78,16 @@ function addFromSearch(pid) {
 				</div>\
 			</div>\
 		</div>');
-
-		$('.removePerson').click(function() {
-		var $el = $(this).closest('.person'),
-		pid = $el.find('input#personId').val();
-		$(".ListPerson"+pid).remove();
-		$el.remove();
-	});
 	peopleNumber = peopleNumber + 1;
 }
+
+$('.removePerson').click(function() {
+	var $el = $(this).closest('.person'),
+	pid = $el.find('input#personId').val();
+	$(".ListPerson"+pid).remove();
+	$el.remove();
+});
+
 
 $("#submitFamily").click(function(event){
 	event.preventDefault();
