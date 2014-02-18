@@ -38,14 +38,29 @@ class FamiliesController < ApplicationController
 		@family = Family.new
 	end
 
-	def create
-		@persons = JSON.parse params[:people]
-		@family = Family.create()
+  def update
+    @people = params[:people]
+    @family = Family.find(params[:id])
+    @community = CommunityDevelopment.find(@family.community_development_id)
+    @people.each do |value|
+      value = value[1]
+      person = Person.find(value["person_id"].to_i)
+      person.update(role: Role.find_by_id(value["role_id"].to_i))
+      set_name person
+    end
+    @family.save
+    render :json => @family
+  end
+
+  def create
+		@people = params[:people]
+		@family = Family.create
 		@community = CommunityDevelopment.create()
     @family.community_development_id = @community.id
-		@persons.each do |value|
+		@people.each do |value|
+      value = value[1]
 			person = Person.find(value["person_id"].to_i)
-      person.update(role: Role.find_by_id(value["role"].to_i), family_id: @family.id)
+      person.update(role: Role.find_by_id(value["role_id"].to_i), family_id: @family.id)
       if person.role_id == 1
         @family.head_id = person.id
         @family.name = person.fathers_name
@@ -59,7 +74,14 @@ class FamiliesController < ApplicationController
 	end
 
 	private
-	def set_family
+  def set_name person
+    if person.role_id == 1
+      @family.head_id = person.id
+      @family.name = person.fathers_name
+    end
+  end
+
+  def set_family
 		@family = Family.find(params[:id])
 	end
 end

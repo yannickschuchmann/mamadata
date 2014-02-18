@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy]
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :add_to_family]
   before_filter :set_autosuggest, only: [:edit, :new]
   before_filter :authenticate_user!
   
@@ -95,13 +95,6 @@ class PeopleController < ApplicationController
     respond_to do |format|
       # format.html # index.html.erb
       format.json { render json: result }
-    end
-  end
-
-  def add_to_family
-    @person.family_id = params[:family_id]
-    respond_to do |format|
-      format.html { redirect_to edit_families_path(id: @person.family_id) }
     end
   end
 

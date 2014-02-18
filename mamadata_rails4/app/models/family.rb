@@ -8,8 +8,8 @@ class Family < ActiveRecord::Base
 
   def check_empty
     if self.people.empty?
-      self.community_development.destroy
-      self.destroy
+      #self.community_development.destroy unless self.community_development.nil?#
+      #self.destroy
     end
   end
 end

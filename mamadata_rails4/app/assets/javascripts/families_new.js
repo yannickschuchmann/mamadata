@@ -8,7 +8,6 @@ $("#FormToggle").click(function () {
 });
 
 var peopleNumber = 1,
-    peopleList = [],
     searchResult;
 
 // Search People
@@ -40,7 +39,6 @@ $("#searchExistingPeopleForm").submit(function(e){
                 .find('[data-pid]')
                     .click(function() {
                         var $this = $(this);
-                    console.log($this);
                         addFromSearch($this.attr('data-pid'));
                     });
 		},
@@ -52,12 +50,20 @@ $("#searchExistingPeopleForm").submit(function(e){
 
 // FN die rechts pusht
 function addFromSearch(pid) {
-	var person = searchResult[pid];
-    if(peopleList[person.id]) return;
+	var person = searchResult[pid],
+        inside = false;
+    serializePeople().forEach(function(cperson) {
+        if(cperson.person_id == person.id) {
+            inside = true;
+        }
+    });
+    if(inside) return;
+
 	/*jshint multistr: true */
 	$("#people").append(
 			'<div class="person" data-pid="'+person.id+'"> \
 			<span class="removePerson">X</span>\
+			<input type="hidden" name="people['+peopleNumber+'][person_id]" value="'+person.id+'"\
 			<h5>'+ person.id +' '+  person.name +' '+ person.fathers_name +'</h5>\
 			<div class="row">\
 				<div class="small-12 medium-4 column"><label for="name">Name</label></div>\
@@ -66,7 +72,7 @@ function addFromSearch(pid) {
 				<div class="small-12 medium-8 column"><input id="fathers_name" disabled="disabled" class="personsfathername'+peopleNumber+'" name="person[fathers_name]" type="text" value="'+ person.fathers_name +'"></div>\
 				<div class="small-12 medium-4 column"><label for="Role in context of Sharana">Role in the Household</label></div>\
 				<div class="small-12 medium-8 column">\
-					<select id="role_id" name="person[role_id]">\
+					<select id="role_id" name="people['+peopleNumber+'][role_id]">\
 						<option value="1">Head of the Household</option>\
 						<option value="2">Wife</option>\
 						<option value="3">Child</option>\
@@ -79,7 +85,6 @@ function addFromSearch(pid) {
 			</div>\
 		</div>');
 	peopleNumber = peopleNumber + 1;
-    peopleList[person.id] = {person_id: person.id, role: person.role};
 
     $('.removePerson').click(function() {
         $(this).closest('.person').remove();
@@ -98,20 +103,20 @@ function serializePeople() {
 }
 
 $("#submitFamily").click(function(event){
-	event.preventDefault();
-
-	$.ajax({
-		url: "http://"+window.location.host+"/families/create",   // I'm doing the proper routing later, since '/make_suggestion' routes to 'items/1/make_suggestion'
-		type: "PUT",
-		beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));},
-		dataType: 'json',
-		async: 'false',
-		data: 'people='+JSON.stringify(serializePeople()),
-		success: function(result){
-			window.location.replace("/families");
-		},
-		error: function(returned_value){
-			alert("Something went Wrong during the sending of the data please retry later");
-		}
-	});
+//	event.preventDefault();
+//
+//	$.ajax({
+//		url: "http://"+window.location.host+"/families/create",   // I'm doing the proper routing later, since '/make_suggestion' routes to 'items/1/make_suggestion'
+//		type: "PUT",
+//		beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));},
+//		dataType: 'json',
+//		async: 'false',
+//		data: 'people='+JSON.stringify(serializePeople()),
+//		success: function(result){
+//			window.location.replace("/families");
+//		},
+//		error: function(returned_value){
+//			alert("Something went Wrong during the sending of the data please retry later");
+//		}
+//	});
 });
