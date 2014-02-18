@@ -9,7 +9,8 @@ class Person < ActiveRecord::Base
   has_many :benefits, through: :programs
   has_many :godfather_people
   has_many :godfathers, :class_name => "Supporter", through: :godfather_people, dependent: :destroy
-  has_one  :current_godfather, -> { where deleted_at: nil }, class_name: 'GodfatherPerson'
+  # has_many  :current_godfathers, -> { where deleted_at: nil }, class_name: 'GodfatherPerson'
+  # has_many :former_godfathers, -> { where deleted_at: nil }, class_name: 'GodfatherPerson'
   has_many :benefit_incidents
   monetize :income_paise,:with_currency => :inr, :numericality => {
     greater_than_or_equal_to: 0 }
@@ -35,6 +36,14 @@ class Person < ActiveRecord::Base
     def month_to_date
       self.get_total_expenses Date.today.beginning_of_month
     end
+
+    def current_godfather
+      return self.godfathers.first
+    end
+
+    def former_godfathers
+     return GodfatherPerson.only_deleted.where(person_id: self.id).order("created_at DESC")
+   end
 
 
   protected
