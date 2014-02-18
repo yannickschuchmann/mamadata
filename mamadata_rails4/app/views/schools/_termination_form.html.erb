@@ -1,0 +1,14 @@
+<div class="row">
+    <%= form_for(@school) do |f| %>
+        <%= f.hidden_field :person_id %>
+        <%= render partial: "termination_fields", locals: {f: f} %>
+        <div class="button-center">
+            <div>
+                <%= f.submit :class => 'button', data: {confirm: 'Are you sure?'} %>
+            </div>
+            <div>
+                <%= link_to 'Cancel', person_school_path(@school), class: 'button tiny' %>
+            </div>
+        </div>
+    <% end %>
+</div>

@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="small-12 medium-4 column">
+        <%= f.label :terminated_at %>
+    </div>
+    <div class="small-12 medium-8 column">
+        <%= f.text_field :terminated_at, class: 'datepicker' %>
+    </div>
+</div>
+<div class="row">
+    <div class="small-12 medium-4 column">
+        <%= f.label :termination_reason %>
+    </div>
+    <div class="small-12 medium-8 column">
+        <%= f.select :termination_reason, ["finished", "discontinued"] %>
+    </div>
+</div>
+<div class="row">
+    <div class="small-12 medium-4 column">
+        <%= f.label :termination_remark %>
+    </div>
+    <div class="small-12 medium-8 column">
+        <%= f.text_area :termination_remark %>
+    </div>
+</div>

@@ -12,7 +12,7 @@ class PeopleController < ApplicationController
   # GET /people/1.json
   def show
     @benefit_incidents = BenefitIncident.where(person_id: params[:id])
-    @schools = School.where(person_id: params[:id])
+    @schools = School.where(person_id: params[:id]).order(created_at: :desc)
   end
 
   # GET /people/new
@@ -99,6 +99,6 @@ class PeopleController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-      params.require(:person).permit(:name, :fathers_name, :gender, :date_of_birth, :place_of_birth, :native_place, :name_of_the_house, :number_of_the_house, :name_of_the_street, :city, :pin_code, :religion, :caste, :education, :marital_status, :health_condition, :occupation, :income, :role_id, :school_name, :school_type, :school_language, :school_class, :narrative_text,:avatar, :status,:program_ids => [])
+      params.require(:person).permit(:name, :fathers_name, :gender, :date_of_birth, :place_of_birth, :native_place, :name_of_the_house, :number_of_the_house, :name_of_the_street, :city, :pin_code, :religion, :caste, :education, :marital_status, :health_condition, :occupation, :income, :role_id, :narrative_text,:avatar, :status,:program_ids => [])
     end
 end

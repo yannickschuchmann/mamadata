@@ -24,6 +24,9 @@ module ApplicationHelper
 		end
 	end
 
+  def person_school_path(school)
+    person_path(school.person_id, :anchor => "school")
+  end
 
 
 end

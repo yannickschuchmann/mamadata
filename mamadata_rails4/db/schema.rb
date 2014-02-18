@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217113235) do
+ActiveRecord::Schema.define(version: 20140218100611) do
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140217113235) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_active",  default: false
+    t.datetime "deleted_at"
   end
 
   add_index "beneficiary_program_relationships", ["person_id"], name: "index_beneficiary_program_relationships_on_person_id"
@@ -28,13 +29,17 @@ ActiveRecord::Schema.define(version: 20140217113235) do
     t.integer  "person_id"
     t.integer  "benefit_id"
     t.integer  "program_id"
-    t.integer  "amount_paise",    default: 0
-    t.string   "amount_currency", default: "INR", null: false
+    t.integer  "amount_paise",              default: 0
+    t.string   "amount_currency",           default: "INR", null: false
     t.text     "remark"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "date_granted"
+    t.datetime "date_granted"
     t.boolean  "status"
+    t.integer  "amount_in_euro_paise",      default: 0
+    t.string   "amount_in_euro_currency",   default: "EUR", null: false
+    t.integer  "amount_in_dollar_paise",    default: 0
+    t.string   "amount_in_dollar_currency", default: "USD", null: false
   end
 
   add_index "benefit_incidents", ["benefit_id"], name: "index_benefit_incidents_on_benefit_id"
@@ -102,6 +107,14 @@ ActiveRecord::Schema.define(version: 20140217113235) do
   add_index "families", ["head_id"], name: "index_families_on_head_id"
   add_index "families", ["person_id"], name: "index_families_on_person_id"
 
+  create_table "godfather_people", force: true do |t|
+    t.integer  "person_id"
+    t.integer  "supporter_id"
+    t.boolean  "is_current_godfather"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "journals", force: true do |t|
     t.integer  "person_id"
     t.text     "text"
@@ -134,10 +147,6 @@ ActiveRecord::Schema.define(version: 20140217113235) do
     t.string   "income_currency",     default: "INR", null: false
     t.integer  "family_id"
     t.integer  "role_id"
-    t.string   "school_name",         default: ""
-    t.string   "school_type",         default: ""
-    t.string   "school_language",     default: ""
-    t.string   "school_class",        default: ""
     t.text     "narrative_text"
     t.text     "default"
     t.string   "status",              default: ""
@@ -206,6 +215,10 @@ ActiveRecord::Schema.define(version: 20140217113235) do
     t.string   "language"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "terminated_at"
+    t.string   "termination_reason"
+    t.text     "termination_remark"
+    t.date     "joined_at"
   end
 
   add_index "schools", ["person_id"], name: "index_schools_on_person_id"

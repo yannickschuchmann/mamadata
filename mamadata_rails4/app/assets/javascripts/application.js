@@ -34,6 +34,18 @@ $(function(){
 	$("tr[data-link]").click(function() {
 		window.location = $(this).data("link")
 	})
+
+    /* initialize datepicker */
+    $('input.datepicker').datepicker({
+        dateFormat:'yy-mm-dd',
+        duration: 'normal',
+        changeMonth: true,
+        changeYear: true,
+        gotoCurrent: true,
+        autoSize: true,
+        showButtonPanel: true,
+        inline: true
+    });
 });
 //= require turbolinks
 //= require jquery.tablesorter.min
@@ -102,19 +114,6 @@ APP.Incidents.init = function(personId) {
             data: {array: ids}
         });
     });
-
-    /* initialize datepicker */
-    $('#benefit_incident_date_from, #benefit_incident_date_to').datepicker({
-        dateFormat:'yy-mm-dd',
-        duration: 'normal',
-        changeMonth: true,
-        changeYear: true,
-        gotoCurrent: true,
-        autoSize: true,
-        showButtonPanel: true,
-        inline: true
-    });
-
 
     /* checkox shows datepicker */
     $('#filter_date').on('click', function(){

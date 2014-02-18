@@ -1,40 +1,56 @@
 <div class="row">
     <%= form_for(@school) do |f| %>
         <%= f.hidden_field :person_id %>
-        <div class="row">
-            <div class="small-12 medium-4 column">
-                <%= f.label :name %>
+        <div class="small-12 medium-6 column">
+            <div class="row">
+                <div class="small-12 medium-4 column">
+                    <%= f.label :name %>
+                </div>
+                <div class="small-12 medium-8 column">
+                    <%= f.text_field :name %>
+                </div>
             </div>
-            <div class="small-12 medium-8 column">
-                <%= f.text_field :name %>
+            <div class="row">
+                <div class="small-12 medium-4 column">
+                    <%= f.label :type %>
+                </div>
+                <div class="small-12 medium-8 column">
+                    <%= f.select :type, ["Government", ["Government-Aided", "GovernmentAided"], "Private", "College"] %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-4 column">
+                    <%= f.label :language %>
+                </div>
+                <div class="small-12 medium-8 column">
+                    <%= f.select :language, ["English", "Tamil", "French"] %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-4 column">
+                    <%= f.label :remark %>
+                </div>
+                <div class="small-12 medium-8 column">
+                    <%= f.text_area :remark %>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="small-12 medium-4 column">
-                <%= f.label :type %>
+        <div class="small-12 medium-6 column">
+            <div class="row">
+                <div class="small-12 medium-4 column">
+                    <%= f.label :joined_at %>
+                </div>
+                <div class="small-12 medium-8 column">
+                    <%= f.text_field :joined_at, class: 'datepicker'  %>
+                </div>
             </div>
-            <div class="small-12 medium-8 column">
-                <%= f.select :type, ["Government", ["Government-Aided", "GovernmentAided"], "Private", "College"] %>
-            </div>
-        </div>
-        <div class="row">
-            <div class="small-12 medium-4 column">
-                <%= f.label :language %>
-            </div>
-            <div class="small-12 medium-8 column">
-                <%= f.select :language, ["English", "Tamil", "French"] %>
-            </div>
-        </div>
-        <div class="row">
-            <div class="small-12 medium-4 column">
-                <%= f.label :remark %>
-            </div>
-            <div class="small-12 medium-8 column">
-                <%= f.text_area :remark %>
-            </div>
+            <%= render partial: "termination_fields", locals: {f: f} if @school.terminated?  %>
         </div>
         <div class="button-center">
             <%= f.submit :class => 'button' %>
+        </div>
+        <div class="button-center">
+            <%= link_to 'Cancel', person_school_path(@school), class: 'button tiny' %>
         </div>
     <% end %>
 </div>
