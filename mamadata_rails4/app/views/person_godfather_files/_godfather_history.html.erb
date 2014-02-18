@@ -44,7 +44,7 @@
 						</tr>
 
 						<tr>
-							<% join_model.person_godfather_files.each do |f| %>
+							<% join_model.person_godfather_files.order("updated_at DESC").each do |f| %>
 							<td><%= link_to f.file_file_name, get_godfather_file_path(id: join_model.id) %></td>
 
 							<td><%= f.file_updated_at %></td>
