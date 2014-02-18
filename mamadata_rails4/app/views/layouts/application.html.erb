@@ -27,29 +27,31 @@
 	<!-- For all other devices -->
 	<!-- Size should be 32 x 32 pixels -->
 	<%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+	<%=  javascript_include_tag "jquery" %>
+
 </head>
 <body>
 	<% if user_signed_in? %>
-		<div id="off-side">
-			<ul class="off-canvas-list">
-				<% overviews 		= 	(controller_name == "people" || controller_name == "families" || controller_name == "supporters" || controller_name == "users")  ? "active" : "" %>
-				<% users 			= 	(controller_name == "registrations") ? "active" : "" %>
-				<% roles 			= 	(controller_name == "roles") ? "active" : "" %>
-				<% benefit_incidents= 	(controller_name == "benefit_incidents") ? "active" : "" %>
-				<% benefits 		=	(controller_name == "benefits") ? "active" : "" %>
-				<% programs 		= 	(controller_name == "programs") ? "active" : "" %>
-				
-				<li class="<%= overviews %>"><%= link_to 'Overviews', people_path %></li>
-				<% if is_admin? || is_accountant? %>
-					<li class="<%= programs %>"><%= link_to 'Programs', programs_path %></li>
-					<li class="<%= benefits %>"><%= link_to 'Benefits', benefits_path %></li>
-					<li class="<%= benefit_incidents %>"><%= link_to 'Incidents', benefit_incidents_path %></li>
-					<li class="<%= roles %>"><%= link_to 'Settings', roles_path %></li>
-				<% end %>
-				<li class="<%= users %>"><%= link_to 'Profile', edit_user_registration_path %></li>
-				<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %> </li>
-			</ul>
-		</div>
+	<div id="off-side">
+		<ul class="off-canvas-list">
+			<% overviews 		= 	(controller_name == "people" || controller_name == "families" || controller_name == "supporters" || controller_name == "users")  ? "active" : "" %>
+			<% users 			= 	(controller_name == "registrations") ? "active" : "" %>
+			<% roles 			= 	(controller_name == "roles") ? "active" : "" %>
+			<% benefit_incidents= 	(controller_name == "benefit_incidents") ? "active" : "" %>
+			<% benefits 		=	(controller_name == "benefits") ? "active" : "" %>
+			<% programs 		= 	(controller_name == "programs") ? "active" : "" %>
+			
+			<li class="<%= overviews %>"><%= link_to 'Overviews', people_path %></li>
+			<% if is_admin? || is_accountant? %>
+			<li class="<%= programs %>"><%= link_to 'Programs', programs_path %></li>
+			<li class="<%= benefits %>"><%= link_to 'Benefits', benefits_path %></li>
+			<li class="<%= benefit_incidents %>"><%= link_to 'Incidents', benefit_incidents_path %></li>
+			<li class="<%= roles %>"><%= link_to 'Settings', roles_path %></li>
+			<% end %>
+			<li class="<%= users %>"><%= link_to 'Profile', edit_user_registration_path %></li>
+			<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %> </li>
+		</ul>
+	</div>
 	<% end %>
 	<div id="wrapper">
 		<!-- Nav Title -->
@@ -71,21 +73,21 @@
 					<ul class="nav">
 						<ul class="right">
 							<% if user_signed_in? %>
-								<% if controller_name == "people" %>
-									<%= render '/shared/people_navigation' %>
-								<% elsif controller_name == "programs" %>
-									<%= render '/shared/program_navigation' %>
-								<% elsif controller_name == "roles" %>
-									<%= render '/shared/role_navigation' %>
-								<% elsif controller_name == "families" %>
-									<%= render '/shared/family_navigation' %>
-								<% elsif controller_name == "supporters" %>
-									<%= render '/shared/supporter_navigation' %>
-								<% elsif controller_name == "benefits" %>
-									<%= render '/shared/benefit_navigation' %>
-								<% elsif controller_name == "users" %>
-									<%= render '/shared/user_navigation' %>
-								<% end %>
+							<% if controller_name == "people" %>
+							<%= render '/shared/people_navigation' %>
+							<% elsif controller_name == "programs" %>
+							<%= render '/shared/program_navigation' %>
+							<% elsif controller_name == "roles" %>
+							<%= render '/shared/role_navigation' %>
+							<% elsif controller_name == "families" %>
+							<%= render '/shared/family_navigation' %>
+							<% elsif controller_name == "supporters" %>
+							<%= render '/shared/supporter_navigation' %>
+							<% elsif controller_name == "benefits" %>
+							<%= render '/shared/benefit_navigation' %>
+							<% elsif controller_name == "users" %>
+							<%= render '/shared/user_navigation' %>
+							<% end %>
 							<% end %>
 						</ul>
 					</ul>
