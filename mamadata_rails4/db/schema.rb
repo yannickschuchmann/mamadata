@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140218051402) do
+ActiveRecord::Schema.define(version: 20140218095805) do
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
@@ -166,6 +166,16 @@ ActiveRecord::Schema.define(version: 20140218051402) do
   add_index "people", ["family_id"], name: "index_people_on_family_id"
   add_index "people", ["godfather_id"], name: "index_people_on_godfather_id"
   add_index "people", ["role_id"], name: "index_people_on_role_id"
+
+  create_table "person_godfather_files", force: true do |t|
+    t.integer  "godfather_person_id"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "possible_choices", force: true do |t|
     t.string   "property"
