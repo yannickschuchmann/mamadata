@@ -35,34 +35,23 @@ class FamiliesController < ApplicationController
 	end
 
 	def new
-		# @family = Family.new
-		# @person = Person.new
-		# respond_to do |format|
-		# 	format.html 
-		# 	format.js 
-		# end
+		@family = Family.new
 	end
 
-	# def addpeople
-	# 	@person = Person.new
-	# 	respond_to do |format|
-	# 		format.js 
-	# 	end
-	# end
-	
 	def create
-		@persons = params[:person]
-		@family = Family.create(name:params[:familyname])
-		@community = CommunityDevelopment.create(params[:id])
-		@persons.each do |key,value|
-			Person.find(value["id"]).update(role: Role.find_by_id(value["role_id"].to_i))
-			Person.find(value["id"]).update(family_id: @family.id)
-			@family.community_development_id = @community.id
-			if value["role_id"].to_i == 1
-				@family.head_id = value["id"]
-			end
-			@family.save
+		@persons = JSON.parse params[:people]
+		@family = Family.create()
+		@community = CommunityDevelopment.create()
+    @family.community_development_id = @community.id
+		@persons.each do |value|
+			person = Person.find(value["person_id"].to_i)
+      person.update(role: Role.find_by_id(value["role"].to_i), family_id: @family.id)
+      if person.role_id == 1
+        @family.head_id = person.id
+        @family.name = person.fathers_name
+      end
 		end
+    @family.save
 		render :json => @family
 	end
 	def show

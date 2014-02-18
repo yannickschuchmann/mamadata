@@ -98,6 +98,13 @@ class PeopleController < ApplicationController
     end
   end
 
+  def add_to_family
+    @person.family_id = params[:family_id]
+    respond_to do |format|
+      format.html { redirect_to edit_families_path(id: @person.family_id) }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_autosuggest

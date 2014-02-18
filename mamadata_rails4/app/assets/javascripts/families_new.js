@@ -1,63 +1,63 @@
 $("#searchExistingPeopleSubmit").click(function () {
-	$('#searchExistingPeopleForm').css("display", "none");
-	$('#search_results_List').css("display", "block");
+	$('#searchExistingPeopleForm').hide();
+	$('#search_results_List').show();
 });
 $("#FormToggle").click(function () {
-	$('#searchExistingPeopleForm').css("display", "block");
-	$('#search_results_List').css("display", "none");
+	$('#searchExistingPeopleForm').show();
+	$('#search_results_List').hide();
 });
 
-peopleNumber = 1;
-var searchResult;
+var peopleNumber = 1,
+    peopleList = [],
+    searchResult;
+
 // Search People
 $("#searchExistingPeopleForm").submit(function(e){
 	e.preventDefault();
-	var name 	= $("#sName").val();
-	var fname 	= $("#sFname").val();
-	var city 	= $("#sCity").val();
-	var zipcode = $("#sZipcode").val();
-	dataToSend 	=  {"name": name, "fname": fname,"city": city, "zipcode": zipcode };
 	$.ajax({
 		url: "http://"+window.location.host+"/people/search",	// I'm doing the proper routing later, since '/make_suggestion' routes to 'items/1/make_suggestion'
 		type: "PUT",
 		beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));},
 		dataType: 'json',
 		async: 'false',
-		data: dataToSend,
-		success: function(returned_value){
-			console.log(returned_value);
-			searchResult = returned_value;
-			str = "";
-			for (var i = returned_value.length - 1; i >= 0; i--) {
-				if (returned_value[i].pin_code === null) {
-					returned_value[i].pin_code = "";
-				}
-				str += "<tr class='addfromsearchpeople"+i+"'>";
-				str += "<td>" + returned_value[i].id +"</td>";
-				str += "<td>" + returned_value[i].name +"</td>";
-				str += "<td>" + returned_value[i].fathers_name +"</td>";
-				str += "<td>" + returned_value[i].city +"</td>";
-				str += "<td>" + returned_value[i].pin_code +"</td>";
-				str += "<td><div class='button tiny' id='addfromsearch' onclick='addFromSearch("+i+")'>Add</div></td>";
-				str += '</tr>';
+		data: $(this).serialize(),
+		success: function(result){
+			var str = "";
+            searchResult = result;
+			for (var i = result.length - 1; i >= 0; i--) {
+                result[i].zip_code = result[i].zip_code || '';
+				str += "<tr class='addfromsearchpeople"+i+"'>\
+				    <td>" + result[i].id +"</td>\
+				    <td>" + result[i].name +"</td>\
+				    <td>" + result[i].fathers_name +"</td>\
+				    <td>" + result[i].city +"</td>\
+				    <td>" + result[i].zip_code +"</td>\
+				    <td><div class='button tiny' data-pid="+i+">Add</div></td>\
+                </tr>";
 			}
-			$("#searchResult").html(str);
+			$("#searchResult")
+                .html(str)
+                .find('[data-pid]')
+                    .click(function() {
+                        var $this = $(this);
+                    console.log($this);
+                        addFromSearch($this.attr('data-pid'));
+                    });
 		},
-		error: function(returned_value){
+		error: function(result){
 			alert("Something went Wrong during the sending of the data please retry later");
 		}
 	});
-return false;
 });
 
 // FN die rechts pusht
 function addFromSearch(pid) {
 	var person = searchResult[pid];
+    if(peopleList[person.id]) return;
 	/*jshint multistr: true */
 	$("#people").append(
-			'<div class="person"> \
+			'<div class="person" data-pid="'+person.id+'"> \
 			<span class="removePerson">X</span>\
-			<input type="hidden" id="personId" value="'+person.id+'"/>\
 			<h5>'+ person.id +' '+  person.name +' '+ person.fathers_name +'</h5>\
 			<div class="row">\
 				<div class="small-12 medium-4 column"><label for="name">Name</label></div>\
@@ -79,32 +79,26 @@ function addFromSearch(pid) {
 			</div>\
 		</div>');
 	peopleNumber = peopleNumber + 1;
+    peopleList[person.id] = {person_id: person.id, role: person.role};
+
+    $('.removePerson').click(function() {
+        $(this).closest('.person').remove();
+    });
 }
 
-$('.removePerson').click(function() {
-	var $el = $(this).closest('.person'),
-	pid = $el.find('input#personId').val();
-	$(".ListPerson"+pid).remove();
-	$el.remove();
-});
-
+function serializePeople() {
+    var list = [];
+    $('#people .person').each(function() {
+       list.push({
+          person_id:  $(this).attr('data-pid'),
+          role: $(this).find('select').val()
+       })
+    });
+    return list;
+}
 
 $("#submitFamily").click(function(event){
 	event.preventDefault();
-	var dataToSend = {};
-	var persons = document.getElementsByClassName("person");
-	dataToSend.person = {};
-	[].forEach.call(persons, function(person,index) {
-		var tmp 	= {};
-		tmp.id 		= $(person).find("#personId")[0].value;
-		tmp.name 	= $(person).find("#name")[0].value;
-		tmp.fname 	= $(person).find("#fathers_name")[0].value;
-		tmp.role_id = $(person).find("#role_id")[0].value;
-		if (tmp.role_id === "1") {
-			dataToSend.familyname = tmp.fname;
-		}
-		dataToSend.person[index] = tmp;
-	});
 
 	$.ajax({
 		url: "http://"+window.location.host+"/families/create",   // I'm doing the proper routing later, since '/make_suggestion' routes to 'items/1/make_suggestion'
@@ -112,11 +106,9 @@ $("#submitFamily").click(function(event){
 		beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));},
 		dataType: 'json',
 		async: 'false',
-		data: dataToSend,
-		success: function(returned_value){
+		data: 'people='+JSON.stringify(serializePeople()),
+		success: function(result){
 			window.location.replace("/families");
-			// window.location.replace("/families/show/"+returned_value.id)
-			// console.log(returned_value);
 		},
 		error: function(returned_value){
 			alert("Something went Wrong during the sending of the data please retry later");

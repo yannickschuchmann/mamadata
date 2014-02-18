@@ -2,42 +2,6 @@
 
 <h4 class="text-center">Create new Family</h4>
 <div class="row">
-	<div class="medium-6 columns">
-		<h5>Search for Beneficiaries</h5>
-		<div id="search_results">
-			<form action="" id="searchExistingPeopleForm">
-				<div id="searchExistingPeople" class="content">
-					<div class="row">
-						<div class="small-12 medium-4 column">Name</div>
-						<div class="small-12 medium-8 column"><input id="sName" type="text"></div>
-						<div class="small-12 medium-4 column">Fathers Name</div>
-						<div class="small-12 medium-8 column"><input type="text" id="sFname"/></div>
-						<div class="small-12 medium-4 column">City</div>
-						<div class="small-12 medium-8 column"><input id="sCity" type="text"/></div>
-						<div class="small-12 medium-4 column">Zipcode</div>
-						<div class="small-12 medium-8 column"><input id="sZipcode" type="text"/></div>
-					</div>
-					<button type="submit" id="searchExistingPeopleSubmit">Search</button>
-				</div>
-			</form>
-			<a id="FormToggle"><i class="icon-search button tiny"></i></a><br>	
-			<table id="search_results_List" style="display: none;">
-				<thead> 
-					<tr>
-						<th>Id</th> <th>Name</th> <th>Fathers Name</th> <th>City</th> <th>Zipcode</th> <th></th> 
-					</tr>
-				</thead>
-				<tbody id="searchResult">
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<div class="medium-6 columns">
-		<h5>Family Members Added</h5>
-		<div id="people"></div>
-		<ul id="familyList">
-		</ul>
-		<input id="submitFamily" class="button" name="commit" type="submit" value="Submit Family">
-	</div>
+	<%= render "form" %>
 </div>
 
