@@ -1,0 +1,93 @@
+<dl class="accordion" data-accordion>
+    <% @schools.each_with_index do |school, index| %>
+    <dd>
+        <a href="#school<%= school.id %>">
+            <%= !school.terminated? ? school.joined_at.strftime("%Y")+"-now" : school.period %>
+        </a>
+        <div id="school<%= school.id %>" class="content<%= " active" if index == 0 %>">
+            <div class="row">
+                <ul class="button-group left">
+                    <li><%= link_to content_tag(:i, '',:class => 'icon-edit')+" Edit", edit_school_path(school.id), class: 'button tiny' %></li>
+                    <li><%= link_to content_tag(:i, '',:class => 'icon-trash')+" Delete", school, method: 'delete', data: { confirm: 'Are you sure?' }, class: 'button tiny' %></li>
+                </ul>
+                <ul class="button-group right">
+                    <li><%= link_to content_tag(:i, '',:class => 'icon-plus')+" Add new Class", new_school_class_path(id: @person.id, school_id: school.id), {class: 'button tiny'} %></li>
+                    <% unless school.terminated? %>
+                        <li><%= link_to content_tag(:i, '',:class => 'icon-lock')+" Terminate", terminate_school_path(school.id), class: 'button tiny'  %></li>
+                    <% end %>
+                </ul>
+                <div class="clearfix"></div>
+                <div class="small-12 large-6 column">
+                    <h4>
+                        <%= school.name %>
+                    </h4>
+                    <div class="row">
+                        <div class="small-6 column">
+                            Type:
+                        </div>
+                        <div class="small-6 column">
+                            <%= school.type %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-6 column">Language:</div>
+                        <div class="small-6 column">
+                            <%= school.language %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-6 column">Remark:</div>
+                        <div class="small-6 column">
+                            <%= school.remark %>
+                        </div>
+                    </div>
+                    <% if school.terminated? %>
+                    <div class="row">
+                        <div class="small-6 column">Termination Date:</div>
+                        <div class="small-6 column">
+                            <%= l school.terminated_at %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-6 column">Termination Reason:</div>
+                        <div class="small-6 column">
+                            <%= school.termination_reason %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-6 column">Termination Remark:</div>
+                        <div class="small-6 column">
+                            <%= school.termination_remark %>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
+                <table class="table small-12 large-6 right">
+                    <tr>
+                        <th>Class</th>
+                        <th>Remark</th>
+                        <th>File</th>
+                        <th></th>
+                    </tr>
+                    <% unless school.school_classes.size > 0 %>
+                    <tr>
+                        <td colspan="4">No school classes added</td>
+                    </tr>
+                    <% end %>
+                    <% school.school_classes.each do |school_class| %>
+                    <tr>
+                        <td><%= school_class.name %></td>
+                        <td><%= school_class.remark %></td>
+                        <td><%= school_class.document_file_name.nil? ? 'No file' : (link_to school_class.document_file_name, document_school_class_path(id: school_class.id)) %></td>
+                        <td>
+                            <%= link_to content_tag(:i, '', class: 'icon-edit'), edit_school_class_path(school_class.id) %>
+                            <%= link_to content_tag(:i, '', class: 'icon-trash'), school_class, method: 'delete' %>
+                        </td>
+                    </tr>
+                    <% end %>
+                </table>
+            </div>
+        </div>
+    </dd>
+    <% end %>
+</dl>

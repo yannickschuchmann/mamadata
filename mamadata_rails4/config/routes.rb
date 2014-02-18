@@ -16,6 +16,14 @@ MamadataRails4::Application.routes.draw do
 
   get 'people/:id/add_to_program/', to: 'people#add_to_program', as: :add_to_program
 
+  resources :schools, only: [:show, :edit, :index, :create, :update, :destroy]
+  get 'people/:id/schools/new', to: 'schools#new', as: :new_school
+  get 'schools/:id/terminate', to: 'schools#terminate', as: :terminate_school
+
+  resources :school_classes, only: [:show, :edit, :index, :create, :update, :destroy]
+  get 'people/:id/schools/:school_id/classes/new', to: 'school_classes#new', as: :new_school_class
+  get 'school_classes/:id/document', to: 'school_classes#document', as: :document_school_class
+
   resources :benefits do
     member do
       get :programs

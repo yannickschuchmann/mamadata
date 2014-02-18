@@ -6,6 +6,7 @@ class Person < ActiveRecord::Base
   has_many :beneficiary_program_relationships
   has_many :programs, through: :beneficiary_program_relationships, dependent: :destroy
   has_many :benefits, through: :programs
+  has_many :schools
   has_many :godfather_people
   has_many :godfathers, :class_name => "Supporter", through: :godfather_people, dependent: :destroy
   has_many :person_godfather_files, through: :godfather_people
