@@ -119,6 +119,8 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    paranoia (2.0.2)
+      activerecord (~> 4.0)
     polyglot (0.3.3)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -217,6 +219,7 @@ DEPENDENCIES
   money-rails
   mysql2
   paperclip (~> 3.0)
+  paranoia (~> 2.0)
   rails (= 4.0.0)
   rspec-rails (~> 2.14.0)
   sass-rails (~> 4.0.0)

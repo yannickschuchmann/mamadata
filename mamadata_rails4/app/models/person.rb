@@ -4,14 +4,14 @@ class Person < ActiveRecord::Base
   has_one :family
   has_many :journals
   has_many :beneficiary_program_relationships
-  has_many :programs, through: :beneficiary_program_relationships
-  has_many  :active_programs, -> { where is_active: true }, class_name: 'BeneficiaryProgramRelationship'
+  has_many :programs, through: :beneficiary_program_relationships, dependent: :destroy
   has_many :benefits, through: :programs
-  belongs_to :godfather, :class_name => "Supporter"
+  has_many :schools
+  has_many :godfather_people
+  has_many :godfathers, :class_name => "Supporter", through: :godfather_people, dependent: :destroy
   has_many :benefit_incidents
   monetize :income_paise,:with_currency => :inr, :numericality => {
     greater_than_or_equal_to: 0 }
-  after_save :set_active_programs
 
     def get_total_expenses (date = nil)
       total_expenses=Money.new(0)
@@ -34,18 +34,23 @@ class Person < ActiveRecord::Base
       self.get_total_expenses Date.today.beginning_of_month
     end
 
+    def current_godfather
+      return self.godfathers.first
+    end
+
+    def former_godfathers
+      relations = GodfatherPerson.only_deleted.where(person_id: self.id).order("created_at ASC")
+      former = []
+      relations.each do |r|
+        godfather = Supporter.where(id: r.godfather_id)
+        former << godfather
+      end
+      former = former.collect{|el| el[0]}
+      return former
+   end
+
 
   protected
 
-    def set_active_programs
-      BeneficiaryProgramRelationship.where(person_id: self.id).each do |r|
-        if self.program_ids.include?(r.program_id)
-          r.is_active = true
-        else
-          r.is_active = false
-        end
-        r.save
-      end
-    end
 
 end

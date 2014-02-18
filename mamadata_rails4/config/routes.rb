@@ -1,103 +1,112 @@
 MamadataRails4::Application.routes.draw do
 
-	get 'families/addpeople', to: 'families#addpeople'
-	put 'families/create', to: 'families#create'
-	resources :families do
-		resources :community_developments
-	end
-	delete 'families/:id/edit', to: 'families#delete_relation', as: :delete_family_relation
-	put 'people/create', to: 'people#create'
-	put 'people/search', to: 'people#search'
+  get 'families/addpeople', to: 'families#addpeople'
+  put 'families/create', to: 'families#create'
+  resources :families do
+    resources :community_developments
+  end
+  delete 'families/:id/edit', to: 'families#delete_relation', as: :delete_family_relation
 
-	resources :benefit_incidents, only: [:show, :edit, :index, :create, :update, :destroy]
-	get 'benefit_incidents/test/calculated', to: 'benefit_incidents#calculated'
-	get 'benefit_incidents/add_user_to_program/:person_id', to: 'benefit_incidents#add_user_to_program', as: :add_user_to_program
-	get 'benefit_incidents/list/:person_id', to: 'benefit_incidents#list', as: :benefit_incidents_list
-	get 'benefit_incidents/new/:person_id', to: 'benefit_incidents#new', as: :new_benefit_incident
-	get 'benefit_incidents_pending', to: 'benefit_incidents#pending', as: :benefit_incidents_pending
-	get 'benefit_incidents_granted', to: 'benefit_incidents#granted', as: :benefit_incidents_granted
+  put 'people/create', to: 'people#create'
+  put 'people/search', to: 'people#search'
 
-	resources :benefits do
-		member do
-			get :programs
-		end
-	end
+  resources :benefit_incidents, only: [:show, :edit, :index, :create, :update, :destroy]
+  get 'benefit_incidents/test/calculated', to: 'benefit_incidents#calculated'
+  get 'benefit_incidents/add_user_to_program/:person_id', to: 'benefit_incidents#add_user_to_program', as: :add_user_to_program
+  get 'benefit_incidents/list/:person_id', to: 'benefit_incidents#list', as: :benefit_incidents_list
+  get 'benefit_incidents/new/:person_id', to: 'benefit_incidents#new', as: :new_benefit_incident
 
-	resources :programs do
-		member do
-			get :benefits
-		end
-	end
+  get 'people/:id/add_to_program/', to: 'people#add_to_program', as: :add_to_program
 
-	resources :community_developments
+  resources :schools, only: [:show, :edit, :index, :create, :update, :destroy]
+  get 'people/:id/schools/new', to: 'schools#new', as: :new_school
+  get 'schools/:id/terminate', to: 'schools#terminate', as: :terminate_school
 
-	resources :roles
-	resources :people do
-		resources :journals
-	end
-	resources :supporters
+  resources :school_classes, only: [:show, :edit, :index, :create, :update, :destroy]
+  get 'people/:id/schools/:school_id/classes/new', to: 'school_classes#new', as: :new_school_class
+  get 'school_classes/:id/document', to: 'school_classes#document', as: :document_school_class
 
-	root 'people#index'
+  resources :benefits do
+    member do
+      get :programs
+    end
+  end
 
-	devise_for :users, :skip => [:registrations]
-	as :user do
-		get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
-		put 'users/:id' => 'devise/registrations#update', :as => 'user_registration'
-	end
-	resources :users
+  resources :programs do
+    member do
+      get :benefits
+    end
+  end
 
-	# The priority is based upon order of creation: first created -> highest priority.
-	# See how all your routes lay out with "rake routes".
+  resources :community_developments
+  resources :families
+  resources :roles
+  resources :people do
+    resources :journals
+  end
+  resources :supporters
 
-	# You can have the root of your site routed with "root"
-	# root 'welcome#index'
+  root 'people#index'
 
-	# Example of regular route:
-	#   get 'products/:id' => 'catalog#view'
+  devise_for :users, :skip => [:registrations]                                          
+    as :user do
+      get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'    
+      put 'users/:id' => 'devise/registrations#update', :as => 'user_registration'            
+    end
+  resources :users
 
-	# Example of named route that can be invoked with purchase_url(id: product.id)
-	#   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  # The priority is based upon order of creation: first created -> highest priority.
+  # See how all your routes lay out with "rake routes".
 
-	# Example resource route (maps HTTP verbs to controller actions automatically):
-	#   resources :products
+  # You can have the root of your site routed with "root"
+  # root 'welcome#index'
 
-	# Example resource route with options:
-	#   resources :products do
-	#     member do
-	#       get 'short'
-	#       post 'toggle'
-	#     end
-	#
-	#     collection do
-	#       get 'sold'
-	#     end
-	#   end
+  # Example of regular route:
+  #   get 'products/:id' => 'catalog#view'
 
-	# Example resource route with sub-resources:
-	#   resources :products do
-	#     resources :comments, :sales
-	#     resource :seller
-	#   end
+  # Example of named route that can be invoked with purchase_url(id: product.id)
+  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
-	# Example resource route with more complex sub-resources:
-	#   resources :products do
-	#     resources :comments
-	#     resources :sales do
-	#       get 'recent', on: :collection
-	#     end
-	#   end
-	
-	# Example resource route with concerns:
-	#   concern :toggleable do
-	#     post 'toggle'
-	#   end
-	#   resources :posts, concerns: :toggleable
-	#   resources :photos, concerns: :toggleable
+  # Example resource route (maps HTTP verbs to controller actions automatically):
+  #   resources :products
 
-	# Example resource route within a namespace:
-	#   namespace :admin do
-	#     # Directs /admin/products/* to Admin::ProductsController
-	#     # (app/controllers/admin/products_controller.rb)
-	#     resources :products
-	#   end
+  # Example resource route with options:
+  #   resources :products do
+  #     member do
+  #       get 'short'
+  #       post 'toggle'
+  #     end
+  #
+  #     collection do
+  #       get 'sold'
+  #     end
+  #   end
+
+  # Example resource route with sub-resources:
+  #   resources :products do
+  #     resources :comments, :sales
+  #     resource :seller
+  #   end
+
+  # Example resource route with more complex sub-resources:
+  #   resources :products do
+  #     resources :comments
+  #     resources :sales do
+  #       get 'recent', on: :collection
+  #     end
+  #   end
+  
+  # Example resource route with concerns:
+  #   concern :toggleable do
+  #     post 'toggle'
+  #   end
+  #   resources :posts, concerns: :toggleable
+  #   resources :photos, concerns: :toggleable
+
+  # Example resource route within a namespace:
+  #   namespace :admin do
+  #     # Directs /admin/products/* to Admin::ProductsController
+  #     # (app/controllers/admin/products_controller.rb)
+  #     resources :products
+  #   end
 end

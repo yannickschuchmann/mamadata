@@ -17,7 +17,7 @@ class BenefitIncident < ActiveRecord::Base
 	before_save :set_date_granted
 	before_save :update_calculated_amount
 	before_save :set_fixed_amount
-	before_save :set_current_exchange_rates
+	# before_save :set_current_exchange_rates
 
 
 

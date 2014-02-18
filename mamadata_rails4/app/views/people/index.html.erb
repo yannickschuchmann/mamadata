@@ -14,7 +14,7 @@
 				<th>Date of birth</th>
 				<th>Place of birth</th>
 				<th>City</th>
-				<th>PIN code</th>
+				<th>ZIP code</th>
 				<th>Role</th>
 				<th>Total Expense</th>
 				<td></td>
@@ -30,7 +30,7 @@
 				<td><%= person.date_of_birth %></td>
 				<td><%= person.place_of_birth %></td>
 				<td><%= person.city %></td>
-				<td><%= person.pin_code %></td>
+				<td><%= person.zip_code %></td>
 				<td>
 					<% if !person.role_id.nil? %>
 					<%  b = Role.find (person.role_id) %>

@@ -52,8 +52,8 @@
 		<td><%= @person.city %></td>
 	</tr>						
 	<tr>
-		<td>Pin code</td>
-		<td><%= @person.pin_code %></td>
+		<td>ZIP code</td>
+		<td><%= @person.zip_code %></td>
 	</tr>						
 	<tr>
 		<td>Native place</td>
@@ -90,3 +90,14 @@
 		</tr>
 	</tbody>
 </table>
+<h5>Godfathers</h5>
+<% if !@person.godfathers.empty? %>
+<h6>Current Godfather</h6>
+
+<p><%= @person.current_godfather.name %></p>
+
+<% end %>
+<h6>Former Godfathers</h6>
+<% @person.former_godfathers.each do |godfather| %>
+	<p><%= godfather.name %></p>
+<% end %>

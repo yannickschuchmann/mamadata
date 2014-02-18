@@ -39,6 +39,9 @@ table {
 .button-edit {
   margin: 0 !important;
 }
+input.datepicker {
+  @extend .icon-edit;
+}
 
 .button-center {
   text-align: center;

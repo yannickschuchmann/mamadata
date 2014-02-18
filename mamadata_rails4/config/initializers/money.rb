@@ -1,15 +1,15 @@
 # encoding : utf-8
 
-require 'money'
-require 'money/bank/google_currency'
+# require 'money'
+# require 'money/bank/google_currency'
 
 # (optional)
 # set the seconds after than the current rates are automatically expired
 # by default, they never expire
-Money::Bank::GoogleCurrency.ttl_in_seconds = 86400
+# Money::Bank::GoogleCurrency.ttl_in_seconds = 86400
 
 # set default bank to instance of GoogleCurrency
-Money.default_bank = Money::Bank::GoogleCurrency.new
+# Money.default_bank = Money::Bank::GoogleCurrency.new
 
 MoneyRails.configure do |config|
 
@@ -20,7 +20,7 @@ MoneyRails.configure do |config|
   # Set default bank object
   #
   # Example:
-   config.default_bank = ::Money.default_bank 
+   # config.default_bank = ::Money.default_bank 
 
   # Add exchange rates to current money bank object.
   # (The conversion rate refers to one direction only)
