@@ -14,7 +14,7 @@ class ProgramsController < ApplicationController
   def show
     @benefit_incidents = BenefitIncident.where(program_id: params[:id])
 
-    @program_participants = BeneficiaryProgramRelationship.with_deleted.where(program_id: params[:id])
+    @program_participants = BeneficiaryProgramRelationship.with_deleted.where(program_id: params[:id]).order("created_at DESC")
 
     total_amount_pending=Money.new(0)
     @benefit_incidents.each do |benefit|
