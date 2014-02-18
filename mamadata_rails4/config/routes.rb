@@ -7,6 +7,8 @@ MamadataRails4::Application.routes.draw do
 
   resources :benefit_incidents, only: [:show, :edit, :index, :create, :update, :destroy]
   resources :person_godfather_files
+
+  get 'godfather_people/:id/files/new', to: 'person_godfather_files#new', as: :add_new_godfather_file
   get 'benefit_incidents/test/calculated', to: 'benefit_incidents#calculated'
   get 'benefit_incidents/add_user_to_program/:person_id', to: 'benefit_incidents#add_user_to_program', as: :add_user_to_program
   get 'benefit_incidents/list/:person_id', to: 'benefit_incidents#list', as: :benefit_incidents_list

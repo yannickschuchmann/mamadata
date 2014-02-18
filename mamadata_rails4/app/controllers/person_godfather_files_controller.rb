@@ -1,9 +1,18 @@
 class PersonGodfatherFilesController < ApplicationController
+	
+
+	def new
+		@person_godfather_file = PersonGodfatherFile.new(godfather_people_id: params[:id])
+	end
+
+
 def create
+	puts "@@@@@@@@@"
+	puts params
   @person_godfather_file = PersonGodfatherFile.create( person_godfather_file_params )
    respond_to do |format|
       if @person_godfather_file.save
-        format.html { redirect_to root_path, notice: 'Benefit incident was successfully created.' }
+        format.html { redirect_to root_path, notice: 'File upload successfull' }
       end
     end
 end
@@ -14,6 +23,6 @@ private
 # Be sure to update your create() and update() controller methods.
 
 def person_godfather_file_params
-  params.require(:person_godfather_file).permit(:file)
+  params.require(:person_godfather_file).permit(:file, :godfather_person_id)
 end
 end
