@@ -1,4 +1,6 @@
 <div id="content-form">
+<%= action %>
+<%= controller %>
 	<%= form_for @person, url: person_path(@person) do |f| %>
 		<%= render "/people/program_checkboxes", f: f %>
 		<%= hidden_field_tag :redirect_to_incident, true %>
