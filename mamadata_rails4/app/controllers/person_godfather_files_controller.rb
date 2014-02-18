@@ -12,12 +12,15 @@ class PersonGodfatherFilesController < ApplicationController
 
   def create
     @person_godfather_file = PersonGodfatherFile.create( person_godfather_file_params )
+    @gfi = @person_godfather_file.godfather_person_id
+    @person_id = GodfatherPerson.with_deleted.find(@gfi).person_id
+    puts @person_id
     respond_to do |format|
       if @person_godfather_file.save
-        format.html { redirect_to person_path(@person_godfather_file.godfather_person.person_id),
+        format.html { redirect_to person_path(@person_id),
            notice: 'File successfully uploaded' }
         else
-          format.html { redirect_to person_path(@person_godfather_file.godfather_person.person_id),
+          format.html { redirect_to person_path(@person_id),
              notice: 'Something went wrong' }
           end
         end
