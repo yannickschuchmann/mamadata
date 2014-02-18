@@ -1,5 +1,5 @@
 <%= content_for :js do %><%= javascript_include_tag "families_new.js" %> <% end %>
-<p>
+<p class="text-center">
 <% @family.people.each do |people| %>
 	<div><%= people.name %> <%= link_to "delete", delete_family_relation_path(id: people.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => "button tiny" %></div>
 <% end %>

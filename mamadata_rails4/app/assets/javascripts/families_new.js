@@ -1,3 +1,13 @@
+$("#searchExistingPeopleSubmit").click(function () {
+	$('#searchExistingPeopleForm').css("display", "none");
+	$('#search_results_List').css("display", "block");
+});
+$("#FormToggle").click(function () {
+	$('#searchExistingPeopleForm').css("display", "block");
+	$('#search_results_List').css("display", "none");
+});
+
+
 peopleNumber = 1;
 var searchResult;
 // Search People
