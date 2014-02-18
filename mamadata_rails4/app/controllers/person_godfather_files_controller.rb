@@ -2,13 +2,11 @@ class PersonGodfatherFilesController < ApplicationController
 	
 
 	def new
-		@person_godfather_file = PersonGodfatherFile.new(godfather_people_id: params[:id])
+		@person_godfather_file = PersonGodfatherFile.new(godfather_person_id: params[:id])
 	end
 
 
 def create
-	puts "@@@@@@@@@"
-	puts params
   @person_godfather_file = PersonGodfatherFile.create( person_godfather_file_params )
    respond_to do |format|
       if @person_godfather_file.save

@@ -90,26 +90,7 @@
 		</tr>
 	</tbody>
 </table>
-<h5>Godfathers</h5>
-<% if !@person.godfathers.empty? %>
-<h6>Current Godfather</h6>
-
-@person
-<p>
-<%= form_for @person.person_godfather_files.new(godfather_person_id: @person.godfather_person_ids.first) , :html => { :multipart => true } do |form| %>
-<%= form.hidden_field :godfather_person_id %>
-<%= form.file_field :file %>
-<%= form.submit :class => 'button' %>
-<% end %>
-</p>
-<%end%>
-
-
-
-<p>
-<% @person.person_godfather_files.each do |file| %>
-<%=image_tag file.file.url %>
-<% end %>
+<%= render 'person_godfather_files/godfather_history' %>
 
 
 

@@ -14,6 +14,12 @@ class PeopleController < ApplicationController
   def show
     @benefit_incidents = BenefitIncident.where(person_id: params[:id])
     @schools = School.where(person_id: params[:id]).order(joined_at: :desc)
+    @godfather_relations = GodfatherPerson.with_deleted.where(person_id: params[:id]).order(created_at: :desc)
+    @godfathers = []
+    @godfather_relations.each do |r|
+      @godfathers << Supporter.find(r.godfather_id)
+    end
+
   end
 
   # GET /people/new
