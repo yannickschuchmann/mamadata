@@ -32,7 +32,8 @@ en:
     - Saturday
     formats:
       default: ! '%d-%m-%Y'
-      long: ! '%B %d-%m, %Y'
+      long: ! '%B %d, %Y'
+      custom: ! '%d-%m-%Y %H:%M'
       short: ! '%b %d'
     month_names:
     -
@@ -100,7 +101,8 @@ en:
     messages:
       accepted: must be accepted
       blank: can't be blank
-      confirmation: doesn't match confirmation
+      present: must be blank
+      confirmation: ! "doesn't match %{attribute}"
       empty: can't be empty
       equal_to: must be equal to %{count}
       even: must be even
@@ -115,6 +117,9 @@ en:
       not_an_integer: must be an integer
       odd: must be odd
       record_invalid: ! 'Validation failed: %{errors}'
+      restrict_dependent_destroy:
+        one: "Cannot delete record because a dependent %{record} exists"
+        many: "Cannot delete record because dependent %{record} exist"
       taken: has already been taken
       too_long:
         one: is too long (maximum is 1 character)
@@ -125,6 +130,7 @@ en:
       wrong_length:
         one: is the wrong length (should be 1 character)
         other: is the wrong length (should be %{count} characters)
+      other_than: "must be other than %{count}"
     template:
       body: ! 'There were problems with the following fields:'
       header:
@@ -146,7 +152,7 @@ en:
         separator: .
         significant: false
         strip_insignificant_zeros: false
-        unit: ₹
+        unit: $
     format:
       delimiter: ! ','
       precision: 3
@@ -181,6 +187,7 @@ en:
     percentage:
       format:
         delimiter: ''
+        format: "%n%"
     precision:
       format:
         delimiter: ''
@@ -192,9 +199,10 @@ en:
   time:
     am: am
     formats:
-      default: ! '%a, %d %b %Y %H:%M:%S %z'
+      default: ! '%a, %d %b %Y %H:%M:%S'
       long: ! '%B %d, %Y %H:%M'
       short: ! '%d %b %H:%M'
+      custom: ! '%d-%m-%Y %H:%M'
     pm: pm
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:

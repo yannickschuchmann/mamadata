@@ -28,7 +28,7 @@
 				<td><%= number_to_indian_currency(benefit_incident.amount).html_safe %></td>
 				<td><%= simple_format(benefit_incident.remark) %></td>
 				<td><%= benefit_incident.status == true ? 'Granted' : 'Pending' %></td>
-				<td><%=l benefit_incident.date_granted unless benefit_incident.date_granted.nil?%></td>
+				<td><%=l benefit_incident.date_granted.to_datetime, :format => :custom unless benefit_incident.date_granted.nil? %></td>
 				<td>
 					<%= link_to (content_tag(:i, '', :class => 'icon-file')), benefit_incident %>
 					<%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_benefit_incident_path(benefit_incident) %>
