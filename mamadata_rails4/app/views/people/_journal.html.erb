@@ -2,25 +2,24 @@
 <%= form_for([@person, @person.journals.build], :html => { :id => "journalForm" }) do |f| %>
 <div class="row">
 	<div class="small-12 large-12 columns"><%= f.label "Journal Entry" %></div>
-	<div class="small-12 large-12 columns"><%= f.text_area :text %></div>
+	<div class="small-12 large-12 columns"><%= f.text_area :text, :style => "height: 150px" %></div>
 </div>
 
-<%= f.submit :class => "button tiny" %>
+<%= f.submit "Create Journal Entry", :class => "button" %>
 <% end %>
 
 <% @person.journals.each do |journal| %>
-<h5><%= journal.created_at %></h5>
-<p><%= journal.text %>
-	<span class="right">
-		<%= link_to (content_tag(:i, '', :class => 'icon-trash')), person_journal_path(journal.person_id, journal.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-	</span>
-</p>
+<h6>
+	<span style="margin-right: 10px; float: left; color: #e67e22;">
+		<%= link_to (content_tag(:i, '', :class => 'icon-trash')), person_journal_path(journal.person_id, journal.id), method: :delete, data: { confirm: 'Are you sure?' }, :style => "color: #e67e22;" %>
+	</span><%= journal.created_at %>
+</h6>
+<p><%= journal.text %></p>
 <% end %>
 
 <script>
 $("#journalForm").validate(
 {
-	debug: true,
 	rules: {
 		'journal[text]': {required: true, minlength: 1}
 	}

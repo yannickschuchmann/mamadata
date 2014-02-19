@@ -1,8 +1,8 @@
 <h5>Personal Information</h5>
 <table class="small-12">
 	<tr>
-		<td class="medium-4">Father's name</td>
-		<td class="medium-8"><%= @person.fathers_name %></td>
+		<td class="small-4">Father's name</td>
+		<td class="small-8"><%= @person.fathers_name %></td>
 	</tr>
 	<tr>
 		<td>Gender</td>
@@ -36,8 +36,8 @@
 <h5>Household Information</h5>
 <table class="small-12">
 	<tr>
-		<td class="medium-4">ZIP code</td>
-		<td class="medium-8"><%= @person.zip_code %></td>
+		<td class="small-4">ZIP code</td>
+		<td class="small-8"><%= @person.zip_code %></td>
 	</tr>
 	<tr>
 		<td>City/Village</td>
@@ -65,8 +65,8 @@
 <table class="small-12">
 	<tbody>
 		<tr>
-			<td class="medium-4">Religion</td>
-			<td class="medium-8"><%= @person.religion %></td>
+			<td class="small-4">Religion</td>
+			<td class="small-8"><%= @person.religion %></td>
 		</tr>
 		<% if @person.religion.downcase == "hindi" || @person.religion.downcase == "hindu" %>
 		<tr>
