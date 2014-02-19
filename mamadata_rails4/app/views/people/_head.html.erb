@@ -4,7 +4,7 @@
 		</div>
 		<div class="medium-10 column">
 			<h3><%= @person.name %></h3>
-			<% former = (!@person.file_number.nil?) ? "(Former: "+ @person.file_number+ ")" : "" ;%>
+			<% former = (@person.file_number != "") ? "(Former: "+ @person.file_number+ ")" : "" ;%>
 			<h5><b>File: <%= @person.id %> <%= former %></b></h5>
 			<ul class="no-bullet">
 				<% @person.programs.each do |p| %>

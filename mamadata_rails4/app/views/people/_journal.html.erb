@@ -1,5 +1,5 @@
 <h5>Add a Journal Entry:</h5>
-<%= form_for([@person, @person.journals.build]) do |f| %>
+<%= form_for([@person, @person.journals.build], :html => { :id => "journalForm" }) do |f| %>
 <div class="row">
 	<div class="small-12 large-12 columns"><%= f.label "Journal Entry" %></div>
 	<div class="small-12 large-12 columns"><%= f.text_area :text %></div>
@@ -9,6 +9,21 @@
 <% end %>
 
 <% @person.journals.each do |journal| %>
-	<h5><%= journal.created_at %></h5>
-	<p><%= journal.text %> <span class="right"><%#= link_to (content_tag(:i, '', :class => 'icon-trash')), journal_path, method: :delete, data: { confirm: 'Are you sure?' } %></span></p>
+<h5><%= journal.created_at %></h5>
+<p><%= journal.text %>
+	<span class="right">
+		<%= link_to (content_tag(:i, '', :class => 'icon-trash')), person_journal_path(journal.person_id, journal.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+	</span>
+</p>
 <% end %>
+
+<script>
+$("#journalForm").validate(
+{
+	debug: true,
+	rules: {
+		'journal[text]': {required: true, minlength: 1}
+	}
+}
+);
+</script>
