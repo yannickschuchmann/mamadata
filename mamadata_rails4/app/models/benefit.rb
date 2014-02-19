@@ -17,6 +17,16 @@ class Benefit < ActiveRecord::Base
 
   after_save :update_calculated_amount_for_incidents
 
+  def get_total_amount(status=true)
+  	total_amount=Money.new(0)
+    self.benefit_incidents.each do |benefit|
+      if(benefit.status == status)
+        total_amount+=benefit.amount
+      end
+    end
+    return total_amount
+  end
+
 
 
 
