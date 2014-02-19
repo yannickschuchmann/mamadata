@@ -38,7 +38,7 @@
 					<% end %>
 				</td>
 				<td>
-					<%= money_without_cents_and_with_symbol person.get_total_expenses %>
+					<%= number_to_indian_currency(person.get_total_expenses).html_safe %>
 				</td>
 				<td style="width: 130px;">
 					<%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_person_path(person) %>

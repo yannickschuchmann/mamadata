@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                         <th>Total amount spent on</th>
-                        <td><%= money_without_cents_and_with_symbol @benefit_incident.person.get_total_expenses %></td>
+                        <td><%= number_to_indian_currency(@benefit_incident.person.get_total_expenses).html_safe %></td>
                     </tr>
                 </table>
                 <div class="clearfix"></div>
