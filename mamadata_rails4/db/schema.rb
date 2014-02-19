@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140218172131) do
+ActiveRecord::Schema.define(version: 20140219040906) do
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
@@ -136,7 +136,7 @@ ActiveRecord::Schema.define(version: 20140218172131) do
     t.integer  "number_of_the_house"
     t.string   "name_of_the_street",  default: ""
     t.string   "city",                default: ""
-    t.integer  "zip_code"
+    t.string   "zip_code"
     t.string   "religion",            default: ""
     t.string   "caste",               default: ""
     t.string   "education",           default: ""
