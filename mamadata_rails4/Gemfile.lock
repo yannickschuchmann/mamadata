@@ -76,6 +76,8 @@ GEM
       railties (>= 3.0.0)
     fiscali (2.1.0)
       activesupport
+    font-awesome-rails (3.2.1.3)
+      railties (>= 3.2, < 5.0)
     foundation-rails (5.0.2.0)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
@@ -209,6 +211,7 @@ DEPENDENCIES
   devise
   factory_girl_rails (= 4.2.1)
   fiscali
+  font-awesome-rails (~> 3.2.1)
   foundation-rails
   google_currency
   jbuilder (~> 1.2)
