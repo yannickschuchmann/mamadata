@@ -5,7 +5,7 @@
 	<% join_model = @godfather_relations.where(godfather_id: godfather.id).first %>
 	<dd>
 		<a href="#godfather<%= godfather.id %>" id="link">
-			<%= godfather.godfather_people.where(person_id: @person.id).empty? ?  godfather.name + " " + godfather.family_name  : godfather.name + " " + godfather.family_name + " (Current)" %>
+			<%= godfather.godfather_people.where(person_id: @person.id).empty? ?  godfather.name + " " + godfather.family_name + " (Until " + (l join_model.deleted_at.to_date) + ")" : godfather.name + " " + godfather.family_name + " (Current)" %>
 		</a>
 		<div id="godfather<%= godfather.id %>" class="content<%= " active" if index == 0 %>">
 			<div class="row">
@@ -41,7 +41,7 @@
 							<tr>
 								<% join_model.person_godfather_files.order("updated_at DESC").each do |f| %>
 								<td><%= (f.remark.empty? ? f.file_file_name : f.remark)%></td>
-								<td><%= f.file_updated_at %></td>
+								<td><%= l f.file_updated_at.to_date %></td>
 								<td><%= link_to "downlod", get_godfather_file_path(f.id) %>
 									<%= link_to (content_tag(:i, '', :class => 'icon-trash')), person_godfather_file_path(f.id), method: :delete, data: { confirm: 'Are you sure?' } %>
 								</td>
