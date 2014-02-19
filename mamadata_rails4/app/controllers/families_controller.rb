@@ -26,7 +26,7 @@ class FamiliesController < ApplicationController
 		@person = Person.find(params[:id])
 		unless @person.nil?
       family = Family.find(@person.family_id)
-			@person.family_id = "" 
+			@person.family_id = ""
 			@person.save
       if family.people.empty?
         family.destroy
@@ -55,6 +55,7 @@ class FamiliesController < ApplicationController
       @people.each do |value|
         value = value[1]
         person = Person.find(value["person_id"].to_i)
+        check_old_family_for_destroy person
         person.update(role: Role.find_by_id(value["role_id"].to_i), family_id: @family.id)
       end
       @family.save
@@ -73,11 +74,11 @@ class FamiliesController < ApplicationController
       @people.each do |value|
         value = value[1]
         person = Person.find(value["person_id"].to_i)
-        debugger
+        check_old_family_for_destroy person
         person.update(role: Role.find_by_id(value["role_id"].to_i), family_id: @family.id)
       end
       @family.save
-		  redirect_to family_path @family.id
+		  redirect_to edit_community_development_path @family.community_development_id
     else
       redirect_to new_family_path
     end
@@ -90,6 +91,12 @@ class FamiliesController < ApplicationController
 	private
   def set_family
 		@family = Family.find(params[:id])
+  end
+
+  def check_old_family_for_destroy person
+    debugger
+    return if person.family.nil?
+    person.family.destroy if person.family.people.size <= 1
   end
 
   def get_validated_person_ids people_hashes

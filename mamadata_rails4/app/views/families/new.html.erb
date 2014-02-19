@@ -1,7 +1,9 @@
+<%= render '/shared/overview_sidebar' %>
 <%= content_for :js do %><%= javascript_include_tag "families_new.js" %> <% end %>
-
-<h4 class="text-center">Create new Family</h4>
-<div class="row">
-	<%= render "form" %>
+<div id="content">
+    <h2 class="text-center">Create new Family</h2>
+    <div class="row">
+        <%= render "form" %>
+    </div>
 </div>
 

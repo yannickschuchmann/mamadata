@@ -12,7 +12,6 @@ class Family < ActiveRecord::Base
   def set_name
     people = self.people
     if !people.empty? and head = people.where(role_id: 1).last
-      debugger
       self.head_id = head.id
       self.name = head.fathers_name
     else

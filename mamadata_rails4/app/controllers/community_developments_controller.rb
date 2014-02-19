@@ -2,50 +2,15 @@ class CommunityDevelopmentsController < ApplicationController
 	before_action :set_community_development, only: [:edit, :update, :destroy]
 	before_filter :authenticate_user!
 	
-	# GET /community_developments
-	# GET /community_developments.json
-	def index
-		@community_developments = CommunityDevelopment.all
-	end
-
-	# GET /community_developments/1/edit
-	def edit
-	end
-
-	# POST /community_developments
-	# POST /community_developments.json
-	def create
-		#remove empty array fields!
-		@family = Family.find(params[:id])
-		@family.community_development_id = params[:id]
-		@family.save
-		community_development_params["family_skilled_in_art"].reject!(&:empty?)
-		community_development_params["illness_treatment"].reject!(&:empty?)
-		@community_development = CommunityDevelopment.new(community_development_params)
-
-		respond_to do |format|
-			if @community_development.save
-				format.html { redirect_to @family, notice: 'Community development was successfully created.' }
-				format.json { render action: 'show', status: :created, location: @community_development }
-			else
-				format.html { render action: 'new' }
-				format.json { render json: @community_development.errors, status: :unprocessable_entity }
-			end
-		end
-	end
-
 	# PATCH/PUT /community_developments/1
 	# PATCH/PUT /community_developments/1.json
 	def update
 		#remove empty array fields!
-		@family = Family.find(params[:id])
-		@family.community_development_id = params[:id]
-		@family.save
 		community_development_params["family_skilled_in_art"].reject!(&:empty?)
 		community_development_params["illness_treatment"].reject!(&:empty?)
 		respond_to do |format|
 			if @community_development.update(community_development_params)
-				format.html { redirect_to @family, notice: 'Community development was successfully updated.' }
+				format.html { redirect_to @community_development.family, notice: 'Community development was successfully updated.' }
 				format.json { head :no_content }
 			else
 				format.html { render action: 'edit' }

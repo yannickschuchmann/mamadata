@@ -66,7 +66,26 @@ tr[data-link] {
   }
 }
 
-td a > i {
-  padding: 8px;
-  color: $color-active;
+td {
+  .button {
+    margin-bottom: 0;
+  }
+  a > i {
+    padding: 8px;
+    color: $color-active;
+  }
+}
+
+#people {
+  .person {
+    background: #f5f5f5;
+    position: relative;
+    padding: 40px 0 10px;
+    margin-bottom: 20px;
+    .removeLink {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
 }

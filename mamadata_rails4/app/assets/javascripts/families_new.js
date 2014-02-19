@@ -1,10 +1,12 @@
 $("#searchExistingPeopleSubmit").click(function () {
 	$('#searchExistingPeopleForm').hide();
 	$('#search_results_List').show();
+    $('#FormToggle').show();
 });
 $("#FormToggle").click(function () {
 	$('#searchExistingPeopleForm').show();
 	$('#search_results_List').hide();
+    $('#FormToggle').hide();
 });
 
 var peopleNumber = 1,
@@ -31,7 +33,7 @@ $("#searchExistingPeopleForm").submit(function(e){
 				    <td>" + result[i].fathers_name +"</td>\
 				    <td>" + result[i].city +"</td>\
 				    <td>" + result[i].zip_code +"</td>\
-				    <td><div class='button tiny' data-pid="+i+">Add</div></td>\
+				    <td><div class='button tiny' data-pid="+i+"><i class='icon-plus'></i></div></td>\
                 </tr>";
 			}
 			$("#searchResult")
@@ -62,9 +64,8 @@ function addFromSearch(pid) {
 	/*jshint multistr: true */
 	$("#people").append(
 			'<div class="person" data-pid="'+person.id+'"> \
-			<span class="removePerson">X</span>\
-			<input type="hidden" name="people['+peopleNumber+'][person_id]" value="'+person.id+'"\
-			<h5>'+ person.id +' '+  person.name +' '+ person.fathers_name +'</h5>\
+			<input type="hidden" name="people['+peopleNumber+'][person_id]" value="'+person.id+'">\
+			<a href="" class="button tiny alert removeLink"><i class="icon-trash"></i></a>\
 			<div class="row">\
 				<div class="small-12 medium-4 column"><label for="name">Name</label></div>\
 				<div class="small-12 medium-8 column"><input id="name" disabled="disabled" name="person'+peopleNumber+'" class="person'+peopleNumber+'" type="text"  value="'+person.name +'"></div>\
@@ -86,8 +87,10 @@ function addFromSearch(pid) {
 		</div>');
 	peopleNumber = peopleNumber + 1;
 
-    $('.removePerson').click(function() {
-        $(this).closest('.person').remove();
+    $('.removeLink').click(function(e) {
+        e.preventDefault();
+        var $this = $(this);
+        if($this.attr('href') === '') $this.closest('.person').remove();
     });
 }
 
