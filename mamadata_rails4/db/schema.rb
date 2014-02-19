@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(version: 20140219123521) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "area"
-    t.string   "file_number"
+    t.string   "file_number",         default: ""
   end
 
   add_index "people", ["family_id"], name: "index_people_on_family_id"
