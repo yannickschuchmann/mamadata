@@ -71,3 +71,9 @@ td a > i {
   color: $color-active;
 }
 .accordion > dd {border-bottom: 5px solid #fff;}
+
+label.error {
+  background-color: red;
+  color: #fff !important;
+  padding: 5px;
+}
