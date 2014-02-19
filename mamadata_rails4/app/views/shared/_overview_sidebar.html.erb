@@ -5,12 +5,10 @@
 		<% family = 	(controller_name == "families") ? "active" : "" %>
 		<% supporter = 	(controller_name == "supporters") ? "active" : "" %>
 		<% users = 		(controller_name == "users") ? "active" : "" %>
-		<% benefits = 	(controller_name == "benefits") ? "active" : "" %>
-
-		<li class="<%= people %>">		<%= link_to 'Beneficiary Overview', people_path %></li>
+		
 		<li class="<%= family %>">		<%= link_to 'Family Overview', families_path %></li>
+		<li class="<%= people %>">		<%= link_to 'Beneficiary Overview', people_path %></li>
 		<li class="<%= supporter %>">	<%= link_to 'Supporters Overview', supporters_path %></li>
 		<li class="<%= users %>">		<%= link_to 'Staff/User Overview', users_path %></li>
-		<li class="<%= benefits %>">	<%= link_to 'Benefits Overview', benefits_path %></li>
-	</ul>
+		</ul>
 </div>
