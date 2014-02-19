@@ -13,7 +13,7 @@ class Family < ActiveRecord::Base
     people = self.people
     if !people.empty? and head = people.where(role_id: 1).last
       self.head_id = head.id
-      self.name = head.fathers_name
+      self.name = head.head_of_household
     else
       self.head_id = ''
       self.name = ''

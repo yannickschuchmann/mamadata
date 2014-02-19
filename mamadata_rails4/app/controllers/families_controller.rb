@@ -94,7 +94,6 @@ class FamiliesController < ApplicationController
   end
 
   def check_old_family_for_destroy person
-    debugger
     return if person.family.nil?
     person.family.destroy if person.family.people.size <= 1
   end
