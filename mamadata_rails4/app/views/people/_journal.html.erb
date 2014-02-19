@@ -8,7 +8,7 @@
 <%= f.submit :class => "button tiny" %>
 <% end %>
 
-<% @person.journals.each do |f| %>
-<h5><%= f.created_at %></h5>
-<p><%= f.text %></p>
+<% @person.journals.each do |journal| %>
+	<h5><%= journal.created_at %></h5>
+	<p><%= journal.text %> <span class="right"><%#= link_to (content_tag(:i, '', :class => 'icon-trash')), journal_path, method: :delete, data: { confirm: 'Are you sure?' } %></span></p>
 <% end %>
