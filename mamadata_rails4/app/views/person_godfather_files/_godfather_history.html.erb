@@ -39,14 +39,16 @@
 	        <div class="medium-11 column">
 					<table class="table medium-12">
 						<tr>
-							<th class="medium-8">Remark</th>
-							<th class="medium-4">Date Submitted</th>
+							<th class="medium-6">Remark</th>
+							<th class="medium-3">Date Submitted</th>
+							<th class="medium-3"></th>
 						</tr>
 
 						<tr>
 							<% join_model.person_godfather_files.order("updated_at DESC").each do |f| %>
-							<td><%= link_to (f.remark.empty? ? f.file_file_name : f.remark), get_godfather_file_path(f.id) %></td>
+							<td><%= (f.remark.empty? ? f.file_file_name : f.remark)%></td>
 							<td><%= f.file_updated_at %></td>
+							<td><%= link_to "downlod", get_godfather_file_path(f.id) %></td>
 						</tr>
 						<% end %>
 
