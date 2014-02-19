@@ -149,12 +149,12 @@
 
 <p>
 	<strong>If yes give reason for dropout:</strong>
-	<%= @community_development.family_dropout_reason_for %>
+	<%= simple_format(@community_development.family_dropout_reason_for) %>
 </p>
 
 <p>
 	<strong>After dropout what is the present condition of the person:</strong>
-	<%= @community_development.family_dropout_present_condition %>
+	<%= simple_format(@community_development.family_dropout_present_condition) %>
 </p>
 
 <p>

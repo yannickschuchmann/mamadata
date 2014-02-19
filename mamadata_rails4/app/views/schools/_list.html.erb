@@ -3,6 +3,7 @@
 	<dd>
 		<a href="#school<%= school.id %>">
 			<%= !school.terminated? ? school.joined_at.strftime("%Y")+"-now" : school.period %>
+			<%= school.name %>
 			<span class="right"><i class="icon-chevron-right"></i></span>
 		</a>
 		<div id="school<%= school.id %>" class="content<%= " active" if index == 0 %>">
@@ -33,7 +34,7 @@
 						</tr>
 						<tr>
 							<td>Remark: </td>
-							<td><%= school.remark %></td>
+							<td><%= simple_format(school.remark) %></td>
 						</tr>
 						<tr>
 							<td>Language: </td>
@@ -50,7 +51,7 @@
 						</tr>
 						<tr>
 							<td>Termination Remark: </td>
-							<td><%= school.termination_remark %></td>
+							<td><%= simple_format(school.termination_remark) %></td>
 						</tr>
 						<% end %>
 					</table>
@@ -71,7 +72,7 @@
 						<% school.school_classes.each do |school_class| %>
 						<tr>
 							<td><%= school_class.name %></td>
-							<td><%= school_class.remark %></td>
+							<td><%= simple_format(school_class.remark) %></td>
 							<td><%= school_class.document_file_name.nil? ? 'No file' : (link_to school_class.document_file_name, document_school_class_path(id: school_class.id)) %></td>
 							<td>
 								<%= link_to content_tag(:i, '', class: 'icon-edit'), edit_school_class_path(school_class.id) %>

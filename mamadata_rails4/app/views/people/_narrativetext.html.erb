@@ -1,8 +1,8 @@
 <h5>Narrative Text</h5>
 
-<p style="text-align: justify; padding-right: 10px;">
+<p>
 	<% if @person.narrative_text? %>
-	<%= @person.narrative_text%>
+	<%= simple_format(@person.narrative_text) %>
 	<% else %>
 	none
 	<% end%>

@@ -14,7 +14,7 @@
 		<%= link_to (content_tag(:i, '', :class => 'icon-trash')), person_journal_path(journal.person_id, journal.id), method: :delete, data: { confirm: 'Are you sure?' }, :style => "color: #e67e22;" %>
 	</span><%= journal.created_at %>
 </h6>
-<p><%= journal.text %></p>
+<p><%= simple_format(journal.text) %></p>
 <% end %>
 
 <script>
