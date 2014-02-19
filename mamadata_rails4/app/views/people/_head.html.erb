@@ -4,7 +4,8 @@
 		</div>
 		<div class="medium-10 column">
 			<h3><%= @person.name %></h3>
-			<h5><b>File: <%= @person.id %></b></h5>
+			<% former = (!@person.file_number.nil?) ? "(Former: "+ @person.file_number+ ")" : "" ;%>
+			<h5><b>File: <%= @person.id %> <%= former %></b></h5>
 			<ul class="no-bullet">
 				<% @person.programs.each do |p| %>
 				    <%= link_to p.name, program_path(p), {class: 'label button'} %>
