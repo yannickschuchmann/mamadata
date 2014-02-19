@@ -6,7 +6,8 @@ MamadataRails4::Application.routes.draw do
   put 'people/search', to: 'people#search'
 
   resources :benefit_incidents, only: [:show, :edit, :index, :create, :update, :destroy]
-  resources :person_godfather_files, only: [:create, :destroy]
+  resources :person_godfather_files, only: [:create, :destroy, :edit]
+  get 'person_godfather_files/new/:id', to: 'person_godfather_files#new', as: :new_person_godfather_file
   get 'person_godfather_files/:id/getfile', to: 'person_godfather_files#getfile', as: :get_godfather_file
 
   get 'benefit_incidents/test/calculated', to: 'benefit_incidents#calculated'

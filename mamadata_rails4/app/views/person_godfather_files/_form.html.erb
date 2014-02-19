@@ -1,0 +1,29 @@
+<%= form_for @person_godfather_file , :html => { :multipart => true } do |form| %>
+<%= form.hidden_field :godfather_person_id %>
+ <div class="row">
+        <div class="small-12 medium-4 column">
+            <%= form.label "Save as" %>
+        </div>
+        <div class="small-12 medium-8 column">
+            <%= form.text_field :remark, placeholder: "max 20 characters"%>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-4 column">
+            <%= form.label :file %>
+        </div>
+        <div class="small-12 medium-8 column">
+            <%= form.file_field :file %>
+        </div>
+    </div>
+    <div class="button-center">
+        <%= form.submit "Add Correspondance", :class => 'button' %>
+    </div>
+
+
+
+
+<% end %>
+
+
+
