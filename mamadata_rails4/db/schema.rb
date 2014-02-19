@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140219040906) do
+ActiveRecord::Schema.define(version: 20140219093125) do
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
@@ -229,7 +229,7 @@ ActiveRecord::Schema.define(version: 20140219040906) do
     t.date     "terminated_at"
     t.string   "termination_reason"
     t.text     "termination_remark"
-    t.date     "joined_at"
+    t.datetime "joined_at"
   end
 
   add_index "schools", ["person_id"], name: "index_schools_on_person_id"
