@@ -5,8 +5,12 @@
 	<% join_model = @godfather_relations.where(godfather_id: godfather.id).first %>
 	<dd>
 		<a href="#godfather<%= godfather.id %>" id="link">
+<<<<<<< HEAD
 			<%= godfather.godfather_people.where(person_id: @person.id).empty? ?  godfather.name + " " + godfather.family_name  : godfather.name + " " + godfather.family_name + " (Current)" %>
 			<span class="right"><i></i></span>
+=======
+			<%= godfather.godfather_people.where(person_id: @person.id).empty? ?  godfather.name + " " + godfather.family_name + " (Until " + (l join_model.deleted_at.to_date) + ")" : godfather.name + " " + godfather.family_name + " (Current)" %>
+>>>>>>> 914dadd4b4236203b2c12dfe26eefb84080ee239
 		</a>
 		<div id="godfather<%= godfather.id %>" class="content<%= " active" if index == 0 %>">
 			<div class="row">
@@ -42,7 +46,7 @@
 							<% join_model.person_godfather_files.order("updated_at DESC").each do |f| %>
 							<tr>
 								<td><%= (f.remark.empty? ? f.file_file_name : f.remark)%></td>
-								<td><%= l f.file_updated_at %></td>
+								<td><%= l f.file_updated_at.to_date %></td>
 								<td><%= link_to "download", get_godfather_file_path(f.id) %>
 									<%= link_to (content_tag(:i, '', :class => 'icon-trash')), person_godfather_file_path(f.id), method: :delete, data: { confirm: 'Are you sure?' } %>
 								</td>
