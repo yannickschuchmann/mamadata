@@ -214,9 +214,7 @@
 	<div class="medium-12 column">
 		<div class="row">
 			<% if params[:action] == 'edit' %>
-			<div class="text-center">
-				<%= link_to 'Add Person to Program', add_to_program_path(@person), :class => 'button small' %>
-			</div>
+				<%= link_to 'Add Person to Program', add_to_program_path(@person), :class => 'button small small-12 medium-10 right' %>
 			<% else %>
 			<%= render 'program_checkboxes' %>
 			<% end %>
