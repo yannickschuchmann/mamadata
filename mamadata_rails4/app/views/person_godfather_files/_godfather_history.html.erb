@@ -5,12 +5,8 @@
 	<% join_model = @godfather_relations.where(godfather_id: godfather.id).first %>
 	<dd>
 		<a href="#godfather<%= godfather.id %>" id="link">
-<<<<<<< HEAD
-			<%= godfather.godfather_people.where(person_id: @person.id).empty? ?  godfather.name + " " + godfather.family_name  : godfather.name + " " + godfather.family_name + " (Current)" %>
-			<span class="right"><i></i></span>
-=======
 			<%= godfather.godfather_people.where(person_id: @person.id).empty? ?  godfather.name + " " + godfather.family_name + " (Until " + (l join_model.deleted_at.to_date) + ")" : godfather.name + " " + godfather.family_name + " (Current)" %>
->>>>>>> 914dadd4b4236203b2c12dfe26eefb84080ee239
+			<span class="right"><i></i></span>
 		</a>
 		<div id="godfather<%= godfather.id %>" class="content<%= " active" if index == 0 %>">
 			<div class="row">
