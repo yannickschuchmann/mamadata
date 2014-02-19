@@ -25,8 +25,14 @@ class FamiliesController < ApplicationController
 	def delete_relation
 		@person = Person.find(params[:id])
 		if !@person.nil?
+      family = Family.find(@person.family_id)
 			@person.family_id = ""
 			@person.save
+      if family.people.empty?
+        family.destroy
+      else
+        family.save
+      end
 		end
 		redirect_to families_path
 	end
@@ -45,8 +51,7 @@ class FamiliesController < ApplicationController
     @people.each do |value|
       value = value[1]
       person = Person.find(value["person_id"].to_i)
-      person.update(role: Role.find_by_id(value["role_id"].to_i))
-      set_name person
+      person.update(role: Role.find_by_id(value["role_id"].to_i), family_id: @family.id)
     end
     @family.save
     render :json => @family
@@ -55,16 +60,12 @@ class FamiliesController < ApplicationController
   def create
 		@people = params[:people]
 		@family = Family.create
-		@community = CommunityDevelopment.create()
+		@community = CommunityDevelopment.create
     @family.community_development_id = @community.id
 		@people.each do |value|
       value = value[1]
 			person = Person.find(value["person_id"].to_i)
       person.update(role: Role.find_by_id(value["role_id"].to_i), family_id: @family.id)
-      if person.role_id == 1
-        @family.head_id = person.id
-        @family.name = person.fathers_name
-      end
 		end
     @family.save
 		render :json => @family
@@ -74,13 +75,6 @@ class FamiliesController < ApplicationController
 	end
 
 	private
-  def set_name person
-    if person.role_id == 1
-      @family.head_id = person.id
-      @family.name = person.fathers_name
-    end
-  end
-
   def set_family
 		@family = Family.find(params[:id])
 	end
