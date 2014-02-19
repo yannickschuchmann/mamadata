@@ -1,0 +1,75 @@
+<h5>Godfathers</h5>
+
+<dl class="accordion" data-accordion>
+	<% @godfathers.each_with_index do |godfather, index| %>
+	<% join_model = @godfather_relations.where(godfather_id: godfather.id).first %>
+	<dd>
+		<a href="#godfather<%= godfather.id %>">
+			<%= godfather.godfather_people.where(person_id:1).empty? ?  godfather.name + " " + godfather.family_name  : godfather.name + " " + godfather.family_name + " (Current)" %>
+		</a>
+		<div id="godfather<%= godfather.id %>" class="content<%= " active" if index == 0 %>">
+			<div class="row">
+				<div class="small-12 medium-6 column">
+					<table class="table medium-12">
+
+						<tr>
+							<th class="medium-4">Organisation: </th>
+							<td class="medium-8"><%= godfather.organisation %></td>
+						</tr>
+						<tr>
+							<th>Country: </th>
+							<td><%= godfather.country %></td>
+						</tr>
+						<tr>
+							<th>Email: </th>
+							<td><%= godfather.email %></td>
+						</tr>
+
+						<tr>
+							<th>Telephone Number: </th>
+							<td><%= godfather.telephone_number %></td>
+						</tr>
+
+
+
+					</table>
+				</div>
+				<div class="small-12 medium-6 column">
+					<div class="medium-1 column"></div>
+	        <div class="medium-11 column">
+					<table class="table medium-12">
+						<tr>
+							<th class="medium-8">File</th>
+							<th class="medium-4">Date Submitted</th>
+						</tr>
+
+						<tr>
+							<% join_model.person_godfather_files.order("updated_at DESC").each do |f| %>
+							<td><%= link_to f.file_file_name, get_godfather_file_path(id: join_model.id) %></td>
+
+							<td><%= f.file_updated_at %></td>
+						</tr>
+						<% end %>
+
+					</table>
+	      </div>
+					<ul class="button-group right">
+
+						<li><%= form_for join_model.person_godfather_files.new , :html => { :multipart => true } do |form| %>
+							<%= form.hidden_field :godfather_person_id %>
+							<%= form.file_field :file %>
+							<%= form.submit "Add File", :class => 'button tiny icon-plus' %>
+							<% end %>
+						</li>
+					</ul>
+
+
+
+
+				</div>
+			</div>
+
+
+		</dd>
+		<% end %>
+	</dl>

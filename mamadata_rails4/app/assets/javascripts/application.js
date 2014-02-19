@@ -20,7 +20,7 @@
 	//= require foundation
 	//= require turbolinks
 	
-var APP = {
+    var APP = {
 		Persons: {},
 		Incidents: {},
 		Modules: {
@@ -30,11 +30,20 @@ var APP = {
 	$(function(){
 		$("tr[data-link]").click(function() {
 			window.location = $(this).data("link")
-		})
-	});
-	
+		});
 
-	$(document).ready(function(){
+        /* initialize datepicker */
+        $('input.datepicker').datepicker({
+            dateFormat:'yy-mm-dd',
+            duration: 'normal',
+            changeMonth: true,
+            changeYear: true,
+            gotoCurrent: true,
+            autoSize: true,
+            showButtonPanel: true,
+            inline: true
+        });
+
 		$(document).foundation();
 		if(location.hash !== '') $('a[href="'+location.hash+'"]').trigger('click');
 
@@ -98,19 +107,6 @@ var APP = {
 				data: {array: ids}
 			});
 		});
-
-		/* initialize datepicker */
-		$('#benefit_incident_date_from, #benefit_incident_date_to').datepicker({
-			dateFormat:'yy-mm-dd',
-			duration: 'normal',
-			changeMonth: true,
-			changeYear: true,
-			gotoCurrent: true,
-			autoSize: true,
-			showButtonPanel: true,
-			inline: true
-		});
-
 
 		/* checkox shows datepicker */
 		$('#filter_date').on('click', function(){

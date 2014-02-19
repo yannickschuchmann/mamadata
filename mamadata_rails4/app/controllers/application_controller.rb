@@ -4,6 +4,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  def person_school_path(school)
+    person_path(school.person_id, :anchor => "school")
+  end
 
   def is_admin?
   	if current_user.role == "admin"

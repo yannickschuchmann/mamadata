@@ -6,12 +6,23 @@ MamadataRails4::Application.routes.draw do
   put 'people/search', to: 'people#search'
 
   resources :benefit_incidents, only: [:show, :edit, :index, :create, :update, :destroy]
+  resources :person_godfather_files, only: [:create, :destroy]
+  get 'person_godfather_files/:id/getfile', to: 'person_godfather_files#getfile', as: :get_godfather_file
+
   get 'benefit_incidents/test/calculated', to: 'benefit_incidents#calculated'
   get 'benefit_incidents/add_user_to_program/:person_id', to: 'benefit_incidents#add_user_to_program', as: :add_user_to_program
   get 'benefit_incidents/list/:person_id', to: 'benefit_incidents#list', as: :benefit_incidents_list
   get 'benefit_incidents/new/:person_id', to: 'benefit_incidents#new', as: :new_benefit_incident
 
   get 'people/:id/add_to_program/', to: 'people#add_to_program', as: :add_to_program
+
+  resources :schools, only: [:show, :edit, :index, :create, :update, :destroy]
+  get 'people/:id/schools/new', to: 'schools#new', as: :new_school
+  get 'schools/:id/terminate', to: 'schools#terminate', as: :terminate_school
+
+  resources :school_classes, only: [:show, :edit, :index, :create, :update, :destroy]
+  get 'people/:id/schools/:school_id/classes/new', to: 'school_classes#new', as: :new_school_class
+  get 'school_classes/:id/document', to: 'school_classes#document', as: :document_school_class
 
   resources :benefits do
     member do

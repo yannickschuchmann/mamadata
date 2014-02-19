@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="small-12 medium-4 column">
+        <%= f.label :terminated_at %>
+    </div>
+    <div class="small-12 medium-8 column">
+        <div class="row collapse">
+            <div class="small-1 column">
+                <span class="prefix">
+                    <i class="icon-calendar"></i>
+                </span>
+            </div>
+            <div class="small-11 column">
+                <%= f.text_field :terminated_at, class: 'datepicker', placeholder: 'leave empty for today' %>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="small-12 medium-4 column">
+        <%= f.label :termination_reason %>
+    </div>
+    <div class="small-12 medium-8 column">
+        <%= f.select :termination_reason, ["finished", "discontinued"] %>
+    </div>
+</div>
+<div class="row">
+    <div class="small-12 medium-4 column">
+        <%= f.label :termination_remark %>
+    </div>
+    <div class="small-12 medium-8 column">
+        <%= f.text_area :termination_remark %>
+    </div>
+</div>

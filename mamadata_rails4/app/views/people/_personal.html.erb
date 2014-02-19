@@ -37,7 +37,7 @@
 <table class="small-12">
 	<tr>
 		<td class="medium-4">ZIP code</td>
-		<td class="medium-8"><%= @person.pin_code %></td>
+		<td class="medium-8"><%= @person.zip_code %></td>
 	</tr>
 	<tr>
 		<td>City/Village</td>
@@ -96,14 +96,7 @@
 		</tr>
 	</tbody>
 </table>
-<h5>Godfathers</h5>
-<% if !@person.godfathers.empty? %>
-<h6>Current Godfather</h6>
+<%= render 'person_godfather_files/godfather_history' %>
 
-<p><%= @person.current_godfather.name %></p>
 
-<% end %>
-<h6>Former Godfathers</h6>
-<% @person.former_godfathers.each do |godfather| %>
-	<p><%= godfather.name %></p>
-<% end %>
+

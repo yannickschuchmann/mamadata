@@ -2,8 +2,15 @@
 	<%= form_for @person, url: person_path(@person) do |f| %>
 		<%= render "/people/program_checkboxes", f: f %>
 		<%= hidden_field_tag :redirect_to_incident, true %>
-		<div class="row button-center">
-			<%= f.submit "Save",:class => 'button' %>
-		</div>
+	<div class="row">
+        <div class="button-center">
+            <div>
+                <%= f.submit "Save",:class => 'button', data: {confirm: 'Be Careful! All Changes will be kept in History'}  %>
+            </div>
+            <div>
+                <%= link_to 'Cancel', new_benefit_incident_path(@person), class: 'button tiny' %>
+            </div>
+        </div>
+</div>
 	<% end %>
 </div>
