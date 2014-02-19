@@ -4,9 +4,9 @@
 	<% @godfathers.each_with_index do |godfather, index| %>
 	<% join_model = @godfather_relations.where(godfather_id: godfather.id).first %>
 	<dd>
-		<a href="#godfather<%= godfather.id %>" id="link">
+		<a href="#godfather<%= godfather.id %>">
 			<%= godfather.godfather_people.where(person_id: @person.id).empty? ?  godfather.name + " " + godfather.family_name + " (Until " + (l join_model.deleted_at.to_date) + ")" : godfather.name + " " + godfather.family_name + " (Current)" %>
-			<span class="right"><i></i></span>
+			<span class="right"><i class="icon-chevron-right"></i></span>
 		</a>
 		<div id="godfather<%= godfather.id %>" class="content<%= " active" if index == 0 %>">
 			<div class="row">
