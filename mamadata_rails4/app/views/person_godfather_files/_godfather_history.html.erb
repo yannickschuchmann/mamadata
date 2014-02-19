@@ -34,20 +34,24 @@
 					<div class="medium-1 column"></div>
 					<div class="medium-11 column">
 						<table class="table medium-12">
-							<tr>
-								<th class="medium-6">Remark</th>
-								<th class="medium-3">Date Submitted</th>
-								<th class="medium-3"></th>
-							</tr>
-							<% join_model.person_godfather_files.order("updated_at DESC").each do |f| %>
-							<tr>
-								<td><%= (f.remark.empty? ? f.file_file_name : f.remark)%></td>
-								<td><%= l f.file_updated_at.to_date %></td>
-								<td><%= link_to "download", get_godfather_file_path(f.id) %>
-									<%= link_to (content_tag(:i, '', :class => 'icon-trash')), person_godfather_file_path(f.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-								</td>
-							</tr>
-							<% end %>
+							<thead>
+								<tr>
+									<th class="header medium-7">Remark</th>
+									<th class="header medium-3">Submitted</th>
+									<td></td>
+								</tr>
+							</thead>
+							<tbody>
+								<% join_model.person_godfather_files.order("updated_at DESC").each do |f| %>
+								<tr>
+									<td><%= (f.remark.empty? ? f.file_file_name : f.remark)%></td>
+									<td><%= l f.file_updated_at.to_date %></td>
+									<td><%= link_to (content_tag(:i, '', :class => 'icon-download-alt')), get_godfather_file_path(f.id) %>
+										<%= link_to (content_tag(:i, '', :class => 'icon-trash')), person_godfather_file_path(f.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+									</td>
+								</tr>
+								<% end %>
+							</tbody>
 						</table>
 					</div>
 					<ul class="button-group right">
