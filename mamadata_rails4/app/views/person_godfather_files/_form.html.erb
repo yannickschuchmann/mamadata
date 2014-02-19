@@ -1,0 +1,7 @@
+<%= form_for @person_godfather_file , :html => { :multipart => true } do |form| %>
+							<%= form.hidden_field :godfather_person_id %>
+							<%= form.label :remark %>
+							<%= form.text_field :remark %>
+							<%= form.file_field :file %>
+							<%= form.submit "Add File", :class => 'button tiny' %>
+							<% end %>

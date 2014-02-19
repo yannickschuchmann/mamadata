@@ -39,14 +39,14 @@
 	        <div class="medium-11 column">
 					<table class="table medium-12">
 						<tr>
-							<th class="medium-8">File</th>
+							<th class="medium-8">Remark</th>
 							<th class="medium-4">Date Submitted</th>
 						</tr>
 
 						<tr>
 							<% join_model.person_godfather_files.order("updated_at DESC").each do |f| %>
-							<td><%= link_to f.file_file_name, get_godfather_file_path(id: join_model.id) %></td>
-
+							<td><%= link_to "abc", get_godfather_file_path(f.id) %></td>
+							<%= f.remark %>
 							<td><%= f.file_updated_at %></td>
 						</tr>
 						<% end %>
@@ -55,11 +55,8 @@
 	      </div>
 					<ul class="button-group right">
 
-						<li><%= form_for join_model.person_godfather_files.new , :html => { :multipart => true } do |form| %>
-							<%= form.hidden_field :godfather_person_id %>
-							<%= form.file_field :file %>
-							<%= form.submit "Add File", :class => 'button tiny icon-plus' %>
-							<% end %>
+						<li>
+						<%= link_to "Add Correspondance", new_person_godfather_file_path(join_model), :class => 'button tiny icon-plus'  %>
 						</li>
 					</ul>
 
