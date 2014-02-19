@@ -15,13 +15,13 @@
                 <ul id="year-to-date" class="button-group round">
                     <li><a href="" class="tiny button">Year to date</a></li>
                     <li><a href="" class="tiny button">
-                        <%= money_without_cents_and_with_symbol @person.year_to_date %>
+                        <%= number_to_indian_currency(@person.year_to_date).html_safe %>
                     </a></li>
                 </ul>
                 <ul id="month-to-date" class="button-group round hidden">
                     <li><a href="" class="tiny button">Month to date</a></li>
                     <li><a href="" class="tiny button">
-                        <%= money_without_cents_and_with_symbol @person.month_to_date %>
+                        <%= number_to_indian_currency(@person.month_to_date).html_safe %>
                     </a></li>
                 </ul>
             </div>

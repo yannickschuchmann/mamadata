@@ -67,17 +67,17 @@ MoneyRails.configure do |config|
   # Register a custom currency
   #
   # Example:
-  #  config.register_currency = {
-  #    :priority            => 1,
-  #    :iso_code            => "INR",
-  #    :name                => "Indian Rupee",
-  #    :symbol              => "Rs",
-  #    :symbol_first        => true,
-  #    :subunit             => "Paisa",
-  #    :subunit_to_unit     => 100,
-  #    :thousands_separator => ".",
-  #    :decimal_mark        => ","
-  #  }
+   # config.register_currency = {
+   #   :priority            => 1,
+   #   :iso_code            => "INR",
+   #   :name                => "Indian Rupee",
+   #   :symbol              => "Rs",
+   #   :symbol_first        => true,
+   #   :subunit             => "Paisa",
+   #   :subunit_to_unit     => 100,
+   #   :thousands_separator => ",",
+   #   :decimal_mark        => "z"
+   # }
 
   # config.register_currency = {
   #    :priority            => 2,
