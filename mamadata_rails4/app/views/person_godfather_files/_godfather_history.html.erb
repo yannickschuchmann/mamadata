@@ -6,6 +6,7 @@
 	<dd>
 		<a href="#godfather<%= godfather.id %>" id="link">
 			<%= godfather.godfather_people.where(person_id: @person.id).empty? ?  godfather.name + " " + godfather.family_name  : godfather.name + " " + godfather.family_name + " (Current)" %>
+			<span class="right"><i></i></span>
 		</a>
 		<div id="godfather<%= godfather.id %>" class="content<%= " active" if index == 0 %>">
 			<div class="row">
@@ -38,11 +39,11 @@
 								<th class="medium-3">Date Submitted</th>
 								<th class="medium-3"></th>
 							</tr>
+							<% join_model.person_godfather_files.order("updated_at DESC").each do |f| %>
 							<tr>
-								<% join_model.person_godfather_files.order("updated_at DESC").each do |f| %>
 								<td><%= (f.remark.empty? ? f.file_file_name : f.remark)%></td>
-								<td><%= f.file_updated_at %></td>
-								<td><%= link_to "downlod", get_godfather_file_path(f.id) %>
+								<td><%= l f.file_updated_at %></td>
+								<td><%= link_to "download", get_godfather_file_path(f.id) %>
 									<%= link_to (content_tag(:i, '', :class => 'icon-trash')), person_godfather_file_path(f.id), method: :delete, data: { confirm: 'Are you sure?' } %>
 								</td>
 							</tr>
@@ -59,3 +60,37 @@
 		</dd>
 		<% end %>
 	</dl>
+	 <script type="text/javascript">
+	// Tried toggling Chevron icon up and down on accordion show hide but its not working due to foundation
+
+	// $(document).ready(function () {
+
+	// 	function setArrow($row) {
+	// 		var $icon = $row.find('a > span > i'),
+	// 			classname = '';
+	// 			console.log($row.find('.content'),$row.find('.content').hasClass('active'));
+	// 		if($row.find('.content').hasClass('active')) {
+	// 			classname = "icon-chevron-up";
+	// 		}else{
+	// 			classname = "icon-chevron-down";
+	// 		}
+
+	// 		console.log(classname);
+	// 		$icon.attr('class', classname);
+	// 	}
+
+	// 	var $rows = $('.accordion').children();
+	// 		$rows.each(function() {
+	// 			setArrow($(this));
+	// 		});
+
+	// 	$('.accordion').on('toggled', function(e) {
+	// 		e.preventDefault();
+	// 		console.log(this);
+	// 		var $rows = $(this).closest('dl').children();
+	// 		$rows.each(function() {
+	// 			setArrow($(this));
+	// 		});
+	// 	})
+	// })
+	</script>
