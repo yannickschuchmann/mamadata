@@ -32,7 +32,7 @@ class PersonGodfatherFilesController < ApplicationController
 # Be sure to update your create() and update() controller methods.
 
 def person_godfather_file_params
-  params.require(:person_godfather_file).permit(:file, :godfather_person_id)
+  params.require(:person_godfather_file).permit(:file, :godfather_person_id, :remark)
 end
 
 def set_person_godfather_file

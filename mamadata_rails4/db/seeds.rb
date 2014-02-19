@@ -103,6 +103,6 @@ staff3 = User.create(email: "accountant@sharana.org", 		password: "accountant", 
 
 
 # simpsons = Family.create(name:"Simpsons")
-Person.create(name: "Homer", gender: "male", role: head, program_ids: ["8"], city: "München")
-Person.create(name: "Marge",fathers_name: "Homer", gender: "female",role: wife, city: "Aachen")
-Person.create(name: "Bart",fathers_name: "Homer", gender: "male", role: child, city: "Mainz")
+#Person.create(name: "Homer", gender: "male", role: head, program_ids: ["8"], city: "München")
+#Person.create(name: "Marge",fathers_name: "Homer", gender: "female",role: wife, city: "Aachen")
+#Person.create(name: "Bart",fathers_name: "Homer", gender: "male", role: child, city: "Mainz")
