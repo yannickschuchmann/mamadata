@@ -5,7 +5,7 @@
 	<% join_model = @godfather_relations.where(godfather_id: godfather.id).first %>
 	<dd>
 		<a href="#godfather<%= godfather.id %>">
-			<%= godfather.godfather_people.where(person_id:1).empty? ?  godfather.name + " " + godfather.family_name  : godfather.name + " " + godfather.family_name + " (Current)" %>
+			<%= godfather.godfather_people.where(person_id: @person.id).empty? ?  godfather.name + " " + godfather.family_name  : godfather.name + " " + godfather.family_name + " (Current)" %>
 		</a>
 		<div id="godfather<%= godfather.id %>" class="content<%= " active" if index == 0 %>">
 			<div class="row">
