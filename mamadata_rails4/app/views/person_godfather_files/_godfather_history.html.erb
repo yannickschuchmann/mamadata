@@ -4,14 +4,13 @@
 	<% @godfathers.each_with_index do |godfather, index| %>
 	<% join_model = @godfather_relations.where(godfather_id: godfather.id).first %>
 	<dd>
-		<a href="#godfather<%= godfather.id %>">
+		<a href="#godfather<%= godfather.id %>" id="link">
 			<%= godfather.godfather_people.where(person_id: @person.id).empty? ?  godfather.name + " " + godfather.family_name  : godfather.name + " " + godfather.family_name + " (Current)" %>
 		</a>
 		<div id="godfather<%= godfather.id %>" class="content<%= " active" if index == 0 %>">
 			<div class="row">
 				<div class="small-12 medium-6 column">
 					<table class="table medium-12">
-
 						<tr>
 							<th class="medium-4">Organisation: </th>
 							<td class="medium-8"><%= godfather.organisation %></td>
@@ -24,50 +23,39 @@
 							<th>Email: </th>
 							<td><%= godfather.email %></td>
 						</tr>
-
 						<tr>
 							<th>Telephone Number: </th>
 							<td><%= godfather.telephone_number %></td>
 						</tr>
-
-
-
 					</table>
 				</div>
 				<div class="small-12 medium-6 column">
 					<div class="medium-1 column"></div>
-	        <div class="medium-11 column">
-					<table class="table medium-12">
-						<tr>
-							<th class="medium-6">Remark</th>
-							<th class="medium-3">Date Submitted</th>
-							<th class="medium-3"></th>
-						</tr>
-
-						<tr>
-							<% join_model.person_godfather_files.order("updated_at DESC").each do |f| %>
-							<td><%= (f.remark.empty? ? f.file_file_name : f.remark)%></td>
-							<td><%= f.file_updated_at %></td>
-							<td><%= link_to "downlod", get_godfather_file_path(f.id) %></td>
-						</tr>
-						<% end %>
-
-					</table>
-	      </div>
+					<div class="medium-11 column">
+						<table class="table medium-12">
+							<tr>
+								<th class="medium-6">Remark</th>
+								<th class="medium-3">Date Submitted</th>
+								<th class="medium-3"></th>
+							</tr>
+							<tr>
+								<% join_model.person_godfather_files.order("updated_at DESC").each do |f| %>
+								<td><%= (f.remark.empty? ? f.file_file_name : f.remark)%></td>
+								<td><%= f.file_updated_at %></td>
+								<td><%= link_to "downlod", get_godfather_file_path(f.id) %>
+									<%= link_to (content_tag(:i, '', :class => 'icon-trash')), person_godfather_file_path(f.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+								</td>
+							</tr>
+							<% end %>
+						</table>
+					</div>
 					<ul class="button-group right">
-
 						<li>
-						<%= link_to "Add Correspondance", new_person_godfather_file_path(join_model), :class => 'button tiny icon-plus'  %>
+							<%= link_to "Add Correspondance", new_person_godfather_file_path(join_model), :class => 'button tiny icon-plus'  %>
 						</li>
 					</ul>
-
-
-
-
 				</div>
 			</div>
-
-
 		</dd>
 		<% end %>
 	</dl>
