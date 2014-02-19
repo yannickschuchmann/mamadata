@@ -39,6 +39,8 @@ gem 'google_currency'
 gem 'debugger'
 gem 'paranoia', '~> 2.0'
 
+gem 'rails-i18n', '~> 4.0.0'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

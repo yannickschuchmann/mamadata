@@ -10,7 +10,7 @@
 	</tr>
 	<tr>
 		<td>Date of birth</td>
-		<td><%= @person.date_of_birth %></td>
+		<td><%=l @person.date_of_birth %></td>
 	</tr>
 	<tr>
 		<td>Place of birth</td>
@@ -88,7 +88,7 @@
 		</tr>
 		<tr>
 			<td>Income</td>
-			<td><%= @person.income %></td>
+			<td><%= number_to_indian_currency(@person.income).html_safe %></td>
 		</tr>
 		<tr>
 			<td>Health condition</td>
@@ -96,7 +96,12 @@
 		</tr>
 	</tbody>
 </table>
+<% if @person.godfathers.empty? && @person.former_godfathers.empty? %>
+	<h5>Godfathers</h5>
+	<p><%= @person.name %> has no Godfather</p>
+<% else %>
 <%= render 'person_godfather_files/godfather_history' %>
+<% end %>
 
 
 
