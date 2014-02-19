@@ -5,13 +5,13 @@
 	<% join_model = @godfather_relations.where(godfather_id: godfather.id).first %>
 	<dd>
 		<a href="#godfather<%= godfather.id %>">
-			<%= godfather.godfather_people.where(person_id:1).empty? ?  godfather.name + " " + godfather.family_name  : godfather.name + " " + godfather.family_name + " (Current)" %>
+			<%= godfather.godfather_people.where(person_id: @person.id).empty? ?  godfather.name + " " + godfather.family_name + " (Until " + (l join_model.deleted_at.to_date) + ")" : godfather.name + " " + godfather.family_name + " (Current)" %>
+			<span class="right"><i class="icon-chevron-right"></i></span>
 		</a>
 		<div id="godfather<%= godfather.id %>" class="content<%= " active" if index == 0 %>">
 			<div class="row">
 				<div class="small-12 medium-6 column">
 					<table class="table medium-12">
-
 						<tr>
 							<th class="medium-4">Organisation: </th>
 							<td class="medium-8"><%= godfather.organisation %></td>
@@ -24,52 +24,77 @@
 							<th>Email: </th>
 							<td><%= godfather.email %></td>
 						</tr>
-
 						<tr>
 							<th>Telephone Number: </th>
 							<td><%= godfather.telephone_number %></td>
 						</tr>
-
-
-
 					</table>
 				</div>
 				<div class="small-12 medium-6 column">
 					<div class="medium-1 column"></div>
-	        <div class="medium-11 column">
-					<table class="table medium-12">
-						<tr>
-							<th class="medium-8">File</th>
-							<th class="medium-4">Date Submitted</th>
-						</tr>
-
-						<tr>
-							<% join_model.person_godfather_files.order("updated_at DESC").each do |f| %>
-							<td><%= link_to f.file_file_name, get_godfather_file_path(id: join_model.id) %></td>
-
-							<td><%= f.file_updated_at %></td>
-						</tr>
-						<% end %>
-
-					</table>
-	      </div>
+					<div class="medium-11 column">
+						<table class="table medium-12">
+							<thead>
+								<tr>
+									<th class="header medium-7">Remark</th>
+									<th class="header medium-3">Submitted</th>
+									<td></td>
+								</tr>
+							</thead>
+							<tbody>
+								<% join_model.person_godfather_files.order("updated_at DESC").each do |f| %>
+								<tr>
+									<td><%= (f.remark.empty? ? f.file_file_name : f.remark)%></td>
+									<td><%#= l f.file_updated_at.to_date %></td>
+									<td><%= link_to (content_tag(:i, '', :class => 'icon-download-alt')), get_godfather_file_path(f.id) %>
+										<%= link_to (content_tag(:i, '', :class => 'icon-trash')), person_godfather_file_path(f.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+									</td>
+								</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</div>
 					<ul class="button-group right">
-
-						<li><%= form_for join_model.person_godfather_files.new , :html => { :multipart => true } do |form| %>
-							<%= form.hidden_field :godfather_person_id %>
-							<%= form.file_field :file %>
-							<%= form.submit "Add File", :class => 'button tiny icon-plus' %>
-							<% end %>
+						<li>
+							<%= link_to "Add Correspondance", new_person_godfather_file_path(join_model), :class => 'button tiny icon-plus'  %>
 						</li>
 					</ul>
-
-
-
-
 				</div>
 			</div>
-
-
 		</dd>
 		<% end %>
 	</dl>
+	 <script type="text/javascript">
+	// Tried toggling Chevron icon up and down on accordion show hide but its not working due to foundation
+
+	// $(document).ready(function () {
+
+	// 	function setArrow($row) {
+	// 		var $icon = $row.find('a > span > i'),
+	// 			classname = '';
+	// 			console.log($row.find('.content'),$row.find('.content').hasClass('active'));
+	// 		if($row.find('.content').hasClass('active')) {
+	// 			classname = "icon-chevron-up";
+	// 		}else{
+	// 			classname = "icon-chevron-down";
+	// 		}
+
+	// 		console.log(classname);
+	// 		$icon.attr('class', classname);
+	// 	}
+
+	// 	var $rows = $('.accordion').children();
+	// 		$rows.each(function() {
+	// 			setArrow($(this));
+	// 		});
+
+	// 	$('.accordion').on('toggled', function(e) {
+	// 		e.preventDefault();
+	// 		console.log(this);
+	// 		var $rows = $(this).closest('dl').children();
+	// 		$rows.each(function() {
+	// 			setArrow($(this));
+	// 		});
+	// 	})
+	// })
+	</script>

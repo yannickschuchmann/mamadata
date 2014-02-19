@@ -38,6 +38,14 @@
 			</div>
 		</div>
 		<div class="row">
+			<div class="small-12 medium-4 column">
+				<%= f.label "Former File Number" %>
+			</div>
+			<div class="small-12 medium-8 column">
+				<%= f.text_field :file_number, :placeholder => "former File number"%>
+			</div>
+		</div>
+		<div class="row">
 			<div class="small-12 medium-4 columns">
 				<%= f.label :gender %>
 			</div>
@@ -202,6 +210,19 @@
 			</div>
 		</div>
 	</div>
+	<hr>
+	<div class="medium-12 column">
+		<div class="row">
+			<% if params[:action] == 'edit' %>
+			<div class="text-center">
+				<%= link_to 'Add Person to Program', add_to_program_path(@person), :class => 'button small' %>
+			</div>
+			<% else %>
+			<%= render 'program_checkboxes' %>
+			<% end %>
+		</div>
+	</div>
+	<hr>
 	<div class="small-12 medium-12 column"s>
 		<div class="row">
 			<div class="small-12 medium-2 columns">
@@ -228,16 +249,6 @@
 		</script>
 	</div>
 </div>
-<div class="row">
-	<% if params[:action] == 'edit' %>
-	<div class="text-center">
-		<%= link_to 'Add Person to Program', add_to_program_path(@person), :class => 'button small' %>
-	</div>
-	<% else %>
-	<%= render 'program_checkboxes' %>
-	<% end %>
-</div>
-
 <!-- TODO: AJAX ! -->
 <div class="row button-center">
 	<%= f.submit :class => 'button' %>

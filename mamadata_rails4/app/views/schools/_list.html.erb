@@ -3,6 +3,7 @@
     <dd>
         <a href="#school<%= school.id %>">
             <%= !school.terminated? ? school.joined_at.strftime("%Y")+"-now" : school.period %>
+            <span class="right"><i class="icon-chevron-right"></i></span>
         </a>
         <div id="school<%= school.id %>" class="content<%= " active" if index == 0 %>">
             <div class="row">
