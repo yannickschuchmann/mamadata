@@ -7,7 +7,7 @@
 
 <%= f.submit "Create Journal Entry", :class => "button" %>
 <% end %>
-
+<%= @person.journals.inspect %>
 <% @person.journals.each do |journal| %>
 <h6>
 	<span style="margin-right: 10px; float: left; color: #e67e22;">

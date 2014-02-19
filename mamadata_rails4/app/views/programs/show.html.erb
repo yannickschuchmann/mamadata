@@ -1,62 +1,55 @@
-<%= render '/shared/overview_sidebar' %>
-<div id="content">
 <% if notice %>
 <p id="notice"><%= notice %></p>
 <% end %>
-		<h2 class="text-center"><%= @program.name %></h2>
-		<div class="row">
-		<div class="small-12 medium-12 column">
-<table class="table">
-	<tr>
-		<th>Description</th>
-		<th>Total Amount Spent on Program</th>
-		<th>Benefits</th>
-	</tr>
+<h2 class="text-center"><%= @program.name %></h2>
+<div class="row">
+	<div class="small-12 medium-12 column">
+		<table class="table">
+			<tr>
+				<th>Description</th>
+				<th>Total Amount Spent on Program</th>
+				<th>Benefits</th>
+			</tr>
 
-	<tr>
-		<td rowspan="3"><%= @program.description %></td>
-		<td rowspan="3">Pending: <%= number_to_indian_currency(@program.get_total_amount(false)).html_safe %><br />
-		Granted: <%= number_to_indian_currency(@program.get_total_amount).html_safe %></td>
-		<td rowspan="3">
-			<% @program.benefits.each_slice(6) do |slice| %>
-			<div style="padding-bottom: 5px;">
-				<% slice.each do |benefit| %>
-					<%= link_to benefit.name, benefit_path(benefit), class:  "label button" %>
-				<% end %>
-				<br>
-				</div>
-
-			<% end %>
-		</td>
-	</tr>
-
-
-
-
-</table>
-</div>
+			<tr>
+				<td rowspan="3"><%= @program.description %></td>
+				<td rowspan="3">Pending: <%= number_to_indian_currency(@program.get_total_amount(false)).html_safe %><br />
+					Granted: <%= number_to_indian_currency(@program.get_total_amount).html_safe %></td>
+					<td rowspan="3">
+						<% @program.benefits.each_slice(6) do |slice| %>
+						<div style="padding-bottom: 5px;">
+							<% slice.each do |benefit| %>
+							<%= link_to benefit.name, benefit_path(benefit), class:  "label button" %>
+							<% end %>
+							<br>
+						</div>
+						<% end %>
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>
 <h3 class="text-center">Participating Beneficiaries</h3>
 
 <table id="peopleIndexTable" class="responsive tablesorter">
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Fathers name</th>
-				<th>In Program Since</th>
-				<th>Excluded from Program On</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @program_participants.each do |participant| %>
-			<% @person = Person.find(participant.person_id) %>
-			<tr data-link="<%= person_path(@person) %>">
-				<td><%= link_to @person.name, person_path(@person) %></a></td>
-				<td><%= @person.fathers_name %></td>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Fathers name</th>
+			<th>In Program Since</th>
+			<th>Excluded from Program On</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @program_participants.each do |participant| %>
+		<% @person = Person.find(participant.person_id) %>
+		<tr data-link="<%= person_path(@person) %>">
+			<td><%= link_to @person.name, person_path(@person) %></a></td>
+			<td><%= @person.fathers_name %></td>
 
-				<td>	<%= participant.created_at %></td>
-				<td> <%= participant.deleted_at %></td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
+			<td>	<%= participant.created_at %></td>
+			<td> <%= participant.deleted_at %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
