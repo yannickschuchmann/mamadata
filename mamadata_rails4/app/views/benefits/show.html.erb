@@ -58,8 +58,8 @@
 				<td><%= link_to benefit_incident.program.name, program_path(benefit_incident.program) %></td>
 				<td><%= number_to_indian_currency(benefit_incident.amount).html_safe  %></td>
 				<td><%= benefit_incident.status == true ? 'Granted' : 'Pending' %></td>
-				<td><%= l benefit_incident.created_at, :format => :long %></td>
-				<td><%= benefit_incident.date_granted %></td>
+				<td><%= l benefit_incident.created_at.to_datetime, :format => :custom unless benefit_incident.created_at.nil? %></td>
+				<td><%= l benefit_incident.date_granted.to_datetime, :format => :custom unless benefit_incident.date_granted.nil? %></td>
 
 				
 
