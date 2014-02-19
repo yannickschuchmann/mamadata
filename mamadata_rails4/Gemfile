@@ -6,6 +6,8 @@ gem 'rails', '4.0.0'
 #gem "twitter-bootstrap-rails", "~> 2.2.8"
 gem 'foundation-rails'
 
+gem 'font-awesome-rails', '~> 3.2.1' 
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 

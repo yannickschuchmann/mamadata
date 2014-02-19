@@ -1,9 +1,14 @@
-					<h5>Narrative Text</h5>
+<h5>Narrative Text</h5>
 
-					<p>
-						<% if @person.narrative_text? %>
-							<%= @person.narrative_text%>
-						<% else %>
-							none
-						<% end%>
-					</p>
+<p>
+	<% if @person.narrative_text? %>
+	<%= simple_format(@person.narrative_text) %>
+	<% else %>
+	none
+	<% end%>
+</p>
+
+<%= link_to edit_person_path(@person)+"/#narText", :class => "button" do %>
+<%= (content_tag(:i, '', :class => ' icon-pencil')) %>
+Edit Narrative Text 
+<% end %>
