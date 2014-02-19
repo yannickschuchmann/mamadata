@@ -27,8 +27,9 @@ class PersonGodfatherFilesController < ApplicationController
         format.html { redirect_to person_path(@person_id),
            notice: 'File successfully uploaded' }
         else
-          format.html { redirect_to person_path(@person_id),
-             notice: 'Something went wrong' }
+
+        format.html { render action: 'new' }
+        format.json { render json: @person_godfather_file.errors, status: :unprocessable_entity }
           end
         end
       end
