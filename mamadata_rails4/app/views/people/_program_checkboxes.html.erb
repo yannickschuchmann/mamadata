@@ -1,3 +1,4 @@
+<div class="row">
 	<h2 class="text-center">Programs</h2>
     <% Program.all.each_slice(10) do |slice| %>
         <% slice.each do |p| %>
@@ -6,3 +7,4 @@
         <% end %>
     <% end %>
 <%= hidden_field_tag "person[program_ids][]", nil %>
+</div>
