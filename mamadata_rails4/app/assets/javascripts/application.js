@@ -15,10 +15,12 @@
 	//= require offcanvas
 	//= require responsive-tables
 	//= require jquery.tablesorter.min
-	//= require jquery_ujs
 	//= require jquery.ui.all
 	//= require foundation
 	//= require turbolinks
+
+	// require jquery_ujs
+
 	
     var APP = {
 		Persons: {},
@@ -34,7 +36,7 @@
 
         /* initialize datepicker */
         $('input.datepicker').datepicker({
-            dateFormat:'yy-mm-dd',
+            dateFormat:'dd-mm-yy',
             duration: 'normal',
             changeMonth: true,
             changeYear: true,
