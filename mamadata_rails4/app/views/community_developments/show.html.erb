@@ -2,165 +2,129 @@
 <p id="notice"><%= notice %></p>
 <% end %>
 
-<p>
-	<strong>Head of household:</strong>
-	<%= @community_development.head_of_household_id %>
-</p>
+<table>
+    <tr>
+        <td>Head of household:</td>
+        <td><%= @community.head_of_household_id %></td>
+        <td>Type of family:</td>
+        <td><%= @community.type_of_family %></td>
+    </tr>
 
-<p>
-	<strong>Type of family:</strong>
-	<%= @community_development.type_of_family %>
-</p>
+    <tr>
+        <td>Residental status:</td>
+        <td><%= @community.residental_status %></td>
+        <td>How did you get the possession of the house</td>
+        <td><%= @community.house_posession %></td>
+    </tr>
 
-<p>
-	<strong>Residental status:</strong>
-	<%= @community_development.residental_status %>
-</p>
+    <tr>
+        <td>What is the type of the house:</td>
+        <td><%= @community.house_type %></td>
+        <td>Do you have electricity connection:</td>
+        <td><%= @community.electricity %></td>
+    </tr>
 
-<p>
-	<strong>How did you get the possession of the house site:</strong>
-	<%= @community_development.house_posession %>
-</p>
+    <tr>
+        <td>Where do you obtain your water:</td>
+        <td><%= @community.water_from %></td>
+        <td>Do you have a toilet facility in your house</td>
+        <td><%= @community.toilet_facility %></td>
+    </tr>
 
-<p>
-	<strong>What is the type of the house:</strong>
-	<%= @community_development.house_type %>
-</p>
+    <tr>
+        <td>Do you have the facility of rain water</td>
+        <td><%= @community.rain_harvesting %></td>
+        <td>Would you like to have such a facility:</td>
+        <td><%= @community.want_rain_harvesting %></td>
+    </tr>
 
-<p>
-	<strong>Do you have electricity connection:</strong>
-	<%= @community_development.electricity %>
-</p>
+    <tr>
+        <td>Number of earning members in the family:</td>
+        <td><%= @community.earning_members_of_family %></td>
+        <td>What are the sources of income:</td>
+        <td><%= @community.source_of_income %></td>
+    </tr>
 
-<p>
-	<strong>Where do you obtain your water:</strong>
-	<%= @community_development.water_from %>
-</p>
+    <tr>
+        <td>If agriculture give land details:</td>
+        <td><%= @community.land_details %></td>
+        <td>Do you have any savings:</td>
+        <td><%= @community.any_savings %></td>
+    </tr>
 
-<p>
-	<strong>Do you have a toilet facility in your house:</strong>
-	<%= @community_development.toilet_facility %>
-</p>
+    <tr>
+        <td>If yes, what is the mode of savings:</td>
+        <td><%= @community.mode_of_savings %></td>
+        <td>Do you have debts:</td>
+        <td><%= @community.debts %></td>
+    </tr>
 
-<p>
-	<strong>Do you have the facility of rain water harvesting:</strong>
-	<%= @community_development.rain_harvesting %>
-</p>
+    <tr>
+        <td>If yes, what is the reason for your debt:</td>
+        <td><%= @community.reason_for_debt %></td>
+        <td>Are any family members addicted to any substance:</td>
+        <td><%= @community.family_members_addicted_to %></td>
+    </tr>
 
-<p>
-	<strong>Would you like to have such a facility:</strong>
-	<%= @community_development.want_rain_harvesting %>
-</p>
+    <tr>
+        <td>Who is it:</td>
+        <td><%= @community.family_members_addicted_who %></td>
+        <td>Is there any disabled person in your family</td>
+        <td><%= @community.family_disabled %></td>
+    </tr>
 
-<p>
-	<strong>Number of earning members in the family:</strong>
-	<%= @community_development.earning_members_of_family %>
-</p>
+    <tr>
+        <td>If yes, what is the type of handicap:</td>
+        <td><%= @community.family_type_of_handicap %></td>
+        <td>Do any of the members of your family have contagioic deseases?:</td>
+        <td><%= @community.family_chronic_deseases %></td>
+    </tr>
 
-<p>
-	<strong>What are the sources of income:</strong>
-	<%= @community_development.source_of_income %>
-</p>
+    <tr>
+        <td>What kind of deseases:</td>
+        <td><%= @community.family_chronic_deseases_which %></td>
+        <td>Are the children in your family duly vaccinated:</td>
+        <td><%= @community.family_children_vaccined %></td>
+    </tr>
 
-<p>
-	<strong>If agriculture give land details:</strong>
-	<%= @community_development.land_details %>
-</p>
+    <tr>
+        <td>Do married members of your family know about family planning:</td>
+        <td><%= @community.family_knowledge_of_family_planning %></td>
+        <td>Has any of your family member undergone family planning:</td>
+        <td><%= @community.family_undergone_family_planning %></td>
+    </tr>
 
-<p>
-	<strong>Do you have any savings:</strong>
-	<%= @community_development.any_savings %>
-</p>
+    <tr>
+        <td>Do you know any home remedies for general illnesses:</td>
+        <td><%= @community.home_remedies_for_illnesses %></td>
+        <td>For your illness, where do you go for treatment</td>
+        <td><%= @community.illness_treatment %></td>
+    </tr>
 
-<p>
-	<strong>If yes, what is the mode of savings:</strong>
-	<%= @community_development.mode_of_savings %>
-</p>
+    <tr>
+        <td>Do you have any school drop out children in your family</td>
+        <td><%= @community.family_school_dropout %></td>
+        <td>If yes give reason for dropout:</td>
+        <td><%= @community.family_dropout_reason_for %></td>
+    </tr>
 
-<p>
-	<strong>Do you have debts:</strong>
-	<%= @community_development.debts %>
-</p>
+    <tr>
+        <td>After dropout what is the present condition of the person:</td>
+        <td><%= @community.family_dropout_present_condition %></td>
+        <td>Is any of you family member skilled in any ar</td>
+        <td><%= @community.family_skilled_in_art %></td>
+   </tr>
+    <tr>
+        <td>If yes give reason for dropout:</td>
+        <td><%= simple_format(@community_development.family_dropout_reason_for) %></td>
+    </tr>
 
-<p>
-	<strong>If yes, what is the reason for your debt:</strong>
-	<%= @community_development.reason_for_debt %>
-</p>
+    <tr>
+        <tr>After dropout what is the present condition of the person:</tr>
+        <td><%= simple_format(@community_development.family_dropout_present_condition) %></td>
+    </tr>
 
-<p>
-	<strong>Are any family members addicted to any substance:</strong>
-	<%= @community_development.family_members_addicted_to %>
-</p>
-
-<p>
-	<strong>Who is it:</strong>
-	<%= @community_development.family_members_addicted_who %>
-</p>
-
-<p>
-	<strong>Is there any disabled person in your family:</strong>
-	<%= @community_development.family_disabled %>
-</p>
-
-<p>
-	<strong>If yes, what is the type of handicap:</strong>
-	<%= @community_development.family_type_of_handicap %>
-</p>
-
-<p>
-	<strong>Do any of the members of your family have contagious/chronic deseases?:</strong>
-	<%= @community_development.family_chronic_deseases %>
-</p>
-
-<p>
-	<strong>What kind of deseases:</strong>
-	<%= @community_development.family_chronic_deseases_which %>
-</p>
-
-<p>
-	<strong>Are the children in your family duly vaccinated:</strong>
-	<%= @community_development.family_children_vaccined %>
-</p>
-
-<p>
-	<strong>Do married members of your family know about family planning:</strong>
-	<%= @community_development.family_knowledge_of_family_planning %>
-</p>
-
-<p>
-	<strong>Has any of your family member undergone family planning:</strong>
-	<%= @community_development.family_undergone_family_planning %>
-</p>
-
-<p>
-	<strong>Do you know any home remedies for general illnesses:</strong>
-	<%= @community_development.home_remedies_for_illnesses %>
-</p>
-
-<p>
-	<strong>For your illness, where do you go for treatment:</strong>
-	<%= @community_development.illness_treatment %>
-</p>
-
-<p>
-	<strong>Do you have any school drop out children in your family?:</strong>
-	<%= @community_development.family_school_dropout %>
-</p>
-
-<p>
-	<strong>If yes give reason for dropout:</strong>
-	<%= simple_format(@community_development.family_dropout_reason_for) %>
-</p>
-
-<p>
-	<strong>After dropout what is the present condition of the person:</strong>
-	<%= simple_format(@community_development.family_dropout_present_condition) %>
-</p>
-
-<p>
-	<strong>Is any of you family member skilled in any arts:</strong>
-	<%= @community_development.family_skilled_in_art %>
-</p>
+</table>
 
 <%= link_to 'Edit', edit_community_development_path(@community_development) %> |
 <%= link_to 'Back', community_developments_path %>

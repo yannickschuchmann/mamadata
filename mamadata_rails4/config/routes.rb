@@ -2,6 +2,11 @@ MamadataRails4::Application.routes.draw do
 
   get 'families/addpeople', to: 'families#addpeople'
   put 'families/create', to: 'families#create'
+  resources :families do
+    resources :community_developments
+  end
+  delete 'families/:id/edit', to: 'families#delete_relation', as: :delete_family_relation
+
   put 'people/create', to: 'people#create'
   put 'people/search', to: 'people#search'
 

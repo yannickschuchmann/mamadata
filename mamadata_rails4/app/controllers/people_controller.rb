@@ -1,13 +1,13 @@
 class PeopleController < ApplicationController
-	before_action :set_person, only: [:show, :edit, :update, :destroy]
-	before_filter :set_autosuggest, only: [:edit, :new]
-	before_filter :authenticate_user!
-	
-	# GET /people
-	# GET /people.json
-	def index
-		@people = Person.all
-	end
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :add_to_family]
+  before_filter :set_autosuggest, only: [:edit, :new]
+  before_filter :authenticate_user!
+  
+  # GET /people
+  # GET /people.json
+  def index
+    @people = Person.all
+  end
 
 	# GET /people/1
 	# GET /people/1.json
@@ -116,6 +116,6 @@ end
 
 		# Never trust parameters from the scary internet, only allow the white list through.
 		def person_params
-			params.require(:person).permit(:name, :fathers_name, :file_number, :gender, :date_of_birth, :place_of_birth, :native_place, :name_of_the_house, :number_of_the_house, :name_of_the_street, :city, :area, :zip_code, :religion, :caste, :education, :marital_status, :health_condition, :occupation, :income, :role_id, :school_name, :school_type, :school_language, :school_class, :narrative_text,:avatar, :status, :godfather_ids, :program_ids => [])
+			params.require(:person).permit(:name, :fathers_name, :file_number, :gender, :date_of_birth, :place_of_birth, :native_place, :name_of_the_house, :number_of_the_house, :name_of_the_street, :city, :area, :zip_code, :religion, :caste, :education, :marital_status, :health_condition, :occupation, :income, :role_id, :school_name, :school_type, :school_language, :school_class, :narrative_text,:avatar, :status, :godfather_ids, :head_of_household, :program_ids => [])
 		end
 	end

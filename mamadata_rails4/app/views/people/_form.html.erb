@@ -37,6 +37,14 @@
 				<%= f.text_field :fathers_name, :placeholder => "Fathers name", :id => "AutoFName"%>
 			</div>
 		</div>
+        <div class="row">
+            <div class="small-12 medium-4 column">
+                <%= f.label :head_of_household%>
+            </div>
+            <div class="small-12 medium-8 column">
+                <%= f.text_field :head_of_household, :placeholder => "Head of household name", :id => "AutoHoHName"%>
+            </div>
+        </div>
 		<div class="row">
 			<div class="small-12 medium-4 column">
 				<%= f.label "Former File Number" %>
@@ -214,9 +222,7 @@
 	<div class="medium-12 column">
 		<div class="row">
 			<% if params[:action] == 'edit' %>
-			<div class="text-center">
-				<%= link_to 'Add Person to Program', add_to_program_path(@person), :class => 'button small' %>
-			</div>
+				<%= link_to 'Add Person to Program', add_to_program_path(@person), :class => 'button small small-12 medium-10 right' %>
 			<% else %>
 			<%= render 'program_checkboxes' %>
 			<% end %>

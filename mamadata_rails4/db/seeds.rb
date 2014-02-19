@@ -101,6 +101,7 @@ staff3 = User.create(email: "accountant@sharana.org", 		password: "accountant", 
 # Supporter.create(organisation: "none", name: "Guenther", family_name: "Jauch",email: "guenther@jauch.de", godfather: true, is_volunteer: false, type_of_work: "marketing").save!(:validate => false)
 # Supporter.create(organisation: "none", name: "Oliver", family_name: "Geissen",email: "oliver@geissen.de", godfather: false, is_volunteer: true, type_of_work: "volunteering").save!(:validate => false)
 
+CommunityDevelopment.create()
 
 # simpsons = Family.create(name:"Simpsons")
 #Person.create(name: "Homer", gender: "male", role: head, program_ids: ["8"], city: "München")

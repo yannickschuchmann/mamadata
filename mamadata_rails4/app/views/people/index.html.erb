@@ -3,13 +3,14 @@
 	<% if notice %>
 		<p id="notice"><%= notice %></p>
 	<% end %>
-	<h1 class="text-center">Beneficiaries</h1>
+	<h2 class="text-center">Beneficiaries</h2>
 	<table id="peopleIndexTable" class="responsive tablesorter">
 		<thead>
 			<tr>
 				<td><%= check_box_tag :checked_person,'#', false, id: 'chkall' %></td>
 				<th>Name</th>
-				<th>Fathers name</th>
+                <th>Fathers name</th>
+                <th>Head of household</th>
 				<th>Gender</th>
 				<th>Date of birth</th>
 				<th>Place of birth</th>
@@ -18,14 +19,15 @@
 				<th>Role</th>
 				<th>Total Expense</th>
 				<td></td>
-			</tr>
+			    </tr>
 		</thead>
 		<tbody>
 			<% @people.each do |person| %>
 			<tr data-link="<%= person_path(person) %>">
 			<td><%= check_box_tag :checked_person, person.id, false, class: 'chk' %></td>
 				<td><a href="/people/<%= person.id %>"><%= person.name %></a></td>
-				<td><%= person.fathers_name %></td>
+                <td><%= person.fathers_name %></td>
+                <td><%= person.head_of_household %></td>
 				<td><%= person.gender %></td>
 				<td><%=l person.date_of_birth %></td>
 				<td><%= person.place_of_birth %></td>

@@ -1,10 +1,8 @@
 <%= render '/shared/overview_sidebar' %>
 <div id="content">
 <h1 class="text-center">Editing community development</h1>
-<%= render 'form' %>
-<%= link_to 'Show', @community_development %> |
-<%= link_to 'Back', community_developments_path %>
+    <%= render 'form' %>
+    <div class="button-center">
+        <%= link_to 'Cancel', family_path(params[:id]), :class => "button tiny" %>
+    </div>
 </div>
-
-
-

@@ -1,5 +1,8 @@
 <%= render '/shared/overview_sidebar' %>
 <div id="content">
+	<% if notice %>
+		<p id="notice"><%= notice %></p>
+	<% end %>
 	<h1 class="text-center">Families</h1>
 	<table id="familiesIndexTable" class="table tablesorter">
 		<thead>
@@ -7,17 +10,21 @@
 				<th>Name</th>
 				<th>Head of the Household</th>
 				<th>Family Member</th>
+				<td></td>
 			</tr>
 		</thead>
 
 		<tbody>
 			<% @families.each_with_index do |family,key| %>
-			<tr>
+			<tr data-link="<%= family_path(family) %>">
 				<td><%= family.name %></td>
 				<td><%= @heads[key].name %></td>
 				<td><% family.people.each do |people| %>
 					<%= people.name %> <br>
 					<% end %>
+				</td>
+				<td>
+					<%= link_to (content_tag(:i, '', :class => 'icon-trash')), family, method: :delete, data: { confirm: 'Are you sure?' } %>
 				</td>
 			</tr>
 			<% end %>

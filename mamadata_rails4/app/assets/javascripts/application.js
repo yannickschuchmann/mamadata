@@ -30,8 +30,11 @@
 		}
 	};
 	$(function(){
-		$("tr[data-link]").click(function() {
-			window.location = $(this).data("link")
+		$("tr[data-link] td").click(function(e) {
+            var $this = $(this);
+            if($this.find('a').length === 0) {
+                window.location = $this.parent().data("link");
+            }
 		});
 
         /* initialize datepicker */
