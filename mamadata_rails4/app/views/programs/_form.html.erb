@@ -25,27 +25,36 @@
     </div>
 </div>
 
-<h2 class="text-center">
-<div class="small-3 left">
-<input type="text" id="searchbenefit" placeholder="Filter Benefits">
-</div>
-Benefits
+<h2>
+Available Benefits 
 </h2>
+  <div class="row">
+    <table id="benefitsIndexTable" class="table tablesorter">
+      <thead>
+        <tr>
+        <td><%= check_box_tag :checked_benefit,'#', false, id: 'chkall' %></td>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Amount Spent this Year</th>
+          <th>Benefit Type</th>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% Benefit.all.order(created_at: :desc).each do |benefit| %>
+        <tr>
+        <td><%= check_box_tag :benefit_ids, benefit.id, @program.benefits.include?(benefit), :name => 'program[benefit_ids][]' %></td>
+          <td><%= benefit.name %></td>
+          <td><%= benefit.description %></td>
+          <td><%= number_to_indian_currency(benefit.get_amount_year_to_date).html_safe %></td>
+          <td><%= benefit.get_category %></td>
 
-<div class="row">
-  <span class="ul">
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-    <% Benefit.all.order('name').each_slice(12) do |slice| %>
-    <div class="small-12 large-12 columns">
-      <% slice.each do |b| %>
-      <label class="small-12 medium-6 large-4 column"><%= check_box_tag :benefit_ids, b.id, @program.benefits.include?(b), :name => 'program[benefit_ids][]' %> <%= b.name %></label>
-      <% end %>
-    </div>
-
-    <% end %>
-
-  </span>
-</div>
 
 <div class="button-center">
   <%= f.submit :class => 'button' %>
