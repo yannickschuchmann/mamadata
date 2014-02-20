@@ -6,6 +6,8 @@ class Benefit < ActiveRecord::Base
 	has_many :people, through: :programs
 	validates :name, presence: true
 	validates :max_people, allow_nil: true, :numericality => {greater_than_or_equal_to: 1}
+	validate :calculated_amount_is_not_nil # if category is set to calculated
+	validate :fixed_amount_is_not_nil
 
 	validate :validate_calculated_amount
 	validate :optional_amount_xor_fixed_amount
@@ -46,6 +48,18 @@ protected
 			errors.add(:benefit, "has to specify max users for calculated amount")
 		end
 	end
+
+	def calculated_amount_is_not_nil
+		if self.category == "calculated"
+			errors.add(:base, "Specify the Calculated Amount for this Benefit") if self.optional_amount.blank?
+		end
+	end
+
+	def fixed_amount_is_not_nil
+		if self.category == "fixed"
+			errors.add(:base, "Specify the Fixed Amount for this Benefit") if (self.fixed_amount.blank? || self.fixed_amount < 1)
+		end
+	end		
 
 
 
