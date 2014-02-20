@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140220131249) do
-=======
-ActiveRecord::Schema.define(version: 20140220125802) do
->>>>>>> 56f2e52000b1191eecf599b52d45746d31be14d3
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
