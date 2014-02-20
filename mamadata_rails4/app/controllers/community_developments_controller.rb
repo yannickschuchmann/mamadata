@@ -10,7 +10,6 @@ class CommunityDevelopmentsController < ApplicationController
 		community_development_params["illness_treatment"].reject!(&:empty?)
 		respond_to do |format|
 			if @community_development.update(community_development_params)
-        debugger
 				format.html { redirect_to @community_development.family, notice: 'Community development was successfully updated.' }
 				format.json { head :no_content }
 			else

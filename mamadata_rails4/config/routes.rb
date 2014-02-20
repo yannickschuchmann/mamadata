@@ -11,7 +11,7 @@ resources :donor_types
   delete 'families/:id/edit', to: 'families#delete_relation', as: :delete_family_relation
 
   put 'people/create', to: 'people#create'
-  put 'people/search', to: 'people#search'
+  get 'people/search', to: 'people#search'
 
   resources :benefit_incidents, only: [:show, :edit, :index, :create, :update, :destroy]
   resources :person_godfather_files, only: [:create, :destroy, :edit]

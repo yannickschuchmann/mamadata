@@ -95,9 +95,7 @@ end
 		city = params['city']
 		zipcode = params['zipcode']
 
-		result = []
-		
-		result = Person.where("name LIKE ? AND fathers_name LIKE ? ", "%#{name}%","%#{fname}%")
+		result = Person.where("name LIKE ? AND fathers_name LIKE ? AND city LIKE ? AND zip_code LIKE ?", "%#{name}%","%#{fname}%","%#{city}%","%#{zipcode}%")
 		
 		respond_to do |format|
 			# format.html # index.html.erb

@@ -16,8 +16,8 @@ var peopleNumber = 1,
 $("#searchExistingPeopleForm").submit(function(e){
 	e.preventDefault();
 	$.ajax({
-		url: "http://"+window.location.host+"/people/search",	// I'm doing the proper routing later, since '/make_suggestion' routes to 'items/1/make_suggestion'
-		type: "PUT",
+		url: "http://"+window.location.host+"/people/search.json",	// I'm doing the proper routing later, since '/make_suggestion' routes to 'items/1/make_suggestion'
+		type: "GET",
 		beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));},
 		dataType: 'json',
 		async: 'false',
