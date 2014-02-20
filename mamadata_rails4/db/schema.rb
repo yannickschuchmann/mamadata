@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140219213232) do
+ActiveRecord::Schema.define(version: 20140220083404) do
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
@@ -92,6 +92,12 @@ ActiveRecord::Schema.define(version: 20140219213232) do
     t.text     "family_dropout_reason_for"
     t.text     "family_dropout_present_condition"
     t.string   "family_skilled_in_art"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "donor_types", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -256,6 +262,10 @@ ActiveRecord::Schema.define(version: 20140219213232) do
     t.string   "type_of_work"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_donor"
+    t.integer  "donation_amount_paise"
+    t.string   "donation_amount_currency", default: "INR", null: false
+    t.integer  "donor_type_id"
   end
 
   create_table "users", force: true do |t|
