@@ -51,15 +51,17 @@ class FamiliesController < ApplicationController
     @people = params[:people]
     person_ids = get_validated_person_ids @people
     if person_ids
-      @community = CommunityDevelopment.find(@family.community_development_id)
       @people.each do |value|
         value = value[1]
         person = Person.find(value["person_id"].to_i)
-        check_old_family_for_destroy person
+        check_old_family_for_destroy person, @family.id
         person.update(role: Role.find_by_id(value["role_id"].to_i), family_id: @family.id)
       end
-      @family.save
-      redirect_to family_path @family.id
+      if @family.save
+        redirect_to family_path @family.id
+      else
+        redirect_to edit_family_path @family.id
+      end
     else
       redirect_to edit_family_path @family.id
     end
@@ -74,7 +76,7 @@ class FamiliesController < ApplicationController
       @people.each do |value|
         value = value[1]
         person = Person.find(value["person_id"].to_i)
-        check_old_family_for_destroy person
+        check_old_family_for_destroy person, @family.id
         person.update(role: Role.find_by_id(value["role_id"].to_i), family_id: @family.id)
       end
       @family.save
@@ -85,7 +87,6 @@ class FamiliesController < ApplicationController
   end
 
 	def show
-		@community = CommunityDevelopment.find(@family.community_development_id)
 	end
 
 	private
@@ -93,9 +94,9 @@ class FamiliesController < ApplicationController
 		@family = Family.find(params[:id])
   end
 
-  def check_old_family_for_destroy person
+  def check_old_family_for_destroy person, family_id
     return if person.family.nil?
-    person.family.destroy if person.family.people.size <= 1
+    person.family.destroy unless person.family.people.size > 1 or family_id == person.family.id
   end
 
   def get_validated_person_ids people_hashes
