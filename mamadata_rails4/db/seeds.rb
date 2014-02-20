@@ -1,4 +1,4 @@
-head = Role.find_or_create_by(name: "Head of the Household")
+	head = Role.find_or_create_by(name: "Head of the Household")
 wife = Role.find_or_create_by(name: "Wife")
 child = Role.find_or_create_by(name: "Child")
 father = Role.find_or_create_by(name: "Father")
@@ -117,10 +117,12 @@ PossibleChoices.find_or_create_by(property: "family_type_of_handicap", value: "m
 PossibleChoices.find_or_create_by(property: "family_type_of_handicap", value: "orthopedically")
 PossibleChoices.find_or_create_by(property: "family_type_of_handicap", value: "hearing impaired")
 
-staff1 = User.find_or_create_by(email: "admin@sharana.org", 		password: "admin", 		password_confirmation: "admin", 	role: "admin").save!(:validate => false)
-staff2 = User.find_or_create_by(email: "supporter@sharana.org", 	password: "supporter", 	password_confirmation: "supporter", role: "supporter").save!(:validate => false)
-staff3 = User.find_or_create_by(email: "accountant@sharana.org", 		password: "accountant", 	password_confirmation: "accountant", 	role: "accountant").save!(:validate => false)
 
+if User.count == 0
+staff1 = User.create(email: "admin@sharana.org", 		password: "admin", 		password_confirmation: "admin", 	role: "admin").save!(:validate => false)
+staff2 = User.create(email: "supporter@sharana.org", 	password: "supporter", 	password_confirmation: "supporter", role: "supporter").save!(:validate => false)
+staff3 = User.create(email: "accountant@sharana.org", 		password: "accountant", 	password_confirmation: "accountant", 	role: "accountant").save!(:validate => false)
+end
 # u1 = User.find_or_create_by(email: "dariusch@freenet.de", password: "test", password_confirmation: "test", role: "supporter").save!(:validate => false)
 # u2 = User.find_or_create_by(email: "test@test.de", password: "test", password_confirmation: "test").save!(:validate => false)
 
