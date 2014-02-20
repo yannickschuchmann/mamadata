@@ -3,6 +3,7 @@ class AddDonorFieldsToSupporter < ActiveRecord::Migration
     add_column :supporters, :is_donor, :boolean
     add_money :supporters, :donation_amount, amount: { null: true, default: nil }
     add_column :supporters, :donor_type_id, :integer
+    add_column :supporters, :donation_year, :date
   end
 end
 

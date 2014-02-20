@@ -1,14 +1,14 @@
 <% if params[:action] == "index" %>
 <li>
-	<%= link_to new_supporter_path do %>
+	<%= link_to donor_types_path do %>
 	<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
-	New Supporter
+	Edit Donor Types
 	<% end %>
 </li>
 <li>
-	<%= link_to donor_types_path do %>
+	<%= link_to new_supporter_path do %>
 	<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
-	Create Donor Type
+	New Supporter
 	<% end %>
 </li>
 <% end %>

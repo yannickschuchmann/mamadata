@@ -266,6 +266,7 @@ ActiveRecord::Schema.define(version: 20140220083404) do
     t.integer  "donation_amount_paise"
     t.string   "donation_amount_currency", default: "INR", null: false
     t.integer  "donor_type_id"
+    t.date     "donation_year"
   end
 
   create_table "users", force: true do |t|
