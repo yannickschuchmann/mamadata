@@ -18,7 +18,7 @@ class SchoolsController < ApplicationController
   end
 
   def index
-    @schools = School.all
+    @schools = School.all.order(created_at: :desc)
   end
 
   def edit

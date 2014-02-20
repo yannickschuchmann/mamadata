@@ -6,7 +6,7 @@
   # GET /benefit_incidents
   # GET /benefit_incidents.json
   def index
-    @benefit_incidents = BenefitIncident.all
+    @benefit_incidents = BenefitIncident.all.order(created_at: :desc)
   end
 
   def calculated

@@ -5,7 +5,7 @@ class ProgramsController < ApplicationController
   # GET /programs
   # GET /programs.json
   def index
-    @programs = Program.all
+    @programs = Program.all.order(created_at: :desc)
     @data = Program.all.map { |p| [p.name, p.benefits]  }
   end
 
