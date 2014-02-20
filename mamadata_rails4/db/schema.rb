@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220083404) do
+ActiveRecord::Schema.define(version: 20140220130617) do
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
@@ -103,10 +103,12 @@ ActiveRecord::Schema.define(version: 20140220083404) do
   end
 
   create_table "families", force: true do |t|
-    t.integer "person_id"
-    t.integer "community_development_id"
-    t.string  "name"
-    t.integer "head_id"
+    t.integer  "person_id"
+    t.integer  "community_development_id"
+    t.string   "name"
+    t.integer  "head_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "families", ["community_development_id"], name: "index_families_on_community_development_id"
@@ -251,7 +253,7 @@ ActiveRecord::Schema.define(version: 20140220083404) do
     t.string   "country"
     t.string   "city"
     t.string   "street"
-    t.integer  "zipcode"
+    t.string   "zipcode"
     t.string   "email"
     t.string   "website"
     t.string   "telephone_number"
