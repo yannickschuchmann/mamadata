@@ -1,16 +1,16 @@
 <%= render '/shared/overview_sidebar' %>
 <div id="content">
 	<% if notice %>
-		<p id="notice"><%= notice %></p>
+	<p id="notice"><%= notice %></p>
 	<% end %>
 	<h1>Beneficiaries</h1>
 	<table id="peopleIndexTable" class="responsive tablesorter">
 		<thead>
 			<tr>
-				<td><%= check_box_tag :checked_person,'#', false, id: 'chkall' %></td>
+				<td style="text-align: center;"><%= check_box_tag :checked_person,'#', false, id: 'chkall' %></td>
 				<th>Name</th>
-                <th>Fathers name</th>
-                <th>Head of household</th>
+				<th>Fathers name</th>
+				<th>Head of household</th>
 				<th>Gender</th>
 				<th>Date of birth</th>
 				<th>Place of birth</th>
@@ -19,15 +19,15 @@
 				<th>Role</th>
 				<th>Total Expense</th>
 				<td></td>
-			    </tr>
+			</tr>
 		</thead>
 		<tbody>
 			<% @people.each do |person| %>
 			<tr data-link="<%= person_path(person) %>">
-			<td><%= check_box_tag :checked_person, person.id, false, class: 'chk' %></td>
+				<td style="text-align: center"><%= check_box_tag :checked_person, person.id, false, class: 'chk' %></td>
 				<td><a href="/people/<%= person.id %>"><%= person.name %></a></td>
-                <td><%= person.fathers_name %></td>
-                <td><%= person.head_of_household %></td>
+				<td><%= person.fathers_name %></td>
+				<td><%= person.head_of_household %></td>
 				<td><%= person.gender %></td>
 				<td><%=l person.date_of_birth %></td>
 				<td><%= person.place_of_birth %></td>
@@ -44,9 +44,9 @@
 				</td>
 				<td style="width: 130px;">
 					<%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_person_path(person) %>
-                    <% if is_admin? %>
-                        <%= link_to (content_tag(:i, '', :class => 'icon-trash')), person, method: :delete, data: { confirm: 'Are you sure?' } %>
-                    <% end %>
+					<% if is_admin? %>
+					<%= link_to (content_tag(:i, '', :class => 'icon-trash')), person, method: :delete, data: { confirm: 'Are you sure?' } %>
+					<% end %>
 				</td>
 			</tr>
 			<% end %>

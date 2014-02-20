@@ -29,7 +29,7 @@
 	$(function(){
 		$("tr[data-link] td").click(function(e) {
             var $this = $(this);
-            if($this.find('a').length === 0) {
+            if($this.find('a, input').length === 0) {
                 window.location = $this.parent().data("link");
             }
 		});

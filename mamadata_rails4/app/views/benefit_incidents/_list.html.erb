@@ -1,35 +1,33 @@
-<div class="row">
-	<table id="benefitTable" class="table responsive tablesorter small-12">
-		<thead>
-			<tr>
-				<td><%= check_box_tag :checked_incident,'#', false, id: 'chkall' %></td>
-				<th>User</th>
-				<th>Program</th>
-				<th>Benefit</th>
-				<th>Amount</th>
-				<th>Remark</th>
-				<th>Status</th>
-				<th>Date Granted</th>
-				<td></td>
-			</tr>
-		</thead>
-		<tbody>
-			<% @benefit_incidents.each do |benefit_incident| %>
-			<tr data-link="<%= benefit_incident_path(benefit_incident.id) %>">
-				<td><%= check_box_tag :checked_incident, benefit_incident.id, false, class: 'chk' %></td>
-				<td><%= link_to benefit_incident.person.name, person_path(benefit_incident.person) %></td>
-				<td><%= link_to benefit_incident.program.name, program_path(benefit_incident.program) %></td>
-				<td><%= link_to benefit_incident.benefit.name, benefit_path(benefit_incident.benefit) %></td>
-				<td><%= number_to_indian_currency(benefit_incident.amount).html_safe %></td>
-				<td><%= simple_format(benefit_incident.remark) %></td>
-				<td><%= benefit_incident.status == true ? 'Granted' : 'Pending' %></td>
-				<td><%=l benefit_incident.date_granted.to_datetime, :format => :custom unless benefit_incident.date_granted.nil? %></td>
-				<td>
-					<%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_benefit_incident_path(benefit_incident) %>
-					<%= link_to (content_tag(:i, '', :class => 'icon-trash')), benefit_incident, method: :delete, data: { confirm: 'Are you sure?' } %>
-				</td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
-</div>
+<table id="benefitTable" class="table tablesorter">
+	<thead>
+		<tr>
+			<td><%= check_box_tag :checked_incident,'#', false, id: 'chkall' %></td>
+			<th>User</th>
+			<th>Program</th>
+			<th>Benefit</th>
+			<th>Amount</th>
+			<th>Remark</th>
+			<th>Status</th>
+			<th>Date Granted</th>
+			<td></td>
+		</tr>
+	</thead>
+	<tbody>
+		<% @benefit_incidents.each do |benefit_incident| %>
+		<tr data-link="<%= benefit_incident_path(benefit_incident.id) %>">
+			<td><%= check_box_tag :checked_incident, benefit_incident.id, false, class: 'chk' %></td>
+			<td><%= link_to benefit_incident.person.name, person_path(benefit_incident.person) %></td>
+			<td><%= link_to benefit_incident.program.name, program_path(benefit_incident.program) %></td>
+			<td><%= link_to benefit_incident.benefit.name, benefit_path(benefit_incident.benefit) %></td>
+			<td><%= number_to_indian_currency(benefit_incident.amount).html_safe %></td>
+			<td><%= simple_format(benefit_incident.remark) %></td>
+			<td><%= benefit_incident.status == true ? 'Granted' : 'Pending' %></td>
+			<td><%=l benefit_incident.date_granted.to_datetime, :format => :custom unless benefit_incident.date_granted.nil? %></td>
+			<td>
+				<%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_benefit_incident_path(benefit_incident) %>
+				<%= link_to (content_tag(:i, '', :class => 'icon-trash')), benefit_incident, method: :delete, data: { confirm: 'Are you sure?' } %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
