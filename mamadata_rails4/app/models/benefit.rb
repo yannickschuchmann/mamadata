@@ -39,6 +39,18 @@ class Benefit < ActiveRecord::Base
 	  self.get_total_amount(status, Date.today.beginning_of_financial_year)
   end
 
+  def get_category
+  	if self.category == "none"
+  		return "Individual"
+  	elsif self.category == "calculated"
+  		return "Calculated Amount"
+  	elsif self.category == "fixed"
+  		return "Fixed Amount"
+  	elsif self.category.nil?
+  		return "No Status Set"
+  	end
+  end
+
 
 
 
