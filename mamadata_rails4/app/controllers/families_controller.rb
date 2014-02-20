@@ -80,7 +80,6 @@ class FamiliesController < ApplicationController
         person.update(role: Role.find_by_id(value["role_id"].to_i), family_id: @family.id)
       end
       @family.save
-      debugger
 		  redirect_to edit_community_development_path @family.community_development
     else
       redirect_to new_family_path
