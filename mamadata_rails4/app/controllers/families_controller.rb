@@ -3,7 +3,7 @@ class FamiliesController < ApplicationController
 	before_action :set_family, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@families = Family.all
+		@families = Family.all.order(created_at: :desc)
 		@heads = []
 		@families.each do |familie|
 			if Person.find_by_id(familie.head_id.to_i).nil?
