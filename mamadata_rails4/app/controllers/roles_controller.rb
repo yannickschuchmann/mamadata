@@ -1,6 +1,9 @@
 class RolesController < ApplicationController
   before_action :set_role, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, :is_admin?
+
+  layout "application_main_sidebar"
+
   # GET /roles
   # GET /roles.json
   def index

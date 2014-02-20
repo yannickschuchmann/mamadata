@@ -2,7 +2,9 @@ class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy, :add_to_family]
   before_filter :set_autosuggest, only: [:edit, :new]
   before_filter :authenticate_user!
-  
+
+  layout "application_person", except: :index
+
   # GET /people
   # GET /people.json
   def index
@@ -19,7 +21,6 @@ class PeopleController < ApplicationController
 		@godfather_relations.each do |r|
 			@godfathers << Supporter.find(r.godfather_id)
 		end
-
 	end
 
 	# GET /people/new

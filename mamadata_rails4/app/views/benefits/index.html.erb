@@ -1,31 +1,28 @@
-<%= render '/shared/overview_sidebar' %>
-<div id="content">
-	<h1>Benefits</h1>
-	<div class="row">
-		<table id="benefitsIndexTable" class="table tablesorter">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Amount Spent this Year</th>
-					<th>Benefit Type</th>
-					<td></td>
-				</tr>
-			</thead>
-			<tbody>
-				<% @benefits.each do |benefit| %>
-				<tr data-link="<%= benefit_path(benefit) %>">
-					<td><%= benefit.name %></td>
-					<td><%= benefit.description %></td>
-					<td><%= number_to_indian_currency(benefit.get_amount_year_to_date).html_safe %></td>
-					<td><%= benefit.get_category %></td>
-					<td style="width: 130px;">
-						<%= link_to (content_tag(:i, "", :class => "icon-edit")), edit_benefit_path(benefit) %>
-						<%= link_to (content_tag(:i, "", :class => "icon-trash")), benefit, method: :delete, data: { confirm: 'Are you sure?' } %>
-					</td>
-				</tr>
-				<% end %>
-			</tbody>
-		</table>
-	</div>
+<h1>Benefits</h1>
+<div class="row">
+    <table id="benefitsIndexTable" class="table tablesorter">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Amount Spent this Year</th>
+                <th>Benefit Type</th>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <% @benefits.each do |benefit| %>
+            <tr data-link="<%= benefit_path(benefit) %>">
+                <td><%= benefit.name %></td>
+                <td><%= benefit.description %></td>
+                <td><%= number_to_indian_currency(benefit.get_amount_year_to_date).html_safe %></td>
+                <td><%= benefit.get_category %></td>
+                <td style="width: 130px;">
+                    <%= link_to (content_tag(:i, "", :class => "icon-edit")), edit_benefit_path(benefit) %>
+                    <%= link_to (content_tag(:i, "", :class => "icon-trash")), benefit, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
 </div>
