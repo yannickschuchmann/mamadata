@@ -1,24 +1,25 @@
 <%= content_for :js do %><%= javascript_include_tag "benefit_incidents" %> <% end %>
-<h2 class="text-right">New Incident</h2>
+<h3>New Incident for <%= @benefit_incident.person.name + " " +@benefit_incident.person.fathers_name  %></h3>
+<h3 style="margin-bottom: 20px;"><small>Total Amount Spent on: <%= number_to_indian_currency(@benefit_incident.person.get_total_expenses).html_safe %></small></h3>
 <%= form_for(@benefit_incident) do |f| %>
 <%= f.hidden_field :person_id, value: @benefit_incident.person_id %>
 <%= f.hidden_field :date_granted, value: @benefit_incident.date_granted %>
 <div class="row">
-	<div class="small-12 medium-4 columns"><%= f.label :program_id %></div>
-	<div class="small-12 medium-8 columns"><%= f.select :program_id, @person.programs.map{|program| [program.name, program.id]}%></div>
+	<div class="small-12 medium-2 columns"><%= f.label :program_id %></div>
+	<div class="small-12 medium-10 columns"><%= f.select :program_id, @person.programs.map{|program| [program.name, program.id]}%></div>
 </div>
 <div class="row">
-	<div class="small-12 medium-4 columns"><%= f.label :benefit_id %></div>
-	<div class="small-12 medium-8 columns" id="benefit_select"><%= f.select :benefit_id, @benefits.map{|b| [b.name, b.id]}%></div>
+	<div class="small-12 medium-2 columns"><%= f.label :benefit_id %></div>
+	<div class="small-12 medium-10 columns" id="benefit_select"><%= f.select :benefit_id, @benefits.map{|b| [b.name, b.id]}%></div>
 </div>
 <div class="row">
-	<div class="small-12 medium-4 columns" id="amountlabel"><%= f.label :amount %></div>
-	<div class="small-12 medium-8 columns"><%= f.text_field :amount, placeholder: "0.00" %></div>
+	<div class="small-12 medium-2 columns" id="amountlabel"><%= f.label :amount %></div>
+	<div class="small-12 medium-10 columns"><%= f.text_field :amount, placeholder: "0.00" %></div>
 </div>
 <div class="row">
-	<div class="small-6 medium-4  columns"><%= f.label :remark %></div>
-	<div class="small-12 medium-8 columns">
-		<%= f.text_area :remark, size:"100x100", :id => "benefit_incident_remark" %>
+	<div class="small-6 medium-2  columns"><%= f.label :remark %></div>
+	<div class="small-12 medium-10 columns">
+		<%= f.text_area :remark, size:"100x10", :id => "benefit_incident_remark" %>
 		<div style="margin-top: -15px; margin-bottom: 10px;" class="text-right">
 			<span id="txtLeft">500</span><span> of 500 chars left</span>
 		</div>
@@ -26,17 +27,19 @@
 </div>
 <% if is_admin? %>
 <div class="row">
-	<div class="small-12 medium-4 columns"><%= f.label :status %></div>
+	<div class="small-12 medium-2 columns"><%= f.label :status %></div>
 	<% if @benefit_incident.status == 'true'%>
-	<div class="small-12 medium-4 columns"><%= f.select :status, [['Granted',true],['Pending', false]], :selected =>  ['Granted', true] %></div>
+	<div class="small-12 medium-2 columns"><%= f.select :status, [['Granted',true],['Pending', false]], :selected =>  ['Granted', true] %></div>
 	<% else %>
-	<div class="small-12 medium-8 columns"><%= f.select :status, [['Granted',true],['Pending', false]], :selected =>  ['Pending', false] %></div>
+	<div class="small-12 medium-10 columns"><%= f.select :status, [['Granted',true],['Pending', false]], :selected =>  ['Pending', false] %></div>
 	<% end %>
 </div>
 <% else %>
 <%= f.hidden_field :status, value: @benefit_incident.status %>
 <% end %>
-<%= f.submit :class => 'button right' %>
+	<div class="text-center">
+		<%= f.submit :class => 'button' %>
+	</div>
 <% end %>
 <script>
 var data = <%= @data.to_json.html_safe %>;

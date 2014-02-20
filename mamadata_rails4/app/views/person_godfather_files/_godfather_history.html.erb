@@ -9,6 +9,16 @@
 			<span class="right"><i class="icon-chevron-right"></i></span>
 		</a>
 		<div id="godfather<%= godfather.id %>" class="content<%= " active" if index == 0 %>">
+			<div class="row" style="height: 40px">
+				<div class="small-6 medium-6 column"></div>
+				<div class="small-6 medium-6 column">					
+					<div class="row">
+						<%= link_to "Add Correspondance", new_person_godfather_file_path(join_model), :class => 'button tiny icon-plus'  %>
+					</div>
+				</div>
+
+
+			</div>
 			<div class="row">
 				<div class="small-12 medium-6 column">
 					<table class="table small-12">
@@ -31,12 +41,13 @@
 					</table>
 				</div>
 				<div class="small-12 medium-6 column">
-					<div class="small-11 column">
+					<div class="row">
+
 						<table class="table small-12">
 							<thead>
 								<tr>
 									<th class="header small-7">Remark</th>
-									<th class="header small-3">Submitted</th>
+									<th class="header small-3">Uploaded At</th>
 									<td></td>
 								</tr>
 							</thead>
@@ -44,7 +55,7 @@
 								<% join_model.person_godfather_files.order("updated_at DESC").each do |f| %>
 								<tr>
 									<td><%= (f.remark.empty? ? f.file_file_name : simple_format(f.remark))%></td>
-									<td><%#= l f.file_updated_at.to_date %></td>
+									<td><%= l f.created_at.to_date %></td>
 									<td><%= link_to (content_tag(:i, '', :class => 'icon-download-alt')), get_godfather_file_path(f.id) %>
 										<%= link_to (content_tag(:i, '', :class => 'icon-trash')), person_godfather_file_path(f.id), method: :delete, data: { confirm: 'Are you sure?' } %>
 									</td>
@@ -53,17 +64,13 @@
 							</tbody>
 						</table>
 					</div>
-					<ul class="button-group right">
-						<li>
-							<%= link_to "Add Correspondance", new_person_godfather_file_path(join_model), :class => 'button tiny icon-plus'  %>
-						</li>
-					</ul>
+
 				</div>
 			</div>
 		</dd>
 		<% end %>
 	</dl>
-	 <script type="text/javascript">
+	<script type="text/javascript">
 	// Tried toggling Chevron icon up and down on accordion show hide but its not working due to foundation
 
 	// $(document).ready(function () {
@@ -96,4 +103,4 @@
 	// 		});
 	// 	})
 	// })
-	</script>
+</script>
