@@ -2,6 +2,9 @@
 <% if notice %>
 <p id="notice"><%= notice %></p>
 <% end %>
+		<div class="medium-2 column">
+			<%= image_tag @supporter.avatar.url(:medium), :class => "person-picture" %>
+		</div>
 
 <table class="table">
 	<tr>

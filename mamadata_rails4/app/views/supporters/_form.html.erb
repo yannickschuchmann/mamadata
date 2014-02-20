@@ -26,7 +26,7 @@
   </div>
       <div class="row">
       <div class="small-12 medium-4 columns">
-        <%= f.label "Profile Picture" %>
+        <%= f.label :avatar, "Profile Picture" %>
       </div>
       <div class="small-12 medium-8 columns">
         <%= f.file_field :avatar %>
@@ -66,7 +66,7 @@
   </div>
   <div class="row">
     <div class="small-12 large-3 columns"><%= f.label :telephone_number %></div>
-    <div class="small-12 large-9 columns"><%= f.number_field :telephone_number %></div>
+    <div class="small-12 large-9 columns"><%= f.text_field :telephone_number %></div>
   </div>
 
     <div class="row">
