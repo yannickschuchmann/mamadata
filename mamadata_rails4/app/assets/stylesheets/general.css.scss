@@ -57,6 +57,9 @@ tr[data-link] {
 }
 
 .selectWithOtherField {
+    .other-field.column {
+      min-height: 0 !important;
+    }
 	div >input[type="text"] {
 		display: none;
 		&.active {

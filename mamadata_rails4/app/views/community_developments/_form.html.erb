@@ -21,7 +21,11 @@
   </div>
   <div class="row">
     <div class="medium-4 column"><%= f.label :house_possession, "How did you get the possession of the house site?" %></div>
-    <div class="medium-8 column"><%= f.select :house_possession, ["father's property", "bought the land", "temple land", "no man's land", "other"], include_blank: "-"%></div>
+    <div class="medium-8 column">
+        <div class="row selectWithOtherField">
+            <%= f.select_with_other_field("community_development", :house_possession, {:include_blank => '-', :selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12 column other-field'}) %>
+        </div>
+    </div>
   </div>
   <div class="row">
     <div class="medium-4 column"><%= f.label :house_type, "What is the type of the house?" %></div>
@@ -55,12 +59,18 @@
   </div>
   <div class="row">
     <div class="medium-4 column"><%= f.label :source_of_income, "What are the sources of income?" %></div>
-    <div class="medium-8 column"><%= f.select :source_of_income, ["salary", "cattle", "agriculture", "nil", "other"], include_blank: "-"%>
+    <div class="medium-8 column">
+        <div class="row selectWithOtherField">
+            <%= f.select_with_other_field("community_development", :source_of_income, {:include_blank => '-', :selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12 column other-field'}) %>
+        </div>
     </div>
   </div>
   <div class="row">
     <div class="medium-4 column"><%= f.label :land_details, "If agriculture give land details" %></div>
-    <div class="medium-8 column"><%= f.select :land_details, ["own land", "other land"], include_blank: "-"%>
+    <div class="medium-8 column">
+        <div class="row selectWithOtherField">
+            <%= f.select_with_other_field("community_development", :land_details, {:include_blank => '-', :selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12 column other-field'}) %>
+        </div>
     </div>
   </div>
   <div class="row">
@@ -69,7 +79,10 @@
   </div>
   <div class="row">
     <div class="medium-4 column"><%= f.label :mode_of_savings, "If yes, what is the mode of savings?" %></div>
-    <div class="medium-8 column"><%= f.select :mode_of_savings, ["bank", "chits", "any other"], include_blank: "-"%>
+    <div class="medium-8 column">
+        <div class="row selectWithOtherField">
+            <%= f.select_with_other_field("community_development", :mode_of_savings, {:include_blank => '-', :selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12 column other-field'}) %>
+        </div>
     </div>
   </div>
   <div class="row">
@@ -78,7 +91,10 @@
   </div>
   <div class="row">
     <div class="medium-4 column"><%= f.label :reason_for_debt, "If yes, what is the reason for your debt?" %></div>
-    <div class="medium-8 column"><%= f.select :reason_for_debt, ["food", "housing", "education", "medicine", "profession", "functions", "other"], include_blank: "-"%>
+    <div class="medium-8 column">
+        <div class="row selectWithOtherField">
+            <%= f.select_with_other_field("community_development", :reason_for_debt, {:include_blank => '-', :selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12 column other-field'}) %>
+        </div>
     </div>
   </div>
   <div class="row">
@@ -96,7 +112,10 @@
   </div>
   <div class="row">
     <div class="medium-4 column"><%= f.label :family_type_of_handicap, "If yes, what is the type of handicap?" %></div>
-    <div class="medium-8 column"><%= f.select :family_type_of_handicap, ["visually", "mentally", "orthopedically", "hearing impaired", "other"], include_blank: "-"%>
+    <div class="medium-8 column">
+        <div class="row selectWithOtherField">
+            <%= f.select_with_other_field("community_development", :family_type_of_handicap, {:include_blank => '-', :selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12 column other-field'}) %>
+        </div>
     </div>
   </div>
   <div class="row">

@@ -6,6 +6,7 @@ class Family < ActiveRecord::Base
   validates :name, presence: true, on: :update
   before_validation :set_name
   after_save :update_head_of_household_fields
+  before_create :create_comdev
   after_destroy :remove_comdev
 
   private
@@ -22,7 +23,11 @@ class Family < ActiveRecord::Base
   end
 
   def update_head_of_household_fields
-    self.people.update_all(head_of_household: Person.find(self.head_id).head_of_household)
+    self.people.update_all(head_of_household: Person.find(self.head_id).head_of_household) unless self.people.empty?
+  end
+
+  def create_comdev
+    self.create_community_development
   end
 
   def remove_comdev
