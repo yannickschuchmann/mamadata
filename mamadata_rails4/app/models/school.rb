@@ -19,6 +19,21 @@ class School < ActiveRecord::Base
     self.joined_at.strftime("%Y")+'-'+self.terminated_at.strftime("%Y") unless self.terminated_at.nil? or self.joined_at.nil?
   end
 
+  def sorted_classes
+    self.school_classes.sort do |a, b|
+      case
+      when a.name.to_i + b.name.to_i == 0
+        (a.name.downcase <=> b.name.downcase)*-1
+      when a.name.to_i == 0 && b.name.to_i != 0
+        1
+      when b.name.to_i == 0 && a.name.to_i != 0
+        -1
+      else
+        (a.name <=> b.name)*-1
+      end
+    end
+  end
+
   private
 
   def terminate_previous
@@ -58,6 +73,11 @@ class College < School
     School.model_name
   end
   def class_names
-    ['Semester 1', 'Semester 2']
+    (1..10).map {|s| "Semester "+s.to_s}
+  end
+  def sorted_classes
+    self.school_classes.sort do |a, b|
+      (a.name.downcase <=> b.name.downcase)*-1
+    end
   end
 end

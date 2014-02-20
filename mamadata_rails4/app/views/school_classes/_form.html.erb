@@ -12,7 +12,12 @@
 	<div class="small-12 medium-4 column">
 		<%= f.label :document %>
 	</div>
-	<div class="small-12 medium-8 column">
+    <% if @school_class.document_file_name %>
+    <div class="small-12 medium-4 column">
+        <%= content_tag(:i, " ", class: "icon-file")+@school_class.document_file_name %>
+    </div>
+    <% end %>
+	<div class="small-12 <%= @school_class.document_file_name ? "medium-4" : "medium-8" %> column">
 		<%= f.file_field :document %>
 	</div>
 </div>
@@ -28,7 +33,11 @@
 	</div>
 </div>
 <div class="button-center">
-	<%= f.submit :class => 'button' %>
+    <% if current_page?(:action => 'edit') %>
+        <%= f.submit :class => 'button', data: {confirm: "Please note that the old file will be lost!"} %>
+    <% else %>
+	    <%= f.submit :class => 'button' %>
+    <% end %>
 </div>
 <% end %>
 <script type="text/javascript">
