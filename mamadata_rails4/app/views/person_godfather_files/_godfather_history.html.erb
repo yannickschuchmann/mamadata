@@ -32,6 +32,11 @@
 				</div>
 				<div class="small-12 medium-6 column">
 					<div class="small-11 column">
+										<ul class="button-group right">
+						<li>
+							<%= link_to "Add Correspondance", new_person_godfather_file_path(join_model), :class => 'button tiny icon-plus'  %>
+						</li>
+					</ul>
 						<table class="table small-12">
 							<thead>
 								<tr>
@@ -44,7 +49,7 @@
 								<% join_model.person_godfather_files.order("updated_at DESC").each do |f| %>
 								<tr>
 									<td><%= (f.remark.empty? ? f.file_file_name : simple_format(f.remark))%></td>
-									<td><%#= l f.file_updated_at.to_date %></td>
+									<td><%= l f.created_at.to_date %></td>
 									<td><%= link_to (content_tag(:i, '', :class => 'icon-download-alt')), get_godfather_file_path(f.id) %>
 										<%= link_to (content_tag(:i, '', :class => 'icon-trash')), person_godfather_file_path(f.id), method: :delete, data: { confirm: 'Are you sure?' } %>
 									</td>
@@ -53,11 +58,7 @@
 							</tbody>
 						</table>
 					</div>
-					<ul class="button-group right">
-						<li>
-							<%= link_to "Add Correspondance", new_person_godfather_file_path(join_model), :class => 'button tiny icon-plus'  %>
-						</li>
-					</ul>
+
 				</div>
 			</div>
 		</dd>

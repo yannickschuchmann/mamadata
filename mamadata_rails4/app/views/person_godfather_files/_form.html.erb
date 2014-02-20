@@ -15,12 +15,30 @@
 </div>
 <% end %>
 <%= form.hidden_field :godfather_person_id %>
- <div class="row">
+<%= form.hidden_field :remark %>
+
+    <div class="row">
         <div class="small-12 medium-4 column">
-            <%= form.label "Save as" %>
+        <%= label(:remark, :typeof) %>
         </div>
         <div class="small-12 medium-8 column">
-            <%= form.text_field :remark, placeholder: "max 20 characters"%>
+           <%= select("remark", "typeof", ["Greeting Card", "Godfather Letter"] ) %>
+        </div>
+    </div>
+        <div class="row">
+        <div class="small-12 medium-4 column">
+        <%= label(:remark, :language) %>
+        </div>
+        <div class="small-12 medium-8 column">
+           <%= select("remark", "language", ["English", "French", "Tamil"] ) %>
+        </div>
+    </div>
+        <div class="row">
+        <div class="small-12 medium-4 column">
+        <%= label(:remark, :submitdate) %>
+        </div>
+        <div class="small-12 medium-8 column">
+            <%= date_select("remark", "submitdate", order: [:day, :month, :year]) %>
         </div>
     </div>
     <div class="row">
