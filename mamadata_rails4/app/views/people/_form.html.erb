@@ -66,7 +66,8 @@
 				<%= f.label :date_of_birth, :class => "inline"%>
 			</div>
 			<div class="small-12 medium-8 columns">
-				<%= f.date_select :date_of_birth, {:order => [:day, :month, :year], :start_year => 1910}, :class => "small-4 column" %>
+				<%= f.date_select :date_of_birth, {:order => [:day, :month, :year], :start_year => 1910}, :class => "small-4 left" %>
+				<div class="clearfix"></div>
 			</div>
 		</div>
 		<div class="row">
