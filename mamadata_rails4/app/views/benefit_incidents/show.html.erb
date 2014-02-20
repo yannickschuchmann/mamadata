@@ -8,7 +8,7 @@
 	</tr>
 	<tr>
 		<td><b>Amount:</b></td>
-		<td><%= money_without_cents_and_with_symbol @benefit_incident.amount %></td>
+		<td><%= number_to_indian_currency(@benefit_incident.amount).html_safe %></td>
 	</tr>
 	<tr>
 		<td><b>Program:</b></td>
