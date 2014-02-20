@@ -42,7 +42,7 @@
   </div>
   <div class="row">
     <div class="small-12 large-3 columns"><%= f.label :zipcode %></div>
-    <div class="small-12 large-9 columns"><%= f.number_field :zipcode %></div>
+    <div class="small-12 large-9 columns"><%= f.text_field :zipcode %></div>
   </div>
   <div class="row">
     <div class="small-12 large-3 columns"><%= f.label :email %></div>
@@ -56,12 +56,9 @@
     <div class="small-12 large-3 columns"><%= f.label :telephone_number %></div>
     <div class="small-12 large-9 columns"><%= f.number_field :telephone_number %></div>
   </div>
-  <div class="row">
-    <div class="small-12 large-3 columns"><%= f.label :godfather %></div>
-    <div class="small-12 large-9 columns"><%= f.check_box :godfather %></div>
-  </div>
+
     <div class="row">
-    <div class="spsmall-12 large-3 columns"><%= f.label :is_volunteer %></div>
+    <div class="spsmall-12 large-3 columns"><%= f.label :is_volunteer, "Is Volunteer" %></div>
     <div class="small-12 large-9 columns"><%= f.check_box :is_volunteer %></div>
   </div>
   <div class="row">
@@ -75,6 +72,28 @@
   <div class="row">
     <div class="small-12 large-3 columns"><%= f.label :type_of_work %></div>
     <div class="small-12 large-9 columns"><%= f.text_field :type_of_work %></div>
+  </div>
+      <div class="row">
+    <div class="small-12 large-3 columns"><%= f.label :is_donor, "Is Donor" %></div>
+    <div class="small-12 large-9 columns"><%= f.check_box :is_donor %></div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 large-3 columns"><%= f.label :donor_type_id %></div>
+    <div class="small-12 large-9 columns"><%= f.select :donor_type_id, DonorType.all.map{|d| [d.name, d.id]} , {:include_blank => "Please Select"} %></div>
+  </div>
+    <div class="row">
+    <div class="small-12 large-3 columns"><%= f.label :godfather, "Is Godfather" %></div>
+    <div class="small-12 large-9 columns"><%= f.check_box :godfather %></div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 large-3 columns"><%= f.label :donation_amount, "Donation Amount" %></div>
+    <div class="small-12 large-9 columns"><%= f.text_field :donation_amount %></div>
+  </div>
+    <div class="row">
+    <div class="small-12 large-3 columns"><%= f.label :donation_year, "Year of Donation" %></div>
+    <div class="small-12 large-9 columns"><%= f.date_select :donation_year,{:order => [:year], :start_year => Date.today.year, :end_year => 1999}%></div>
   </div>
   <div class="button-center">
     <%= f.submit :class => 'button' %>

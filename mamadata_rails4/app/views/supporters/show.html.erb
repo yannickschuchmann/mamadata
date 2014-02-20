@@ -59,10 +59,7 @@
 		<td><%= @supporter.telephone_number %></td>
 	</tr>
 
-	<tr>
-		<td><b>Godfather:</b></td>
-		<td><%= @supporter.godfather %></td>
-	</tr>
+
 
 	<tr>
 		<td><b>Is Volunteer?:</b></td>
@@ -82,5 +79,28 @@
 		<td><b>Type of Work:</b></td>
 		<td><%= @supporter.type_of_work %></td>
 	</tr>
+	<tr>
+		<td><b>Is Donor:</b></td>
+		<td><%= @supporter.is_donor %></td>
+	</tr>
+	<tr>
+		<td><b>Donor Type:</b></td>
+		<td><%= @supporter.donor_type %></td>
+	</tr>
+	<% if @supporter.godfather %>
+	<tr>
+		<td><b>Godfather:</b></td>
+		<td><%= @supporter.godfather %></td>
+	</tr>
+	<% end %>
+	<tr>
+		<td><b>Donation Amount:</b></td>
+		<td><%= @supporter.donation_amount %></td>
+	</tr>
+	<tr>
+		<td><b>Year of Donation:</b></td>
+		<td><%= @supporter.donation_year %></td>
+	</tr>
+
 </table>
 

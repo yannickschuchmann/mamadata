@@ -6,6 +6,12 @@ mother = Role.create(name: "Mother")
 brother = Role.create(name: "Brother")
 sister = Role.create(name: "Sister")
 
+DonorType.create(name: "Sharana France")
+DonorType.create(name: "Social Business Stiftung Hamburg")
+
+
+
+
 sponsorship = Program.create(name: "Sponsorship", description: "")
 homework = Program.create(name: "Evening Homework Help Centre", description: "")
 daycare = Program.create(name: "Day Care Centre", description: "")
