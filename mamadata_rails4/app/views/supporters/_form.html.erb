@@ -87,13 +87,7 @@
       ), {:include_blank => "Please Select"} %></div>
   </div>
 
-    <%= fields_for :donor_type, @supporter.donor_type do |donor_type_fields| %>
-    <div class="row">
-      <div class="small-12 large-3 columns"><%= donor_type_fields.label "Specify Type" %></div>
-      <div class="small-12 large-9 columns"><%= donor_type_fields.text_field :name %></div>
-    </div>
-      
-    <% end %>
+
   <div class="row">
     <div class="small-12 large-3 columns"><%= f.label :donation_amount %></div>
     <div class="small-12 large-9 columns"><%= f.text_field :donation_amount %></div>

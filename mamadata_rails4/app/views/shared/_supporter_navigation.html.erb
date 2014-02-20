@@ -5,6 +5,12 @@
 	New Supporter
 	<% end %>
 </li>
+<li>
+	<%= link_to donor_types_path do %>
+	<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+	Create Donor Type
+	<% end %>
+</li>
 <% end %>
 <% if params[:action] == "show" %>
 	<li>

@@ -1,0 +1,27 @@
+<%= render '/shared/overview_sidebar' %>
+<h1>All Donor Types</h1>
+<div id="content">
+	<h1 class="text-center">Donor Types</h1>
+	<div class="row">
+	<div class="small-6 column right"><%= link_to "Creat New", new_donor_type_path %></div>
+		<table id="benefitsIndexTable" class="table tablesorter">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<td></td>
+				</tr>
+			</thead>
+			<tbody>
+				<% @donor_types.each do |donor_type| %>
+				<tr data-link="<%= donor_type_path(donor_type) %>">
+					<td><%= donor_type.name %></td>
+					<td style="width: 130px;">
+						<%= link_to (content_tag(:i, "", :class => "icon-edit")), edit_donor_type_path(donor_type) %>
+						<%= link_to (content_tag(:i, "", :class => "icon-trash")), donor_type, method: :delete, data: { confirm: 'Are you sure?' } %>
+					</td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
