@@ -26,7 +26,10 @@ class SupportersController < ApplicationController
   # POST /supporters.json
   def create
     @supporter = Supporter.new(supporter_params)
-
+    # puts "@@@@@"
+    # puts params[:donor_type].blank?
+    # puts "@@@@@@@"
+    # @supporter.build_donor_type(params[:donor_type])
     respond_to do |format|
       if @supporter.save
         format.html { redirect_to @supporter, notice: 'Supporter was successfully created.' }
@@ -70,6 +73,6 @@ class SupportersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def supporter_params
-      params.require(:supporter).permit(:organisation,:name , :family_name, :date_of_birth, :country, :city, :street, :zipcode, :email, :website, :telephone_number, :godfather, :is_volunteer, :begin_of_work, :end_of_work, :type_of_work)
+      params.require(:supporter).permit(:organisation,:name , :family_name, :date_of_birth, :country, :city, :street, :zipcode, :email, :website, :telephone_number, :godfather, :is_volunteer, :begin_of_work, :end_of_work, :type_of_work, :donor_type_id, :is_donor, :donation_amount, :donation_year)
     end
 end
