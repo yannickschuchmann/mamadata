@@ -32,12 +32,12 @@ Available Benefits
     <table id="benefitsIndexTable" class="table tablesorter">
       <thead>
         <tr>
-        <td><%= check_box_tag :checked_benefit,'#', false, id: 'chkall' %></td>
+        <th></th>
           <th>Name</th>
           <th>Description</th>
           <th>Amount Spent this Year</th>
           <th>Benefit Type</th>
-          <td></td>
+          <th>Created At</th>
         </tr>
       </thead>
       <tbody>
@@ -48,7 +48,7 @@ Available Benefits
           <td><%= benefit.description %></td>
           <td><%= number_to_indian_currency(benefit.get_amount_year_to_date).html_safe %></td>
           <td><%= benefit.get_category %></td>
-
+            <td><%= l benefit.created_at.to_date %></td>
         </tr>
         <% end %>
       </tbody>
