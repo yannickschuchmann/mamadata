@@ -17,7 +17,7 @@
 	//= require jquery.tablesorter.min
 	//= require jquery.ui.all
 	//= require foundation
-	//= require turbolinks
+	// require turbolinks
 
     var APP = {
 		Persons: {},

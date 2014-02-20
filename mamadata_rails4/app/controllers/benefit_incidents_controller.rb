@@ -2,6 +2,8 @@ class BenefitIncidentsController < ApplicationController
   before_action :set_benefit_incident, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
   respond_to :js, :html
+
+  layout "application_main_sidebar", only: :index
   
   # GET /benefit_incidents
   # GET /benefit_incidents.json

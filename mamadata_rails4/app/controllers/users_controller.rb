@@ -2,8 +2,6 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, :is_admin?
 
-  layout "application_main_sidebar"
-
   # GET /users
   # GET /users.json
   def index
