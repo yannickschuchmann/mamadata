@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220152246) do
+ActiveRecord::Schema.define(version: 20140220192117) do
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
@@ -165,7 +165,7 @@ ActiveRecord::Schema.define(version: 20140220152246) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "area"
-    t.string   "file_number",         default: ""
+    t.string   "file_number"
     t.string   "head_of_household"
   end
 
@@ -273,6 +273,7 @@ ActiveRecord::Schema.define(version: 20140220152246) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "position_in_organisation"
   end
 
   create_table "users", force: true do |t|
