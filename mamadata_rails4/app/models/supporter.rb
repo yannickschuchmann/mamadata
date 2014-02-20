@@ -1,4 +1,5 @@
 class Supporter < ActiveRecord::Base
+	has_attached_file :avatar, :styles => { :medium => "300x300>", :small => "160>", :thumb => "100x100>" }, :default_url => "/images/missing_:style.gif"
 	has_many :godfather_people, :foreign_key => 'godfather_id'
 	has_many :people, through: :godfather_people
 	belongs_to :donor_type

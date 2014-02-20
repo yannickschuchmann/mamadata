@@ -24,6 +24,14 @@
     <div class="small-12 large-3 columns"><%= f.label :family_name %></div>
     <div class="small-12 large-9 columns"><%= f.text_field :family_name %></div>
   </div>
+      <div class="row">
+      <div class="small-12 medium-4 columns">
+        <%= f.label "Profile Picture" %>
+      </div>
+      <div class="small-12 medium-8 columns">
+        <%= f.file_field :avatar %>
+      </div>
+    </div>
   <div class="row">
     <div class="small-12 large-3 columns"><%= f.label :date_of_birth %></div>
     <div class="small-12 large-9 columns"><%= f.date_select  :date_of_birth, {:order => [:day, :month, :year], :start_year => 1910}, :class => "small-4 column" %></div>
