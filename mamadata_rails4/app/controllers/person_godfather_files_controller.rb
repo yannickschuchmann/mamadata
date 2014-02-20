@@ -28,7 +28,7 @@ class PersonGodfatherFilesController < ApplicationController
       month = remark_params["submitdate(2i)"]
       year = remark_params["submitdate(1i)"]
 
-      remark_to_safe = type_of_corresp+" "+language+" "+day+"-"+month+"-"+year
+      remark_to_safe = type_of_corresp+"/"+language+"/"+day+"-"+month+"-"+year
 
     @person_godfather_file = PersonGodfatherFile.create( person_godfather_file_params )
     @person_godfather_file.remark = remark_to_safe
