@@ -1,1 +1,1 @@
-<div>Total Amount (Selected): <%= money_without_cents_and_with_symbol @amount %> </div>
+<div>Total Amount (Selected): <%= number_to_indian_currency(@amount).html_safe %> </div>
