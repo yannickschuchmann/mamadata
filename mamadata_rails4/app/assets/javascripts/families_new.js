@@ -33,7 +33,7 @@ $("#searchExistingPeopleForm").submit(function(e){
 				    <td>" + result[i].fathers_name +"</td>\
 				    <td>" + result[i].city +"</td>\
 				    <td>" + result[i].zip_code +"</td>\
-				    <td><div class='button tiny' data-pid="+i+"><i class='icon-plus'></i></div></td>\
+				    <td><div class='button tiny less-pd' data-pid="+i+"><i class='icon-user'></i> <i class='icon-arrow-right'></i> <i class='icon-group'></i></div></td>\
                 </tr>";
 			}
 			$("#searchResult")

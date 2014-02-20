@@ -21,6 +21,10 @@ body .row {
 
 .button {
 	background: $color-deco3 !important;
+    &.less-pd {
+      padding-right: 0.7rem !important;
+      padding-left: 0.7rem !important;
+    }
 }
 
 #content {
