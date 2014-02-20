@@ -201,7 +201,7 @@
 				<%= f.label :role_id %>
 			</div>
 			<div class="small-12 medium-8 column">
-				<%= f.select :role_id, Role.all.map{|role| [role.name, role.id]}, :placeholder => "Income per month in Rupee" %>
+				<%= f.select :role_id, Role.all.map{|role| [role.name, role.id]}%>
 			</div>
 		</div>
 	</div>

@@ -95,6 +95,12 @@ ActiveRecord::Schema.define(version: 20140220125802) do
     t.datetime "updated_at"
   end
 
+  create_table "donor_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "families", force: true do |t|
     t.integer  "person_id"
     t.integer  "community_development_id"
@@ -257,6 +263,11 @@ ActiveRecord::Schema.define(version: 20140220125802) do
     t.string   "type_of_work"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_donor"
+    t.integer  "donation_amount_paise"
+    t.string   "donation_amount_currency", default: "INR", null: false
+    t.integer  "donor_type_id"
+    t.date     "donation_year"
   end
 
   create_table "users", force: true do |t|

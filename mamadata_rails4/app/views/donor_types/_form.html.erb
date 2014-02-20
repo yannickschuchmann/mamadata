@@ -1,0 +1,10 @@
+    <%= form_for  @donor_type do |f| %>
+    <div class="row">
+      <div class="small-12 large-3 columns"><%= f.label "Name of Organisation" %></div>
+      <div class="small-12 large-9 columns"><%= f.text_field :name %></div>
+    </div>
+    <div class="row button-center">
+	<%= f.submit :class => 'button' %>
+</div>
+      
+    <% end %>
