@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20140220131249) do
+=======
 ActiveRecord::Schema.define(version: 20140220125802) do
+>>>>>>> 56f2e52000b1191eecf599b52d45746d31be14d3
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
@@ -252,7 +256,7 @@ ActiveRecord::Schema.define(version: 20140220125802) do
     t.string   "country"
     t.string   "city"
     t.string   "street"
-    t.integer  "zipcode"
+    t.string   "zipcode"
     t.string   "email"
     t.string   "website"
     t.string   "telephone_number"
@@ -268,6 +272,7 @@ ActiveRecord::Schema.define(version: 20140220125802) do
     t.string   "donation_amount_currency", default: "INR", null: false
     t.integer  "donor_type_id"
     t.date     "donation_year"
+    t.string   "street_number"
   end
 
   create_table "users", force: true do |t|

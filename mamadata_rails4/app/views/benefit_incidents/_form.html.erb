@@ -17,9 +17,11 @@
 </div>
 <div class="row">
 	<div class="small-6 medium-4  columns"><%= f.label :remark %></div>
-	<div class="small-12 medium-8 columns"><%= f.text_area :remark, size:"100x100", :id => "benefit_incident_remark" %></div>
-	<div style="margin-top: -15px; margin-bottom: 5px; padding-right: 10px" class="text-right">
-		<span id="txtLeft">500</span><span> of 500 chars left</span>
+	<div class="small-12 medium-8 columns">
+		<%= f.text_area :remark, size:"100x100", :id => "benefit_incident_remark" %>
+		<div style="margin-top: -15px; margin-bottom: 10px;" class="text-right">
+			<span id="txtLeft">500</span><span> of 500 chars left</span>
+		</div>
 	</div>
 </div>
 <% if is_admin? %>

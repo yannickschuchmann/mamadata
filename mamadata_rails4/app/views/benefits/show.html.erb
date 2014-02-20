@@ -17,7 +17,7 @@
 					<td rowspan="3">Pending: <%= number_to_indian_currency(@benefit.get_total_amount(false)).html_safe %><br />Granted: <%= number_to_indian_currency(@benefit.get_total_amount).html_safe %></td>
 					<td rowspan="3">
 						<% @benefit.programs.each_slice(3) do |slice| %>
-						<div style="padding-bottom: 5px;">
+						<div>
 							<% slice.each do |program| %>
 							<%=link_to program.name, program_path(program), class:  "label button"%>
 							<% end %>
