@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220131249) do
+ActiveRecord::Schema.define(version: 20140220132112) do
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
@@ -244,32 +244,8 @@ ActiveRecord::Schema.define(version: 20140220131249) do
 
   add_index "schools", ["person_id"], name: "index_schools_on_person_id"
 
-  create_table "supporters", force: true do |t|
-    t.string   "organisation"
-    t.string   "name"
-    t.string   "family_name"
-    t.date     "date_of_birth"
-    t.string   "country"
-    t.string   "city"
-    t.string   "street"
-    t.string   "zipcode"
-    t.string   "email"
-    t.string   "website"
-    t.string   "telephone_number"
-    t.boolean  "godfather"
-    t.boolean  "is_volunteer"
-    t.date     "begin_of_work"
-    t.date     "end_of_work"
-    t.string   "type_of_work"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "is_donor"
-    t.integer  "donation_amount_paise"
-    t.string   "donation_amount_currency", default: "INR", null: false
-    t.integer  "donor_type_id"
-    t.date     "donation_year"
-    t.string   "street_number"
-  end
+# Could not dump table "supporters" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
