@@ -1,33 +1,30 @@
-<%= render '/shared/overview_sidebar' %>
-<div id="content">
-	<% if notice %>
-		<p id="notice"><%= notice %></p>
-	<% end %>
-	<h1>Families</h1>
-	<table id="familiesIndexTable" class="table tablesorter">
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Head of the Household</th>
-				<th>Family Member</th>
-				<td></td>
-			</tr>
-		</thead>
+<% if notice %>
+    <p id="notice"><%= notice %></p>
+<% end %>
+<h1>Families</h1>
+<table id="familiesIndexTable" class="table tablesorter">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Head of the Household</th>
+            <th>Family Member</th>
+            <td></td>
+        </tr>
+    </thead>
 
-		<tbody>
-			<% @families.each_with_index do |family,key| %>
-			<tr data-link="<%= family_path(family) %>">
-				<td><%= family.name %></td>
-				<td><%= @heads[key].name %></td>
-				<td><% family.people.each do |people| %>
-					<%= people.name %> <br>
-					<% end %>
-				</td>
-				<td>
-					<%= link_to (content_tag(:i, '', :class => 'icon-trash')), family, method: :delete, data: { confirm: 'Are you sure?' } %>
-				</td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
-</div>
+    <tbody>
+        <% @families.each_with_index do |family,key| %>
+        <tr data-link="<%= family_path(family) %>">
+            <td><%= family.name %></td>
+            <td><%= @heads[key].name %></td>
+            <td><% family.people.each do |people| %>
+                <%= people.name %> <br>
+                <% end %>
+            </td>
+            <td>
+                <%= link_to (content_tag(:i, '', :class => 'icon-trash')), family, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>

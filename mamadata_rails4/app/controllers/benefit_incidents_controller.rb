@@ -1,4 +1,4 @@
-  class BenefitIncidentsController < ApplicationController
+class BenefitIncidentsController < ApplicationController
   before_action :set_benefit_incident, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
   respond_to :js, :html

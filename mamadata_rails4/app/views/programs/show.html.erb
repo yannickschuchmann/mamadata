@@ -2,16 +2,15 @@
 <p id="notice"><%= notice %></p>
 <% end %>
 
-
-		<h2 class="text-center"><%= @program.name %></h2>
-		<div class="row">
-		<div class="small-12 medium-12 column">
-<table class="table">
-	<tr>
-		<th>Description</th>
-		<th>Total Amount Spent on Program</th>
-		<th>Benefits</th>
-	</tr>
+<h2 class="text-center"><%= @program.name %></h2>
+<div class="row">
+    <div class="small-12 medium-12 column">
+    <table class="table">
+        <tr>
+            <th>Description</th>
+            <th>Total Amount Spent on Program</th>
+            <th>Benefits</th>
+        </tr>
 			<tr>
 				<td rowspan="3"><%= @program.description %></td>
 				<td rowspan="3">Pending: <%= number_to_indian_currency(@program.get_amount_year_to_date(false)).html_safe %><br />
