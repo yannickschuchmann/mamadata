@@ -16,7 +16,7 @@
                 <li class="<%= roles %>"><%= link_to 'Settings', roles_path %></li>
             <% end %>
             <li class="<%= users %>"><%= link_to 'Profile', edit_user_registration_path %></li>
-            <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %> </li>
+            <li><%= link_to 'Sign out', destroy_user_session_path %> </li>
         </ul>
     </div>
 <% end %>
