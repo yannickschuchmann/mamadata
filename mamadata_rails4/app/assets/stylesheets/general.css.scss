@@ -112,6 +112,10 @@ form {
 	}
 }
 
+input[type="file"] {
+  padding: 0 !important;
+}
+
 html.touch{
 	input[type="checkbox"] {
 		width: 36px;
