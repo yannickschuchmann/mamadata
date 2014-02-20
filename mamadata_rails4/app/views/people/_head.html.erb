@@ -8,7 +8,7 @@
 			<h5><b>File: <%= @person.id %> <%= former_file_number %></b></h5>
 			<ul class="no-bullet">
 				<% @person.programs.each do |p| %>
-				    <%= link_to p.name, program_path(p), {class: 'label button'} %>
+				    <%= link_to p.name, program_path(p), :class => 'label button' %>
 				<% end %>
 			</ul>
             <div id="amount-to-date" class="button-bar">
