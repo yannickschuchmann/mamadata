@@ -5,7 +5,7 @@ class SupportersController < ApplicationController
   # GET /supporters
   # GET /supporters.json
   def index
-    @supporters = Supporter.all
+    @supporters = Supporter.all.order(created_at: :desc)
   end
 
   # GET /supporters/1

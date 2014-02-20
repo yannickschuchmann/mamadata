@@ -19,9 +19,6 @@
 	//= require foundation
 	//= require turbolinks
 
-	// require jquery_ujs
-
-	
     var APP = {
 		Persons: {},
 		Incidents: {},

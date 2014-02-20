@@ -29,7 +29,7 @@ body .row {
 }
 
 .person-picture {
-  padding-top: 10px;
+  padding: 10px 0;
 }
 
 table {
@@ -95,4 +95,7 @@ label.error {
   background-color: #d35400;
   color: #fff !important;
   padding: 5px;
+}
+a.label {
+  margin-bottom: 5px;
 }
