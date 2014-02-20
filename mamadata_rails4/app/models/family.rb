@@ -5,6 +5,7 @@ class Family < ActiveRecord::Base
   validates :head_id, presence: true, on: :update
   validates :name, presence: true, on: :update
   before_validation :set_name
+  after_save :update_head_of_household_fields
   after_destroy :remove_comdev
 
   private
@@ -18,6 +19,10 @@ class Family < ActiveRecord::Base
       self.head_id = ''
       self.name = ''
     end
+  end
+
+  def update_head_of_household_fields
+    self.people.update_all(head_of_household: Person.find(self.head_id).head_of_household)
   end
 
   def remove_comdev
