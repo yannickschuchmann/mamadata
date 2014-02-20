@@ -5,7 +5,7 @@ class Family < ActiveRecord::Base
   validates :head_id, presence: true, on: :update
   validates :name, presence: true, on: :update
   before_validation :set_name
-  before_destroy :remove_comdev
+  after_destroy :remove_comdev
 
   private
 
@@ -21,6 +21,6 @@ class Family < ActiveRecord::Base
   end
 
   def remove_comdev
-    CommunityDevelopment.find(self.community_development_id).destroy unless self.community_development_id.nil?
+    self.community_development.destroy unless self.community_development.nil?
   end
 end
