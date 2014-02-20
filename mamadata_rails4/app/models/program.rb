@@ -15,7 +15,7 @@ class Program < ActiveRecord::Base
 		if date.nil?
       benefit_incidents = self.benefit_incidents
     else
-    	benefit_incidents = self.benefit_incidents.where('date_granted >= :date', :date => date)
+    	benefit_incidents = status==true ? self.benefit_incidents.where('date_granted >= :date', :date => date) : self.benefit_incidents.where('created_at >= :date', :date => date)
     end
     benefit_incidents.each do |benefit|
       if(benefit.status == status)
@@ -25,8 +25,8 @@ class Program < ActiveRecord::Base
     return total_amount
   end
 
-  def get_amount_year_to_date
-	  self.get_total_amount Date.today.beginning_of_financial_year
+  def get_amount_year_to_date(status=true)
+	  self.get_total_amount(status, Date.today.beginning_of_financial_year)
   end
 
 end
