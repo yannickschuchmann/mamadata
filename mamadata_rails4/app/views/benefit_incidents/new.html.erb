@@ -11,35 +11,16 @@
 			</ul>
 		</div>
 		<% end %>
-		<div class="small-12 medium-10 column medium-centered">
-			<div class="small-12 medium-6 column">
-				<h2>Chosen Person</h2>
-				<table class="left table small-12">
-					<tr>
-						<th class="small-4">Name</th>
-						<td class="small-8"><%=@benefit_incident.person.name %></td>
-					</tr>
-					<tr>
-						<th>Fathers Name</th>
-						<td><%=@benefit_incident.person.fathers_name %></td>
-					</tr>
-					<tr>
-						<th>Total amount spent on</th>
-						<td><%= number_to_indian_currency(@benefit_incident.person.get_total_expenses).html_safe %></td>
-					</tr>
-				</table>
-				<div class="clearfix"></div>
-			</div>
-			<div class="small-12 medium-6 column">
+			<div class="small-12 medium-6 column medium-centered">
 				<% if !@benefit_incident.person.programs.empty?%>
-				<%= render 'form' %>
+					<%= render 'form' %>
 				<% else %>
-				<h2>&nbsp;</h2>
-				<h4 class="text-center">Please add person to a program</h4>
+					<h2>&nbsp;</h2>
+					<h4 class="text-center">Please add person to a program</h4>
 				<% end %>
 			</div>
-			<div class="small-12 column">
-				<%= link_to 'Cancel', person_path(@benefit_incident.person_id), :class => "button tiny right" %>
+			<div class="text-center">
+				<%= link_to 'Cancel', person_path(@benefit_incident.person_id), :class => "button tiny" %>
 			</div>
 		</div>
 	</div>
