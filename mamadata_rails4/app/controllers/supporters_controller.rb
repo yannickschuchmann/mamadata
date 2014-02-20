@@ -73,6 +73,6 @@ class SupportersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def supporter_params
-      params.require(:supporter).permit(:organisation,:name , :family_name, :date_of_birth, :country, :city, :street, :zipcode, :email, :website, :telephone_number, :godfather, :is_volunteer, :begin_of_work, :end_of_work, :type_of_work, :donor_type_id, :is_donor, :donation_amount, :donation_year)
+      params.require(:supporter).permit(:organisation,:name , :family_name, :date_of_birth, :country, :city, :street, :zipcode, :email, :website, :telephone_number, :godfather, :is_volunteer, :begin_of_work, :end_of_work, :type_of_work, :donor_type_id, :is_donor, :donation_amount, :donation_year, :steet_number)
     end
 end
