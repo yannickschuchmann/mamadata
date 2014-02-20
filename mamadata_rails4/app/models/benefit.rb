@@ -6,6 +6,7 @@ class Benefit < ActiveRecord::Base
 	has_many :people, through: :programs
 	validates :name, presence: true
 	validates :max_people, allow_nil: true, :numericality => {greater_than_or_equal_to: 1}
+
 	validate :validate_calculated_amount
 	validate :optional_amount_xor_fixed_amount
 
@@ -34,16 +35,14 @@ class Benefit < ActiveRecord::Base
 
 protected
 	def optional_amount_xor_fixed_amount
-		if self.optional_amount || self.fixed_amount
-			if !(optional_amount.blank? ^ fixed_amount.blank?)
-        errors.add(:base, "Specify a calculated amount or a fixed amount , not both")
-      end
+		if !(self.optional_amount.blank? || self.fixed_amount.blank?)
+      errors.add(:base, "Specify a calculated amount or a fixed amount , not both") unless (optional_amount.blank? ^ fixed_amount.blank?)
 		end
 	end
 
 
 	def validate_calculated_amount
-		if self.optional_amount && (!self.max_people || self.max_people <1)
+		if !self.optional_amount.blank? && (self.max_people.blank? || self.max_people <1)
 			errors.add(:benefit, "has to specify max users for calculated amount")
 		end
 	end
