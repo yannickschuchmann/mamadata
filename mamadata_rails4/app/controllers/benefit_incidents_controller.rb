@@ -125,8 +125,8 @@
     end
 
     def add_date_filter
-      @benefit_incidents=@benefit_incidents.where("date_granted >= ?",  params[:date_from])
-      @benefit_incidents = @benefit_incidents.where("date_granted <= ?",  params[:date_to])
+      @benefit_incidents=@benefit_incidents.where("created_at >= ?",  params[:date_from])
+      @benefit_incidents = @benefit_incidents.where("created_at <= ?",  params[:date_to])
     end
 
     def list_for_all_users?
