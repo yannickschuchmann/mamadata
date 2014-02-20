@@ -29,7 +29,7 @@
                 <%= f.label :category, "Amount for each incident" %>
             </div>
             <div class="small-12 medium-8 column">
-                <%= f.select :category, [["Calculated Amount", "calculated"], ["Fixed Amount","fixed"], ["Individual","none"]]%>
+                <%= f.select :category, [ ["Individual","none"],["Calculated Amount", "calculated"], ["Fixed Amount","fixed"]]%>
             </div>
         </div>
         <div class="row" id="fixed_amount" style="display:none">
@@ -45,6 +45,48 @@
         </div>
     </div>
 </div>
+
+
+
+
+<h2>
+Available Programs 
+</h2>
+<table id="programsIndexTable" class="table tablesorter">
+  <thead>
+    <tr>
+    <td></td>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Amount Spent this Year</th>
+      
+    </tr>
+  </thead>
+
+  <tbody>
+    <% Program.all.order(created_at: :desc).each do |program| %>
+    <tr>
+    <td><%= check_box_tag :program_ids, program.id, @benefit.programs.include?(program), :name => 'benefit[program_ids][]' %></td>
+      <td><%= program.name %></td>
+      <td><%= program.description %></td>
+      <td><%= number_to_indian_currency(program.get_amount_year_to_date).html_safe %></td>
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="row">
   <div class="small-12 column">
