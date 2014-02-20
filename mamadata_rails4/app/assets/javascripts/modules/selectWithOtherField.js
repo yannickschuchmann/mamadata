@@ -23,7 +23,7 @@ var selectWithOtherField = {
 		$('.selectWithOtherField select').on('blur change', function(e) {
 			var $this = $(this),
 				val = $this.val();
-			if(val === 'Other') {
+			if(val.toLowerCase() === 'other') {
 				$this.closest('.selectWithOtherField').find('input').addClass('active').prop('disabled', false).focus();
 			}else{
 				$this.closest('.selectWithOtherField').find('input').removeClass('active').prop('disabled', true);

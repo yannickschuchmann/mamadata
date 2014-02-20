@@ -37,17 +37,17 @@ module ApplicationHelper
 end
 
 class EnhancedFormBuilder < ActionView::Helpers::FormBuilder
-  def select_with_other_field(object_name, method, options = {:selectContainerClass => '', :textFieldContainerClass => ''})
+  def select_with_other_field(object_name, method, options = {:selectContainerClass => '', :textFieldContainerClass => '', :include_blank => false})
     # get all possible choices for property
     choices = []
     PossibleChoices.where(:property => method).each do |choice|
       choices << choice.value
     end
-    choices << 'Other'
+    choices << 'other'
 
     # build template
     content = @template.content_tag(:div,
-                @template.select(object_name, method, choices),
+                @template.select(object_name, method, choices, include_blank: options[:include_blank]),
                 {
                     :class => options[:selectContainerClass]
                 })

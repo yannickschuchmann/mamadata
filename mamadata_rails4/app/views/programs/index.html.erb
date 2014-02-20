@@ -4,7 +4,7 @@
 		<tr>
 			<th>Name</th>
 			<th>Description</th>
-			<th>Total Amount Spent On</th>
+			<th>Amount Spent this Year</th>
 			<td></td>
 		</tr>
 	</thead>
@@ -14,7 +14,7 @@
 		<tr data-link="<%= program_path(program) %>">
 			<td><%= program.name %></td>
 			<td><%= program.description %></td>
-			<td><%= number_to_indian_currency(program.get_total_amount).html_safe %></td>
+			<td><%= number_to_indian_currency(program.get_amount_year_to_date).html_safe %></td>
 			<td style="width: 130px;">
 				<%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_program_path(program) %>
 				<% if is_admin? %>

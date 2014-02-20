@@ -72,7 +72,7 @@ class FamiliesController < ApplicationController
     person_ids = get_validated_person_ids @people
     if person_ids
       @family = Family.create
-      @community = @family.create_community_development
+      # @community = @family.create_community_development -> done by after create
       @people.each do |value|
         value = value[1]
         person = Person.find(value["person_id"].to_i)
@@ -80,7 +80,8 @@ class FamiliesController < ApplicationController
         person.update(role: Role.find_by_id(value["role_id"].to_i), family_id: @family.id)
       end
       @family.save
-		  redirect_to edit_community_development_path @family.community_development_id
+      debugger
+		  redirect_to edit_community_development_path @family.community_development
     else
       redirect_to new_family_path
     end

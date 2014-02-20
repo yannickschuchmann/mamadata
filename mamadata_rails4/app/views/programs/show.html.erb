@@ -14,8 +14,8 @@
 	</tr>
 			<tr>
 				<td rowspan="3"><%= @program.description %></td>
-				<td rowspan="3">Pending: <%= number_to_indian_currency(@program.get_total_amount(false)).html_safe %><br />
-					Granted: <%= number_to_indian_currency(@program.get_total_amount).html_safe %></td>
+				<td rowspan="3">Pending: <%= number_to_indian_currency(@program.get_amount_year_to_date(false)).html_safe %><br />
+					Granted: <%= number_to_indian_currency(@program.get_amount_year_to_date).html_safe %></td>
 					<td rowspan="3">
 						<% @program.benefits.each_slice(6) do |slice|  %>
 						<div style="padding-bottom: 5px;">
