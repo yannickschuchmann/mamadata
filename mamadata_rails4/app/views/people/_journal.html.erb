@@ -1,22 +1,6 @@
 <h5>Add a Journal Entry:</h5>
-<%= form_for([@person, @person.journals.build], :html => { :id => "journalForm" }) do |f| %>
-<div class="row">
-	<div class="small-12 large-12 columns"><%= f.label "Journal Entry" %></div>
-	<div class="small-12 large-12 columns"><%= f.text_area :text, :style => "height: 150px" %></div>
-</div>
-
-<%= f.submit "Create Journal Entry", :class => "button" %>
-<% end %>
-
-<% @person.journals.each do |journal| %>
-<h6>
-	<span style="margin-right: 10px; float: left; color: #e67e22;">
-		<%= link_to (content_tag(:i, '', :class => 'icon-trash')), person_journal_path(journal.person_id, journal.id), method: :delete, data: { confirm: 'Are you sure?' }, :style => "color: #e67e22;" %>
-	</span><%= l journal.created_at.to_datetime unless journal.created_at.nil? %>
-</h6>
-<p><%= simple_format(journal.text) %></p>
-<% end %>
-
+<%= render 'journals/form'%>
+<%= render 'journals/list'%>
 <script>
 $("#journalForm").validate(
 {
