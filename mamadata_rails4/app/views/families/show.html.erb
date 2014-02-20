@@ -1,168 +1,178 @@
-<h2 class="text-center">Family name: <%= @family.name %></h2>
-<table id="peopleIndexTable" class="responsive tablesorter">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Fathers name</th>
-        <th>Head of household</th>
-        <th>Gender</th>
-        <th>Date of birth</th>
-        <th>Place of birth</th>
-        <th>City</th>
-        <th>ZIP code</th>
-        <th>Role</th>
-        <th>Total Expense</th>
-        <td></td>
-    </tr>
-    </thead>
-    <tbody>
-    <% @family.people.each do |person| %>
-        <tr data-link="<%= person_path(person) %>">
-            <td><a href="/people/<%= person.id %>"><%= person.name %></a></td>
-            <td><%= person.fathers_name %></td>
-            <td><%= person.head_of_household %></td>
-            <td><%= person.gender %></td>
-            <td><%= person.date_of_birth %></td>
-            <td><%= person.place_of_birth %></td>
-            <td><%= person.city %></td>
-            <td><%= person.zip_code %></td>
-            <td>
-                <% if !person.role_id.nil? %>
-                    <%  b = Role.find (person.role_id) %>
-                    <%= b.name %>
-                <% end %>
-            </td>
-            <td>
-                <%= money_without_cents_and_with_symbol person.get_total_expenses %>
-            </td>
-            <td style="width: 130px;">
-                <% if is_admin? %>
-                    <%= link_to content_tag(:i, '', class: 'icon-trash'), delete_family_relation_path(id: person.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-                <% end %>
-            </td>
-        </tr>
-    <% end %>
-    </tbody>
-</table>
-<h4 class="text-center">Community Development</h4>
-<table>
-    <tr>
-        <td>Type of family:</td>
-        <td><%= @family.community_development.type_of_family %></td>
-        <td></td>
-        <td></td>
-    </tr>
+<%= render '/shared/overview_sidebar' %>
+<div id="content">
+	<h2 class="text-center">Family name: <%= @family.name %></h2>
+	<div class="row person-head">
+		<% @family.people.each do |person| %>
+			<div class="small-2 columns left">
+				<%= image_tag person.avatar.url(:medium), :class => "person-picture", :style =>  "max-width: 100%;"%>
+			</div>
+		<% end %>
+	</div>
+	<table id="peopleIndexTable" class="table responsive tablesorter">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Fathers name</th>
+				<th>Head of household</th>
+				<th>Gender</th>
+				<th>Date of birth</th>
+				<th>Place of birth</th>
+				<th>City</th>
+				<th>ZIP code</th>
+				<th>Role</th>
+				<th>Total Expense</th>
+				<td></td>
+			</tr>
+		</thead>
+		<tbody>
+			<% @family.people.each do |person| %>
+			<tr data-link="<%= person_path(person) %>">
+				<td><a href="/people/<%= person.id %>"><%= person.name %></a></td>
+				<td><%= person.fathers_name %></td>
+				<td><%= person.head_of_household %></td>
+				<td><%= person.gender %></td>
+				<td><%= person.date_of_birth %></td>
+				<td><%= person.place_of_birth %></td>
+				<td><%= person.city %></td>
+				<td><%= person.zip_code %></td>
+				<td>
+					<% if !person.role_id.nil? %>
+					<%  b = Role.find (person.role_id) %>
+					<%= b.name %>
+					<% end %>
+				</td>
+				<td>
+					<%= money_without_cents_and_with_symbol person.get_total_expenses %>
+				</td>
+				<td style="width: 130px;">
+					<% if is_admin? %>
+					<%= link_to content_tag(:i, '', class: 'icon-trash'), delete_family_relation_path(id: person.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+					<% end %>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<h4 class="text-center">Community Development</h4>
+	<table>
+		<tr>
+			<td>Type of family:</td>
+			<td><%= @family.community_development.type_of_family %></td>
+			<td></td>
+			<td></td>
+		</tr>
 
-    <tr>
-        <td>Residental status:</td>
-        <td><%= @family.community_development.residental_status %></td>
-        <td>How did you get the possession of the house</td>
-        <td><%= @family.community_development.house_possession %></td>
-    </tr>
+		<tr>
+			<td>Residental status:</td>
+			<td><%= @family.community_development.residental_status %></td>
+			<td>How did you get the possession of the house</td>
+			<td><%= @family.community_development.house_possession %></td>
+		</tr>
 
-    <tr>
-        <td>What is the type of the house:</td>
-        <td><%= @family.community_development.house_type %></td>
-        <td>Do you have electricity connection:</td>
-        <td><%= @family.community_development.electricity %></td>
-    </tr>
+		<tr>
+			<td>What is the type of the house:</td>
+			<td><%= @family.community_development.house_type %></td>
+			<td>Do you have electricity connection:</td>
+			<td><%= @family.community_development.electricity %></td>
+		</tr>
 
-    <tr>
-        <td>Where do you obtain your water:</td>
-        <td><%= @family.community_development.water_from %></td>
-        <td>Do you have a toilet facility in your house</td>
-        <td><%= @family.community_development.toilet_facility %></td>
-    </tr>
+		<tr>
+			<td>Where do you obtain your water:</td>
+			<td><%= @family.community_development.water_from %></td>
+			<td>Do you have a toilet facility in your house</td>
+			<td><%= @family.community_development.toilet_facility %></td>
+		</tr>
 
-    <tr>
-        <td>Do you have the facility of rain water</td>
-        <td><%= @family.community_development.rain_harvesting %></td>
-        <td>Would you like to have such a facility:</td>
-        <td><%= @family.community_development.want_rain_harvesting %></td>
-    </tr>
+		<tr>
+			<td>Do you have the facility of rain water</td>
+			<td><%= @family.community_development.rain_harvesting %></td>
+			<td>Would you like to have such a facility:</td>
+			<td><%= @family.community_development.want_rain_harvesting %></td>
+		</tr>
 
-    <tr>
-        <td>Number of earning members in the family:</td>
-        <td><%= @family.community_development.earning_members_of_family %></td>
-        <td>What are the sources of income:</td>
-        <td><%= @family.community_development.source_of_income %></td>
-    </tr>
+		<tr>
+			<td>Number of earning members in the family:</td>
+			<td><%= @family.community_development.earning_members_of_family %></td>
+			<td>What are the sources of income:</td>
+			<td><%= @family.community_development.source_of_income %></td>
+		</tr>
 
-    <tr>
-        <td>If agriculture give land details:</td>
-        <td><%= @family.community_development.land_details %></td>
-        <td>Do you have any savings:</td>
-        <td><%= @family.community_development.any_savings %></td>
-    </tr>
+		<tr>
+			<td>If agriculture give land details:</td>
+			<td><%= @family.community_development.land_details %></td>
+			<td>Do you have any savings:</td>
+			<td><%= @family.community_development.any_savings %></td>
+		</tr>
 
-    <tr>
-        <td>If yes, what is the mode of savings:</td>
-        <td><%= @family.community_development.mode_of_savings %></td>
-        <td>Do you have debts:</td>
-        <td><%= @family.community_development.debts %></td>
-    </tr>
+		<tr>
+			<td>If yes, what is the mode of savings:</td>
+			<td><%= @family.community_development.mode_of_savings %></td>
+			<td>Do you have debts:</td>
+			<td><%= @family.community_development.debts %></td>
+		</tr>
 
-    <tr>
-        <td>If yes, what is the reason for your debt:</td>
-        <td><%= @family.community_development.reason_for_debt %></td>
-        <td>Are any family members addicted to any substance:</td>
-        <td><%= @family.community_development.family_members_addicted_to %></td>
-    </tr>
+		<tr>
+			<td>If yes, what is the reason for your debt:</td>
+			<td><%= @family.community_development.reason_for_debt %></td>
+			<td>Are any family members addicted to any substance:</td>
+			<td><%= @family.community_development.family_members_addicted_to %></td>
+		</tr>
 
-    <tr>
-        <td>Who is it:</td>
-        <td><%= @family.community_development.family_members_addicted_who %></td>
-        <td>Is there any disabled person in your family</td>
-        <td><%= @family.community_development.family_disabled %></td>
-    </tr>
+		<tr>
+			<td>Who is it:</td>
+			<td><%= @family.community_development.family_members_addicted_who %></td>
+			<td>Is there any disabled person in your family</td>
+			<td><%= @family.community_development.family_disabled %></td>
+		</tr>
 
-    <tr>
-        <td>If yes, what is the type of handicap:</td>
-        <td><%= @family.community_development.family_type_of_handicap %></td>
-        <td>Do any of the members of your family have contagioic deseases?:</td>
-        <td><%= @family.community_development.family_chronic_deseases %></td>
-    </tr>
+		<tr>
+			<td>If yes, what is the type of handicap:</td>
+			<td><%= @family.community_development.family_type_of_handicap %></td>
+			<td>Do any of the members of your family have contagioic deseases?:</td>
+			<td><%= @family.community_development.family_chronic_deseases %></td>
+		</tr>
 
-    <tr>
-        <td>What kind of deseases:</td>
-        <td><%= @family.community_development.family_chronic_deseases_which %></td>
-        <td>Are the children in your family duly vaccinated:</td>
-        <td><%= @family.community_development.family_children_vaccined %></td>
-    </tr>
+		<tr>
+			<td>What kind of deseases:</td>
+			<td><%= @family.community_development.family_chronic_deseases_which %></td>
+			<td>Are the children in your family duly vaccinated:</td>
+			<td><%= @family.community_development.family_children_vaccined %></td>
+		</tr>
 
-    <tr>
-        <td>Do married members of your family know about family planning:</td>
-        <td><%= @family.community_development.family_knowledge_of_family_planning %></td>
-        <td>Has any of your family member undergone family planning:</td>
-        <td><%= @family.community_development.family_undergone_family_planning %></td>
-    </tr>
+		<tr>
+			<td>Do married members of your family know about family planning:</td>
+			<td><%= @family.community_development.family_knowledge_of_family_planning %></td>
+			<td>Has any of your family member undergone family planning:</td>
+			<td><%= @family.community_development.family_undergone_family_planning %></td>
+		</tr>
 
-    <tr>
-        <td>Do you know any home remedies for general illnesses:</td>
-        <td><%= @family.community_development.home_remedies_for_illnesses %></td>
-        <td>For your illness, where do you go for treatment</td>
-        <td><%= @family.community_development.illness_treatment %></td>
-    </tr>
+		<tr>
+			<td>Do you know any home remedies for general illnesses:</td>
+			<td><%= @family.community_development.home_remedies_for_illnesses %></td>
+			<td>For your illness, where do you go for treatment</td>
+			<td><%= @family.community_development.illness_treatment %></td>
+		</tr>
 
-    <tr>
-        <td>Do you have any school drop out children in your family</td>
-        <td><%= @family.community_development.family_school_dropout %></td>
-        <td>If yes give reason for dropout:</td>
-        <td><%= @family.community_development.family_dropout_reason_for %></td>
-    </tr>
+		<tr>
+			<td>Do you have any school drop out children in your family</td>
+			<td><%= @family.community_development.family_school_dropout %></td>
+			<td>If yes give reason for dropout:</td>
+			<td><%= @family.community_development.family_dropout_reason_for %></td>
+		</tr>
 
-    <tr>
-        <td>After dropout what is the present condition of the person:</td>
-        <td><%= @family.community_development.family_dropout_present_condition %></td>
-        <td>Is any of you family member skilled in any ar</td>
-        <td><%= @family.community_development.family_skilled_in_art %></td>
-    </tr>
-    <tr>
-        <td>If yes give reason for dropout:</td>
-        <td><%= simple_format(@family.community_development.family_dropout_reason_for) %></td>
-    </tr>
-    <tr>
-        <td>After dropout what is the present condition of the person:</td>
-        <td><%= simple_format(@family.community_development.family_dropout_present_condition) %></td>
-    </tr>
-</table>
+		<tr>
+			<td>After dropout what is the present condition of the person:</td>
+			<td><%= @family.community_development.family_dropout_present_condition %></td>
+			<td>Is any of you family member skilled in any ar</td>
+			<td><%= @family.community_development.family_skilled_in_art %></td>
+		</tr>
+		<tr>
+			<td>If yes give reason for dropout:</td>
+			<td><%= simple_format(@family.community_development.family_dropout_reason_for) %></td>
+		</tr>
+		<tr>
+			<td>After dropout what is the present condition of the person:</td>
+			<td><%= simple_format(@family.community_development.family_dropout_present_condition) %></td>
+		</tr>
+	</table>
+</div>

@@ -59,6 +59,7 @@ Available Programs
       <th>Name</th>
       <th>Description</th>
       <th>Amount Spent this Year</th>
+      <th>Created At</th>
       
     </tr>
   </thead>
@@ -70,6 +71,7 @@ Available Programs
       <td><%= program.name %></td>
       <td><%= program.description %></td>
       <td><%= number_to_indian_currency(program.get_amount_year_to_date).html_safe %></td>
+      <td><%= l program.created_at.to_date %></td>
 
     </tr>
     <% end %>

@@ -41,7 +41,7 @@ class Benefit < ActiveRecord::Base
 
   def get_category
   	if self.category == "none"
-  		return "Individual"
+  		return "Set Individual Amount"
   	elsif self.category == "calculated"
   		return "Calculated Amount"
   	elsif self.category == "fixed"

@@ -5,6 +5,7 @@
 			<th>Name</th>
 			<th>Description</th>
 			<th>Amount Spent this Year</th>
+			<th>Created At</th>
 			<td></td>
 		</tr>
 	</thead>
@@ -15,6 +16,7 @@
 			<td><%= program.name %></td>
 			<td><%= program.description %></td>
 			<td><%= number_to_indian_currency(program.get_amount_year_to_date).html_safe %></td>
+			<td><%= l program.created_at.to_date %></td>
 			<td style="width: 130px;">
 				<%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_program_path(program) %>
 				<% if is_admin? %>

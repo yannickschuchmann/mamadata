@@ -28,7 +28,6 @@ $("#searchExistingPeopleForm").submit(function(e){
 			for (var i = result.length - 1; i >= 0; i--) {
                 result[i].zip_code = result[i].zip_code || '';
 				str += "<tr class='addfromsearchpeople"+i+"'>\
-				    <td>" + result[i].id +"</td>\
 				    <td>" + result[i].name +"</td>\
 				    <td>" + result[i].fathers_name +"</td>\
 				    <td>" + result[i].city +"</td>\
@@ -61,27 +60,29 @@ function addFromSearch(pid) {
     });
     if(inside) return;
 
+	$("#buttonHide").show();
 	/*jshint multistr: true */
 	$("#people").append(
 			'<div class="person" data-pid="'+person.id+'"> \
 			<input type="hidden" name="people['+peopleNumber+'][person_id]" value="'+person.id+'">\
 			<a href="" class="button tiny alert removeLink"><i class="icon-trash"></i></a>\
 			<div class="row">\
-				<div class="small-12 medium-4 column"><label for="name">Name</label></div>\
-				<div class="small-12 medium-8 column"><input id="name" disabled="disabled" name="person'+peopleNumber+'" class="person'+peopleNumber+'" type="text"  value="'+person.name +'"></div>\
-				<div class="small-12 medium-4 column"><label for="person_Father\'s Name">Father\'s name</label></div>\
-				<div class="small-12 medium-8 column"><input id="fathers_name" disabled="disabled" class="personsfathername'+peopleNumber+'" name="person[fathers_name]" type="text" value="'+ person.fathers_name +'"></div>\
-				<div class="small-12 medium-4 column"><label for="Role in context of Sharana">Role in the Household</label></div>\
-				<div class="small-12 medium-8 column">\
-					<select id="role_id" name="people['+peopleNumber+'][role_id]">\
-						<option value="1">Head of the Household</option>\
-						<option value="2">Wife</option>\
-						<option value="3">Child</option>\
-						<option value="4">Father</option>\
-						<option value="5">Mother</option>\
-						<option value="6">Brother</option>\
-						<option value="7">Sister</option>\
-					</select>\
+				<div class="small-12 medium-4 left" style="padding: 10px 20px;">Name</div>\
+				<div class="small-12 medium-8 right" style="padding: 10px 20px;">'+person.name +'</div>\
+				<div class="small-12 medium-4 left" style="padding: 10px 20px;">Father\'s name</div>\
+				<div class="small-12 medium-8 right" style="padding: 10px 20px;">'+ person.fathers_name +'</div>\
+					<div class="small-12 medium-4 left" style="padding: 10px 20px;">Role in the Household</div>\
+					<div class="small-12 medium-8 right" style="padding: 10px 20px;">\
+						<select id="role_id" name="people['+peopleNumber+'][role_id]">\
+							<option value="1">Head of the Household</option>\
+							<option value="2">Wife</option>\
+							<option value="3">Child</option>\
+							<option value="4">Father</option>\
+							<option value="5">Mother</option>\
+							<option value="6">Brother</option>\
+							<option value="7">Sister</option>\
+						</select>\
+					</div>\
 				</div>\
 			</div>\
 		</div>');
