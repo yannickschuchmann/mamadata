@@ -8,7 +8,7 @@ class Benefit < ActiveRecord::Base
 	validates :max_people, allow_nil: true, :numericality => {greater_than_or_equal_to: 1}
 	validate :calculated_amount_is_not_nil # if category is set to calculated
 	validate :fixed_amount_is_not_nil
-
+	validate :amount_to_big
 	validate :validate_calculated_amount
 	validate :optional_amount_xor_fixed_amount
 
