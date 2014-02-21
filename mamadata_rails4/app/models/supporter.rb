@@ -8,11 +8,16 @@ class Supporter < ActiveRecord::Base
 	validates :city, presence: true
 	validates :country, presence: true
 	validates :zipcode, presence: true
-	monetize :donation_amount_paise, :disable_validation => true, :with_currency => :inr, :numericality => {
+  validate :check_for_godfather
+  monetize :donation_amount_paise, :disable_validation => true, :with_currency => :inr, :numericality => {
     :greater_than_or_equal_to => 0 }
 
 
 
+  private
+  def check_for_godfather
+    self.godfather = false unless self.donor_type == 1
+  end
 
 end # end Supporter
 
