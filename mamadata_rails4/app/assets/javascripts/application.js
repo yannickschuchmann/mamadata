@@ -19,6 +19,7 @@
 	//= require foundation
 	// require turbolinks
 
+
     var APP = {
 		Persons: {},
 		Incidents: {},
