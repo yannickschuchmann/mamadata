@@ -13,10 +13,8 @@ class Benefit < ActiveRecord::Base
 	validate :validate_calculated_amount
 	validate :optional_amount_xor_fixed_amount
 
-	monetize :optional_amount_paise, :disable_validation => true, allow_nil: true,  :numericality => {
-    greater_than_or_equal_to: 0 }
-  monetize :fixed_amount_paise, :disable_validation => true, allow_nil: true,  :numericality => {
-    greater_than_or_equal_to: 0 }
+	monetize :optional_amount_paise, :disable_validation => true, allow_nil: true
+  monetize :fixed_amount_paise, :disable_validation => true, allow_nil: true
 
 
   after_save :update_calculated_amount_for_incidents

@@ -6,8 +6,7 @@ class BenefitIncident < ActiveRecord::Base
 	validates :program_id, presence: true
 	validates :benefit_id, presence: true
 	validate :check_max_users_reached
-	monetize :amount_paise, :disable_validation => true, :with_currency => :inr, :numericality => {
-    :greater_than_or_equal_to => 0 }
+	monetize :amount_paise, :disable_validation => true
   monetize :amount_in_euro_paise, :with_currency => :eur
   monetize :amount_in_dollar_paise, :with_currency => :usd
 	before_save :set_default_status

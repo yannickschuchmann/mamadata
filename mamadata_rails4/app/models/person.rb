@@ -11,8 +11,7 @@ class Person < ActiveRecord::Base
   has_many :godfathers, :class_name => "Supporter", through: :godfather_people, dependent: :destroy
   has_many :person_godfather_files, through: :godfather_people
   has_many :benefit_incidents
-  monetize :income_paise, :disable_validation => true,:with_currency => :inr, :numericality => {
-    greater_than_or_equal_to: 0 }
+  monetize :income_paise, :disable_validation => true
   validate :amount_to_big
 
     def get_total_expenses (date = nil)
