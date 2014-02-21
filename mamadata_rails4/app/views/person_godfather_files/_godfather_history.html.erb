@@ -56,7 +56,7 @@
 							<tbody>
 								<% join_model.person_godfather_files.order("updated_at DESC").each do |f| %>
 								<tr>
-									<td><%= (f.remark.empty? ? f.file_file_name : simple_format(f.remark))%></td>
+									<td><%= (f.remark.empty? ? f.file_file_name : simple_format(f.remark, {}, wrapper_tag: "div"))%></td>
 									<td><%= l f.created_at.to_date %></td>
 									<td><%= link_to (content_tag(:i, '', :class => 'icon-download-alt')), get_godfather_file_path(f.id) %>
                                         <% if can? :destroy, PersonGodfatherFile %>

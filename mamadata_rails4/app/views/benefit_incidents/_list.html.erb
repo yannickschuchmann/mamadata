@@ -18,9 +18,9 @@
 			<td><%= link_to benefit_incident.program.name, program_path(benefit_incident.program) %></td>
 			<td><%= link_to benefit_incident.benefit.name, benefit_path(benefit_incident.benefit) %></td>
 			<td><%= number_to_indian_currency(benefit_incident.amount).html_safe %></td>
-			<td><%= simple_format(benefit_incident.remark) %></td>
+			<td><%= simple_format(benefit_incident.remark, {}, wrapper_tag: "div") %></td>
 			<td><%= benefit_incident.status == true ? 'Granted' : 'Pending' %></td>
-			<td><%=l benefit_incident.date_granted.to_datetime, :format => :custom unless benefit_incident.date_granted.nil? %></td>
+			<td><%= l benefit_incident.date_granted.to_datetime, :format => :custom unless benefit_incident.date_granted.nil? %></td>
 			<td>
 				<%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_benefit_incident_path(benefit_incident) %>
 				<%= link_to (content_tag(:i, '', :class => 'icon-trash')), benefit_incident, method: :delete, data: { confirm: 'Are you sure you want to delete this incident??' } %>

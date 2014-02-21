@@ -40,7 +40,7 @@
 						</tr>
 						<tr>
 							<td>Remark: </td>
-							<td><%= simple_format(school.remark) %></td>
+							<td><%= simple_format(school.remark, {}, wrapper_tag: "div") %></td>
 						</tr>
 						<tr>
 							<td>Language: </td>
@@ -57,7 +57,7 @@
 						</tr>
 						<tr>
 							<td>Termination Remark: </td>
-							<td><%= simple_format(school.termination_remark) %></td>
+							<td><%= simple_format(school.termination_remark, {}, wrapper_tag: "div") %></td>
 						</tr>
 						<% end %>
 					</table>
@@ -78,7 +78,7 @@
 						<% school.sorted_classes.each do |school_class| %>
 						<tr>
 							<td><%= school_class.name %></td>
-							<td><%= simple_format(school_class.remark) %></td>
+							<td><%= simple_format(school_class.remark, {}, wrapper_tag: "div") %></td>
 							<td><%= school_class.document_file_name.nil? ? 'No file' : (link_to school_class.document_file_name, document_school_class_path(id: school_class.id)) %></td>
                             <% if can? :update, SchoolClass %>
 							<td>
