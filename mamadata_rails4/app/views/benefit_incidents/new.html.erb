@@ -1,14 +1,5 @@
 <div class="row">
-    <% if @benefit_incident.errors.any? %>
-    <div id="error_explanation" class="small-12">
-        <h2><%= pluralize(@benefit_incident.errors.count, "error") %> prohibited this benefit_incident from being saved:</h2>
-			<ul>
-				<% @benefit_incident.errors.full_messages.each do |msg| %>
-				<li><%= msg %></li>
-				<% end %>
-			</ul>
-		</div>
-		<% end %>
+
 			<div class="small-12 medium-6 column medium-centered">
 				<% if !@benefit_incident.person.programs.empty?%>
 					<%= render 'form' %>
