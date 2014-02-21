@@ -2,6 +2,22 @@
 <h3>New Incident for <%= @benefit_incident.person.name + " " +@benefit_incident.person.fathers_name  %></h3>
 <h3 style="margin-bottom: 20px;"><small>Total Amount Spent on: <%= number_to_indian_currency(@benefit_incident.person.get_total_expenses).html_safe %></small></h3>
 <%= form_for(@benefit_incident) do |f| %>
+
+
+<% if @benefit_incident.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@benefit_incident.errors.count, "error") %> prohibited this benefit from being saved:</h2>
+
+  <ul>
+    <% @benefit_incident.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+
+
 <%= f.hidden_field :person_id, value: @benefit_incident.person_id %>
 <%= f.hidden_field :date_granted, value: @benefit_incident.date_granted %>
 <div class="row">
