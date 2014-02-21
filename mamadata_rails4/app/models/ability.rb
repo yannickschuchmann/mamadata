@@ -19,6 +19,7 @@ class Ability
       can :grant, BenefitIncident
     when "social_worker"
       can :manage, Person
+      cannot :destroy, Person
       can :manage, Family
       can :update, CommunityDevelopment
       can :manage, School

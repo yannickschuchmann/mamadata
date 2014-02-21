@@ -55,8 +55,8 @@
 					</div>
 				</div>
 			</div>
+		    <%= render partial: "termination_fields", locals: {f: f} if @school.terminated?  %>
 		</div>
-		<%= render partial: "termination_fields", locals: {f: f} if @school.terminated?  %>
 	</div>
 	<div class="button-center">
 		<%= f.submit :class => 'button' %>
