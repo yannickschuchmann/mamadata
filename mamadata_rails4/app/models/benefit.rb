@@ -62,7 +62,7 @@ protected
   def amount_to_big
     if self.optional_amount_paise > 8999999999999999900 || self.fixed_amount > 8999999999999999900
       errors.add(:base, "The Amount you entered is too high")
-    end unless self.category == "none"  end
+    end unless self.category == "none" || self.optional_amount_paise.nil? || self.fixed_amount.nil? end
 
 
 

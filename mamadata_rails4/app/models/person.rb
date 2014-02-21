@@ -55,7 +55,7 @@ class Person < ActiveRecord::Base
   protected
 
   def amount_to_big
-    if self.income_paise > 8999999999999999900
+    if self.income_paise > 8999999999999999900 && !self.income_paise.nil?
       errors.add(:base, "Amount for income is too big")
     end
   end

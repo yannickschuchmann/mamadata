@@ -22,7 +22,7 @@ class BenefitIncident < ActiveRecord::Base
 
 	protected
 	 def amount_to_big
-    if self.amount_paise > 8999999999999999900
+    if self.amount_paise > 8999999999999999900 && !self.amount_paise.nil?
       errors.add(:base, "The Amount you entered is too high")
     end
   end
