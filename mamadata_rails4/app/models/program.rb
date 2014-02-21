@@ -6,7 +6,7 @@ class Program < ActiveRecord::Base
 	has_many :people, through: :beneficiary_program_relationships
 	has_many  :active_people, -> { where is_active: true }, class_name: 'BeneficiaryProgramRelationship'
 	validates :name, presence: true
-
+  validates :description, presence: true
 
 
 
