@@ -63,7 +63,7 @@ b37 = Benefit.find_or_create_by(category: "none",name: "Cerelac/ Milk/ Horlicks"
 b38 = Benefit.find_or_create_by(category: "none",name: "Microcredit", description: "Nutrition Support")
 
 # benefit_with_amount1 = Benefit.find_or_create_by(category: "none",name: "Benefit with Calculated Amount 1", description: "", optional_amount: 20000, max_people: 10)
-
+if sponsorship.benefits.count == 0
 sponsorship.benefits << [b2,b3,b4,b7,b8,b9,b11,b12,b13,b14,b16,b17,b18,b19,b20,b24,b25,b26,b27,b28,b29,b30,b32,b33,b34,b35,b36,b37]
 homework.benefits <<[b4,b5,b7,b11,b32,b35]
 daycare.benefits << [b2,b3,b4,b6,b7,b8,b9,b11,b13,b14,b15,b16,b28,b32,b35,b37,b38]
@@ -76,7 +76,7 @@ vtc.benefits << [b2,b4,b7,b9,b10,b11,b22,b24,b25,b27,b32,b33,b35,b36,b38]
 community.benefits << [b1,b2,b4,b5,b6,b7,b8,b9,b11,b13,b17,b21,b23,b24,b25,b26,b27,b28,b30,b31,b32,b35,b36]
 creches.benefits << [b4,b6,b8,b9,b11,b24,b26,b35,b37,b38]
 # benefit_dependent.benefits <<[b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16,b17,b18,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b34,b35,b36,b37,b38]
-
+end
 
 # Possible choices for other fields
 PossibleChoices.find_or_create_by(property: "religion", value: "Hindu")
