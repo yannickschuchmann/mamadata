@@ -28,8 +28,8 @@
             <td><%= supporter.city %></td>
             <td><%= supporter.email %></td>
             <td><%= supporter.telephone_number %></td>
-            <td><%= supporter.godfather %></td>
-            <td><%= supporter.is_volunteer %></td>
+            <td><%= supporter.godfather  ? 'no' : 'yes' %></td>
+            <td><%= supporter.is_volunteer ? 'no' : 'yes' %></td>
             <td><%= supporter.type_of_work %></td>
             <% if can? :update, Supporter %>
             <td style="width: 130px;">

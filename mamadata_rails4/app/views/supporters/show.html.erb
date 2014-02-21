@@ -75,12 +75,12 @@
 		<table class="table small-12">
 			<tr>
 				<td class="small-12 medium-3"><b>Begin of Work:</b></td>
-				<td class="small-12 medium-9"><%= @supporter.begin_of_work %></td>
+				<td class="small-12 medium-9"><%= l @supporter.begin_of_work.to_date %></td>
 			</tr>
 
 			<tr>
 				<td><b>End of Work:</b></td>
-				<td><%= @supporter.end_of_work %></td>
+				<td><%= l @supporter.end_of_work.to_date %></td>
 			</tr>
 			<tr>
 				<td><b>Type of Work:</b></td>
@@ -110,7 +110,7 @@
 			</table>
 		</div>
 		<div class="small-12 medium-6 column">
-			<% if @supporter.godfather %>
+			<% if @supporter.godfather && @supporter.people.empty? %>
 			<h5>Supporter is a Godfather of</h5>
 			<div class="medium-12 column">
 				<table class="table small-12">
