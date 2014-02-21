@@ -176,7 +176,7 @@
 	</tr>
 	<tr>
 		<td>Is any of you family member skilled in any ar</td>
-		<td><% @family.community_development.family_skilled_in_art.each_with_index do |v, i| %><%= i == 0 ? v.to_s : ", "+v.to_s %><% end %></td>
+		<td><% unless @family.community_development.family_skilled_in_art.nil? @family.community_development.family_skilled_in_art.each_with_index do |v, i| %><%= i == 0 ? v.to_s : ", "+v.to_s %><% end %></td>
 	</tr>
 	<tr>
 		<td>If yes give reason for dropout:</td>
