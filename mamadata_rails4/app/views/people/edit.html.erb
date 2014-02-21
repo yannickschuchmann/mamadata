@@ -6,6 +6,11 @@
 </div>
 
 <script type="text/javascript">
+$(function  () {
+	$("#person_godfather_ids").change(function  () {
+			alert("You are about to change the Godfather, are your Sure?")
+	});	
+})
 $("#personForm").validate({
 	rules: {
 		'person[name]': 				{required: true, minlength: 1},
