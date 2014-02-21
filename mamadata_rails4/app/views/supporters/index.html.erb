@@ -12,7 +12,9 @@
             <th>Godfather</th>
             <th>Is Volunteer?</th>
             <th>Type of Work</th>
+            <% if can? :update, Supporter %>
             <td></td>
+            <% end %>
         </tr>
     </thead>
 
@@ -29,12 +31,14 @@
             <td><%= supporter.godfather %></td>
             <td><%= supporter.is_volunteer %></td>
             <td><%= supporter.type_of_work %></td>
+            <% if can? :update, Supporter %>
             <td style="width: 130px;">
                 <%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_supporter_path(supporter) %>
-                <% if is_admin? %>
+                <% if can? :destroy, Supporter %>
                     <%= link_to (content_tag(:i, '', :class => 'icon-trash')), supporter, method: :delete, data: { confirm: 'Are you sure you want to delete this supporter?' } %>
                 <% end %>
             </td>
+            <% end %>
         </tr>
         <% end %>
     </tbody>

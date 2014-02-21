@@ -1,23 +1,28 @@
-<%= puts params.inspect %>
 <% if params[:action] == "index" %>
-<li>
-	<%= link_to new_family_path do %>
-	<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
-	New Family
-	<% end %>
-</li>
+    <% if can? :create, Family %>
+    <li>
+        <%= link_to new_family_path do %>
+        <%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+        New Family
+        <% end %>
+    </li>
+    <% end %>
 <% end %>
 <% if params[:action] == "show" %>
+    <% if can? :update, Family %>
 	<li>
 		<%= link_to edit_family_path(@family) do %>
 		<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
 		Edit Family
 		<% end %>
 	</li>
+    <% end %>
+    <% if can? :update, Family %>
 	<li>
 		<%= link_to edit_community_development_path(@family.community_development_id) do %>
 		<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
 		Edit Family Questionaire
 		<% end %>
 	</li>
+    <% end %>
 <% end %>

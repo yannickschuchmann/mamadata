@@ -1,29 +1,5 @@
 module ApplicationHelper
 
-	def is_admin?
-		if current_user.role == "admin"
-			return true
-		else
-			return false
-		end
-	end
-
-	def is_accountant?
-		if current_user.role == "accountant"
-			return true
-		else
-			return false
-		end
-	end
-
-	def is_supporter?
-		if current_user.role == "supporter"
-			return true
-		else
-			return false
-		end
-	end
-
   def person_school_path(school)
     person_path(school.person_id, :anchor => "school")
   end

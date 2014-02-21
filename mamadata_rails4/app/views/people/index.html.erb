@@ -16,7 +16,9 @@
             <th>ZIP code</th>
             <th>Role</th>
             <th>Total Expense</th>
+            <% if can? :update, Person %>
             <td></td>
+            <% end %>
         </tr>
     </thead>
     <tbody>
@@ -40,12 +42,14 @@
             <td>
                 <%= number_to_indian_currency(person.get_total_expenses).html_safe %>
             </td>
+            <% if can? :update, Person %>
             <td style="width: 130px;">
                 <%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_person_path(person) %>
-                <% if is_admin? %>
-                <%= link_to (content_tag(:i, '', :class => 'icon-trash')), person, method: :delete, data: { confirm: 'Are you sure to delete this Beneficiary?' } %>
+                <% if can? :destroy, Person %>
+                <%= link_to (content_tag(:i, '', :class => 'icon-trash')), person, method: :delete, data: { confirm: 'Are you sure to delete this Beneficiary? All information will be lost!' } %>
                 <% end %>
             </td>
+            <% end %>
         </tr>
         <% end %>
     </tbody>

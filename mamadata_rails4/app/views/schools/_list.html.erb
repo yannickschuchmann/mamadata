@@ -9,14 +9,20 @@
 		<div id="school<%= school.id %>" class="content<%= " active" if index == 0 %>">
 			<div class="row">
 				<ul class="button-group left">
-					<li><%= link_to content_tag(:i, '',:class => 'icon-edit')+" Edit", edit_school_path(school.id), class: 'button tiny' %></li>
-					<li><%= link_to content_tag(:i, '',:class => 'icon-trash')+" Delete", school, method: 'delete', data: { confirm: 'Are you sure? All School Inofrmation will be lost' }, class: 'button tiny' %></li>
+                    <% if can? :update, School %>
+					    <li><%= link_to content_tag(:i, '',:class => 'icon-edit')+" Edit", edit_school_path(school.id), class: 'button tiny' %></li>
+                        <% if can? :destroy, School %>
+                            <li><%= link_to content_tag(:i, '',:class => 'icon-trash')+" Delete", school, method: 'delete', data: { confirm: 'Are you sure? All School Information will be lost' }, class: 'button tiny' %></li>
+                        <% end %>
+                    <% end %>
 				</ul>
 				<ul class="button-group right">
-					<li><%= link_to content_tag(:i, '',:class => 'icon-plus')+" Add new Class", new_school_class_path(id: @person.id, school_id: school.id), {class: 'button tiny'} %></li>
-					<% unless school.terminated? %>
-					<li><%= link_to content_tag(:i, '',:class => 'icon-lock')+" Terminate", terminate_school_path(school.id), class: 'button tiny'  %></li>
-					<% end %>
+                    <% if can? :create, School %>
+                        <li><%= link_to content_tag(:i, '',:class => 'icon-plus')+" Add new File", new_school_class_path(id: @person.id, school_id: school.id), {class: 'button tiny'} %></li>
+                        <% unless school.terminated? %>
+                        <li><%= link_to content_tag(:i, '',:class => 'icon-lock')+" Terminate", terminate_school_path(school.id), class: 'button tiny'  %></li>
+                        <% end %>
+                    <% end %>
 				</ul>
 				<div class="clearfix"></div>
 				<div class="small-12 medium-6 column">
@@ -74,10 +80,14 @@
 							<td><%= school_class.name %></td>
 							<td><%= simple_format(school_class.remark) %></td>
 							<td><%= school_class.document_file_name.nil? ? 'No file' : (link_to school_class.document_file_name, document_school_class_path(id: school_class.id)) %></td>
+                            <% if can? :update, SchoolClass %>
 							<td>
 								<%= link_to content_tag(:i, '', class: 'icon-edit'), edit_school_class_path(school_class.id) %>
+                                <% if can? :destroy, SchoolClass %>
 								<%= link_to content_tag(:i, '', class: 'icon-trash'), school_class, method: 'delete', data: { confirm: 'Are you sure? Class Information will be lost' } %>
+                                <% end %>
 							</td>
+                            <% end %>
 						</tr>
 						<% end %>
 					</table>

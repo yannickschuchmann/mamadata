@@ -1,6 +1,5 @@
 class PersonGodfatherFilesController < ApplicationController
   before_action :set_person_godfather_file, only: [:show, :edit, :update, :destroy, :getfile]
-  before_filter :authenticate_user!
 
   def getfile
     send_file @person_godfather_file.file.path, :type => @person_godfather_file.file_content_type
