@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'monetize/core_extensions'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
