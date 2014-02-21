@@ -28,7 +28,22 @@
 			<div class="small-12 medium-8 columns">
 				<%= f.file_field :avatar %>
 			</div>
+
+
 		</div>
+					<% if @person.avatar_file_name %>
+			<div class="row">
+				<div class="small-12 medium-4 columns">
+					<label for"oldfile">Existing Picture:</label>
+				</div>
+				<div class="small-12 medium-8 columns">
+				<div style="margin-bottom: 42px;">
+					<%= image_tag @person.avatar.url(:thumb) %>
+					</div>
+						<%#= content_tag(:i, " ", class: "icon-file")+ " "+@person.avatar_file_name %>
+				</div>
+			</div>
+			<% end %>
 		<div class="row">
 			<div class="small-12 medium-4 column">
 				<%= f.label :fathers_name %>
@@ -235,16 +250,16 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-		var maxlengthTxt = 2000;
-		var txt = 0;
-		$("#narText").keyup(function (e) {
-			txt = $(this).val();
-			leftText = maxlengthTxt - txt.length;
-			if (leftText <= 0) {
-				$(this).val(txt.slice(0, maxlengthTxt));
-			};
-			$('#txtLeft').html(leftText);
-		})
+			var maxlengthTxt = 2000;
+			var txt = 0;
+			$("#narText").keyup(function (e) {
+				txt = $(this).val();
+				leftText = maxlengthTxt - txt.length;
+				if (leftText <= 0) {
+					$(this).val(txt.slice(0, maxlengthTxt));
+				};
+				$('#txtLeft').html(leftText);
+			})
 		</script>
 	</div>
 </div>
@@ -255,25 +270,25 @@
 <% end %>
 <%= @cities %>
 <script type="text/javascript">
-$("#person_religion").change(function () {
-	var e = document.getElementById("person_religion");
-	var selecetedReligion = e.options[e.selectedIndex].text;
-	if (selecetedReligion.toLowerCase() == "hindi" || selecetedReligion.toLowerCase() == "hindu") {
-		$("#showCaste").css("display", "block");
-	} else {$("#showCaste").css("display", "none");};
-});
+	$("#person_religion").change(function () {
+		var e = document.getElementById("person_religion");
+		var selecetedReligion = e.options[e.selectedIndex].text;
+		if (selecetedReligion.toLowerCase() == "hindi" || selecetedReligion.toLowerCase() == "hindu") {
+			$("#showCaste").css("display", "block");
+		} else {$("#showCaste").css("display", "none");};
+	});
 
 
-$(function() {
-	var e = document.getElementById("person_religion");
-	var selecetedReligion = e.options[e.selectedIndex].text;
-	if (selecetedReligion.toLowerCase() == "hindi" || selecetedReligion.toLowerCase() == "hindu") {
-		$("#showCaste").css("display", "block");
-	} else {$("#showCaste").css("display", "none");};
-	var cities = <%= @AutoCities.to_json.html_safe  %>;
-	var names  = <%= @AutoNames.to_json.html_safe %>
-	$("#city").autocomplete({source: cities});
-	$("#AutoFName").autocomplete({source: names});
-	
-})
+	$(function() {
+		var e = document.getElementById("person_religion");
+		var selecetedReligion = e.options[e.selectedIndex].text;
+		if (selecetedReligion.toLowerCase() == "hindi" || selecetedReligion.toLowerCase() == "hindu") {
+			$("#showCaste").css("display", "block");
+		} else {$("#showCaste").css("display", "none");};
+		var cities = <%= @AutoCities.to_json.html_safe  %>;
+		var names  = <%= @AutoNames.to_json.html_safe %>
+		$("#city").autocomplete({source: cities});
+		$("#AutoFName").autocomplete({source: names});
+
+	})
 </script>
