@@ -27,10 +27,10 @@ class Ability
       can :manage, PersonGodfatherFile
       can :manage, Journal
       can :manage, BenefitIncident
-    when "accountant"
+      cannot :grant, BenefitIncident
+      when "accountant"
       can :update, Benefit
       can :manage, BenefitIncident
-      can :grant, BenefitIncident
     when "supporter"
 
     else
