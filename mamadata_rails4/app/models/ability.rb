@@ -25,6 +25,8 @@ class Ability
       can :manage, SchoolClass
       can :manage, GodfatherPerson
       can :manage, PersonGodfatherFile
+      can :manage, Journal
+      can :manage, BenefitIncident
     when "accountant"
       can :update, Benefit
       can :manage, BenefitIncident
