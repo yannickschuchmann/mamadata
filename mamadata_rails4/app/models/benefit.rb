@@ -4,7 +4,8 @@ class Benefit < ActiveRecord::Base
 	has_many :programs, through: :program_benefit_relationships 
 	has_many :benefit_incidents
 	has_many :people, through: :programs
-	validates :name, presence: true
+	validates :name, presence: true, length: { maximum: 250 }
+	validates :description, length: { maximum: 250 }
 	validates :max_people, allow_nil: true, :numericality => {greater_than_or_equal_to: 1}
 	validate :calculated_amount_is_not_nil # if category is set to calculated
 	validate :fixed_amount_is_not_nil
@@ -61,8 +62,7 @@ protected
   def amount_to_big
     if self.optional_amount_paise > 8999999999999999900 || self.fixed_amount > 8999999999999999900
       errors.add(:base, "The Amount you entered is too high")
-    end
-  end
+    end unless self.category == "none"  end
 
 
 
