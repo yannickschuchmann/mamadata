@@ -14,8 +14,10 @@ class Family < ActiveRecord::Base
   def set_name
     people = self.people
     if !people.empty? and head = people.where(role_id: 1).last
+      head.head_of_household = head.fathers_name if head.head_of_household.empty?
       self.head_id = head.id
       self.name = head.head_of_household
+      head.save
     else
       self.head_id = ''
       self.name = ''
@@ -23,7 +25,7 @@ class Family < ActiveRecord::Base
   end
 
   def update_head_of_household_fields
-    self.people.update_all(head_of_household: Person.find(self.head_id).head_of_household) unless self.people.empty?
+    Person.update_all("head_of_household = \"#{Person.find(self.head_id).head_of_household}\"", ["family_id = ?", self.id.to_s]) unless self.people.empty?
   end
 
   def create_comdev

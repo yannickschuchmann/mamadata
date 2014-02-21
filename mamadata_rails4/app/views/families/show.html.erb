@@ -50,7 +50,7 @@
 			</td>
             <% if can? :update, Family %>
 			<td style="width: 130px;">
-				<%= link_to content_tag(:i, '', class: 'icon-trash'), delete_family_relation_path(id: person.id), method: :delete, data: { confirm: 'Are you sure you want to delete this Benefit?' } %>
+				<%= link_to content_tag(:i, '', class: 'icon-trash'), delete_family_relation_path(id: person.id), method: :delete, data: { confirm: 'Are you sure you want to remove this beneficiary from this family?' } %>
 			</td>
             <% end %>
 		</tr>

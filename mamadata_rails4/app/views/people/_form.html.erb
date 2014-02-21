@@ -1,294 +1,301 @@
-<%= form_for(@person, :html => { :id => "personForm" }) do |f| %>
+<%= form_for(@person, :html => {:id => "personForm"}) do |f| %>
 
-<% if @person.errors.any? %>
-<div id="error_explanation">
-	<h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
-	<ul>
-		<% @person.errors.full_messages.each do |msg| %>
-		<li><%= msg %></li>
-		<% end %>
-	</ul>
-</div>
-<% end %>
+    <% if @person.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
+            <ul>
+                <% @person.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
 
-<div class="row">
-	<div class="small-12 medium-6 column">
-		<div class="row">
-			<div class="small-12 medium-4 column">
-				<%= f.label :name %>
-			</div>
-			<div class="small-12 medium-8 column">
-				<%= f.text_field :name, :placeholder => "Name" %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-4 columns">
-				<%= f.label "Profile Picture" %>
-			</div>
-			<div class="small-12 medium-8 columns">
-				<%= f.file_field :avatar %>
-			</div>
+    <div class="row">
+        <div class="small-12 medium-6 column">
+            <div class="row">
+                <div class="small-12 medium-4 column">
+                    <%= f.label :name %>
+                </div>
+                <div class="small-12 medium-8 column">
+                    <%= f.text_field :name, :placeholder => "Name" %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-4 columns">
+                    <%= f.label "Profile Picture" %>
+                </div>
+                <div class="small-12 medium-8 columns">
+                    <%= f.file_field :avatar %>
+                </div>
 
 
-		</div>
-					<% if @person.avatar_file_name %>
-			<div class="row">
-				<div class="small-12 medium-4 columns">
-					<label for"oldfile">Existing Picture:</label>
-				</div>
-				<div class="small-12 medium-8 columns">
-				<div style="margin-bottom: 42px;">
-					<%= image_tag @person.avatar.url(:thumb) %>
-					</div>
-						<%#= content_tag(:i, " ", class: "icon-file")+ " "+@person.avatar_file_name %>
-				</div>
-			</div>
-			<% end %>
-		<div class="row">
-			<div class="small-12 medium-4 column">
-				<%= f.label :fathers_name %>
-			</div>
-			<div class="small-12 medium-8 column">
-				<%= f.text_field :fathers_name, :placeholder => "Fathers name", :id => "AutoFName"%>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-4 column">
-				<%= f.label :head_of_household%>
-			</div>
-			<div class="small-12 medium-8 column">
-				<%= f.text_field :head_of_household, :placeholder => "Head of household name", :id => "AutoHoHName"%>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-4 column">
-				<%= f.label "Former File Number" %>
-			</div>
-			<div class="small-12 medium-8 column">
-				<%= f.text_field :file_number, :placeholder => "former File number"%>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-4 columns">
-				<%= f.label :gender %>
-			</div>
-			<div class="small-12 medium-8 columns">
-				<%= f.select :gender, ["male", "female"] %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-4 columns">
-				<%= f.label :date_of_birth, :class => "inline"%>
-			</div>
-			<div class="small-12 medium-8 columns">
-				<%= f.date_select :date_of_birth, {:order => [:day, :month, :year], :start_year => 1910}, :class => "small-4 left" %>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-4 column">
-				<%= f.label :place_of_birth %>
-			</div>
-			<div class="small-12 medium-8 column">
-				<%= f.text_field :place_of_birth, :placeholder => "Place of Birth" %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-4 column">
-				<%= f.label :native_place %>
-			</div>
-			<div class="small-12 medium-8 column">
-				<%= f.text_field :native_place, :placeholder => "Native Place" %>
-			</div>
-		</div>
-	</div>
-	<div class="small-12 medium-6 column">
-		<div class="row">
-			<div class="small-12 medium-4 column">
-				<%= f.label "ZIP Code" %>
-			</div>
-			<div class="small-12 medium-8 column">
-				<%= f.text_field :zip_code, :placeholder => "ZIP Code" %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-4 column">
-				<%= f.label "City/Village" %>
-			</div>
-			<div class="small-12 medium-8 column">
-				<%= f.text_field :city, :placeholder => "City/Village", :id => "city" %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-4 column">
-				<%= f.label :area %>
-			</div>
-			<div class="small-12 medium-8 column">
-				<%= f.text_field :area, :placeholder => "Area" %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-4 column">
-				<%= f.label :name_of_the_street %>
-			</div>
-			<div class="small-12 medium-8 column">
-				<%= f.text_field :name_of_the_street, :placeholder => "Name of the Street" %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-4 column">
-				<%= f.label "Door Number" %>
-			</div>
-			<div class="small-12 medium-8 column">
-				<%= f.text_field :name_of_the_house, :placeholder => "Door Number" %>
-			</div>
-		</div>
-	</div>
-</div>
-<hr/>
-<div class="row">
-	<div class="small-12 medium-6 column">
-		<div class="row">
-			<div class="small-12 medium-4 column">
-				<%= f.label :religion %>
-			</div>
-			<div class="small-12 medium-8 column">
-				<div class="row selectWithOtherField">
-					<%= f.select_with_other_field("person", :religion, {:selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12'}) %>
-				</div>
-			</div>
-		</div>
-		<div class="row" id="showCaste">
-			<div class="small-12 medium-4 column">
-				<%= f.label :caste %>
-			</div>
-			<div class="small-12 medium-8 column">
-				<div class="row selectWithOtherField">
-					<%= f.select_with_other_field("person", :caste, {:selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12'}) %>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-4 columns">
-				<%= f.label "Completed Education", :class => "inline"%>
-			</div>
-			<div class="small-12 medium-8 columns">
-				<%= f.select :education, ["none", "still in Education", "Primary", "High", "Hr Secondary", "College", "Vocational"]%>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-4 columns">
-				<%= f.label :marital_status, :class => "inline"%>
-			</div>
-			<div class="small-12 medium-8 columns">
-				<%= f.select :marital_status, ["none", "married", "widow/widower", "deserted", "divorced", "seperated"]%>
-			</div>
-		</div>
-	</div>
-	<div class="small-12 medium-6 column">
-		<div class="row">
-			<div class="small-12 medium-4 columns">
-				<%= f.label :health_condition, :class => "inline"%>
-			</div>
-			<div class="small-12 medium-8 columns">
-				<%= f.select :health_condition, ["normal", "disabled", "mentally retarded"]%>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-4 columns">
-				<%= f.label :occupation, :class => "inline" %>
-			</div>
-			<div class="small-12 medium-8 columns">
-				<div class="row selectWithOtherField">
-					<%= f.select_with_other_field("person", :occupation, {:selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12'}) %>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-4 column">
-				<%= f.label :income %>
-			</div>
-			<div class="small-12 medium-8 column">
-				<%= f.text_field :income, :placeholder => "Income per month in Rupee" %>
-			</div>
-		</div>
-	</div>
-</div>
-<hr/>
-<div class="row">
-	<div class="small-12 medium-6 column">
-		<div class="row">
-			<div class="small-12 medium-4 columns">
-				<%= f.label "Godfather", :class => "inline"%>
-			</div>
-			<div class="small-12 medium-8 column">
-				<%= f.select :godfather_ids, Supporter.where(:godfather => true).map{|role| [role.name.to_s + " " + role.family_name.to_s, role.id]}, :include_blank => true %>
-			</div>
-		</div>
-	</div>
-	<hr>
-	<div class="medium-12 column">
-		<div class="row">
-			<% if params[:action] == 'edit' %>
-			<%= link_to 'Add Person to Program', add_to_program_path(@person), :class => 'button small small-12 medium-10 right' %>
-			<% else %>
-			<%= render 'program_checkboxes' %>
-			<% end %>
-		</div>
-	</div>
-	<hr>
-	<div class="small-12 medium-12 column"s>
-		<div class="row">
-			<div class="small-12 medium-2 columns">
-				<%= f.label :narrative_text, :class => "inline"%>
-			</div>
-			<div class="small-12 medium-10 column">
-				<%= f.text_area :narrative_text, :style => "height: 300px;", :id => "narText" %>
-				<div style="margin-top: -15px; margin-bottom: 5px;" class="text-right">
-					<span id="txtLeft">2000</span><span> of 2000 chars left</span>
-				</div>
-			</div>
-		</div>
-		<script type="text/javascript">
-			var maxlengthTxt = 2000;
-			var txt = 0;
-			$("#narText").keyup(function (e) {
-				txt = $(this).val();
-				leftText = maxlengthTxt - txt.length;
-				if (leftText <= 0) {
-					$(this).val(txt.slice(0, maxlengthTxt));
-				};
-				$('#txtLeft').html(leftText);
-			})
-		</script>
-	</div>
-</div>
-<!-- TODO: AJAX ! -->
-<div class="row button-center">
-	<%= f.submit :class => 'button' %>
-</div>
+            </div>
+            <% if @person.avatar_file_name %>
+                <div class="row">
+                    <div class="small-12 medium-4 columns">
+                        <label for="oldfile">Existing Picture:</label>
+                    </div>
+                    <div class="small-12 medium-8 columns">
+                        <div style="margin-bottom: 42px;">
+                            <%= image_tag @person.avatar.url(:thumb) %>
+                        </div>
+                        <%#= content_tag(:i, " ", class: "icon-file")+ " "+@person.avatar_file_name %>
+                    </div>
+                </div>
+            <% end %>
+            <div class="row">
+                <div class="small-12 medium-4 column">
+                    <%= f.label :fathers_name %>
+                </div>
+                <div class="small-12 medium-8 column">
+                    <%= f.text_field :fathers_name, :placeholder => "Fathers name", :id => "AutoFName" %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-4 column">
+                    <%= f.label :head_of_household %>
+                </div>
+                <div class="small-12 medium-8 column">
+                    <%= f.text_field :head_of_household, :placeholder => "Head of household name", :id => "AutoHoHName", :disabled => if !@person.role_id.nil? and @person.role_id != 1 and action_name == 'edit' then "disabled" end %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-4 column">
+                    <%= f.label "Former File Number" %>
+                </div>
+                <div class="small-12 medium-8 column">
+                    <%= f.text_field :file_number, :placeholder => "former File number" %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-4 columns">
+                    <%= f.label :gender %>
+                </div>
+                <div class="small-12 medium-8 columns">
+                    <%= f.select :gender, ["male", "female"] %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-4 columns">
+                    <%= f.label :date_of_birth, :class => "inline" %>
+                </div>
+                <div class="small-12 medium-8 columns">
+                    <%= f.date_select :date_of_birth, {:order => [:day, :month, :year], :start_year => 1910}, :class => "small-4 left" %>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-4 column">
+                    <%= f.label :place_of_birth %>
+                </div>
+                <div class="small-12 medium-8 column">
+                    <%= f.text_field :place_of_birth, :placeholder => "Place of Birth" %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-4 column">
+                    <%= f.label :native_place %>
+                </div>
+                <div class="small-12 medium-8 column">
+                    <%= f.text_field :native_place, :placeholder => "Native Place" %>
+                </div>
+            </div>
+        </div>
+        <div class="small-12 medium-6 column">
+            <div class="row">
+                <div class="small-12 medium-4 column">
+                    <%= f.label "ZIP Code" %>
+                </div>
+                <div class="small-12 medium-8 column">
+                    <%= f.text_field :zip_code, :placeholder => "ZIP Code" %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-4 column">
+                    <%= f.label "City/Village" %>
+                </div>
+                <div class="small-12 medium-8 column">
+                    <%= f.text_field :city, :placeholder => "City/Village", :id => "city" %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-4 column">
+                    <%= f.label :area %>
+                </div>
+                <div class="small-12 medium-8 column">
+                    <%= f.text_field :area, :placeholder => "Area" %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-4 column">
+                    <%= f.label :name_of_the_street %>
+                </div>
+                <div class="small-12 medium-8 column">
+                    <%= f.text_field :name_of_the_street, :placeholder => "Name of the Street" %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-4 column">
+                    <%= f.label "Door Number" %>
+                </div>
+                <div class="small-12 medium-8 column">
+                    <%= f.text_field :name_of_the_house, :placeholder => "Door Number" %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="small-12 medium-6 column">
+            <div class="row">
+                <div class="small-12 medium-4 column">
+                    <%= f.label :religion %>
+                </div>
+                <div class="small-12 medium-8 column">
+                    <div class="row selectWithOtherField">
+                        <%= f.select_with_other_field("person", :religion, {:selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12'}) %>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="showCaste">
+                <div class="small-12 medium-4 column">
+                    <%= f.label :caste %>
+                </div>
+                <div class="small-12 medium-8 column">
+                    <div class="row selectWithOtherField">
+                        <%= f.select_with_other_field("person", :caste, {:selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12'}) %>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-4 columns">
+                    <%= f.label "Completed Education", :class => "inline" %>
+                </div>
+                <div class="small-12 medium-8 columns">
+                    <%= f.select :education, ["none", "still in Education", "Primary", "High", "Hr Secondary", "College", "Vocational"] %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-4 columns">
+                    <%= f.label :marital_status, :class => "inline" %>
+                </div>
+                <div class="small-12 medium-8 columns">
+                    <%= f.select :marital_status, ["none", "married", "widow/widower", "deserted", "divorced", "seperated"] %>
+                </div>
+            </div>
+        </div>
+        <div class="small-12 medium-6 column">
+            <div class="row">
+                <div class="small-12 medium-4 columns">
+                    <%= f.label :health_condition, :class => "inline" %>
+                </div>
+                <div class="small-12 medium-8 columns">
+                    <%= f.select :health_condition, ["normal", "disabled", "mentally retarded"] %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-4 columns">
+                    <%= f.label :occupation, :class => "inline" %>
+                </div>
+                <div class="small-12 medium-8 columns">
+                    <div class="row selectWithOtherField">
+                        <%= f.select_with_other_field("person", :occupation, {:selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12'}) %>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-4 column">
+                    <%= f.label :income %>
+                </div>
+                <div class="small-12 medium-8 column">
+                    <%= f.text_field :income, :placeholder => "Income per month in Rupee" %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="small-12 medium-6 column">
+            <div class="row">
+                <div class="small-12 medium-4 columns">
+                    <%= f.label "Godfather", :class => "inline" %>
+                </div>
+                <div class="small-12 medium-8 column">
+                    <%= f.select :godfather_ids, Supporter.where(:godfather => true).map { |role| [role.name.to_s + " " + role.family_name.to_s, role.id] }, :include_blank => true %>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="medium-12 column">
+            <div class="row">
+                <% if params[:action] == 'edit' %>
+                    <%= link_to 'Add Person to Program', add_to_program_path(@person), :class => 'button small small-12 medium-10 right' %>
+                <% else %>
+                    <%= render 'program_checkboxes' %>
+                <% end %>
+            </div>
+        </div>
+        <hr>
+        <div class="small-12 medium-12 column" s>
+            <div class="row">
+                <div class="small-12 medium-2 columns">
+                    <%= f.label :narrative_text, :class => "inline" %>
+                </div>
+                <div class="small-12 medium-10 column">
+                    <%= f.text_area :narrative_text, :style => "height: 300px;", :id => "narText" %>
+                    <div style="margin-top: -15px; margin-bottom: 5px;" class="text-right">
+                        <span id="txtLeft">2000</span><span> of 2000 chars left</span>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                var maxlengthTxt = 2000;
+                var txt = 0;
+                $("#narText").keyup(function (e) {
+                    txt = $(this).val();
+                    leftText = maxlengthTxt - txt.length;
+                    if (leftText <= 0) {
+                        $(this).val(txt.slice(0, maxlengthTxt));
+                    }
+                    ;
+                    $('#txtLeft').html(leftText);
+                })
+            </script>
+        </div>
+    </div>
+    <!-- TODO: AJAX ! -->
+    <div class="row button-center">
+        <%= f.submit :class => 'button' %>
+    </div>
 <% end %>
 <%= @cities %>
 <script type="text/javascript">
-	$("#person_religion").change(function () {
-		var e = document.getElementById("person_religion");
-		var selecetedReligion = e.options[e.selectedIndex].text;
-		if (selecetedReligion.toLowerCase() == "hindi" || selecetedReligion.toLowerCase() == "hindu") {
-			$("#showCaste").css("display", "block");
-		} else {$("#showCaste").css("display", "none");};
-	});
+    $("#person_religion").change(function () {
+        var e = document.getElementById("person_religion");
+        var selecetedReligion = e.options[e.selectedIndex].text;
+        if (selecetedReligion.toLowerCase() == "hindi" || selecetedReligion.toLowerCase() == "hindu") {
+            $("#showCaste").css("display", "block");
+        } else {
+            $("#showCaste").css("display", "none");
+        }
+        ;
+    });
 
 
-	$(function() {
-		var e = document.getElementById("person_religion");
-		var selecetedReligion = e.options[e.selectedIndex].text;
-		if (selecetedReligion.toLowerCase() == "hindi" || selecetedReligion.toLowerCase() == "hindu") {
-			$("#showCaste").css("display", "block");
-		} else {$("#showCaste").css("display", "none");};
-		var cities = <%= @AutoCities.to_json.html_safe  %>;
-		var names  = <%= @AutoNames.to_json.html_safe %>
-		$("#city").autocomplete({source: cities});
-		$("#AutoFName").autocomplete({source: names});
+    $(function () {
+        var e = document.getElementById("person_religion");
+        var selecetedReligion = e.options[e.selectedIndex].text;
+        if (selecetedReligion.toLowerCase() == "hindi" || selecetedReligion.toLowerCase() == "hindu") {
+            $("#showCaste").css("display", "block");
+        } else {
+            $("#showCaste").css("display", "none");
+        }
+        ;
+        var cities = <%= @AutoCities.to_json.html_safe  %>;
+        var names = <%= @AutoNames.to_json.html_safe %>
+                $("#city").autocomplete({source: cities});
+        $("#AutoFName").autocomplete({source: names});
 
-	})
+    })
 </script>

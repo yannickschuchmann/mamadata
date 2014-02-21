@@ -1,14 +1,15 @@
-$("#searchExistingPeopleSubmit").click(function () {
-	$('#searchExistingPeopleForm').hide();
-	$('#search_results_List').show();
-    $('#FormToggle').show();
-});
-$("#FormToggle").click(function () {
-	$('#searchExistingPeopleForm').show();
-	$('#search_results_List').hide();
-    $('#FormToggle').hide();
-});
+$(document).ready(function() {
 
+    $("#searchExistingPeopleSubmit").click(function (e) {
+        $('#searchExistingPeopleForm').hide();
+        $('#search_results_List').show();
+    });
+    $("#toggle").click(function (e) {
+        $('#searchExistingPeopleForm').show();
+        $('#search_results_List').hide();
+    });
+
+})
 var peopleNumber = 1,
     searchResult;
 
@@ -105,22 +106,3 @@ function serializePeople() {
     });
     return list;
 }
-
-$("#submitFamily").click(function(event){
-//	event.preventDefault();
-//
-//	$.ajax({
-//		url: "http://"+window.location.host+"/families/create",   // I'm doing the proper routing later, since '/make_suggestion' routes to 'items/1/make_suggestion'
-//		type: "PUT",
-//		beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));},
-//		dataType: 'json',
-//		async: 'false',
-//		data: 'people='+JSON.stringify(serializePeople()),
-//		success: function(result){
-//			window.location.replace("/families");
-//		},
-//		error: function(returned_value){
-//			alert("Something went Wrong during the sending of the data please retry later");
-//		}
-//	});
-});

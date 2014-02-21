@@ -81,6 +81,7 @@ class FamiliesController < ApplicationController
       @family.save
 		  redirect_to edit_community_development_path @family.community_development
     else
+      flash[:notice] = "Please set exactly one head of household"
       redirect_to new_family_path
     end
   end

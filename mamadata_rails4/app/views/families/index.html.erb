@@ -18,7 +18,7 @@
         <% @families.each_with_index do |family,key| %>
         <tr data-link="<%= family_path(family) %>">
             <td><%= family.name %></td>
-            <td><%= @heads[key].name %></td>
+            <td><%= family.people.size != 0 ? @heads[key].name : content_tag(:span, "All family members are removed", class: "secondary label")  %></td>
             <td><% family.people.each do |people| %>
                 <%= people.name %> <br>
                 <% end %>

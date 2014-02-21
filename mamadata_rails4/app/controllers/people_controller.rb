@@ -64,6 +64,7 @@ end
 	def update
 		respond_to do |format|
 			if @person.update(person_params)
+        @person.family.update(name: @person.head_of_household)
 				if params[:redirect_to_incident] == 'true'
 					format.html { redirect_to new_benefit_incident_path(@person), notice: 'Person was successfully updated.' }
 				elsif params[:redirect_to_user] == 'true'

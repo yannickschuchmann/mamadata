@@ -1,5 +1,5 @@
 class Person < ActiveRecord::Base
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :small => "160>", :thumb => "100x100>" }, :default_url => "/images/missing_:style.gif"
+  has_attached_file :avatar, :styles => {:medium => "300x300>", :small => "160>", :thumb => "100x100>"}, :default_url => "/images/missing_:style.gif"
   belongs_to :role
   belongs_to :family
   has_many :journals
@@ -13,42 +13,43 @@ class Person < ActiveRecord::Base
   has_many :benefit_incidents
   monetize :income_paise, :disable_validation => true
   validate :amount_to_big
+  #validate :validate_head_of_household
 
-    def get_total_expenses (date = nil)
-      total_expenses=Money.new(0)
-      if date.nil?
-        benefit_incidents = self.benefit_incidents
-      else
-        benefit_incidents = self.benefit_incidents.where('date_granted >= :date', :date => date)
-      end
-      benefit_incidents.each do |benefit|
-          total_expenses+=benefit.amount
-      end
-      return total_expenses
+  def get_total_expenses (date = nil)
+    total_expenses=Money.new(0)
+    if date.nil?
+      benefit_incidents = self.benefit_incidents
+    else
+      benefit_incidents = self.benefit_incidents.where('date_granted >= :date', :date => date)
     end
-
-    def year_to_date
-      self.get_total_expenses Date.today.beginning_of_financial_year
+    benefit_incidents.each do |benefit|
+      total_expenses+=benefit.amount
     end
+    total_expenses
+  end
 
-    def month_to_date
-      self.get_total_expenses Date.today.beginning_of_month
+  def year_to_date
+    self.get_total_expenses Date.today.beginning_of_financial_year
+  end
+
+  def month_to_date
+    self.get_total_expenses Date.today.beginning_of_month
+  end
+
+  def current_godfather
+    self.godfathers.first
+  end
+
+  def former_godfathers
+    relations = GodfatherPerson.only_deleted.where(person_id: self.id).order("created_at ASC")
+    former = []
+    relations.each do |r|
+      godfather = Supporter.where(id: r.godfather_id)
+      former << godfather
     end
-
-    def current_godfather
-      return self.godfathers.first
-    end
-
-    def former_godfathers
-      relations = GodfatherPerson.only_deleted.where(person_id: self.id).order("created_at ASC")
-      former = []
-      relations.each do |r|
-        godfather = Supporter.where(id: r.godfather_id)
-        former << godfather
-      end
-      former = former.collect{|el| el[0]}
-      return former
-   end
+    former = former.collect { |el| el[0] }
+    return former
+  end
 
 
   protected
@@ -59,5 +60,9 @@ class Person < ActiveRecord::Base
     end
   end
 
+  def validate_head_of_household
+    # maybe.later.you know?
+    #errors.add(:base, "Person is currently in a family. Please change it there") unless self.role_id == 1
+  end
 
 end
