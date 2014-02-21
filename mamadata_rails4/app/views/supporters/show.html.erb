@@ -127,7 +127,7 @@
 						<% slice.each do |ben| %>
 						<% fullName = (ben.name + " " +ben.fathers_name) %>
 						<td>
-							<%= link_to new_benefit_path do %>
+							<%= link_to ben do %>
 								<%= (content_tag(:i, '', :class => 'icon-chevron-right')) %>
 								<%= fullName %>
 							<% end %>
