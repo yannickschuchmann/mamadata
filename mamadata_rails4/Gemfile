@@ -33,7 +33,7 @@ gem 'jquery-ui-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 gem 'money-rails'
-gem 'money'
+gem 'money', :git => 'git://github.com/RubyMoney/money.git'
 gem 'fiscali'
 gem 'google_currency'
 gem 'debugger'
