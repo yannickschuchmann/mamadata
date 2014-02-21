@@ -1,7 +1,6 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy, :add_to_family]
   before_filter :set_autosuggest, only: [:edit, :new]
-  before_filter :authenticate_user!
 
   layout "application_person", except: :index
 

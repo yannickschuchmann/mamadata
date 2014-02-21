@@ -1,6 +1,5 @@
 class DonorTypesController < ApplicationController
   before_action :set_supporter, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!
 
   layout "application_main_sidebar"
 

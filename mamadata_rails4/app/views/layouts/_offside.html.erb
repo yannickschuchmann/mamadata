@@ -9,11 +9,11 @@
             <% programs 		= 	(controller_name == "programs") ? "active" : "" %>
 
             <li class="<%= overviews %>"><%= link_to 'Overviews', people_path %></li>
-            <% if is_admin? || is_accountant? %>
-                <li class="<%= programs %>"><%= link_to 'Programs', programs_path %></li>
-                <li class="<%= benefits %>"><%= link_to 'Benefits', benefits_path %></li>
-                <li class="<%= benefit_incidents %>"><%= link_to 'Incidents', benefit_incidents_path %></li>
-                <li class="<%= roles %>"><%= link_to 'Settings', roles_path %></li>
+            <li class="<%= programs %>"><%= link_to 'Programs', programs_path %></li>
+            <li class="<%= benefits %>"><%= link_to 'Benefits', benefits_path %></li>
+            <li class="<%= benefit_incidents %>"><%= link_to 'Incidents', benefit_incidents_path %></li>
+            <% if can? :manage, User %>
+            <li class="<%= roles %>"><%= link_to 'Settings', roles_path %></li>
             <% end %>
             <li class="<%= users %>"><%= link_to 'Profile', edit_user_registration_path %></li>
             <li><%= link_to 'Sign out', destroy_user_session_path %> </li>

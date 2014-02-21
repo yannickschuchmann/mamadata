@@ -8,7 +8,9 @@
             <th>Name</th>
             <th>Head of the Household</th>
             <th>Family Member</th>
+            <% if can? :destroy, Family %>
             <td></td>
+            <% end %>
         </tr>
     </thead>
 
@@ -21,10 +23,12 @@
                 <%= people.name %> <br>
                 <% end %>
             </td>
+            <% if can? :destroy, Family %>
             <td>
-                <%= link_to (content_tag(:i, '', :class => 'icon-trash')), family, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= link_to (content_tag(:i, '', :class => 'icon-trash')), family, method: :delete, data: { confirm: 'Are you sure to delete this family?' } %>
             </td>
+            <% end %>
         </tr>
-        <% end %>
+        <% end unless @families.nil? %>
     </tbody>
 </table>

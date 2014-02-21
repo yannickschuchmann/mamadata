@@ -1,6 +1,5 @@
 class BenefitsController < ApplicationController
   before_action :set_benefit, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!
 
   layout "application_main_sidebar"
 

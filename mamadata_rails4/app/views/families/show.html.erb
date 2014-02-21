@@ -44,7 +44,7 @@
 				<%= money_without_cents_and_with_symbol person.get_total_expenses %>
 			</td>
 			<td style="width: 130px;">
-				<% if is_admin? %>
+				<% if can? :update, Family %>
 				<%= link_to content_tag(:i, '', class: 'icon-trash'), delete_family_relation_path(id: person.id), method: :delete, data: { confirm: 'Are you sure?' } %>
 				<% end %>
 			</td>
@@ -163,7 +163,7 @@
 		<td>After dropout what is the present condition of the person:</td>
 		<td><%= @family.community_development.family_dropout_present_condition %></td>
 		<td>Is any of you family member skilled in any ar</td>
-		<td><% unless @family.community_development.family_skilled_in_art.nil? @family.community_development.family_skilled_in_art.each_with_index do |v, i| %><%= i == 0 ? v.to_s : ", "+v.to_s %><% end %></td>
+		<td><% @family.community_development.family_skilled_in_art.each_with_index do |v, i| %><%= i == 0 ? v.to_s : ", "+v.to_s %><% end unless @family.community_development.family_skilled_in_art.nil? %></td>
 	</tr>
 	<tr>
 		<td>If yes give reason for dropout:</td>

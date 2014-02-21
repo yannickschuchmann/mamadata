@@ -11,10 +11,12 @@
 		<div id="godfather<%= godfather.id %>" class="content<%= " active" if index == 0 %>">
 			<div class="row" style="height: 40px">
 				<div class="small-6 medium-6 column"></div>
-				<div class="small-6 medium-6 column">					
+				<div class="small-6 medium-6 column">
+                    <% if can? :create, PersonGodfatherFile %>
 					<div class="row">
 						<%= link_to "Add Correspondance", new_person_godfather_file_path(join_model), :class => 'button tiny icon-plus'  %>
 					</div>
+                    <% end %>
 				</div>
 
 
@@ -57,7 +59,9 @@
 									<td><%= (f.remark.empty? ? f.file_file_name : simple_format(f.remark))%></td>
 									<td><%= l f.created_at.to_date %></td>
 									<td><%= link_to (content_tag(:i, '', :class => 'icon-download-alt')), get_godfather_file_path(f.id) %>
+                                        <% if can? :destroy, PersonGodfatherFile %>
 										<%= link_to (content_tag(:i, '', :class => 'icon-trash')), person_godfather_file_path(f.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+                                        <% end %>
 									</td>
 								</tr>
 								<% end %>

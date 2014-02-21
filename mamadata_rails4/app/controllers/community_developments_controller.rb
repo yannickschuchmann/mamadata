@@ -1,7 +1,6 @@
 class CommunityDevelopmentsController < ApplicationController
 	before_action :set_community_development, only: [:edit, :update, :destroy]
-	before_filter :authenticate_user!
-	
+
 	# PATCH/PUT /community_developments/1
 	# PATCH/PUT /community_developments/1.json
 	def update
