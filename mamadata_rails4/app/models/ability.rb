@@ -23,6 +23,8 @@ class Ability
       can :update, CommunityDevelopment
       can :manage, School
       can :manage, SchoolClass
+      can :manage, GodfatherPerson
+      can :manage, PersonGodfatherFile
     when "accountant"
       can :update, Benefit
       can :manage, BenefitIncident
