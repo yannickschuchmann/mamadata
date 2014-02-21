@@ -1,5 +1,8 @@
 <%= render '/shared/overview_sidebar' %>
-<h2 class="text-center">Family name: <%= @family.name %></h2>
+<% if notice %>
+	<p id="notice"><%= notice %></p>
+<% end %>
+<h2>Family name: <%= @family.name %></h2>
 <div class="row person-head">
 	<% @family.people.each do |person| %>
 	<div class="small-2 columns left">
@@ -59,7 +62,7 @@
 			<% end %>
 		</tbody>
 	</table>
-	<h4 class="text-center">Community Development</h4>
+	<h4>Family Questionaire</h4>
 	<div class="small-12">
 		<table class="table small-12">
 			<tr>
