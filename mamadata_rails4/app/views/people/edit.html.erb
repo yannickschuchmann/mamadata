@@ -4,3 +4,22 @@
 <div class="button-center">
 	<%= link_to 'Cancel', @person, :class => "button tiny" %>
 </div>
+
+<script type="text/javascript">
+$("#personForm").validate({
+	rules: {
+		'person[name]': 				{required: true, minlength: 1},
+		'person[fathers_name]': 		{required: true, minlength: 1},
+		'person[gender]': 				{required: true},
+		'person[date_of_birth]': 		{required: true},
+		'person[place_of_birth]': 		{required: true, minlength: 1},
+		'person[name_of_the_street]': 	{required: true, minlength: 1},
+		'person[city]': 				{required: true, minlength: 1},
+		'person[zip_code]': 			{required: true, minlength: 1},
+		'person[religion]': 			{required: true},
+		'person[marital_status]': 		{required: true},
+		'person[narrative_text]': 		{required: true, minlength: 1}
+	}
+	}
+);
+</script>
