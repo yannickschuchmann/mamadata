@@ -10,10 +10,10 @@
 			<div class="row">
 				<ul class="button-group left">
 					<li><%= link_to content_tag(:i, '',:class => 'icon-edit')+" Edit", edit_school_path(school.id), class: 'button tiny' %></li>
-					<li><%= link_to content_tag(:i, '',:class => 'icon-trash')+" Delete", school, method: 'delete', data: { confirm: 'Are you sure?' }, class: 'button tiny' %></li>
+					<li><%= link_to content_tag(:i, '',:class => 'icon-trash')+" Delete", school, method: 'delete', data: { confirm: 'Are you sure? All School Inofrmation will be lost' }, class: 'button tiny' %></li>
 				</ul>
 				<ul class="button-group right">
-					<li><%= link_to content_tag(:i, '',:class => 'icon-plus')+" Add new File", new_school_class_path(id: @person.id, school_id: school.id), {class: 'button tiny'} %></li>
+					<li><%= link_to content_tag(:i, '',:class => 'icon-plus')+" Add new Class", new_school_class_path(id: @person.id, school_id: school.id), {class: 'button tiny'} %></li>
 					<% unless school.terminated? %>
 					<li><%= link_to content_tag(:i, '',:class => 'icon-lock')+" Terminate", terminate_school_path(school.id), class: 'button tiny'  %></li>
 					<% end %>
@@ -76,7 +76,7 @@
 							<td><%= school_class.document_file_name.nil? ? 'No file' : (link_to school_class.document_file_name, document_school_class_path(id: school_class.id)) %></td>
 							<td>
 								<%= link_to content_tag(:i, '', class: 'icon-edit'), edit_school_class_path(school_class.id) %>
-								<%= link_to content_tag(:i, '', class: 'icon-trash'), school_class, method: 'delete' %>
+								<%= link_to content_tag(:i, '', class: 'icon-trash'), school_class, method: 'delete', data: { confirm: 'Are you sure? Class Information will be lost' } %>
 							</td>
 						</tr>
 						<% end %>
