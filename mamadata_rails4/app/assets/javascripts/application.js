@@ -19,6 +19,7 @@
 	//= require foundation
 	// require turbolinks
 
+
     var APP = {
 		Persons: {},
 		Incidents: {},
@@ -73,6 +74,9 @@
 			APP.Incidents.updateIncidentList();
 		});
 
+		$("#chkall").click(function () {
+			$(".chk").prop('checked', $(this).prop('checked'));
+		});
 
 		/* update checked incidents with status true via ajax */
 		$('#setgrantedbtn').on('click', function(e){

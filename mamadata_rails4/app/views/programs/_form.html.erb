@@ -26,13 +26,13 @@
 </div>
 
 <h2>
-Available Benefits 
+Available Benefits
 </h2>
   <div class="row">
     <table id="benefitsIndexTable" class="table tablesorter">
       <thead>
         <tr>
-        <th></th>
+        <td></td>
           <th>Name</th>
           <th>Description</th>
           <th>Amount Spent this Year</th>
@@ -43,7 +43,8 @@ Available Benefits
       <tbody>
         <% Benefit.all.order(created_at: :desc).each do |benefit| %>
         <tr>
-        <td><%= check_box_tag :benefit_ids, benefit.id, @program.benefits.include?(benefit), :name => 'program[benefit_ids][]' %></td>
+        <td>
+        <%= check_box_tag :benefit_ids, benefit.id, @program.benefits.include?(benefit), :name => 'program[benefit_ids][]' %></td>
           <td><%= benefit.name %></td>
           <td><%= benefit.description %></td>
           <td><%= number_to_indian_currency(benefit.get_amount_year_to_date).html_safe %></td>
@@ -60,3 +61,4 @@ Available Benefits
   <%= f.submit :class => 'button' %>
 </div>
 <% end %>
+

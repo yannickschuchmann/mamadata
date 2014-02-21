@@ -57,6 +57,7 @@
 		<% end %>
         </tbody>
 </table>
+<hr>
 <h4>Family Questionaire</h4>
 <div class="small-12">
     <table class="table small-12">
@@ -186,11 +187,11 @@
         </tr>
         <tr>
             <td class="small-12 medium-6 columns">If yes give reason for dropout:</td>
-            <td class="small-12 medium-6 columns"><%= simple_format(@family.community_development.family_dropout_reason_for) %></td>
+            <td class="small-12 medium-6 columns"><%= simple_format(@family.community_development.family_dropout_reason_for, {}, wrapper_tag: "div") %></td>
         </tr>
         <tr>
             <td class="small-12 medium-6 columns">After dropout what is the present condition of the person:</td>
-            <td class="small-12 medium-6 columns"><%= simple_format(@family.community_development.family_dropout_present_condition) %></td>
+            <td class="small-12 medium-6 columns"><%= simple_format(@family.community_development.family_dropout_present_condition, {}, wrapper_tag: "div") %></td>
         </tr>
     </table>
 </div>

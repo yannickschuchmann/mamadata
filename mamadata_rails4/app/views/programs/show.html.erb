@@ -46,11 +46,11 @@
 		<% @program_participants.each do |participant| %>
 			<% @person = Person.find(participant.person_id) %>
 			<tr data-link="<%= person_path(@person) %>">
-				<td><%= link_to @person.name, person_path(@person) %></a></td>
+				<td><%= @person.name %></a></td>
 				<td><%= @person.fathers_name %></td>
 
-				<td>	<%= l participant.created_at.to_date unless participant.created_at.nil? %></td>
-				<td> <%= l participant.deleted_at.to_date unless participant.deleted_at.nil?%></td>
+				<td><%= l participant.created_at.to_date unless participant.created_at.nil? %></td>
+				<td><%= l participant.deleted_at.to_date unless participant.deleted_at.nil?%></td>
 			</tr>
 		<% end %>
 	</tbody>

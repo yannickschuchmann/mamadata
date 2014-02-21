@@ -16,8 +16,6 @@
 </div>
 <% end %>
 
-
-
 <%= f.hidden_field :person_id, value: @benefit_incident.person_id %>
 <%= f.hidden_field :date_granted, value: @benefit_incident.date_granted %>
 <div class="row">
@@ -29,7 +27,7 @@
 	<div class="small-12 medium-10 columns" id="benefit_select"><%= f.select :benefit_id, @benefits.map{|b| [b.name, b.id]}%></div>
 </div>
 <div class="row">
-	<div class="small-12 medium-2 columns" id="amountlabel"><%= f.label :amount %></div>
+	<div class="small-12 medium-2 columns"><%= f.label :amount %></div>
 	<div class="small-12 medium-10 columns"><%= f.text_field :amount, placeholder: "0.00" %></div>
 </div>
 <div class="row">
@@ -53,9 +51,15 @@
 <% else %>
 <%= f.hidden_field :status, value: @benefit_incident.status %>
 <% end %>
-	<div class="text-center">
-		<%= f.submit :class => 'button' %>
-	</div>
+	<% if (params[:action] == "new") %>
+		<div class="text-center">
+			<%= f.submit "New Incident", :class => 'button' %>
+		</div>
+	<% else %>
+		<div class="text-center">
+			<%= f.submit "Update Incident", :class => 'button' %>
+		</div>
+	<% end %>
 <% end %>
 <script>
 var data = <%= @data.to_json.html_safe %>;

@@ -2,7 +2,7 @@
 
 <p>
 	<% if @person.narrative_text? %>
-	<%= simple_format(@person.narrative_text) %>
+	<%= simple_format(@person.narrative_text, {}, wrapper_tag: "div") %>
 	<% else %>
 	none
 	<% end%>
