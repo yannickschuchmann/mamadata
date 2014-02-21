@@ -146,9 +146,8 @@
   </div>
   <div class="row">
     <div class="medium-4 column"><%= f.label "For your illness, where do you go for treatment?" %></div>
-    <div class="medium-8 column"><!--
-      Multiple Select funktioniert noch nicht, wird noch nicht abgespeichert
-    -->
+    <div class="medium-8 column">
+    <p style="margin-bottom: 5px;">Hold down ctrl for multiple select</p>
     <%= f.select(:illness_treatment, [['government hospital', 'government hospital'],
                                   ['Private medical practitioner', 'Private medical practitioner'],
                                   ['country doctor', 'country doctor'],
@@ -156,7 +155,7 @@
                                   ['midwife', 'midwife'],
                                   ['priest', 'priest'],
                                   ['other', 'other'],
-                                 ],{ :prompt => "Please select"},
+                                 ],{ :prompt => " -- select one or multiple -- "},
                                    { :multiple => true, :size => 8 }
                                  ) %>
     </div>
@@ -174,16 +173,15 @@
     <div class="medium-8 column"><%= f.text_area :family_dropout_present_condition %></div>
   </div>
   <div class="row">
-    <!-- 
-      Multiple Select funktioniert noch nicht, wird noch nicht abgespeichert
-    -->
     <div class="medium-4 column"><%= f.label "Is any of you family member skilled in any arts?" %></div>
-    <div class="medium-8 column"><%= f.select(:family_skilled_in_art, [['handicrafts', 'handicrafts'],
+    <div class="medium-8 column">
+      <p style="margin-bottom: 5px;">Hold down ctrl for multiple select</p>
+      <%= f.select(:family_skilled_in_art, [['handicrafts', 'handicrafts'],
                               ['folk arts', 'folk arts'],
                               ['martial arts', 'martial arts'],
                               ['other', 'other'],
                               ['no', 'no'],
-                             ],{ :prompt => "Please select"},
+                             ],{ :prompt => " -- select one or multiple -- "},
                                { :multiple => true, :size => 6 }
                              ) %>
     </div>

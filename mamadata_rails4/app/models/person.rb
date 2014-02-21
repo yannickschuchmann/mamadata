@@ -11,8 +11,9 @@ class Person < ActiveRecord::Base
   has_many :godfathers, :class_name => "Supporter", through: :godfather_people, dependent: :destroy
   has_many :person_godfather_files, through: :godfather_people
   has_many :benefit_incidents
-  monetize :income_paise,:with_currency => :inr, :numericality => {
+  monetize :income_paise, :disable_validation => true,:with_currency => :inr, :numericality => {
     greater_than_or_equal_to: 0 }
+  validate :amount_to_big
 
     def get_total_expenses (date = nil)
       total_expenses=Money.new(0)
@@ -52,6 +53,12 @@ class Person < ActiveRecord::Base
 
 
   protected
+
+  def amount_to_big
+    if self.income_paise > 8999999999999999900
+      errors.add(:base, "Amount for income is too big")
+    end
+  end
 
 
 end

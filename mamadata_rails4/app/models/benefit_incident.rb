@@ -1,7 +1,4 @@
 class BenefitIncident < ActiveRecord::Base
-	# register_currency :eur
-	# register_currency :usd
-	# register_currency :inr
 	belongs_to :person
 	belongs_to :program
 	belongs_to :benefit
@@ -17,12 +14,18 @@ class BenefitIncident < ActiveRecord::Base
 	before_save :set_date_granted
 	before_save :update_calculated_amount
 	before_save :set_fixed_amount
+	validate :amount_to_big
 	# before_save :set_current_exchange_rates
 
 
 
 
 	protected
+	 def amount_to_big
+    if self.amount_paise > 8999999999999999900
+      errors.add(:base, "The Amount you entered is too high")
+    end
+  end
 
 		def set_current_exchange_rates
 			if self.changed_attributes.include?("amount_paise")

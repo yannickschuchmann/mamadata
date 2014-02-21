@@ -25,7 +25,7 @@
                 <td style="width: 130px;">
                     <%= link_to (content_tag(:i, "", :class => "icon-edit")), edit_benefit_path(benefit) %>
                     <% if can? :destroy, Benefit %>
-                    <%= link_to (content_tag(:i, "", :class => "icon-trash")), benefit, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <%= link_to (content_tag(:i, "", :class => "icon-trash")), benefit, method: :delete, data: { confirm: 'Are you sure you want to delete this benefit?' } %>
                     <% end %>
                 </td>
                 <% end %>

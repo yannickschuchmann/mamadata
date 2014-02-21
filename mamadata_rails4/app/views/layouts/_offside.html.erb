@@ -3,7 +3,7 @@
         <ul class="off-canvas-list">
             <% overviews 		= 	(controller_name == "people" || controller_name == "families" || controller_name == "supporters" || controller_name == "users")  ? "active" : "" %>
             <% users 			= 	(controller_name == "registrations") ? "active" : "" %>
-            <% roles 			= 	(controller_name == "roles") ? "active" : "" %>
+            <% settings 		= 	(controller_name == "roles" || controller_name == "donor_types") ? "active" : "" %>
             <% benefit_incidents= 	(controller_name == "benefit_incidents") ? "active" : "" %>
             <% benefits 		=	(controller_name == "benefits") ? "active" : "" %>
             <% programs 		= 	(controller_name == "programs") ? "active" : "" %>
@@ -13,7 +13,7 @@
             <li class="<%= benefits %>"><%= link_to 'Benefits', benefits_path %></li>
             <li class="<%= benefit_incidents %>"><%= link_to 'Incidents', benefit_incidents_path %></li>
             <% if can? :manage, User %>
-            <li class="<%= roles %>"><%= link_to 'Settings', roles_path %></li>
+            <li class="<%= settings %>"><%= link_to 'Settings', roles_path %></li>
             <% end %>
             <li class="<%= users %>"><%= link_to 'Profile', edit_user_registration_path %></li>
             <li><%= link_to 'Sign out', destroy_user_session_path %> </li>

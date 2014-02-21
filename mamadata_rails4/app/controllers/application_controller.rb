@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   prepend_before_filter authorize_resource :unless => :devise_controller?
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to new_user_session_url, :alert => exception.message
+    redirect_to new_user_session_url, :notice => exception.message
   end
 
   def person_school_path(school)

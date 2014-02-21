@@ -12,7 +12,7 @@
                     <% if can? :update, School %>
 					    <li><%= link_to content_tag(:i, '',:class => 'icon-edit')+" Edit", edit_school_path(school.id), class: 'button tiny' %></li>
                         <% if can? :destroy, School %>
-                            <li><%= link_to content_tag(:i, '',:class => 'icon-trash')+" Delete", school, method: 'delete', data: { confirm: 'Are you sure?' }, class: 'button tiny' %></li>
+                            <li><%= link_to content_tag(:i, '',:class => 'icon-trash')+" Delete", school, method: 'delete', data: { confirm: 'Are you sure? All School Information will be lost' }, class: 'button tiny' %></li>
                         <% end %>
                     <% end %>
 				</ul>
@@ -84,7 +84,7 @@
 							<td>
 								<%= link_to content_tag(:i, '', class: 'icon-edit'), edit_school_class_path(school_class.id) %>
                                 <% if can? :destroy, SchoolClass %>
-								<%= link_to content_tag(:i, '', class: 'icon-trash'), school_class, method: 'delete' %>
+								<%= link_to content_tag(:i, '', class: 'icon-trash'), school_class, method: 'delete', data: { confirm: 'Are you sure? Class Information will be lost' } %>
                                 <% end %>
 							</td>
                             <% end %>

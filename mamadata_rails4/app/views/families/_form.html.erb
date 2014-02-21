@@ -44,7 +44,7 @@
 		<% unless @family.people.nil? then @family.people.each_with_index do |person, index| %>
 		<div class="person" data-pid="<%= person.id %>">
 			<input type="hidden" name="people[<%= index %>][person_id]" value="<%= person.id %>"/>
-			<%= link_to content_tag(:i, '', class: 'icon-trash'), delete_family_relation_path(id: person.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'button tiny alert removeLink' %>
+			<%= link_to content_tag(:i, '', class: 'icon-trash'), delete_family_relation_path(id: person.id) %>
 			<div class="row">
 				<div class="small-12 medium-4 left" style="padding: 10px 20px;">Name</div>
 				<div class="small-12 medium-8 right" style="padding: 10px 20px;"><%= person.name %></div>

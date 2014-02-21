@@ -16,6 +16,9 @@ body .row {
 	font-size: 15px;
 	text-align: center !important;
 	color: green;
+    &.alert {
+      color: red;
+    }
 }
 
 .button {

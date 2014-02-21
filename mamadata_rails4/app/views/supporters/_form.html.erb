@@ -39,6 +39,19 @@
 				<%= f.file_field :avatar %>
 			</div>
 		</div>
+							<% if @supporter.avatar_file_name %>
+			<div class="row">
+				<div class="small-12 medium-3 columns">
+					<label for"oldfile">Existing Picture:</label>
+				</div>
+				<div class="small-12 medium-9 columns left">
+				<div style="margin-bottom: 14px;">
+					<%= image_tag @supporter.avatar.url(:thumb) %>
+					</div>
+						<%#= content_tag(:i, " ", class: "icon-file")+ " "+@person.avatar_file_name %>
+				</div>
+			</div>
+			<% end %>
 		<div class="row">
 			<div class="small-12 medium-3 columns"><%= f.label :date_of_birth %></div>
 			<div class="small-12 medium-9 columns"><%= f.date_select  :date_of_birth, {:order => [:day, :month, :year], :start_year => 1910}, :class => "small-4 left" %></div>
@@ -119,18 +132,7 @@
 					<div class="small-12 medium-9 columns"><%= f.check_box :godfather, :id => "godfatherCheckbox" %></div>
 				</div>
 			</div>
-		</div>
-	</div>
-	<hr>
-	<div class="small-12 medium-6 column">
-		<div class="row">
-			<div class="small-12 medium-3 columns"><%= f.label :donation_amount, "Donation Amount" %></div>
-			<div class="small-12 medium-9 columns"><%= f.text_field :donation_amount %></div>
-		</div>
-		<div class="row">
-			<div class="small-12 medium-3 columns"><%= f.label :donation_year, "Year of Donation" %></div>
-			<div class="small-12 medium-9 columns"><%= f.date_select :donation_year,{:order => [:year], :start_year => Date.today.year, :end_year => 1999}%></div>
-		</div>
+</div>
 	</div>
 </div>
 <script type="text/javascript">

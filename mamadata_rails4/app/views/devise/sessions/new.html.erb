@@ -1,7 +1,11 @@
 <div class="sign-in">
     <div class="sharana_logo"></div>
     <h1 class="text-center">MamaData</h1>
-
+    <div class="row">
+        <div class="small-12 column" style="margin-bottom: 20px;">
+            <%= content_tag(:div, flash[:alert], :id => "notice", class: 'alert') if flash[:alert] %>
+        </div>
+    </div>
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
         <div class="row">
             <div class="small-12 column">
