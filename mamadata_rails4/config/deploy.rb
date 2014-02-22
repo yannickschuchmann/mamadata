@@ -37,7 +37,7 @@ set :deploy_to, '/home/mamadata/'
 namespace :deploy do
   desc 'register dirs'
   task :register_dirs_uploads do
-    set :uploads_dirs,    %w(uploads uploads/partners)
+    set :uploads_dirs,    %w(uploads uploads/pictures)
     set :shared_children, []
     set :shared_children, fetch(:shared_children) + fetch(:uploads_dirs)
   end
