@@ -40,7 +40,7 @@
                 <% end %>
             </td>
             <td>
-                <%= number_to_indian_currency(person.get_total_expenses).html_safe %>
+                <%= number_to_indian_currency(person.year_to_date).html_safe %>
             </td>
             <% if can? :update, Person %>
             <td style="width: 130px;">
