@@ -16,7 +16,7 @@ class Supporter < ActiveRecord::Base
 
   private
   def check_for_godfather
-    self.godfather = false unless self.donor_type == 1
+    self.godfather = false unless self.donor_type.id == 1
   end
 
 end # end Supporter
