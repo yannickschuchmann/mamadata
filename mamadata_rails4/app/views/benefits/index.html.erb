@@ -6,7 +6,7 @@
     <table id="benefitsIndexTable" class="table tablesorter">
         <thead>
             <tr>
-                <th>Name</th>
+                <td style="text-align: center;"><%= check_box_tag :checked_person,'#', false, id: 'chkall' %></td>                <th>Name</th>
                 <th>Description</th>
                 <th>Amount Spent this Year</th>
                 <th>Benefit Type</th>
@@ -19,6 +19,7 @@
         <tbody>
             <% @benefits.each do |benefit| %>
             <tr data-link="<%= benefit_path(benefit) %>">
+                <td><%= check_box_tag :checked_benefit, benefit.id, false, class: 'chk' %></td>
                 <td><%= benefit.name %></td>
                 <td><%= benefit.description %></td>
                 <td><%= number_to_indian_currency(benefit.get_amount_year_to_date).html_safe %></td>
@@ -37,3 +38,8 @@
         </tbody>
     </table>
 </div>
+<script type="text/javascript">
+$("#chkall").click(function () {
+    $(".chk").prop('checked', $(this).prop('checked'));
+});
+</script>
