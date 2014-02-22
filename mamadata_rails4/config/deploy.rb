@@ -57,9 +57,9 @@ namespace :deploy do
   end
   desc "creat symlink"
   task :symlink_uploads do
-    on roles(:mailserver) do
-      execute "rm -rf #{release_path}/public/uploads"
-      execute "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
+    on roles(:web) do
+      execute "rm -rf #{release_path}/mamadata_rails4/public/uploads"
+      execute "ln -nfs #{shared_path}/uploads #{release_path}/mamadata_rails4/public/uploads"
     end
   end
   before :publishing, :register_dirs_uploads
@@ -75,6 +75,7 @@ namespace :deploy do
         execute "mkdir #{release_path}/mamadata_rails4/tmp && chgrp -R deployers #{release_path}/mamadata_rails4/tmp"
         execute "cd #{release_path}/mamadata_rails4/ && rake assets:clean && rake assets:precompile"
         execute "chgrp -R deployers #{release_path}/mamadata_rails4/"
+        execute "chgrp -R deployers #{shared_path}/"
       end
     end
   end
