@@ -35,7 +35,12 @@ set :deploy_to, '/home/mamadata/'
 # set :keep_releases, 5
 
 namespace :deploy do
-
+  desc 'register dirs'
+  task :register_dirs_uploads do
+    set :uploads_dirs,    %w(uploads uploads/pictures)
+    set :shared_children, []
+    set :shared_children, fetch(:shared_children) + fetch(:uploads_dirs)
+  end
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
@@ -43,8 +48,24 @@ namespace :deploy do
       # execute :touch, release_path.join('tmp/restart.txt')
     end
   end
-
-  after :publishing, :restart
+  desc 'setup sharing folder'
+  task :setup_uploads do
+    on roles(:web) do
+      dirs = fetch(:uploads_dirs).map { |d| File.join(shared_path, d) }
+      execute "mkdir -p #{dirs.join(' ')} && chmod g+w #{dirs.join(' ')}"
+    end
+  end
+  desc "creat symlink"
+  task :symlink_uploads do
+    on roles(:web) do
+      execute "rm -rf #{release_path}/mamadata_rails4/public/uploads"
+      execute "ln -nfs #{shared_path}/uploads #{release_path}/mamadata_rails4/public/uploads"
+    end
+  end
+  before :publishing, :register_dirs_uploads
+  after :publishing, "setup_uploads"
+  after :publishing, "symlink_uploads"
+  after :publishing, "restart"
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
@@ -54,6 +75,7 @@ namespace :deploy do
         execute "mkdir #{release_path}/mamadata_rails4/tmp && chgrp -R deployers #{release_path}/mamadata_rails4/tmp"
         execute "cd #{release_path}/mamadata_rails4/ && rake assets:clean && rake assets:precompile"
         execute "chgrp -R deployers #{release_path}/mamadata_rails4/"
+        execute "chgrp -R deployers #{shared_path}/"
       end
     end
   end

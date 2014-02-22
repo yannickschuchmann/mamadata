@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220192117) do
+ActiveRecord::Schema.define(version: 20140221212939) do
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
@@ -29,17 +29,17 @@ ActiveRecord::Schema.define(version: 20140220192117) do
     t.integer  "person_id"
     t.integer  "benefit_id"
     t.integer  "program_id"
-    t.integer  "amount_paise",              default: 0
-    t.string   "amount_currency",           default: "INR", null: false
+    t.integer  "amount_paise",              limit: 8, default: 0
+    t.string   "amount_currency",                     default: "INR", null: false
     t.text     "remark"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "date_granted"
     t.boolean  "status"
-    t.integer  "amount_in_euro_paise",      default: 0
-    t.string   "amount_in_euro_currency",   default: "EUR", null: false
-    t.integer  "amount_in_dollar_paise",    default: 0
-    t.string   "amount_in_dollar_currency", default: "USD", null: false
+    t.integer  "amount_in_euro_paise",      limit: 8, default: 0
+    t.string   "amount_in_euro_currency",             default: "EUR", null: false
+    t.integer  "amount_in_dollar_paise",    limit: 8, default: 0
+    t.string   "amount_in_dollar_currency",           default: "USD", null: false
   end
 
   add_index "benefit_incidents", ["benefit_id"], name: "index_benefit_incidents_on_benefit_id"
@@ -49,12 +49,12 @@ ActiveRecord::Schema.define(version: 20140220192117) do
   create_table "benefits", force: true do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "optional_amount_paise"
-    t.string   "optional_amount_currency", default: "INR", null: false
+    t.integer  "optional_amount_paise",    limit: 8
+    t.string   "optional_amount_currency",           default: "INR", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "fixed_amount_paise"
-    t.string   "fixed_amount_currency",    default: "INR", null: false
+    t.integer  "fixed_amount_paise",       limit: 8
+    t.string   "fixed_amount_currency",              default: "INR", null: false
     t.integer  "max_people"
     t.string   "category"
   end
@@ -133,30 +133,30 @@ ActiveRecord::Schema.define(version: 20140220192117) do
   add_index "journals", ["person_id"], name: "index_journals_on_person_id"
 
   create_table "people", force: true do |t|
-    t.string   "name",                default: ""
-    t.string   "fathers_name",        default: ""
-    t.string   "gender",              default: ""
+    t.string   "name",                          default: ""
+    t.string   "fathers_name",                  default: ""
+    t.string   "gender",                        default: ""
     t.date     "date_of_birth"
-    t.string   "place_of_birth",      default: ""
-    t.string   "native_place",        default: ""
-    t.string   "name_of_the_house",   default: ""
+    t.string   "place_of_birth",                default: ""
+    t.string   "native_place",                  default: ""
+    t.string   "name_of_the_house",             default: ""
     t.integer  "number_of_the_house"
-    t.string   "name_of_the_street",  default: ""
-    t.string   "city",                default: ""
+    t.string   "name_of_the_street",            default: ""
+    t.string   "city",                          default: ""
     t.string   "zip_code"
-    t.string   "religion",            default: ""
-    t.string   "caste",               default: ""
-    t.string   "education",           default: ""
-    t.string   "marital_status",      default: ""
-    t.string   "health_condition",    default: ""
-    t.string   "occupation",          default: ""
-    t.integer  "income_paise",        default: 0
-    t.string   "income_currency",     default: "INR", null: false
+    t.string   "religion",                      default: ""
+    t.string   "caste",                         default: ""
+    t.string   "education",                     default: ""
+    t.string   "marital_status",                default: ""
+    t.string   "health_condition",              default: ""
+    t.string   "occupation",                    default: ""
+    t.integer  "income_paise",        limit: 8, default: 0
+    t.string   "income_currency",               default: "INR", null: false
     t.integer  "family_id"
     t.integer  "role_id"
     t.text     "narrative_text"
     t.text     "default"
-    t.string   "status",              default: ""
+    t.string   "status",                        default: ""
     t.integer  "godfather_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -165,7 +165,7 @@ ActiveRecord::Schema.define(version: 20140220192117) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "area"
-    t.string   "file_number"
+    t.string   "file_number",                   default: ""
     t.string   "head_of_household"
   end
 
@@ -264,8 +264,8 @@ ActiveRecord::Schema.define(version: 20140220192117) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_donor"
-    t.integer  "donation_amount_paise"
-    t.string   "donation_amount_currency", default: "INR", null: false
+    t.integer  "donation_amount_paise",    limit: 8
+    t.string   "donation_amount_currency",           default: "INR", null: false
     t.integer  "donor_type_id"
     t.date     "donation_year"
     t.string   "street_number"
