@@ -46,10 +46,6 @@ class BenefitsController < ApplicationController
   # PATCH/PUT /benefits/1.json
   def update
 
-     puts '@@@@@@@@@@@@'
-    puts benefit_params
-    puts '@@@@@@@@@@@@'
-    
     respond_to do |format|
       if @benefit.update(benefit_params)
         format.html { redirect_to @benefit, notice: 'Benefit was successfully updated.' }

@@ -71,6 +71,8 @@
 		APP.Incidents.personId = personId || "all"
 		/* update incidents when status of select box changes */
 		$('#incident_status').change(function(){
+			$('#benefit_incident_date_from').val('');
+			$('#benefit_incident_date_to').val('');
 			APP.Incidents.updateIncidentList();
 		});
 
@@ -116,6 +118,8 @@
 
 		/* checkox shows datepicker */
 		$('#filter_date').on('click', function(){
+
+
 			APP.Incidents.updateIncidentList();
 		});
 	};
