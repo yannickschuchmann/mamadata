@@ -62,6 +62,7 @@ class FamiliesController < ApplicationController
         redirect_to edit_family_path @family.id
       end
     else
+      flash[:notice] = "Please set exactly one head of household"
       redirect_to edit_family_path @family.id
     end
   end
