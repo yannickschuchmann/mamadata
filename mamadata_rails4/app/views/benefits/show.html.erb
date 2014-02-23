@@ -5,30 +5,28 @@
 
 <h2 style="margin: 0px;"><%= @benefit.name %></h2>
 <h4 style="margin: 0px;"><%= @benefit.description %></h4>
-<p style="margin: 0px;">
-	<% if @benefit.category == "none" %>
-		<p style="background-color: #F5F5F5; padding: 10px;">Amount is individually set per Incident</p>
-	<% elsif @benefit.category == "calculated" %>
-		<p style="background-color: #F5F5F5; padding: 10px;">Benefit has a calculated Amount per Incident</p>
-		<table>
-			<tr>
-				<td>Total Amount Set for this Benefit: </td>
-				<td><%= number_to_indian_currency(@benefit.optional_amount).html_safe %></td>
-			</tr>
-			<tr>
-				<td>Number of Beneficiarys set to participate: </td>
-				<td><%= @benefit.max_people %></td>
-			</tr>
-			<tr>
-				<td>Calculated Amount per Incident: </td>
-				<td><%= number_to_indian_currency(@benefit.optional_amount/@benefit.max_people).html_safe %></td>
-			</tr>
-		</table>
-	<% elsif @benefit.category == "fixed" %>
-		<p style="background-color: #F5F5F5; padding: 10px;">Benefit has a fixed Amount per Incident</p>
-		Fixed Amount per Incident: <%= number_to_indian_currency(@benefit.fixed_amount).html_safe %>
-	<% end %>
-</p>
+<% if @benefit.category == "none" %>
+	<p style="background-color: #F5F5F5; padding: 10px; margin: 0px;">Amount is individually set per Incident</p>
+<% elsif @benefit.category == "calculated" %>
+	<p style="background-color: #F5F5F5; padding: 10px; margin: 0px;">Benefit has a calculated Amount per Incident</p>
+	<table>
+		<tr>
+			<td>Total Amount Set for this Benefit: </td>
+			<td><%= number_to_indian_currency(@benefit.optional_amount).html_safe %></td>
+		</tr>
+		<tr>
+			<td>Number of Beneficiarys set to participate: </td>
+			<td><%= @benefit.max_people %></td>
+		</tr>
+		<tr>
+			<td>Calculated Amount per Incident: </td>
+			<td><%= number_to_indian_currency(@benefit.optional_amount/@benefit.max_people).html_safe %></td>
+		</tr>
+	</table>
+<% elsif @benefit.category == "fixed" %>
+	<p style="background-color: #F5F5F5; padding: 10px; margin: 0px;">Benefit has a fixed Amount per Incident</p>
+	Fixed Amount per Incident: <%= number_to_indian_currency(@benefit.fixed_amount).html_safe %>
+<% end %>
 <table class="table">
 	<tr>
 		<td><b>Year to Date:</b></td>
