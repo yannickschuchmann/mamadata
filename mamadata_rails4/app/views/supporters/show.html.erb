@@ -1,5 +1,5 @@
 <% if notice %>
-	<p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 <% end %>
 <div class="row person-head">
 	<div class="medium-2 column">
@@ -12,56 +12,56 @@
 <hr>
 <div class="row">
 	<div class="small-12 medium-6 column">
+		<h5> General Information </h5>
 		<table class="table small-12">
 			<tr>
-				<td class="small-12 medium-5"><b>Organisation:</b></td>
-				<td class="small-12 medium-7"><%= @supporter.organisation %></td>
+				<td class="medium-5"><b>Organisation:</b></td>
+				<td class="medium-8"><%= @supporter.organisation %></td>
 			</tr>
 			<tr>
-				<td><b>Position in Organisation:</b></td>
-				<td><%= @supporter.position_in_organisation %></td>
+				<td class="medium-5"><b>Position in Organisation:</b></td>
+				<td class="medium-8"><%= @supporter.position_in_organisation %></td>
 			</tr>
 			<tr>
-				<td><b>Date of birth:</b></td>
-				<td><%= l @supporter.date_of_birth.to_date %></td>
+				<td class="medium-5"><b>Date of birth:</b></td>
+				<td class="medium-8"><%= l @supporter.date_of_birth.to_date %></td>
 			</tr>
 			<tr>
-				<td><b>E-Mail:</b></td>
-				<td><%= @supporter.email %></td>
+				<td class="medium-5"><b>E-Mail:</b></td>
+				<td class="medium-8"><%= @supporter.email %></td>
 			</tr>
-
 			<tr>
-				<td><b>Website:</b></td>
-				<td><%= @supporter.website %></td>
+				<td class="medium-5"><b>Website:</b></td>
+				<td class="medium-8"><%= @supporter.website %></td>
 			</tr>
-
 			<tr>
-				<td><b>Telephone Number:</b></td>
-				<td><%= @supporter.telephone_number %></td>
+				<td class="medium-5"><b>Telephone Number:</b></td>
+				<td class="medium-8"><%= @supporter.telephone_number %></td>
 			</tr>
 		</table>
 	</div>
 	<div class="small-12 medium-6 column">
+		<h5>Address</h5>
 		<table class="table small-12">
 			<tr>
-				<td class="small-12 medium-3"><b>Country:</b></td>
-				<td class="small-12 medium-9"><%= @supporter.country %></td>
+				<td class="medium-5"><b>Country:</b></td>
+				<td class="medium-8"><%= @supporter.country %></td>
 			</tr>
 			<tr>
-				<td><b>Street:</b></td>
-				<td><%= @supporter.street %></td>
+				<td class="medium-5"><b>Street:</b></td>
+				<td class="medium-8"><%= @supporter.street %></td>
 			</tr>
 			<tr>
-				<td><b>Door Number:</b></td>
-				<td><%= @supporter.street_number %></td>
+				<td class="medium-5"><b>Door Number:</b></td>
+				<td class="medium-8"><%= @supporter.street_number %></td>
 			</tr>
 			<tr>
-				<td><b>Zipcode:</b></td>
-				<td><%= @supporter.zipcode %></td>
+				<td class="medium-5"><b>Zipcode:</b></td>
+				<td class="medium-8"><%= @supporter.zipcode %></td>
 			</tr>
 			<tr>
-				<td><b>City:</b></td>
-				<td><%= @supporter.city %></td>
+				<td class="medium-5"><b>City:</b></td>
+				<td class="medium-8"><%= @supporter.city %></td>
 			</tr>
 		</table>
 	</div>
@@ -70,20 +70,20 @@
 <% if @supporter.is_volunteer %>
 <div class="row">
 	<div class="small-12 medium-6 column">
-		<h5> Volunteer </h5>
+		<h5>Volunteer</h5>
 		<table class="table small-12">
 			<tr>
-				<td class="small-12 medium-3"><b>Begin of Work:</b></td>
-				<td class="small-12 medium-9"><%= l @supporter.begin_of_work.to_date %></td>
+				<td class="medium-5"><b>Begin of Work:</b></td>
+				<td class="medium-8"><%= l @supporter.begin_of_work.to_date %></td>
 			</tr>
 
 			<tr>
-				<td><b>End of Work:</b></td>
-				<td><%= l @supporter.end_of_work.to_date %></td>
+				<td class="medium-5"><b>End of Work:</b></td>
+				<td class="medium-8"><%= l @supporter.end_of_work.to_date %></td>
 			</tr>
 			<tr>
-				<td><b>Type of Work:</b></td>
-				<td><%= @supporter.type_of_work %></td>
+				<td class="medium-5"><b>Type of Work:</b></td>
+				<td class="medium-8"><%= @supporter.type_of_work %></td>
 			</tr>
 		</table>
 	</div>
@@ -103,38 +103,37 @@
 		<h5>Donor</h5>
 		<table class="table small-12">
 			<tr>
-				<td class="small-12 medium-4"><b>Donor Type:</b></td>
-				<td class="small-12 medium-8"><%= @supporter.donor_type.name %></td>
+				<td class="medium-5"><b>Donor Type:</b></td>
+				<td class="medium-9"><%= @supporter.donor_type.name %></td>
 			</tr>
+		</table>
+	</div>
+	<div class="small-12 medium-6 column">
+		<% unless @supporter.people.empty? or !@supporter.godfather %>
+		<h5>Supporter is a Godfather of</h5>
+		<div class="row">
+			<table class="table small-12">
+				<% @supporter.people.each do |ben| %>
+				<tr>
+					<% fullName = (ben.name + " " +ben.fathers_name) %>
+					<td>
+						<%= link_to ben do %>
+						<%= (content_tag(:i, '', :class => 'icon-chevron-right')) %>
+						<%= fullName %>
+						<% end%>
+					</td>
+					<% end%>
+				</tr>
+				<% end %>
 			</table>
 		</div>
-		<div class="small-12 medium-6 column">
-			<% unless @supporter.people.empty? or !@supporter.godfather %>
-			<h5>Supporter is a Godfather of</h5>
-			<div class="medium-12 column">
-				<table class="table small-12">
-					<% @supporter.people.each_slice(2) do |slice| %>
-					<tr>
-						<% slice.each do |ben| %>
-						<% fullName = (ben.name + " " +ben.fathers_name) %>
-						<td>
-							<%= link_to ben do %>
-								<%= (content_tag(:i, '', :class => 'icon-chevron-right')) %>
-								<%= fullName %>
-							<% end %>
-							<% end%>
-						</tr>
-						<% end%>
-					</table>
-				</div>
-				<% end %>
-			</div>
-		</div>
-		<% else %>
-		<div class="row">
-			<div class="small-12 medium-6 column">
-				<h5>Supporter is not a Donor</h5>
-			</div>
-		</div>
-		<% end %>
+	</div>
+</div>
+<% else %>
+<div class="row">
+	<div class="small-12 medium-6 column">
+		<h5>Supporter is not a Donor</h5>
+	</div>
+</div>
+<% end %>
 

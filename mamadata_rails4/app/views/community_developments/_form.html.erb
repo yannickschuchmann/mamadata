@@ -147,7 +147,7 @@
   <div class="row">
     <div class="medium-4 column"><%= f.label "For your illness, where do you go for treatment?" %></div>
     <div class="medium-8 column">
-    <p style="margin-bottom: 5px;">Hold down ctrl for multiple select</p>
+    <p class="hide-for-touch" style="margin-bottom: 5px;">Hold down ctrl for multiple select</p>
     <%= f.select(:illness_treatment, [['government hospital', 'government hospital'],
                                   ['Private medical practitioner', 'Private medical practitioner'],
                                   ['country doctor', 'country doctor'],
@@ -175,7 +175,7 @@
   <div class="row">
     <div class="medium-4 column"><%= f.label "Is any of you family member skilled in any arts?" %></div>
     <div class="medium-8 column">
-      <p style="margin-bottom: 5px;">Hold down ctrl for multiple select</p>
+      <p class="hide-for-touch" style="margin-bottom: 5px;">Hold down ctrl for multiple select</p>
       <%= f.select(:family_skilled_in_art, [['handicrafts', 'handicrafts'],
                               ['folk arts', 'folk arts'],
                               ['martial arts', 'martial arts'],

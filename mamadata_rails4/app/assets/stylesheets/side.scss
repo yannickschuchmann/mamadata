@@ -38,8 +38,9 @@ html.is_static {
 	margin-top: 45px;
 }
 
-#side-nav {
+#side-nav, .side_family {
 	text-align: center;
+	margin-bottom: 0px;
 	> {
 		li {
 			> a {

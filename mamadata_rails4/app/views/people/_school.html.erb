@@ -1,6 +1,6 @@
 <div id="schools">
-    <% if can? :create, School %>
-    <%= link_to "Add new School", new_school_path(@person.id), {class: 'button'} %>
-    <% end %>
-    <%= render "/schools/list" %>
+	<% if can? :create, School %>
+	<%= link_to "Add new School", new_school_path(@person.id), {class: 'button'} %>
+	<% end %>
+	<%= render "/schools/list" %>
 </div>
