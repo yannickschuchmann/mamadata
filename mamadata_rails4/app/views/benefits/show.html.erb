@@ -3,9 +3,9 @@
 <% end %>
 
 
-<h2><%= @benefit.name %></h2>
-<h4><%= @benefit.description %></h4>
-<p>
+<h2 style="margin: 0px;"><%= @benefit.name %></h2>
+<h4 style="margin: 0px;"><%= @benefit.description %></h4>
+<p style="margin: 0px;">
 	<% if @benefit.category == "none" %>
 		<p style="background-color: #F5F5F5; padding: 10px;">Amount is individually set per Incident</p>
 	<% elsif @benefit.category == "calculated" %>
