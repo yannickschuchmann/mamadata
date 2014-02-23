@@ -1,16 +1,18 @@
-<% if can? :create, Journal %> 
-	<h5>Add a Journal Entry:</h5>
-	<%= render 'journals/form'%>
-<% else %>
-	<h5>No Journal Entries yet</h5>
-<% end %>
-<%= render 'journals/list'%>
-<script>
-$("#journalForm").validate(
-{
-	rules: {
-		'journal[text]': {required: true, minlength: 1}
+<div>
+	<% if can? :create, Journal %> 
+		<h5>Add a Journal Entry:</h5>
+		<%= render 'journals/form'%>
+	<% else %>
+		<h5>No Journal Entries yet</h5>
+	<% end %>
+		<%= render 'journals/list'%>
+	<script>
+	$("#journalForm").validate(
+	{
+		rules: {
+			'journal[text]': {required: true, minlength: 1}
+		}
 	}
-}
-);
-</script>
+	);
+	</script>
+</div>
