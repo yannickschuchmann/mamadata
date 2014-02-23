@@ -53,6 +53,15 @@ class Person < ActiveRecord::Base
     return former
   end
 
+  def self.sort_attribute_names
+    attribute_names = [["-", ""]]
+    ["Name", "Fathers Name", "Head of Household", "Gender", "Date of birth", "Place of birth", "City", "ZIP Code", "Role", "Total Expense"].each do |n|
+      stripped = n.gsub(' ', '_').downcase
+      attribute_names << [n+" a-z", stripped+"#asc"]
+      attribute_names << [n+" z-a", stripped+"#desc"]
+    end
+    attribute_names
+  end
 
   protected
 

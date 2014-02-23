@@ -1,0 +1,29 @@
+<div class="row">
+    <%= form_for "sort", method: :get do |f| %>
+    <div class="small-12 column">
+        <div class="row">
+            <div class="small-6 column">
+                <%= fields_for :sort do |o| %>
+                <div><%= o.label :order_primary, "Primary Sort" %></div>
+                <div class="button-bar">
+                    <ul class="button-group">
+                        <li><%= o.select :order_primary, Person.sort_attribute_names, selected: if params[:sort] then params[:sort]["order_primary"] end %></li>
+                    </ul>
+                </div>
+                <% end %>
+            </div>
+            <div class="small-6 column">
+                <%= fields_for :sort do |o| %>
+                <div><%= o.label :order_secondary, "Secondary Sort" %></div>
+                <div class="button-bar">
+                    <ul class="button-group">
+                        <li><%= o.select :order_secondary, Person.sort_attribute_names, selected: if params[:sort] then params[:sort]["order_secondary"] end %></li>
+                    </ul>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <input type="submit" class="button tiny">
+    <% end %>
+</div>

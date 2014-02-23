@@ -1,13 +1,18 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy, :add_to_family]
   before_filter :set_autosuggest, only: [:edit, :new]
-
   layout "application_person", except: :index
 
   # GET /people
   # GET /people.json
   def index
-    @people = Person.all.order(created_at: :desc)
+    @people = Person.all
+    if params[:sort].nil?
+      @people = @people.order(id: :desc)
+    else
+      o = params[:sort]
+      @people = @people.order("#{o["order_primary"].split('#')[0]} #{o["order_primary"].split('#')[1]}", "#{o["order_secondary"].split('#')[0]} #{o["order_secondary"].split('#')[1]}")
+    end
   end
 
 	# GET /people/1
