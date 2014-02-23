@@ -1,8 +1,20 @@
 <% if notice %>
 	<p id="notice"><%= notice %></p>
 <% end %>
-<h1>Editing Family Questionaire</h1>
+<h1>Family Questionaire</h1>
 <%= render 'form' %>
 <div class="button-center">
     <%= link_to 'Cancel', family_path(params[:id]), :class => "button tiny" %>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+	if ($("#rainHarvestingCheckbox:checked").length == 1) 	{$("#rainHarvestingChecked").css("display", "none");};
+	if ($("#savingsCheckbox:checked").length == 1) 			{$("#savingsChecked").css("display", "block");};
+	if ($("#debtsCheckbox:checked").length == 1) 			{$("#debtsChecked").css("display", "block");};
+	if ($("#disabledCheckbox:checked").length == 1) 		{$("#disabledChecked").css("display", "block");};
+	if ($("#chronicCheckbox:checked").length == 1) 			{$("#chronicChecked").css("display", "block");};
+	if ($("#dropoutCheckbox:checked").length == 1) 			{$("#dropoutChecked").css("display", "block");};
+	if ($("#community_development_family_members_addicted_to").val() != 0){$("#addictedChecked").css("display", "block");};
+});
+</script>

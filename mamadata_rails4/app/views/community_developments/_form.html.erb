@@ -1,192 +1,237 @@
 <%= form_for(@community_development) do |f| %>
-  <% if @community_development.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@community_development.errors.count, "error") %> prohibited this community_development from being saved:</h2>
+<% if @community_development.errors.any? %>
+<div id="error_explanation">
+	<h2><%= pluralize(@community_development.errors.count, "error") %> prohibited this community_development from being saved:</h2>
 
-      <ul>
-      <% @community_development.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :type_of_family, "Type of family" %></div>
-    <div class="medium-8 column"><%= f.select :type_of_family, ["nuclear", "joint"], include_blank: "-" %></div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :residental_status, "Residential status" %></div>
-    <div class="medium-8 column"><%= f.select :residental_status, ["own house", "rented house", "house on temple land", "no house"], include_blank: "-"%></div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :house_possession, "How did you get the possession of the house site?" %></div>
-    <div class="medium-8 column">
-        <div class="row selectWithOtherField">
-            <%= f.select_with_other_field("community_development", :house_possession, {:include_blank => '-', :selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12 column other-field'}) %>
-        </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :house_type, "What is the type of the house?" %></div>
-    <div class="medium-8 column"><%= f.select :house_type, ["thatched", "tiled", "concrete"], include_blank: "-"%>
-    </div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :electricity, "Do you have electricity connection?" %></div>
-    <div class="medium-8 column"><%= f.check_box :electricity %></div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :water_from, "Where do you obtain your water?" %></div>
-    <div class="medium-8 column"><%= f.select :water_from, ["municipality", "village pond", "no water"], include_blank: "-"%>
-    </div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :toilet_facility, "Do you have a toilet facility in your house?" %></div>
-    <div class="medium-8 column"><%= f.check_box :toilet_facility %></div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :rain_harvesting, "Do you have the facility of rain water harvesting?" %></div>
-    <div class="medium-8 column"><%= f.check_box :rain_harvesting %></div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :want_rain_harvesting, "Would you like to have such a rain water facility?" %></div>
-    <div class="medium-8 column"><%= f.check_box :want_rain_harvesting %></div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :earning_members_of_family, "Number of earning members in the family?" %></div>
-    <div class="medium-8 column"><%= f.number_field :earning_members_of_family, step: 1, min: 0  %></div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :source_of_income, "What are the sources of income?" %></div>
-    <div class="medium-8 column">
-        <div class="row selectWithOtherField">
-            <%= f.select_with_other_field("community_development", :source_of_income, {:include_blank => '-', :selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12 column other-field'}) %>
-        </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :land_details, "If agriculture give land details" %></div>
-    <div class="medium-8 column">
-        <div class="row selectWithOtherField">
-            <%= f.select_with_other_field("community_development", :land_details, {:include_blank => '-', :selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12 column other-field'}) %>
-        </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :any_savings, "Do you have any savings?" %></div>
-    <div class="medium-8 column"><%= f.check_box :any_savings %></div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :mode_of_savings, "If yes, what is the mode of savings?" %></div>
-    <div class="medium-8 column">
-        <div class="row selectWithOtherField">
-            <%= f.select_with_other_field("community_development", :mode_of_savings, {:include_blank => '-', :selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12 column other-field'}) %>
-        </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :debts, "Do you have any debts?" %></div>
-    <div class="medium-8 column"><%= f.check_box :debts %></div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :reason_for_debt, "If yes, what is the reason for your debt?" %></div>
-    <div class="medium-8 column">
-        <div class="row selectWithOtherField">
-            <%= f.select_with_other_field("community_development", :reason_for_debt, {:include_blank => '-', :selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12 column other-field'}) %>
-        </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :family_members_addicted_to, "Are any family members addicted to any substance?" %></div>
-    <div class="medium-8 column"><%= f.select :family_members_addicted_to, ["alcohol", "other"], include_blank: "-"%>
-    </div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :family_members_addicted_who, "How many family members are addicted to any substance?" %></div>
-    <div class="medium-8 column"><%= f.text_field :family_members_addicted_who %></div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :family_disabled, "Is there any disabled person in your family?" %></div>
-    <div class="medium-8 column"><%= f.check_box :family_disabled %></div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :family_type_of_handicap, "If yes, what is the type of handicap?" %></div>
-    <div class="medium-8 column">
-        <div class="row selectWithOtherField">
-            <%= f.select_with_other_field("community_development", :family_type_of_handicap, {:include_blank => '-', :selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12 column other-field'}) %>
-        </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :family_chronic_deseases, "Do any of the members of your family have contagious/chronic deseases?" %></div>
-    <div class="medium-8 column"><%= f.check_box :family_chronic_deseases %></div>
-  </div>
-  <div class="clearfix"></div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :family_chronic_deseases_which, "What kind of deseases?" %></div>
-    <div class="medium-8 column"><%= f.text_field :family_chronic_deseases_which %></div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :family_children_vaccined, "Are the children in your family duly vaccinated?" %></div>
-    <div class="medium-8 column"><%= f.check_box :family_children_vaccined %></div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :family_knowledge_of_family_planning, "Do married members of your family know about family planning?" %></div>
-    <div class="medium-8 column"><%= f.check_box :family_knowledge_of_family_planning %></div>
-  </div>
-  <div class="clearfix"></div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :family_undergone_family_planning, "Has any of your family member undergone family planning?" %></div>
-    <div class="medium-8 column"><%= f.check_box :family_undergone_family_planning %></div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :home_remedies_for_illnesses, "Do you know any home remedies for general illnesses?" %></div>
-    <div class="medium-8 column"><%= f.check_box :home_remedies_for_illnesses %></div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label "For your illness, where do you go for treatment?" %></div>
-    <div class="medium-8 column">
-    <p class="hide-for-touch" style="margin-bottom: 5px;">Hold down ctrl for multiple select</p>
-    <%= f.select(:illness_treatment, [['government hospital', 'government hospital'],
-                                  ['Private medical practitioner', 'Private medical practitioner'],
-                                  ['country doctor', 'country doctor'],
-                                  ['priest', 'priest'],
-                                  ['midwife', 'midwife'],
-                                  ['priest', 'priest'],
-                                  ['other', 'other'],
-                                 ],{ :prompt => " -- select one or multiple -- "},
-                                   { :multiple => true, :size => 8 }
-                                 ) %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :family_school_dropout, "Do you have any school drop out children in your family?" %></div>
-    <div class="medium-8 column"><%= f.check_box :family_school_dropout %></div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :family_dropout_reason_for, "If yes give reason for dropout" %></div>
-    <div class="medium-8 column"><%= f.text_area :family_dropout_reason_for %></div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label :family_dropout_present_condition, "After dropout what is the present condition of the person?" %></div>
-    <div class="medium-8 column"><%= f.text_area :family_dropout_present_condition %></div>
-  </div>
-  <div class="row">
-    <div class="medium-4 column"><%= f.label "Is any of you family member skilled in any arts?" %></div>
-    <div class="medium-8 column">
-      <p class="hide-for-touch" style="margin-bottom: 5px;">Hold down ctrl for multiple select</p>
-      <%= f.select(:family_skilled_in_art, [['handicrafts', 'handicrafts'],
-                              ['folk arts', 'folk arts'],
-                              ['martial arts', 'martial arts'],
-                              ['other', 'other'],
-                              ['no', 'no'],
-                             ],{ :prompt => " -- select one or multiple -- "},
-                               { :multiple => true, :size => 6 }
-                             ) %>
-    </div>
-  </div>
-  <div class="button-center actions">
-    <%= f.submit :class => 'button' %>
-  </div>
+	<ul>
+		<% @community_development.errors.full_messages.each do |msg| %>
+		<li><%= msg %></li>
+		<% end %>
+	</ul>
+</div>
 <% end %>
+
+<div class="row">
+	<div class="medium-4 column"><%= f.label :type_of_family, "Type of family" %></div>
+	<div class="medium-8 column"><%= f.select :type_of_family, ["nuclear", "joint"], include_blank: "-" %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :residental_status, "Residential status" %></div>
+	<div class="medium-8 column"><%= f.select :residental_status, ["own house", "rented house", "house on temple land", "no house"], include_blank: "-"%></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :house_possession, "How did you get the possession of the house site?" %></div>
+	<div class="medium-8 column">
+		<div class="row selectWithOtherField">
+			<%= f.select_with_other_field("community_development", :house_possession, {:include_blank => '-', :selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12 column other-field'}) %>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :house_type, "What is the type of the house?" %></div>
+	<div class="medium-8 column"><%= f.select :house_type, ["thatched", "tiled", "concrete"], include_blank: "-"%>
+	</div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :electricity, "Do you have electricity connection?" %></div>
+	<div class="medium-8 column"><%= f.check_box :electricity %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :water_from, "Where do you obtain your water?" %></div>
+	<div class="medium-8 column"><%= f.select :water_from, ["municipality", "village pond", "no water"], include_blank: "-"%>
+	</div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :toilet_facility, "Do you have a toilet facility in your house?" %></div>
+	<div class="medium-8 column"><%= f.check_box :toilet_facility %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :rain_harvesting, "Do you have the facility of rain water harvesting?", :for => "rainHarvestingCheckbox" %></div>
+	<div class="medium-8 column"><%= f.check_box :rain_harvesting, :id => "rainHarvestingCheckbox" %></div>
+</div>
+<div id="rainHarvestingChecked" style="display:block">
+	<div class="row">
+		<div class="medium-4 column"><%= f.label :want_rain_harvesting, "Would you like to have such a rain water facility?" %></div>
+		<div class="medium-8 column"><%= f.check_box :want_rain_harvesting %></div>
+	</div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :earning_members_of_family, "Number of earning members in the family?" %></div>
+	<div class="medium-8 column"><%= f.number_field :earning_members_of_family, step: 1, min: 0  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :source_of_income, "What are the sources of income?" %></div>
+	<div class="medium-8 column">
+		<div class="row selectWithOtherField">
+			<%= f.select_with_other_field("community_development", :source_of_income, {:include_blank => '-', :selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12 column other-field'}) %>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :land_details, "If agriculture give land details" %></div>
+	<div class="medium-8 column">
+		<div class="row selectWithOtherField">
+			<%= f.select_with_other_field("community_development", :land_details, {:include_blank => '-', :selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12 column other-field'}) %>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :any_savings, "Do you have any savings?", :for => "savingsCheckbox" %></div>
+	<div class="medium-8 column"><%= f.check_box :any_savings, :id => "savingsCheckbox" %></div>
+</div>
+<div id="savingsChecked" style="display:none;">
+	<div class="row">
+		<div class="medium-4 column"><%= f.label :mode_of_savings, "If yes, what is the mode of savings?" %></div>
+		<div class="medium-8 column">
+			<div class="row selectWithOtherField">
+				<%= f.select_with_other_field("community_development", :mode_of_savings, {:include_blank => '-', :selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12 column other-field'}) %>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :debts, "Do you have any debts?", :for => "debtsCheckbox" %></div>
+	<div class="medium-8 column"><%= f.check_box :debts, :id => "debtsCheckbox" %></div>
+</div>
+<div id="debtsChecked" style="display:none;">
+	<div class="row">
+		<div class="medium-4 column"><%= f.label :reason_for_debt, "If yes, what is the reason for your debt?" %></div>
+		<div class="medium-8 column">
+			<div class="row selectWithOtherField">
+				<%= f.select_with_other_field("community_development", :reason_for_debt, {:include_blank => '-', :selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12 column other-field'}) %>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :family_members_addicted_to, "Are any family members addicted to any substance?" %></div>
+	<div class="medium-8 column"><%= f.select :family_members_addicted_to, ["alcohol", "other"], include_blank: "-"%>
+	</div>
+</div>
+<div id="addictedChecked" style="display:none;">
+	<div class="row">
+		<div class="medium-4 column"><%= f.label :family_members_addicted_who, "Who is addicted?" %></div>
+		<div class="medium-8 column"><%= f.text_field :family_members_addicted_who %></div>
+	</div>
+</div><div class="row">
+<div class="medium-4 column"><%= f.label :family_disabled, "Is there any disabled person in your family?", :for => "disabledCheckbox" %></div>
+<div class="medium-8 column"><%= f.check_box :family_disabled, :id => "disabledCheckbox" %></div>
+</div>
+<div id="disabledChecked" style="display:none;">
+	<div class="row">
+		<div class="medium-4 column"><%= f.label :family_type_of_handicap, "If yes, what is the type of handicap?" %></div>
+		<div class="medium-8 column">
+			<div class="row selectWithOtherField">
+				<%= f.select_with_other_field("community_development", :family_type_of_handicap, {:include_blank => '-', :selectContainerClass => 'small-12 column', :textFieldContainerClass => 'small-12 column other-field'}) %>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :family_chronic_deseases, "Do any of the members of your family have contagious/chronic deseases?", :for => "chronicCheckbox" %></div>
+	<div class="medium-8 column"><%= f.check_box :family_chronic_deseases, :id => "chronicCheckbox" %></div>
+</div>
+<div class="clearfix"></div>
+<div id="chronicChecked" style="display:none;">
+	<div class="row">
+		<div class="medium-4 column"><%= f.label :family_chronic_deseases_which, "What kind of deseases?" %></div>
+		<div class="medium-8 column"><%= f.text_field :family_chronic_deseases_which %></div>
+	</div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :family_children_vaccined, "Are the children in your family duly vaccinated?" %></div>
+	<div class="medium-8 column"><%= f.check_box :family_children_vaccined %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :family_knowledge_of_family_planning, "Do married members of your family know about family planning?" %></div>
+	<div class="medium-8 column"><%= f.check_box :family_knowledge_of_family_planning %></div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :family_undergone_family_planning, "Has any of your family member undergone family planning?" %></div>
+	<div class="medium-8 column"><%= f.check_box :family_undergone_family_planning %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :home_remedies_for_illnesses, "Do you know any home remedies for general illnesses?" %></div>
+	<div class="medium-8 column"><%= f.check_box :home_remedies_for_illnesses %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label "For your illness, where do you go for treatment?" %></div>
+	<div class="medium-8 column">
+		<p class="hide-for-touch" style="margin-bottom: 5px;">
+			Hold down ctrl for multiple select
+		</p>
+		<%= f.select(:illness_treatment, [['government hospital', 'government hospital'], ['Private medical practitioner', 'Private medical practitioner'], ['country doctor', 'country doctor'], ['priest', 'priest'], ['midwife', 'midwife'], ['priest', 'priest'], ['other', 'other'], ],{ :prompt => " -- select one or multiple -- "}, { :multiple => true, :size => 8 })%>
+	</div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :family_school_dropout, "Do you have any school drop out children in your family?", :for => "dropoutCheckbox" %></div>
+	<div class="medium-8 column"><%= f.check_box :family_school_dropout, :id => "dropoutCheckbox" %></div>
+</div>
+<div id="dropoutChecked" style="display:none;">
+	<div class="row">
+		<div class="medium-4 column"><%= f.label :family_dropout_reason_for, "If yes give reason for dropout" %></div>
+		<div class="medium-8 column"><%= f.text_area :family_dropout_reason_for %></div>
+	</div>
+	<div class="row">
+		<div class="medium-4 column"><%= f.label :family_dropout_present_condition, "After dropout what is the present condition of the person?" %></div>
+		<div class="medium-8 column"><%= f.text_area :family_dropout_present_condition %></div>
+	</div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label "Is any of you family member skilled in any arts?" %></div>
+	<div class="medium-8 column">
+		<p class="hide-for-touch" style="margin-bottom: 5px;">Hold down ctrl for multiple select</p>
+		<%= f.select(:family_skilled_in_art, [['handicrafts', 'handicrafts'],
+			['folk arts', 'folk arts'],
+			['martial arts', 'martial arts'],
+			['other', 'other'],
+			['no', 'no'],
+			],{ :prompt => " -- select one or multiple -- "},
+			{ :multiple => true, :size => 6 }
+			) %>
+		</div>
+	</div>
+	<div class="button-center actions">
+		<%= f.submit :class => 'button' %>
+	</div>
+	<% end %>
+	<script type="text/javascript">
+	function toggleDiv (argument, argument2) {
+		var e = argument;
+		var f = argument2;
+		$(e).click(function  () {
+			if (this.checked) {
+				$(f).css("display", "block");
+			} else {
+				$(f).css("display", "none");
+			}
+		});
+	}
+	function toggleReverseDiv (argument, argument2) {
+		var e = argument;
+		var f = argument2;
+		$(e).click(function  () {
+			if (this.checked) {
+				$(f).css("display", "none");
+			} else {
+				$(f).css("display", "block");
+			}
+		});
+	}
+	toggleReverseDiv("#rainHarvestingCheckbox", "#rainHarvestingChecked");
+	toggleDiv("#savingsCheckbox","#savingsChecked");
+	toggleDiv("#debtsCheckbox","#debtsChecked");
+	toggleDiv("#addictedCheckbox","#addictedChecked");
+	toggleDiv("#disabledCheckbox","#disabledChecked");
+	toggleDiv("#chronicCheckbox","#chronicChecked");
+	toggleDiv("#dropoutCheckbox","#dropoutChecked");
+	$("#community_development_family_members_addicted_to").change(function  () {
+		var selecetedType = this.options[this.selectedIndex].value;
+		if (selecetedType != 0) {
+			$("#addictedChecked").css("display", "block");
+		}else {
+			$("#addictedChecked").css("display", "none");
+		}
+	})
+</script>
