@@ -45,7 +45,7 @@
 </table>
 <h5><%= @benefit.name %> is Part in Program </h5>
 <% @benefit.programs.each do |benefit|  %>
-<%= link_to benefit.name, benefit_path(benefit), class:  "label button" %>
+<%= link_to benefit.name, program_path(benefit), class:  "label button" %>
 <% end %>
 <p>&nbsp;</p>
 <div class="row">
