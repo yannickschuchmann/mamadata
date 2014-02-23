@@ -30,6 +30,10 @@ class Person < ActiveRecord::Base
     total_expenses
   end
 
+  def self.with_total_expense
+    Person.all.sort_by(&:year_to_date)
+  end
+
   def year_to_date
     self.get_total_expenses Date.today.beginning_of_financial_year
   end
