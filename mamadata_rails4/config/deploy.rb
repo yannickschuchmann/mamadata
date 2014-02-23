@@ -14,7 +14,7 @@ set :deploy_to, '/home/mamadata/'
 # set :scm, :git
 
 # Default value for :format is :pretty
-# set :format, :pretty
+set :format, :pretty
 
 # Default value for :log_level is :debug
 # set :log_level, :debug
@@ -26,7 +26,7 @@ set :deploy_to, '/home/mamadata/'
 # set :linked_files, %w{config/database.yml}
 
 # Default value for linked_dirs is []
-# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_dirs, %w{mamadata_rails4/bin mamadata_rails4/log mamadata_rails4/vendor/bundle mamadata_rails4/public/system}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -62,9 +62,9 @@ namespace :deploy do
       execute "ln -nfs #{shared_path}/uploads #{release_path}/mamadata_rails4/public/uploads"
     end
   end
-  before :publishing, :register_dirs_uploads
-  after :publishing, "setup_uploads"
-  after :publishing, "symlink_uploads"
+  # before :publishing, :register_dirs_uploads
+  # after :publishing, "setup_uploads"
+  # after :publishing, "symlink_uploads"
   after :publishing, "restart"
 
   after :restart, :clear_cache do
@@ -79,5 +79,4 @@ namespace :deploy do
       end
     end
   end
-
 end
