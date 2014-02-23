@@ -26,10 +26,10 @@
                 <td><%= benefit.description %></td>
                 <td><%= number_to_indian_currency(benefit.get_amount_year_to_date).html_safe %></td>
                 <td><%= benefit.get_category %></td>
-                <td>newest date_granted in incident by this benefit</td>
+                <td><%= l benefit.get_last_date_granted unless benefit.get_last_date_granted.nil? %></td>
                 <td><%= l benefit.created_at.to_date %></td>
                 <% if can? :edit, Benefit  %>
-                <td style="width: 130px;">
+                <td style="width: 100px;">
                     <%= link_to (content_tag(:i, "", :class => "icon-edit")), edit_benefit_path(benefit) %>
                     <% if can? :destroy, Benefit %>
                     <%= link_to (content_tag(:i, "", :class => "icon-trash")), benefit, method: :delete, data: { confirm: 'Are you sure you want to delete this benefit?' } %>

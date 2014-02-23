@@ -1,9 +1,7 @@
 <%= content_for :js do %><%= javascript_include_tag "benefit_incidents" %> <% end %>
-<h3>New Incident for <%= @benefit_incident.person.name + " " +@benefit_incident.person.fathers_name  %></h3>
+<h3>New Incident for <%= link_to (@benefit_incident.person.name + " " +@benefit_incident.person.fathers_name), person_path(@benefit_incident.person)  %></h3>
 <h3 style="margin-bottom: 20px;"><small>Total Amount Spent on: <%= number_to_indian_currency(@benefit_incident.person.get_total_expenses).html_safe %></small></h3>
 <%= form_for(@benefit_incident) do |f| %>
-
-
 <% if @benefit_incident.errors.any? %>
 <div id="error_explanation">
   <h2><%= pluralize(@benefit_incident.errors.count, "error") %> prohibited this benefit from being saved:</h2>

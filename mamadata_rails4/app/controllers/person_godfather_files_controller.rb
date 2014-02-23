@@ -20,17 +20,8 @@ class PersonGodfatherFilesController < ApplicationController
 
 
   def create
-      remark_params = params[:remark]
-      type_of_corresp = remark_params[:typeof]
-      language = remark_params[:language]
-      day = remark_params["submitdate(3i)"]
-      month = remark_params["submitdate(2i)"]
-      year = remark_params["submitdate(1i)"]
-
-      remark_to_safe = type_of_corresp+"/"+language+"/"+day+"-"+month+"-"+year
-
-    @person_godfather_file = PersonGodfatherFile.create( person_godfather_file_params )
-    @person_godfather_file.remark = remark_to_safe
+    @person_godfather_file = PersonGodfatherFile.new( person_godfather_file_params )
+    @person_godfather_file.remark = PersonGodfatherFile.perform_remark(params[:remark])
     get_person_id
     respond_to do |format|
       if @person_godfather_file.save

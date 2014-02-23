@@ -7,8 +7,9 @@
 	none
 	<% end%>
 </p>
-
-<%= link_to edit_person_path(@person)+"/#narText", :class => "button" do %>
-<%= (content_tag(:i, '', :class => ' icon-pencil')) %>
-Edit Narrative Text 
+<% if can? :update, Person %>
+	<%= link_to edit_person_path(@person)+"/#narText", :class => "button" do %>
+		<%= (content_tag(:i, '', :class => ' icon-pencil')) %>
+		Edit Narrative Text 
+	<% end %>
 <% end %>
