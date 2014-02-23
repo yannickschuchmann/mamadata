@@ -109,7 +109,7 @@
 			</table>
 		</div>
 		<div class="small-12 medium-6 column">
-			<% if @supporter.godfather && @supporter.people.empty? %>
+			<% unless @supporter.people.empty? or !@supporter.godfather %>
 			<h5>Supporter is a Godfather of</h5>
 			<div class="medium-12 column">
 				<table class="table small-12">
