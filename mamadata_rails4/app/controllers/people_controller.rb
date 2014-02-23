@@ -6,14 +6,15 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = Person.page(params[:page])
+    @people = Person.all
     if params[:sort].nil?
       @people = @people.order(id: :desc)
     else
       o = params[:sort]
       @people = @people.order("#{o["order_primary"].split('#')[0]} #{o["order_primary"].split('#')[1]}", "#{o["order_secondary"].split('#')[0]} #{o["order_secondary"].split('#')[1]}")
+
     end
-    @people.page(params[:page])
+    @people = @people.page(params[:page]).per(params[:per_page] == 'all' ? 100000 : params[:per_page])
   end
 
 	# GET /people/1
