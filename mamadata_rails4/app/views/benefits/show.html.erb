@@ -42,7 +42,7 @@
 	</tr>
 </table>
 <h5><%= @benefit.name %> is Part in Program </h5>
-<% @benefit.programs.each do |benefit|  %>
+<% @benefit.programs.order(name: :asc).each do |benefit|  %>
 <%= link_to benefit.name, program_path(benefit), class:  "label button" %>
 <% end %>
 <p>&nbsp;</p>

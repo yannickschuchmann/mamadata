@@ -20,7 +20,7 @@
 	</tr>
 </table>
 <h5>Benefits Assigned to Program </h5>
-	<% @program.benefits.each do |benefit|  %>
+	<% @program.benefits.order(name: :asc).each do |benefit|  %>
 		<%= link_to benefit.name, benefit_path(benefit), class:  "label button" %>
 	<% end %>
 	<p>&nbsp;</p>
