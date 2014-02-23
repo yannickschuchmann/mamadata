@@ -6,7 +6,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-
+    # woat is sis
     @people = Person.page(params[:page])
     if params[:sort].nil? or (params[:sort]["order_primary"].blank? and params[:sort]["order_secondary"].blank?)
 
@@ -29,10 +29,10 @@ class PeopleController < ApplicationController
       	elsif o["order_secondary"].split('#')[1].present?
       		@people = @people.order("LOWER(#{o["order_secondary"].split('#')[0]}) #{o["order_secondary"].split('#')[1]}")
       	end
-    	@people.page(params[:page]).per(params[:per_page] == 'all' ? 10000 : params[:per_page])
-    	end
+      end
     end
-
+    @people = @people.page(params[:page]).per(params[:sort]["per_page"] == 'all' ? 10000 : params[:sort]["per_page"])
+    # ahh THERE is die uthapam :)
   end
 
 	# GET /people/1
