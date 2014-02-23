@@ -22,7 +22,7 @@
     </div>
 </div>
 <%= paginate @people, :params => {:sort => params[:sort]} %>
-<table id="peopleIndexTable" class="table tablesorter">
+<table id="peopleIndexTable" class="table">
     <thead>
         <tr>
             <td style="text-align: center;"><%= check_box_tag :checked_person,'#', false, id: 'chkall' %></td>
