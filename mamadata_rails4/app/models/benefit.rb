@@ -39,16 +39,19 @@ class Benefit < ActiveRecord::Base
   end
 
   def get_category
-  	if self.category == "none"
+  	case self.category
+  	when "none"
   		return "Set Individual Amount"
-  	elsif self.category == "calculated"
+  	when "calculated"
   		return "Calculated Amount"
-  	elsif self.category == "fixed"
+  	when "fixed"
   		return "Fixed Amount"
-  	elsif self.category.nil?
+  	when nil
   		return "No Status Set"
   	end
   end
+
+
 
 	def get_last_date_granted
 		last_granted_benefit = self.benefit_incidents.last_date_granted.first 
