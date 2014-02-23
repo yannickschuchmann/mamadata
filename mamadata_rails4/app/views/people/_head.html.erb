@@ -8,22 +8,22 @@
 			<h5><b>File: <%= @person.id %> <%= former_file_number %></b></h5>
 			<ul class="no-bullet">
 				<% @person.programs.each do |p| %>
-				    <%= link_to p.name, program_path(p), :class => 'label button' %>
+					<%= link_to p.name, program_path(p), :class => 'label button' %>
 				<% end %>
 			</ul>
-            <div id="amount-to-date" class="button-bar">
-                <ul id="year-to-date" class="button-group round">
-                    <li><a href="" class="tiny button">Year to date</a></li>
-                    <li><a href="" class="tiny button">
-                        <%= number_to_indian_currency(@person.year_to_date).html_safe %>
-                    </a></li>
-                </ul>
-                <ul id="month-to-date" class="button-group round hidden">
-                    <li><a href="" class="tiny button">Month to date</a></li>
-                    <li><a href="" class="tiny button">
-                        <%= number_to_indian_currency(@person.month_to_date).html_safe %>
-                    </a></li>
-                </ul>
-            </div>
+			<div id="amount-to-date" class="button-bar">
+				<ul id="year-to-date" class="button-group round">
+					<li><a href="" class="tiny button">Year to date</a></li>
+					<li><a href="" class="tiny button">
+						<%= number_to_indian_currency(@person.year_to_date).html_safe %>
+					</a></li>
+				</ul>
+				<ul id="month-to-date" class="button-group round hidden">
+					<li><a href="" class="tiny button">Month to date</a></li>
+					<li><a href="" class="tiny button">
+						<%= number_to_indian_currency(@person.month_to_date).html_safe %>
+					</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
