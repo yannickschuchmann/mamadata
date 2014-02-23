@@ -68,7 +68,7 @@ end
 				if params[:redirect_to_incident] == 'true'
 					format.html { redirect_to new_benefit_incident_path(@person), notice: 'Person was successfully updated.' }
 				elsif params[:redirect_to_user] == 'true'
-					format.html {redirect_to edit_person_path(@person)}
+					format.html {redirect_to edit_person_path(@person, anchor:'narText')}
 				end
 				format.html { redirect_to @person, notice: 'Person was successfully updated.' }
 				format.json { head :no_content }

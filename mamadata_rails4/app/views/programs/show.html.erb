@@ -40,16 +40,17 @@
 	</thead>
 	<tbody>
 		<% @program_participants.each do |participant| %>
-		<% @person = Person.find(participant.person_id) %>
-		<tr data-link="<%= person_path(@person) %>">
-			<td><%= @person.name %></a></td>
-			<td><%= @person.fathers_name %></td>
-			<td><%= (Date.today.year - @person.date_of_birth.year) %></td>
-			<td><%= @person.gender %></td>
-			<td><%= @person.city %></td>
-			<td><%= l participant.created_at.to_date unless participant.created_at.nil? %></td>
-			<td><%= l participant.deleted_at.to_date unless participant.deleted_at.nil?%></td>
-		</tr>
+		<% unless participant.person.nil? %>
+				<tr data-link="<%= person_path(@person) %>">
+					<td><%= participant.person.name %></a></td>
+					<td><%= participant.person.fathers_name %></td>
+					<td><%= (Date.today.year - participant.person.date_of_birth.year) %></td>
+					<td><%= participant.person.gender %></td>
+					<td><%= participant.person.city %></td>
+					<td><%= l participant.created_at.to_date unless participant.created_at.nil? %></td>
+					<td><%= l participant.deleted_at.to_date unless participant.deleted_at.nil?%></td>
+				</tr>
+			<% end %>
 		<% end %>
 	</tbody>
 </table>

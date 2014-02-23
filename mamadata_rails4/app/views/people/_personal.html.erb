@@ -14,7 +14,7 @@
 	</tr>
 	<tr>
 		<td>Date of birth</td>
-		<td><%=l @person.date_of_birth %></td>
+		<td><%=l @person.date_of_birth unless @person.date_of_birth.nil?%></td>
 	</tr>
 	<tr>
 		<td>Place of birth</td>

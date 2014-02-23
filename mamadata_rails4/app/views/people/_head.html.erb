@@ -4,7 +4,7 @@
 		</div>
 		<div class="medium-10 column">
 			<h3><%= @person.name %></h3>
-			<% former_file_number = @person.file_number.empty? ? " (no former file)" : " (Former File: "+ @person.file_number+ ")" %>
+			<% former_file_number = @person.file_number.blank? ? " (no former file)" : " (Former File: "+ @person.file_number+ ")" %>
 			<h5><b>File: <%= @person.id %> <%= former_file_number %></b></h5>
 			<ul class="no-bullet">
 				<% @person.programs.each do |p| %>

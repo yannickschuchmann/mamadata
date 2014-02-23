@@ -7,7 +7,7 @@
                 <%= f.submit "Save",:class => 'button', data: {confirm: 'Be Careful! All Changes will be kept in History'}  %>
             </div>
             <div>
-                <%= link_to 'Cancel', edit_person_path(@person), class: 'button tiny' %>
+                <%= link_to 'Cancel', edit_person_path(@person, anchor:'narText'), class: 'button tiny' %>
             </div>
         </div>
     </div>
