@@ -168,7 +168,7 @@
 		</tr>
 		<tr>
 			<td class="small-12 medium-6 columns">For your illness, where do you go for treatment</td>
-			<td class="small-12 medium-6 columns"><%= @family.community_development.illness_treatment %></td>
+			<td class="small-12 medium-6 columns"><% @family.community_development.illness_treatment.each_with_index do |v, i| %><%= i == 0 ? v.to_s : ", "+v.to_s %><% end unless @family.community_development.illness_treatment.nil? %></td>
 		</tr>
 		<tr>
 			<td class="small-12 medium-6 columns">Do you have any school drop out children in your family</td>
