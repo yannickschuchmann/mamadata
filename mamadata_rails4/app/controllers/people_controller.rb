@@ -7,31 +7,63 @@ class PeopleController < ApplicationController
   # GET /people.json
   def index
     # woat is sis
-    @people = Person.page(params[:page])
-    if params[:sort].nil? or (params[:sort]["order_primary"].blank? and params[:sort]["order_secondary"].blank?)
-
-      @people = @people.order(id: :desc)
-    else params[:sort]["order_primary"].blank? and params[:sort]["order_secondary"].blank?
-      o = params[:sort]
-      if o["order_primary"].split('#')[0] == 'total_expense' || o["order_secondary"].split('#')[0] == 'total_expense'
-      	bla = Person.with_total_expense if o["order_primary"].split('#')[1] == 'asc' or o["order_secondary"].split('#')[1] == 'asc'
-      	bla = Person.with_total_expense.reverse if o["order_primary"].split('#')[1] == 'desc' or o["order_secondary"].split('#')[1] == 'desc'
-      	@people = Kaminari.paginate_array(bla)
-      	@people.sort_by{|e| e[o["order_primary"][0]]} unless o["order_primary"][0] == 'total_expense'
-      	@people.sort_by{|e| e[o["order_secondary"][0]]} unless o["order_secondary"][0] == 'total_expense'
-      	@people = Kaminari.paginate_array(@people).page(params[:page])
-      else
-      	if o["order_primary"].split('#')[1].present? and o["order_secondary"].split('#')[1].present? 
-      		@people = @people.order("LOWER(#{o["order_primary"].split('#')[0]}) #{o["order_primary"].split('#')[1]}", "LOWER(#{o["order_secondary"].split('#')[0]}) #{o["order_secondary"].split('#')[1]}")
-      		
-      	elsif o["order_primary"].split('#')[1].present?
-      		@people = @people.order("LOWER(#{o["order_primary"].split('#')[0]}) #{o["order_primary"].split('#')[1]}")
-      	elsif o["order_secondary"].split('#')[1].present?
-      		@people = @people.order("LOWER(#{o["order_secondary"].split('#')[0]}) #{o["order_secondary"].split('#')[1]}")
-      	end
-      end
+    @people = Person.order(id: :desc).page(params[:page])
+    sort_params = params[:sort]
+    puts "sort params "
+    puts params[:sort]
+    unless sort_params.nil?
+    	order_primary = params[:sort][:order_primary]
+    	order_secondary = params[:sort][:order_secondary]
+    	per_page_input = params[:sort][:per_page] == 'all' ? 10000 : params[:sort][:per_page]
     end
-    @people = @people.page(params[:page]).per(params[:sort]["per_page"] == 'all' ? 10000 : params[:sort]["per_page"])
+    sql_statement = ""
+		unless order_primary.blank?
+			attr_to_order_by_one = order_primary.split('#')[0]
+			ordering_one = order_primary.split('#')[1]
+			sql_for_first = "LOWER(#{attr_to_order_by_one}) #{ordering_one}"
+			sql_statement += sql_for_first
+		end
+		unless order_secondary.blank?
+			attr_to_order_by_second = order_secondary.split('#')[0]
+			ordering_second = order_secondary.split('#')[1]
+			sql_for_second = "LOWER(#{attr_to_order_by_second}) #{ordering_second}"
+			sql_statement += ',' unless order_primary.blank?
+			sql_statement += sql_for_second
+		end
+
+		if attr_to_order_by_one == 'total_expense' || attr_to_order_by_second == 'total_expense'
+			array_to_order = Person.with_total_expense
+			array_to_order = array_to_order.reverse if ordering_one == 'desc' or ordering_second == 'desc'
+			@people = Kaminari.paginate_array(array_to_order)
+		else
+		@people = @people.order(sql_statement)
+		end
+		@people = @people.page(params[:page]).per(per_page_input)
+
+    # if params[:sort].nil? or (params[:sort]["order_primary"].blank? and params[:sort]["order_secondary"].blank?)
+
+    #   @people = @people.order(id: :desc)
+    # else params[:sort]["order_primary"].blank? and params[:sort]["order_secondary"].blank?
+    #   o = params[:sort]
+    #   if o["order_primary"].split('#')[0] == 'total_expense' || o["order_secondary"].split('#')[0] == 'total_expense'
+    #   	bla = Person.with_total_expense if o["order_primary"].split('#')[1] == 'asc' or o["order_secondary"].split('#')[1] == 'asc'
+    #   	bla = Person.with_total_expense.reverse if o["order_primary"].split('#')[1] == 'desc' or o["order_secondary"].split('#')[1] == 'desc'
+    #   	@people = Kaminari.paginate_array(bla)
+    #   	@people.sort_by{|e| e[o["order_primary"][0]]} unless o["order_primary"][0] == 'total_expense'
+    #   	@people.sort_by{|e| e[o["order_secondary"][0]]} unless o["order_secondary"][0] == 'total_expense'
+    #   	@people = Kaminari.paginate_array(@people).page(params[:page])
+    #   else
+    #   	if o["order_primary"].split('#')[1].present? and o["order_secondary"].split('#')[1].present? 
+    #   		@people = @people.order("LOWER(#{o["order_primary"].split('#')[0]}) #{o["order_primary"].split('#')[1]}", "LOWER(#{o["order_secondary"].split('#')[0]}) #{o["order_secondary"].split('#')[1]}")
+      		
+    #   	elsif o["order_primary"].split('#')[1].present?
+    #   		@people = @people.order("LOWER(#{o["order_primary"].split('#')[0]}) #{o["order_primary"].split('#')[1]}")
+    #   	elsif o["order_secondary"].split('#')[1].present?
+    #   		@people = @people.order("LOWER(#{o["order_secondary"].split('#')[0]}) #{o["order_secondary"].split('#')[1]}")
+    #   	end
+    #   end
+    # end
+    # @people = @people.page(params[:page]).per(params[:sort]["per_page"] == 'all' ? 10000 : params[:sort]["per_page"])
     # ahh THERE is die uthapam :)
   end
 
@@ -130,6 +162,8 @@ end
 
 	private
 		# Use callbacks to share common setup or constraints between actions.
+
+
 		def set_autosuggest
 			@AutoCities = Person.select('distinct city').collect { |p| p.city.camelize }
 			@AutoNames  = Person.select('distinct fathers_name').collect { |p| p.fathers_name.camelize }

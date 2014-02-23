@@ -16,7 +16,6 @@
 /tmp
 
 /.idea/
-
 *.rbc
 *.sassc
 .sass-cache

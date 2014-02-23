@@ -74,3 +74,4 @@
         <% end %>
     </tbody>
 </table>
+<%= paginate @people, :params => {:sort => params[:sort]} %>
