@@ -10,6 +10,7 @@
         <%= render "shared/reporting" %>
     </div>
 </div>
+<%= paginate @people, :params => {:sort => params[:sort]} %>
 <table id="peopleIndexTable" class="table tablesorter">
     <thead>
         <tr>
