@@ -25,7 +25,7 @@
         <% @people.each do |person| %>
         <tr data-link="<%= person_path(person) %>">
             <td style="text-align: center"><%= check_box_tag :checked_person, person.id, false, class: 'chk' %></td>
-            <td><a href="/people/<%= person.id %>"><%= person.name %></a></td>
+            <td><%= person.name %></td>
             <td><%= person.fathers_name %></td>
             <td><%= person.head_of_household %></td>
             <td><%= person.gender %></td>
