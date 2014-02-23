@@ -1,7 +1,6 @@
 <% if notice %>
 	<p id="notice"><%= notice %></p>
 <% end %>
-
 <h2 style="margin: 0px;"><%= @program.name %></h2>
 <h5 style="margin: 0px;"><%= @program.description %></h5>
 <p style="background-color: #F5F5F5; padding: 10px; margin:0px;"></p>
@@ -26,6 +25,9 @@
 	<p>&nbsp;</p>
 
 <h3>Participating Beneficiaries (<%= @program.people.count %>) </h3>
+<div class="small-12">
+	<%= render "shared/reporting" %>
+</div>
 <table id="peopleIndexTable" class="table tablesorter">
 	<thead>
 		<tr>
@@ -41,7 +43,7 @@
 	<tbody>
 		<% @program_participants.each do |participant| %>
 		<% unless participant.person.nil? %>
-				<tr data-link="<%= person_path(@person) %>">
+				<tr data-link="<%= person_path(participant.person) %>">
 					<td><%= participant.person.name %></a></td>
 					<td><%= participant.person.fathers_name %></td>
 					<td><%= (Date.today.year - participant.person.date_of_birth.year) %></td>

@@ -1,8 +1,6 @@
 <% if notice %>
 <p id="notice"><%= notice %></p>
 <% end %>
-
-
 <h2 style="margin: 0px;"><%= @benefit.name %></h2>
 <h4 style="margin: 0px;"><%= @benefit.description %></h4>
 <% if @benefit.category == "none" %>
@@ -48,6 +46,9 @@
 <p>&nbsp;</p>
 <div class="row">
 	<h3>Issued Incidents with Benedit <%= @benefit.name %> (<%= @benefit.benefit_incidents.count %>)</h3>
+	<div class="small-12">
+		<%= render "shared/reporting" %>
+	</div>
 	<table id="benefitTable" class="table tablesorter small-12" style="margin-bottom: 40px;">
 		<thead>
 			<tr>
@@ -65,9 +66,9 @@
 		</thead>
 		<tbody>
 			<% @benefit.benefit_incidents.each do |benefit_incident| %>
-			<tr>
-				<td><%= link_to benefit_incident.person.name, person_path(benefit_incident.person) %></td>
-				<td><%= link_to benefit_incident.person.fathers_name, person_path(benefit_incident.person) %></td>
+			<tr data-link="<%= person_path(benefit_incident.person) %>">
+				<td><%= benefit_incident.person.name %></td>
+				<td><%= benefit_incident.person.fathers_name %></td>
 				<td><%= (Date.today.year - benefit_incident.person.date_of_birth.year) %></td>
 				<td><%= benefit_incident.person.gender %></td>
 				<td><%= benefit_incident.person.city %></td>
