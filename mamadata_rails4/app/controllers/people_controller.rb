@@ -11,9 +11,18 @@ class PeopleController < ApplicationController
       @people = @people.order(id: :desc)
     else
       o = params[:sort]
-      @people = @people.order("#{o["order_primary"].split('#')[0]} #{o["order_primary"].split('#')[1]}", "#{o["order_secondary"].split('#')[0]} #{o["order_secondary"].split('#')[1]}")
+      if o["order_primary"].split('#')[0] == 'total_expense' || o["order_secondary"].split('#')[0] == 'total_expense'
+      	bla = Person.with_total_expense if o["order_primary"].split('#')[1] == 'asc'
+      	bla = Person.with_total_expense.reverse if o["order_primary"].split('#')[1] == 'desc'
+      	@people = Kaminari.paginate_array(bla)
+      	@people.sort_by{|e| e[o["order_primary"][0]]} unless o["order_primary"][0] == 'total_expense'
+      	@people.sort_by{|e| e[o["order_secondary"][0]]} unless o["order_secondary"][0] == 'total_expense'
+      	@people = Kaminari.paginate_array(@people).page(params[:page])
+      else
+      @people = @people.order("LOWER(#{o["order_primary"].split('#')[0]}) #{o["order_primary"].split('#')[1]}", "LOWER(#{o["order_secondary"].split('#')[0]}) #{o["order_secondary"].split('#')[1]}")
+    	@people.page(params[:page]).per(50)
+    	end
     end
-    @people.page(params[:page])
   end
 
 	# GET /people/1
