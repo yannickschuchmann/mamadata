@@ -2,7 +2,14 @@
 <p id="notice"><%= notice %></p>
 <% end %>
 <h1>Beneficiaries</h1>
-<%= render "shared/reporting" %>
+<div class="row">
+    <div class="small-12 medium-6 column">
+        <%= render "sort" %>
+    </div>
+    <div class="small-12 medium-6 column">
+        <%= render "shared/reporting" %>
+    </div>
+</div>
 <table id="peopleIndexTable" class="table tablesorter">
     <thead>
         <tr>
