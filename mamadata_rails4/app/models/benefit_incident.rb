@@ -1,4 +1,5 @@
 class BenefitIncident < ActiveRecord::Base
+	scope :last_date_granted, -> { order(date_granted: :desc) }
 	belongs_to :person
 	belongs_to :program
 	belongs_to :benefit
