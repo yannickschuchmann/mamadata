@@ -11,10 +11,10 @@
             <th>Country</th>
             <th>City</th>
             <th>E-Mail</th>
-            <th>Telephone Number</th>
-            <th>Godfather</th>
             <th>Is Volunteer?</th>
             <th>Type of Work</th>
+            <th>Donor Type</th>
+            <th>Godfather</th>
             <% if can? :update, Supporter %>
             <td></td>
             <% end %>
@@ -30,10 +30,10 @@
             <td><%= supporter.country %></td>
             <td><%= supporter.city %></td>
             <td><%= supporter.email %></td>
-            <td><%= supporter.telephone_number %></td>
-            <td><%= supporter.godfather  ? 'yes' : 'no' %></td>
             <td><%= supporter.is_volunteer ? 'yes' : 'no' %></td>
             <td><%= supporter.type_of_work %></td>
+            <td><%= supporter.donor_type.name %></td>
+            <td><%= supporter.godfather  ? 'yes' : 'no' %></td>
             <% if can? :update, Supporter %>
             <td style="width: 130px;">
                 <%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_supporter_path(supporter) %>
