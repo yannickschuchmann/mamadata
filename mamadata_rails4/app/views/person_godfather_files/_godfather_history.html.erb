@@ -9,35 +9,32 @@
 			<span class="right"><i class="icon-chevron-right"></i></span>
 		</a>
 		<div id="godfather<%= godfather.id %>" class="content<%= " active" if index == 0 %>">
-			<div class="row" style="height: 40px">
-				<div class="small-6 medium-6 column"></div>
-				<div class="small-6 medium-6 column">
-					<% if can? :create, PersonGodfatherFile %>
+			<div class="small-12">
+				<% if can? :create, PersonGodfatherFile %>
 					<div class="row">
 						<%= link_to " Add Correspondance", new_person_godfather_file_path(join_model), :class => 'button tiny icon-file right'  %>
 					</div>
-					<% end %>
-				</div>
+				<% end %>
 			</div>
 			<div class="row">
 				<div class="small-12 medium-6 column">
 					<div class="row">
 						<table class="table small-12">
 							<tr>
-								<td><b>Organisation: </b></td>
-								<td><%= godfather.organisation %></td>
+								<td class="medium-5"><b>Organisation: </b></td>
+								<td class="medium-8"><%= godfather.organisation %></td>
 							</tr>
 							<tr>
-								<td><b>Country: </b></td>
-								<td><%= godfather.country %></td>
+								<td class="medium-5"><b>Country: </b></td>
+								<td class="medium-8"><%= godfather.country %></td>
 							</tr>
 							<tr>
-								<td><b>Email: </b></td>
-								<td><%= godfather.email %></td>
+								<td class="medium-5"><b>Email: </b></td>
+								<td class="medium-8"><%= godfather.email %></td>
 							</tr>
 							<tr>
-								<td><b>Telephone Number: </b></td>
-								<td><%= godfather.telephone_number %></td>
+								<td class="medium-5"><b>Telephone Number: </b></td>
+								<td class="medium-8"><%= godfather.telephone_number %></td>
 							</tr>
 						</table>
 					</div>
