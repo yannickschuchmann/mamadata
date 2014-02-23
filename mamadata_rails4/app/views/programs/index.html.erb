@@ -1,4 +1,7 @@
-<h1>Programs</h1>
+<% if notice %>
+	<p id="notice"><%= notice %></p>
+<% end %>
+<h1>Programs <small>(<%= @programs.count %>)</small></h1>
 <table id="programsIndexTable" class="table tablesorter">
 	<thead>
 		<tr>

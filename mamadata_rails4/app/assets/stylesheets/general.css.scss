@@ -39,10 +39,6 @@ body .row {
 	padding: 10px 0;
 }
 
-table {
-	margin: 0 auto;
-}
-
 .button-edit {
 	margin: 0 !important;
 }
@@ -121,7 +117,28 @@ input[type="file"] {
 
 html.touch{
 	input[type="checkbox"] {
-		width: 36px;
-		height: 36px
+		width: 20px;
+		height: 20px
 	}
 }
+
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"] {
+	font-size: 1em;
+}
+

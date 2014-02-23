@@ -1,21 +1,43 @@
 <h5>Benefit History</h5>
-<div class="button-bar">
-	<ul class="button-group">
-		<li><%= select_tag(:incident_status, options_for_select([['Show All', nil], ['Show Pending', "false"], ['Show Granted', "true"]])) %></li>
+<div>
+	<div class="small-12 medium-6 large-4 columns">
+		<div class="small-4 medium-4 columns">	
+			<div class="row">
+				<%= select_tag(:incident_status, options_for_select([['Show All', nil], ['Show Pending', "false"], ['Show Granted', "true"]])) %>
+			</div>
+		</div>
+		<div class="small-4 medium-4 columns">	
+			<div class="row">
+				<a href='#' id='calculatebtn' class="button custom-postfix-class">Calculate</a>
+			</div>
+		</div>
         <% if current_user.role == 'admin' or current_user.role == 'accountant' %>
-		<li>
-			<a href='#' id="setgrantedbtn" class="button custom-postfix-class">Set Granted</a>
-		</li>
-        <% end %>
-		<li><a href='#' id='calculatebtn' class="button custom-postfix-class">Calculate</a></li>
-	</ul>
-	<ul class="button-group right">
-		<li><a href='#' id='filter_date' class="button custom-prefix-class">Filter by Date</a></li> 
-		<li><input type="text" class="datepicker" id="benefit_incident_date_from" placeholder="from:"></li>
-		<li><input type="text" class="datepicker" id="benefit_incident_date_to" placeholder="to:"></li>
-	</ul>
+		<div class="small-4 medium-4 columns">	
+			<div class="row">
+				<a href='#' id="setgrantedbtn" class="button custom-postfix-class">Set Granted</a>
+			</div>
+		</div>
+		<% end %>
+		<div id="calculated_amount" style="display:none; margin-bottom: 20px;"></div>
+	</div>
+	<div class="small-12 medium-6 large-4 columns">
+		<div class="small-4 medium-4 columns">	
+			<div class="row">
+				<a href='#' id='filter_date' class="button custom-prefix-class">Filter by Date</a>
+			</div>
+		</div>
+		<div class="small-4 medium-4 columns">	
+			<div class="row">
+				<input type="text" class="datepicker" id="benefit_incident_date_from" placeholder="from:">
+			</div>
+		</div>
+		<div class="small-4 medium-4 columns">	
+			<div class="row">
+				<input type="text" class="datepicker" id="benefit_incident_date_to" placeholder="to:">
+			</div>
+		</div>
+	</div>
 </div>
-<div id="calculated_amount" style="display:none"></div>
 <div id="incidents">
 	<%= render "/benefit_incidents/list"%>
 </div>

@@ -1,12 +1,17 @@
-<h1>Benefits</h1>
+<% if notice %>
+    <p id="notice"><%= notice %></p>
+<% end %>
+<h1>Benefits <small>(<%= @benefits.count %>)</small></h1>
+<%= render "shared/reporting" %>
 <div class="row">
     <table id="benefitsIndexTable" class="table tablesorter">
         <thead>
             <tr>
-                <th>Name</th>
+                <td style="text-align: center;"><%= check_box_tag :checked_person,'#', false, id: 'chkall' %></td>                <th>Name</th>
                 <th>Description</th>
                 <th>Amount Spent this Year</th>
                 <th>Benefit Type</th>
+                <th>Last Granted</th>
                 <th>Created At</th>
                 <% if can? :edit, Benefit  %>
                 <td></td>
@@ -16,10 +21,12 @@
         <tbody>
             <% @benefits.each do |benefit| %>
             <tr data-link="<%= benefit_path(benefit) %>">
+                <td><%= check_box_tag :checked_benefit, benefit.id, false, class: 'chk' %></td>
                 <td><%= benefit.name %></td>
                 <td><%= benefit.description %></td>
                 <td><%= number_to_indian_currency(benefit.get_amount_year_to_date).html_safe %></td>
                 <td><%= benefit.get_category %></td>
+                <td>newest date_granted in incident by this benefit</td>
                 <td><%= l benefit.created_at.to_date %></td>
                 <% if can? :edit, Benefit  %>
                 <td style="width: 130px;">
@@ -34,3 +41,8 @@
         </tbody>
     </table>
 </div>
+<script type="text/javascript">
+$("#chkall").click(function () {
+    $(".chk").prop('checked', $(this).prop('checked'));
+});
+</script>

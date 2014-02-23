@@ -2,7 +2,8 @@
 <p id="notice"><%= notice %></p>
 <% end %>
 <h1>Beneficiaries</h1>
-<table id="peopleIndexTable" class="responsive tablesorter">
+<%= render "shared/reporting" %>
+<table id="peopleIndexTable" class="table tablesorter">
     <thead>
         <tr>
             <td style="text-align: center;"><%= check_box_tag :checked_person,'#', false, id: 'chkall' %></td>
