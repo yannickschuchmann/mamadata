@@ -6,15 +6,16 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
+
     @people = Person.page(params[:page])
     if params[:sort].nil? or (params[:sort]["order_primary"].blank? and params[:sort]["order_secondary"].blank?)
+
       @people = @people.order(id: :desc)
     else params[:sort]["order_primary"].blank? and params[:sort]["order_secondary"].blank?
-
       o = params[:sort]
       if o["order_primary"].split('#')[0] == 'total_expense' || o["order_secondary"].split('#')[0] == 'total_expense'
-      	bla = Person.with_total_expense if o["order_primary"].split('#')[1] == 'asc'
-      	bla = Person.with_total_expense.reverse if o["order_primary"].split('#')[1] == 'desc'
+      	bla = Person.with_total_expense if o["order_primary"].split('#')[1] == 'asc' or o["order_secondary"].split('#')[1] == 'asc'
+      	bla = Person.with_total_expense.reverse if o["order_primary"].split('#')[1] == 'desc' or o["order_secondary"].split('#')[1] == 'desc'
       	@people = Kaminari.paginate_array(bla)
       	@people.sort_by{|e| e[o["order_primary"][0]]} unless o["order_primary"][0] == 'total_expense'
       	@people.sort_by{|e| e[o["order_secondary"][0]]} unless o["order_secondary"][0] == 'total_expense'
@@ -28,9 +29,10 @@ class PeopleController < ApplicationController
       	elsif o["order_secondary"].split('#')[1].present?
       		@people = @people.order("LOWER(#{o["order_secondary"].split('#')[0]}) #{o["order_secondary"].split('#')[1]}")
       	end
-    	@people.page(params[:page]).per(50)
+    	@people.page(params[:page]).per(params[:per_page] == 'all' ? 10000 : params[:per_page])
     	end
     end
+
   end
 
 	# GET /people/1

@@ -3,11 +3,22 @@
 <% end %>
 <h1>Beneficiaries</h1>
 <div class="row">
-    <div class="small-12 medium-6 column">
+    <div class="small-12 medium-6 left">
         <%= render "sort" %>
     </div>
-    <div class="small-12 medium-6 column">
-        <%= render "shared/reporting" %>
+    <div class="small-12 medium-6 right">
+        <div class="button-bar">
+            <ul class="button-group right">
+                <li>
+                    <div><label for="count">Reporting</label></div>
+                    <%= select_tag "count", "<option>1</option><option>2</option><option>3</option><option>4</option>".html_safe, :style => "width: 100px; float:left;", :disabled => "disabled"  %>
+                </li>
+                <li>
+                    <div><label for="">&nbsp;</label></div>
+                    <a href='#' id="calculatebtn" class="custom-postfix-class secondary button" style="width: 150px; float:left;" disabled="disabled">Create Report</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 <%= paginate @people, :params => {:sort => params[:sort]} %>

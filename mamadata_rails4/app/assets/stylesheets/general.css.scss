@@ -23,6 +23,9 @@ body .row {
 
 .button {
 	background: $color-deco3 !important;
+    &.secondary {
+      background: #ccc!important;
+    }
     &.less-pd {
       padding-right: 0.7rem !important;
       padding-left: 0.7rem !important;
@@ -44,6 +47,10 @@ body .row {
 }
 input.datepicker {
 	@extend .icon-edit;
+}
+
+.button-bar .button-group.right {
+  margin-right: 0;
 }
 
 .button-center {

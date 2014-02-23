@@ -1,29 +1,24 @@
 <div class="row">
-    <%= form_for "sort", method: :get do |f| %>
     <div class="small-12 column">
-        <div class="row">
-            <div class="small-6 column">
+        <div class="button-bar">
+            <%= form_for "sort", method: :get do |f| %>
+            <ul class="button-group">
+                <li style="width: 75px">
+                    <div><%= f.label :per_page %></div>
+                    <%= f.select :per_page, [25, 50, "all"], {}, {class: "small-12"} %>
+                </li>
                 <%= fields_for :sort do |o| %>
-                <div><%= o.label :order_primary, "Primary Sort" %></div>
-                <div class="button-bar">
-                    <ul class="button-group">
-                        <li><%= o.select :order_primary, Person.sort_attribute_names, selected: if params[:sort] then params[:sort]["order_primary"] end %></li>
-                    </ul>
-                </div>
+                <li>
+                    <div><%= o.label :order_primary, "Primary Sort" %></div>
+                    <%= o.select :order_primary, Person.sort_attribute_names, selected: if params[:sort] then params[:sort]["order_primary"] end %></li>
+                <li>
+                    <div><%= o.label :order_secondary, "Secondary Sort" %></div>
+                    <%= o.select :order_secondary, Person.sort_attribute_names, selected: if params[:sort] then params[:sort]["order_secondary"] end %></li>
                 <% end %>
-            </div>
-            <div class="small-6 column">
-                <%= fields_for :sort do |o| %>
-                <div><%= o.label :order_secondary, "Secondary Sort" %></div>
-                <div class="button-bar">
-                    <ul class="button-group">
-                        <li><%= o.select :order_secondary, Person.sort_attribute_names, selected: if params[:sort] then params[:sort]["order_secondary"] end %></li>
-                    </ul>
-                </div>
-                <% end %>
-            </div>
+                <li><div><label for="">&nbsp;</label></div>
+                    <%= f.submit "Sort", class: "button custom-postfix-class" %></li>
+            </ul>
+            <% end %>
         </div>
     </div>
-    <input type="submit" class="button tiny">
-    <% end %>
 </div>
