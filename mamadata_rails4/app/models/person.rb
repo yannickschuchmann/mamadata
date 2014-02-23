@@ -12,7 +12,9 @@ class Person < ActiveRecord::Base
   has_many :person_godfather_files, through: :godfather_people
   has_many :benefit_incidents
   monetize :income_paise, :disable_validation => true
+  validates_presence_of :name, :fathers_name, :gender, :date_of_birth, :name_of_the_street, :zip_code, :narrative_text, :religion, :city, :place_of_birth, :marital_status
   validate :amount_to_big
+
   #validate :validate_head_of_household
 
   def get_total_expenses (date = nil)
