@@ -22,6 +22,7 @@
     </div>
 </div>
 <%= paginate @people, :params => {:sort => params[:sort]} %>
+<%= page_entries_info @people%>
 <table id="peopleIndexTable" class="table">
     <thead>
         <tr>
@@ -74,3 +75,4 @@
         <% end %>
     </tbody>
 </table>
+<%= paginate @people, :params => {:sort => params[:sort]} %>
