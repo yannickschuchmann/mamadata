@@ -87,9 +87,9 @@ $(document).ready(function(){
     var names = <%= @AutoNames.to_json.html_safe %>;
     var fathersnames = <%= @AutoFatherNames.to_json.html_safe %>;
     var zipcode = <%= @AutoZip.to_json.html_safe %>;
-    $("#autoname").autocomplete({source: names});
-    $("#AutoCity").autocomplete({source: cities});
-    $("#AutoFatherNames").autocomplete({source: fathersnames});
-    $("#AutoZipCode").autocomplete({source: zipcode});
+    $("#autoname").autocomplete({source: uniqueArray(names});
+    $("#AutoCity").autocomplete({source: uniqueArray(cities)});
+    $("#AutoFatherNames").autocomplete({source: uniqueArray(fathersnames)});
+    $("#AutoZipCode").autocomplete({source: uniqueArray(zipcode)});
 });
 </script>

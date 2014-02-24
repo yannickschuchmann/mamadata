@@ -308,13 +308,13 @@
 		var street = <%= @AutoNameOfTheStreet.to_json.html_safe  %>;
 		var birthplace = <%= @AutoBirthPlace.to_json.html_safe  %>;
 		var nativeplace = <%= @AutoNativePlace.to_json.html_safe  %>;
-		$("#person_name").autocomplete({source: names});
-		$("#person_fathers_name").autocomplete({source: fathername});
-		$("#person_zip_code").autocomplete({source: zip});
-		$("#person_city").autocomplete({source: cities});
-		$("#person_name_of_the_street").autocomplete({source: street});
-		$("#person_place_of_birth").autocomplete({source: birthplace});
-		$("#person_native_place").autocomplete({source: nativeplace});
+		$("#person_name").autocomplete({source: uniqueArray(names)});
+		$("#person_fathers_name").autocomplete({source: uniqueArray(fathername)});
+		$("#person_zip_code").autocomplete({source: uniqueArray(zip)});
+		$("#person_city").autocomplete({source: uniqueArray(cities)});
+		$("#person_name_of_the_street").autocomplete({source: uniqueArray(street)});
+		$("#person_place_of_birth").autocomplete({source: uniqueArray(birthplace)});
+		$("#person_native_place").autocomplete({source: uniqueArray(nativeplace)});
 
 	})
 	</script>
