@@ -58,6 +58,8 @@
 
 		$(".tablesorter").tablesorter();
 
+
+        APP.LoadOverlay.init();
 	});
 
 	/* update incidents via ajax function */
@@ -124,8 +126,24 @@
 
 		/* checkox shows datepicker */
 		$('#filter_date').on('click', function(){
-
-
 			APP.Incidents.updateIncidentList();
 		});
 	};
+
+    APP.LoadOverlay = {
+        el: '.overlay',
+        exclude: '.no-overlay, dd > a, dd, [disabled="disabled"], a[href="#"], a[href=""], #canvas-toggle, #searchExistingPeopleForm',
+        init: function() {
+            var self = this;
+            this.$el = $(this.el);
+            $('a').not(this.exclude).on('click', function() {
+                self.$el.show();
+            });
+            $('form').not(this.exclude).on('submit', function() {
+                self.$el.show();
+            });
+            $(document).keyup(function(e) {
+                if (e.keyCode == 27) { self.$el.hide(); }
+            });
+        }
+    }

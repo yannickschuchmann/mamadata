@@ -8,8 +8,10 @@ class SchoolClass < ActiveRecord::Base
   before_save :set_file_name
 
   def set_file_name
-    extension = File.extname(self.document_file_name).downcase
-    self.document.instance_write(:file_name, "#{self.perform_file_name(self.name)}#{extension}")
+    if self.document_file_name
+      extension = File.extname(self.document_file_name).downcase
+      self.document.instance_write(:file_name, "#{self.perform_file_name(self.name)}#{extension}")
+    end
   end
 
   def perform_file_name value

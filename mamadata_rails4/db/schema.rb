@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140221212939) do
+ActiveRecord::Schema.define(version: 20140224041608) do
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20140221212939) do
     t.datetime "updated_at"
     t.boolean  "is_active",  default: false
     t.datetime "deleted_at"
+    t.integer  "added_by"
+    t.integer  "deleted_by"
   end
 
   add_index "beneficiary_program_relationships", ["person_id"], name: "index_beneficiary_program_relationships_on_person_id"
@@ -40,6 +42,8 @@ ActiveRecord::Schema.define(version: 20140221212939) do
     t.string   "amount_in_euro_currency",             default: "EUR", null: false
     t.integer  "amount_in_dollar_paise",    limit: 8, default: 0
     t.string   "amount_in_dollar_currency",           default: "USD", null: false
+    t.integer  "created_by"
+    t.integer  "granted_by"
   end
 
   add_index "benefit_incidents", ["benefit_id"], name: "index_benefit_incidents_on_benefit_id"
@@ -167,6 +171,7 @@ ActiveRecord::Schema.define(version: 20140221212939) do
     t.string   "area"
     t.string   "file_number"
     t.string   "head_of_household"
+    t.integer  "created_by"
   end
 
   add_index "people", ["family_id"], name: "index_people_on_family_id"

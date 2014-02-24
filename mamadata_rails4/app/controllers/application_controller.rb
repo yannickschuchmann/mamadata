@@ -15,4 +15,8 @@ class ApplicationController < ActionController::Base
     person_path(school.person_id, :anchor => "school")
   end
 
+  def set_current_user
+    User.current = current_user
+  end
+
 end
