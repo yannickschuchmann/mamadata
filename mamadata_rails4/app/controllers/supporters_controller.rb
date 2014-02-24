@@ -11,6 +11,7 @@ class SupportersController < ApplicationController
   # GET /supporters/1
   # GET /supporters/1.json
   def show
+    authorize! :read, @supporter
   end
 
   # GET /supporters/new
@@ -20,6 +21,7 @@ class SupportersController < ApplicationController
 
   # GET /supporters/1/edit
   def edit
+    authorize! :update, @supporter
   end
 
   # POST /supporters
