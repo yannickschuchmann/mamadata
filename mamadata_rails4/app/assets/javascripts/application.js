@@ -140,7 +140,9 @@
                 self.$el.show();
             });
             $('form').not(this.exclude).on('submit', function() {
-                self.$el.show();
+                if(!$(this).find('input.error').length) {
+                    self.$el.show();
+                }
             });
             $(document).keyup(function(e) {
                 if (e.keyCode == 27) { self.$el.hide(); }
