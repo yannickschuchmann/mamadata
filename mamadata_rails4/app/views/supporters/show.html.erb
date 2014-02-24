@@ -104,7 +104,7 @@
 		<table class="table small-12">
 			<tr>
 				<td class="medium-5"><b>Donor Type:</b></td>
-				<td class="medium-9"><%= @supporter.donor_type.name %></td>
+				<td class="medium-9"><%= (@supporter.donor_type) ? @supporter.donor_type.name : 'none' %></td>
 			</tr>
 		</table>
 	</div>
