@@ -11,6 +11,22 @@ FactoryGirl.define do
 
   factory :person do
   	name "Homer"
-  	gender "male"
+    fathers_name "b"
+    gender "male"
+    date_of_birth DateTime.now
+    place_of_birth "aa"
+    native_place "bb"
+    name_of_the_house "cc"
+    number_of_the_house "cc"
+    name_of_the_street "aa"
+    city "bb"
+    zip_code "c"
+    religion "abab"
+    caste "ababab"
+    education "abab"
+    marital_status "abab"
+    health_condition "ababab"
+    occupation "abbab"
+    narrative_text "ababa"
   end
 end
