@@ -3,6 +3,8 @@ class BenefitIncident < ActiveRecord::Base
 	belongs_to :person
 	belongs_to :program
 	belongs_to :benefit
+	belongs_to :creator, class_name: 'User', foreign_key: 'created_by'
+	belongs_to :granter, class_name: 'User', foreign_key: 'granted_by'
 	validates :person_id, presence: true
 	validates :program_id, presence: true
 	validates :benefit_id, presence: true
@@ -15,10 +17,13 @@ class BenefitIncident < ActiveRecord::Base
 	before_save :update_calculated_amount
 	before_save :set_fixed_amount
 	validate :amount_to_big
+	before_save :check_and_set_granter, only: [:update]
 	# before_save :set_current_exchange_rates
 
 
-
+	def check_and_set_granter
+		self.granter = User.current if self.changed_attributes['status'] == false and self.status == true
+	end
 
 	protected
 	 def amount_to_big
