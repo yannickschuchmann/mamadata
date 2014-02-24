@@ -32,7 +32,7 @@
 			<td><%= supporter.email %></td>
 			<td><%= supporter.is_volunteer ? 'yes' : 'no' %></td>
 			<td><%= supporter.type_of_work %></td>
-			<td><%= supporter.donor_type.name %></td>
+			<td><%= supporter.donor_type ? supporter.donor_type.name : 'None' %></td>
 			<td><%= supporter.godfather  ? 'yes' : 'no' %></td>
 			<% if can? :update, Supporter %>
 				<td style="width: 130px;">

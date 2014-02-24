@@ -5,6 +5,7 @@ class SupportersController < ApplicationController
   # GET /supporters.json
   def index
     @supporters = Supporter.all.order(created_at: :desc)
+    @supporters = @supporters.accessible_by(current_ability)
   end
 
   # GET /supporters/1

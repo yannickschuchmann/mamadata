@@ -29,11 +29,14 @@ class Ability
       can :manage, Journal
       can :manage, BenefitIncident
       cannot :grant, BenefitIncident
-      when "accountant"
-      can :update, Benefit
-      can :manage, BenefitIncident
+    when "accountant"
+    can :update, Benefit
+    can :manage, BenefitIncident
     when "supporter"
-
+    # only read
+    when "sharana_france"
+      cannot :read, :all
+      can :manage, Supporter, donor_type_id: 1
     else
       cannot :manage, :all
     end
