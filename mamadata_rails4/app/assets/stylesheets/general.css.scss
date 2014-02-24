@@ -149,3 +149,34 @@ input[type="color"] {
 	font-size: 1em;
 }
 
+.pagination { font-size: 0.875rem}
+.pagination .page {
+	padding: 5px;
+	text-align: center;
+	> a {
+		color: #333;
+		padding: 5px;
+	}
+	&.current{
+		color: #fff;
+		padding: 5px 10px;
+		background-color:  $color-active;
+		&:hover {
+			padding: 5px 10px;
+		}
+	} 
+	&.gap:hover {
+		background-color: transparent;
+		color: #333;
+	}
+	&:hover{
+		color: #fff;
+		padding: 5px;
+		background-color:  $color-active;
+		> a {
+			padding: 5px;
+			color: #fff;
+			background-color:  $color-active;
+		}
+	}
+}

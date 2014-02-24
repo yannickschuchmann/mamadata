@@ -3,10 +3,10 @@
 <% end %>
 <h1>Beneficiaries</h1>
 <div class="row">
-    <div class="small-12 medium-6 left">
+    <div class="small-12 medium-7 left">
         <%= render "sort" %>
     </div>
-    <div class="small-12 medium-6 right">
+    <div class="small-12 medium-5 right">
         <div class="button-bar">
             <ul class="button-group right">
                 <li>
@@ -21,9 +21,14 @@
         </div>
     </div>
 </div>
-<%= paginate @people, :params => {:sort => params[:sort]} %>
-<%= page_entries_info @people%>
-<table id="peopleIndexTable" class="table">
+<div class="small-12 medium-7 column" style="height: 25px;">
+    <%= paginate @people, :params => {:sort => params[:sort]}, :window => 3 %>
+</div>
+<div class="small-12 medium-5 column text-right">
+    <%= page_entries_info @people%>
+</div>
+
+<table id="peopleIndexTable" class="table small-12">
     <thead>
         <tr>
             <td style="text-align: center;"><%= check_box_tag :checked_person,'#', false, id: 'chkall' %></td>
@@ -75,4 +80,7 @@
         <% end %>
     </tbody>
 </table>
-<%= paginate @people, :params => {:sort => params[:sort]} %>
+<div class="small-12 medium-7 column" style="height: 25px;">
+    <%= paginate @people, :params => {:sort => params[:sort]}, :window => 3 %>
+</div>
+<p>&nbsp;</p>
