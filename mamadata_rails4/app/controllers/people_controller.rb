@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy, :add_to_family]
-  before_filter :set_autosuggest, only: [:edit, :new]
+  before_filter :set_autosuggest
   layout "application_person", except: :index
 
   # GET /people
@@ -162,11 +162,14 @@ end
 
 	private
 		# Use callbacks to share common setup or constraints between actions.
-
-
 		def set_autosuggest
+			@AutoNames  = Person.select('distinct name').collect { |p| p.name.camelize }
+			@AutoFatherNames = Person.select('distinct fathers_name').collect { |p| p.fathers_name.camelize }
+			@AutoZipCode  = Person.select('distinct zip_code').collect { |p| p.zip_code.camelize }
 			@AutoCities = Person.select('distinct city').collect { |p| p.city.camelize }
-			@AutoNames  = Person.select('distinct fathers_name').collect { |p| p.fathers_name.camelize }
+			@AutoNameOfTheStreet  = Person.select('distinct name_of_the_street').collect { |p| p.name_of_the_street.camelize }
+			@AutoBirthPlace  = Person.select('distinct place_of_birth').collect { |p| p.place_of_birth.camelize }
+			@AutoNativePlace  = Person.select('distinct native_place').collect { |p| p.native_place.camelize }
 		end
 		def set_person
 			@person = Person.find(params[:id])
