@@ -1,5 +1,6 @@
 class FamiliesController < ApplicationController
 	before_action :set_family, only: [:show, :edit, :update, :destroy]
+  before_action :set_autosuggest
 
 	def index
 		@families = Family.all.order(created_at: :desc)
@@ -91,6 +92,13 @@ class FamiliesController < ApplicationController
 	end
 
 	private
+  def set_autosuggest
+    @AutoCities = Person.select('distinct city').collect { |p| p.city.camelize }
+    @AutoNames  = Person.select('distinct name').collect { |p| p.name.camelize }
+    @AutoFatherNames  = Person.select('distinct fathers_name').collect { |p| p.fathers_name.camelize }
+    @AutoZip  = Person.select('distinct zip_code').collect { |p| p.zip_code.camelize }
+  end
+
   def set_family
 		@family = Family.find(params[:id])
   end

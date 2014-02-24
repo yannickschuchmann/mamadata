@@ -15,13 +15,13 @@
                 <div id="searchExistingPeople" class="content">
                     <div class="row">
                         <div class="small-12 medium-3 column">Name</div>
-                        <div class="small-12 medium-9 column"><input name="name" type="text"></div>
+                        <div class="small-12 medium-9 column"><input name="name" type="text" id="autoname"></div>
                         <div class="small-12 medium-3 column">Fathers Name</div>
-                        <div class="small-12 medium-9 column"><input type="text" name="fname" /></div>
+                        <div class="small-12 medium-9 column"><input type="text" name="fname" id="AutoFatherNames" /></div>
                         <div class="small-12 medium-3 column">City</div>
-                        <div class="small-12 medium-9 column"><input name="city" type="text"/></div>
+                        <div class="small-12 medium-9 column"><input name="city" type="text" id="AutoCity"/></div>
                         <div class="small-12 medium-3 column">Zipcode</div>
-                        <div class="small-12 medium-9 column"><input name="zipcode" type="text"/></div>
+                        <div class="small-12 medium-9 column"><input name="zipcode" type="text" id="AutoZipCode"/></div>
                     </div>
                 </div>
         </div>
@@ -80,3 +80,16 @@
 	<%= f.submit :class => 'button tiny', :style => "margin-bottom: 10px;", :id => "buttonHide"%>
 	<% end %>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    var cities = <%= @AutoCities.to_json.html_safe  %>;
+    var names = <%= @AutoNames.to_json.html_safe %>;
+    var fathersnames = <%= @AutoFatherNames.to_json.html_safe %>;
+    var zipcode = <%= @AutoZip.to_json.html_safe %>;
+    $("#autoname").autocomplete({source: names});
+    $("#AutoCity").autocomplete({source: cities});
+    $("#AutoFatherNames").autocomplete({source: fathersnames});
+    $("#AutoZipCode").autocomplete({source: zipcode});
+});
+</script>

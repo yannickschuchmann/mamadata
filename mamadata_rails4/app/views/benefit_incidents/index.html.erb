@@ -3,8 +3,7 @@
     <p id="notice"><%= notice %></p>
 <% end %>
 <h1>Incidents <small>(<%= @benefit_incidents.count %>)</small></h1>
-<div class="row">
-    <div class="small-12 column">
+<div class="small-12">
         <div class="button-bar">
             <ul class="button-group">
                 <li><%= select_tag(:incident_status, options_for_select([['Show All', nil], ['Show Pending', "false"], ['Show Granted', "true"]])) %></li>
@@ -22,8 +21,10 @@
             </ul>
         </div>
     </div>
-</div>
+
 <div id="calculated_amount" style="display:none"></div>
+<%= render "shared/reporting" %>
+<div class="clearfix"></div>
 <div id="incidents">
     <%= render "/benefit_incidents/list"%>
 </div>

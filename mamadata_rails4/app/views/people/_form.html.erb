@@ -49,7 +49,7 @@
 				<%= f.label :fathers_name %>
 			</div>
 			<div class="small-12 medium-8 column">
-				<%= f.text_field :fathers_name, :placeholder => "Fathers name", :id => "AutoFName" %>
+				<%= f.text_field :fathers_name, :placeholder => "Fathers name" %>
 			</div>
 		</div>
 		<div class="row">
@@ -125,7 +125,7 @@
 					<%= f.label "City/Village" %>
 				</div>
 				<div class="small-12 medium-8 column">
-					<%= f.text_field :city, :placeholder => "City/Village", :id => "city" %>
+					<%= f.text_field :city, :placeholder => "City/Village" %>
 				</div>
 			</div>
 			<div class="row">
@@ -278,7 +278,6 @@
 		<%= f.submit :class => 'button' %>
 	</div>
 	<% end %>
-	<%= @cities %>
 	<script type="text/javascript">
 	$("#person_religion").change(function () {
 		var e = document.getElementById("person_religion");
@@ -301,10 +300,21 @@
 			$("#showCaste").css("display", "none");
 		}
 		;
+
+		var names = <%= @AutoNames.to_json.html_safe  %>;
+		var fathername = <%= @AutoFatherNames.to_json.html_safe  %>;
+		var zip = <%= @AutoZipCode.to_json.html_safe  %>;
 		var cities = <%= @AutoCities.to_json.html_safe  %>;
-		var names = <%= @AutoNames.to_json.html_safe %>
-		$("#city").autocomplete({source: cities});
-		$("#AutoFName").autocomplete({source: names});
+		var street = <%= @AutoNameOfTheStreet.to_json.html_safe  %>;
+		var birthplace = <%= @AutoBirthPlace.to_json.html_safe  %>;
+		var nativeplace = <%= @AutoNativePlace.to_json.html_safe  %>;
+		$("#person_name").autocomplete({source: names});
+		$("#person_fathers_name").autocomplete({source: fathername});
+		$("#person_zip_code").autocomplete({source: zip});
+		$("#person_city").autocomplete({source: cities});
+		$("#person_name_of_the_street").autocomplete({source: street});
+		$("#person_place_of_birth").autocomplete({source: birthplace});
+		$("#person_native_place").autocomplete({source: nativeplace});
 
 	})
 	</script>
