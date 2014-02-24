@@ -14,9 +14,6 @@
             </ul>
             <section class="top-bar-section">
                 <span style="font-size: 12px; color: #ddd; line-height: 45px;"><%= current_user.email %></span>
-            </section>
-            <!-- Nav Menu Points -->
-            <section class="top-bar-section">
                 <ul class="nav right">
                     <% if user_signed_in? %>
                         <% if controller_name == "people" %>
