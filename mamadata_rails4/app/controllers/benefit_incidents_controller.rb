@@ -1,5 +1,6 @@
 class BenefitIncidentsController < ApplicationController
   before_action :set_benefit_incident, only: [:show, :edit, :update, :destroy]
+  before_filter :set_current_user
   respond_to :js, :html
 
   layout "application_main_sidebar", only: :index
@@ -62,6 +63,8 @@ class BenefitIncidentsController < ApplicationController
   # POST /benefit_incidents.json
   def create
     @benefit_incident = BenefitIncident.new(benefit_incident_params)
+    @benefit_incident.creator = current_user
+    @benefit_incident.granter = current_user if @benefit_incident.status == true
     set_variables_for_javascript
     respond_to do |format|
       if @benefit_incident.save
@@ -78,6 +81,7 @@ class BenefitIncidentsController < ApplicationController
   # PATCH/PUT /benefit_incidents/1.json
   def update
     set_variables_for_javascript
+    debugger
     respond_to do |format|
       if @benefit_incident.update(benefit_incident_params)
         format.html { redirect_to @benefit_incident, notice: 'Benefit incident was successfully updated.' }
