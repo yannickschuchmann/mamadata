@@ -13,8 +13,8 @@
                 </li>
             </ul>
             <section class="top-bar-section">
-                <span style="font-size: 12px; color: #ddd; line-height: 45px;"><%= current_user.email %></span>
-                <ul class="nav right">
+                    <span style="font-size: 12px; color: #ddd; line-height: 45px; float: left"><%= current_user.email %></span>
+                    <ul class="nav right">
                     <% if user_signed_in? %>
                         <% if controller_name == "people" %>
                             <%= render '/shared/people_navigation' %>
