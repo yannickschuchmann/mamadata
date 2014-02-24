@@ -13,12 +13,12 @@ resources :donor_types
   put 'people/create', to: 'people#create'
   get 'people/search', to: 'people#search'
 
+  get 'benefit_incidents/calculated', to: 'benefit_incidents#calculated'
   resources :benefit_incidents, only: [:show, :edit, :index, :create, :update, :destroy]
   resources :person_godfather_files, only: [:create, :destroy, :edit]
   get 'person_godfather_files/new/:id', to: 'person_godfather_files#new', as: :new_person_godfather_file
   get 'person_godfather_files/:id/getfile', to: 'person_godfather_files#getfile', as: :get_godfather_file
 
-  get 'benefit_incidents/test/calculated', to: 'benefit_incidents#calculated'
   get 'benefit_incidents/add_user_to_program/:person_id', to: 'benefit_incidents#add_user_to_program', as: :add_user_to_program
   get 'benefit_incidents/list/:person_id', to: 'benefit_incidents#list', as: :benefit_incidents_list
   get 'benefit_incidents/new/:person_id', to: 'benefit_incidents#new', as: :new_benefit_incident

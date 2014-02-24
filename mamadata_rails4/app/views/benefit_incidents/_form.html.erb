@@ -40,8 +40,8 @@
 <% if can? :grant, BenefitIncident %>
 <div class="row">
 	<div class="small-12 medium-2 columns"><%= f.label :status %></div>
-	<% if @benefit_incident.status == 'true'%>
-	<div class="small-12 medium-2 columns"><%= f.select :status, [['Granted',true],['Pending', false]], :selected =>  ['Granted', true] %></div>
+	<% if @benefit_incident.status == true %>
+	<div class="small-12 medium-10 columns"><%= f.select :status, [['Granted',true],['Pending', false]], :selected =>  ['Granted', true] %></div>
 	<% else %>
 	<div class="small-12 medium-10 columns"><%= f.select :status, [['Granted',true],['Pending', false]], :selected =>  ['Pending', false] %></div>
 	<% end %>

@@ -115,10 +115,10 @@
 				if($this.is(':checked')){
 				  ids.push($this.val());
 			  }
-		  });
+		    });
 			$("#calculated_amount").show();
 			$.ajax({
-				url: "/benefit_incidents/test/calculated",
+				url: "/benefit_incidents/calculated",
 				type: "GET",
 				data: {array: ids}
 			});
@@ -132,7 +132,7 @@
 
     APP.LoadOverlay = {
         el: '.overlay',
-        exclude: '.no-overlay, dd > a, dd, [disabled="disabled"], a[href="#"], a[href=""], #canvas-toggle, #searchExistingPeopleForm',
+        exclude: '.no-overlay, [data-confirm], dd > a, dd, [disabled="disabled"], a[href="#"], a[href=""], #canvas-toggle, #searchExistingPeopleForm',
         init: function() {
             var self = this;
             this.$el = $(this.el);
@@ -140,6 +140,7 @@
                 self.$el.show();
             });
             $('form').not(this.exclude).on('submit', function() {
+                console.log(!$(this).find('input.error').length);
                 if(!$(this).find('input.error').length) {
                     self.$el.show();
                 }

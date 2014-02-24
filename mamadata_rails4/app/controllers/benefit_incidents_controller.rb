@@ -81,7 +81,6 @@ class BenefitIncidentsController < ApplicationController
   # PATCH/PUT /benefit_incidents/1.json
   def update
     set_variables_for_javascript
-    debugger
     respond_to do |format|
       if @benefit_incident.update(benefit_incident_params)
         format.html { redirect_to @benefit_incident, notice: 'Benefit incident was successfully updated.' }
@@ -99,7 +98,7 @@ class BenefitIncidentsController < ApplicationController
   def destroy
     @benefit_incident.destroy
     respond_to do |format|
-      format.html { redirect_to person_path(@benefit_incident.person, anchor: "panel2-4") }
+      format.html { redirect_to benefit_incidents_path }
       format.json { head :no_content }
     end
   end
