@@ -22,7 +22,6 @@ class BenefitIncident < ActiveRecord::Base
 
 
 	def check_and_set_granter
-		debugger
 		self.granter = User.current if self.changed_attributes['status'] == false and self.status == true
 	end
 

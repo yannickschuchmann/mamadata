@@ -4,6 +4,8 @@ class BeneficiaryProgramRelationship < ActiveRecord::Base
 	belongs_to :person
 	belongs_to :adder, class_name: 'User', foreign_key: 'added_by'
 	belongs_to :deleter, class_name: 'User', foreign_key: 'deleted_by'
+
+
 	# before_save :set_active_flag
 
   # before_destroy { |record|
