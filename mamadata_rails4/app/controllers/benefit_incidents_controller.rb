@@ -129,8 +129,10 @@ class BenefitIncidentsController < ApplicationController
     end
 
     def add_date_filter
-      @benefit_incidents=@benefit_incidents.where("created_at >= ?",  params[:date_from])
-      @benefit_incidents = @benefit_incidents.where("created_at <= ?",  params[:date_to])
+      date_from = DateTime.parse(params[:date_from]) unless params[:date_from].blank?
+      date_to = DateTime.parse(params[:date_to]) unless params[:date_to].blank?
+      @benefit_incidents=@benefit_incidents.where("created_at >= ?", date_from) if date_from
+      @benefit_incidents = @benefit_incidents.where("created_at <= ?", date_to) if date_to
     end
 
     def list_for_all_users?
