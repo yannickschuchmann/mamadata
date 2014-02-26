@@ -10,6 +10,8 @@ resources :donor_types
   end
   delete 'families/:id/edit', to: 'families#delete_relation', as: :delete_family_relation
 
+  get 'people/:id/report', to: 'people#report'
+  get 'people/report', to: 'people#reportAll'
   put 'people/create', to: 'people#create'
   get 'people/search', to: 'people#search'
 

@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy, :add_to_family]
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :report, :add_to_family]
   before_filter :set_autosuggest
   layout "application_person", except: :index
 
@@ -159,7 +159,37 @@ end
 			# format.html # index.html.erb
 			format.json { render json: result }
 		end
-	end
+  end
+
+  def report
+    Prawn::Document.generate('public/system/test_report.pdf') do |pdf|
+      pdf.font_size(25) { pdf.text "Beneficiary Report" }
+      #pdf.image @person.avatar.url(:medium), :position => :left
+      content = @person.attribute_names.map do |attribute|
+                  [attribute, @person[attribute].to_s]
+      end
+      pdf.table(content)
+    end
+    redirect_to '/system/test_report.pdf'
+  end
+
+  def reportAll
+    @people = Person.with_total_expense
+    Prawn::Document.generate('public/system/testAll_report.pdf') do |pdf|
+      pdf.font_size(25) { pdf.text "Beneficiaries Report" }
+      content = [@people.first.attribute_names]
+      @people.each do |p|
+        line = []
+        p.attribute_names.each do |attr|
+          line << p[attr].to_s
+        end
+        content << line
+      end
+      pdf.table(content, :header => true)
+    end
+    redirect_to '/system/testAll_report.pdf'
+
+  end
 
 	private
 		# Use callbacks to share common setup or constraints between actions.

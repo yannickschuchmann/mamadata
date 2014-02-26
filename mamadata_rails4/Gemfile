@@ -70,3 +70,5 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'devise'
 gem 'cancan'
 gem "paperclip", "~> 3.0"
+
+gem 'prawn'
