@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy, :report, :add_to_family]
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :add_to_family]
   before_filter :set_autosuggest
   layout "application_person", except: :index
 
@@ -162,32 +162,31 @@ end
   end
 
   def report
-    Prawn::Document.generate('public/system/test_report.pdf') do |pdf|
-      pdf.font_size(25) { pdf.text "Beneficiary Report" }
-      #pdf.image @person.avatar.url(:medium), :position => :left
-      content = @person.attribute_names.map do |attribute|
-                  [attribute, @person[attribute].to_s]
-      end
-      pdf.table(content)
-    end
-    redirect_to '/system/test_report.pdf'
+    redirect_to Person.create_pdf(params[:id])
+  end
+
+  def reportMany
+    paths = Person.create_pdf(params[:ids])
+
+    # gives the correct paths. just put this in a zip file and send it
   end
 
   def reportAll
     @people = Person.with_total_expense
-    Prawn::Document.generate('public/system/testAll_report.pdf') do |pdf|
+    Prawn::Document.generate('public/system/people/reports/pdf/all.pdf',:page_layout => :landscape) do |pdf|
       pdf.font_size(25) { pdf.text "Beneficiaries Report" }
-      content = [@people.first.attribute_names]
+      content = [Person.real_attribute_names]
       @people.each do |p|
         line = []
-        p.attribute_names.each do |attr|
+        Person.real_attribute_names.each do |attr|
+          attr = attr.gsub(' ', '_').downcase
           line << p[attr].to_s
         end
         content << line
       end
       pdf.table(content, :header => true)
     end
-    redirect_to '/system/testAll_report.pdf'
+    redirect_to '/system/people/reports/pdf/all.pdf'
 
   end
 
@@ -209,5 +208,6 @@ end
 		# Never trust parameters from the scary internet, only allow the white list through.
 		def person_params
 			params.require(:person).permit(:name, :fathers_name, :file_number, :gender, :date_of_birth, :place_of_birth, :native_place, :name_of_the_house, :number_of_the_house, :name_of_the_street, :city, :area, :zip_code, :religion, :caste, :education, :marital_status, :health_condition, :occupation, :income, :role_id, :school_name, :school_type, :school_language, :school_class, :narrative_text,:avatar, :status, :godfather_ids, :head_of_household, :program_ids => [])
-		end
+    end
+
 	end

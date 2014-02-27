@@ -1,2 +1,4 @@
-<%= select_tag "count", "<option>1</option><option>2</option><option>3</option><option>4</option>".html_safe, :style => "width: 100px; float:left; margin-bottom: 10px;", :disabled => "disabled"  %>
+<%= form_for :report_people_path, method: :get do |f| %>
+<%= f.select :type, [], :style => "width: 100px; float:left; margin-bottom: 10px;", :disabled => "disabled"  %>
 <a href='#' id="calculatebtn" class="custom-postfix-class button secondary" style="width: 150px; float:left; margin-bottom: 10px;" disabled="disabled">Create Report</a>
+<% end %>
