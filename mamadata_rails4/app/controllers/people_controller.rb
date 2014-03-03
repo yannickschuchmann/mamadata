@@ -166,9 +166,26 @@ end
   end
 
   def reportMany
-    paths = Person.create_pdf(params[:ids])
+    require 'rubygems'
+    require 'zip'
 
-    # gives the correct paths. just put this in a zip file and send it
+    paths = Person.create_pdf(params[:ids])
+    t = Tempfile.new('tmp-zip-' + request.remote_ip)
+
+    Zip::OutputStream.open(t.path) do |z|
+      if paths.is_a? Array
+        paths.each do |path|
+          z.put_next_entry(path.split('/').last) # filename
+          z.print IO.read("public/"+path)
+        end
+      else
+        z.put_next_entry(paths.split('/').last) # filename
+        z.print IO.read("public/"+paths)
+      end
+    end
+
+    send_file t.path, :type => "application/zip", :filename => "reports_#{Time.now.to_i.to_s}.zip", :disposition => 'attachment'
+    t.close
   end
 
   def reportAll

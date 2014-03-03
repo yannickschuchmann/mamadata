@@ -12,5 +12,3 @@ $(document).ready(function() {
     APP.Incidents.init(personId);
     APP.Persons.AmounttoView.init();
 });
-
-

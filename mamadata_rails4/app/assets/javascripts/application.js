@@ -60,6 +60,7 @@
 
 
         APP.LoadOverlay.init();
+        APP.Persons.Reports.init();
 	});
 
 	/* update incidents via ajax function */
@@ -132,7 +133,7 @@
 
     APP.LoadOverlay = {
         el: '.overlay',
-        exclude: '.no-overlay, [data-confirm], dd > a, dd, [disabled="disabled"], a[href="#"], a[href=""], #canvas-toggle, #searchExistingPeopleForm',
+        exclude: '.no-overlay, [target=_blank], [data-confirm], dd > a, dd, [disabled="disabled"], a[href="#"], a[href=""], #canvas-toggle, #searchExistingPeopleForm',
         init: function() {
             var self = this;
             this.$el = $(this.el);
@@ -150,3 +151,33 @@
             });
         }
     }
+
+
+    APP.Persons.Reports = {
+        $form: $('#peopleForm'),
+        $btn: $('#reportBtn'),
+        $checkAll: $('#chkall'),
+        init: function() {
+            var self = this;
+            this.$btn.on('click', function(e) {
+                e.preventDefault();
+                console.log($(this).attr('href'));
+                var $this = $(this),
+                    type = $this.closest('.reportBar').find('select').val();
+
+                switch (type) {
+                    case "overview":
+                        var win=window.open($this.attr('href'), '_blank');
+                        win.focus();
+                        break;
+                    default:
+                        self.$form.submit();
+                }
+            });
+            this.$checkAll.on('click', function(e) {
+                self.$form.find('input:checkbox').prop('checked', $(this).prop('checked'))
+            })
+        }
+    }
+
+
