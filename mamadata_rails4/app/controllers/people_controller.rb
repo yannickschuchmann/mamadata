@@ -159,7 +159,53 @@ end
 			# format.html # index.html.erb
 			format.json { render json: result }
 		end
-	end
+  end
+
+  def report
+    redirect_to Person.create_pdf(params[:id])
+  end
+
+  def reportMany
+    require 'rubygems'
+    require 'zip'
+
+    paths = Person.create_pdf(params[:ids])
+    t = Tempfile.new('tmp-zip-' + request.remote_ip)
+
+    Zip::OutputStream.open(t.path) do |z|
+      if paths.is_a? Array
+        paths.each do |path|
+          z.put_next_entry(path.split('/').last) # filename
+          z.print IO.read("public/"+path)
+        end
+      else
+        z.put_next_entry(paths.split('/').last) # filename
+        z.print IO.read("public/"+paths)
+      end
+    end
+
+    send_file t.path, :type => "application/zip", :filename => "reports_#{Time.now.to_i.to_s}.zip", :disposition => 'attachment'
+    t.close
+  end
+
+  def reportAll
+    @people = Person.with_total_expense
+    Prawn::Document.generate('public/system/people/reports/pdf/all.pdf',:page_layout => :landscape) do |pdf|
+      pdf.font_size(25) { pdf.text "Beneficiaries Report" }
+      content = [Person.real_attribute_names]
+      @people.each do |p|
+        line = []
+        Person.real_attribute_names.each do |attr|
+          attr = attr.gsub(' ', '_').downcase
+          line << p[attr].to_s
+        end
+        content << line
+      end
+      pdf.table(content, :header => true)
+    end
+    redirect_to '/system/people/reports/pdf/all.pdf'
+
+  end
 
 	private
 		# Use callbacks to share common setup or constraints between actions.
@@ -179,5 +225,6 @@ end
 		# Never trust parameters from the scary internet, only allow the white list through.
 		def person_params
 			params.require(:person).permit(:name, :fathers_name, :file_number, :gender, :date_of_birth, :place_of_birth, :native_place, :name_of_the_house, :number_of_the_house, :name_of_the_street, :city, :area, :zip_code, :religion, :caste, :education, :marital_status, :health_condition, :occupation, :income, :role_id, :school_name, :school_type, :school_language, :school_class, :narrative_text,:avatar, :status, :godfather_ids, :head_of_household, :program_ids => [])
-		end
+    end
+
 	end

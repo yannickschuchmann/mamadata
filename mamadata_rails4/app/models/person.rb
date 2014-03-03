@@ -58,14 +58,38 @@ class Person < ActiveRecord::Base
     return former
   end
 
+  def self.create_pdf ids
+    ids = ids.split unless ids.is_a? Array
+    paths = []
+    ids.each do |id|
+      @person = self.find(id)
+      path = "/system/people/reports/pdf/#{id}_#{Time.now.to_i.to_s}.pdf"
+      Prawn::Document.generate("public#{path}") do |pdf|
+        pdf.font_size(25) { pdf.text "Beneficiary Report" }
+        #pdf.image @person.avatar.url(:medium), :position => :left
+        content = @person.attribute_names.map do |attribute|
+          [attribute, @person[attribute].to_s]
+        end
+        pdf.table(content)
+      end
+      paths << path
+    end
+    paths.size > 1 ? paths : paths[0]
+  end
+
+
   def self.sort_attribute_names
     attribute_names = [["-", ""]]
-    ["Name", "Fathers Name", "Head of Household", "Gender", "Date of birth", "Place of birth", "City", "ZIP Code", "Role", "Total Expense"].each do |n|
+    self.real_attribute_names.each do |n|
       stripped = n.gsub(' ', '_').downcase
       attribute_names << [n+" a-z", stripped+"#asc"]
       attribute_names << [n+" z-a", stripped+"#desc"]
     end
     attribute_names
+  end
+
+  def self.real_attribute_names
+    ["Name", "Fathers Name", "Head of Household", "Gender", "Date of birth", "Place of birth", "City", "ZIP Code", "Role", "Total Expense"]
   end
 
   protected
@@ -80,5 +104,6 @@ class Person < ActiveRecord::Base
     # maybe.later.you know?
     #errors.add(:base, "Person is currently in a family. Please change it there") unless self.role_id == 1
   end
+
 
 end

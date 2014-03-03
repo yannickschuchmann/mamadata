@@ -7,15 +7,15 @@
         <%= render "sort" %>
     </div>
     <div class="small-12 medium-5 right">
-        <div class="button-bar">
+        <div class="button-bar reportBar">
             <ul class="button-group right">
                 <li>
                     <div><label for="count">Reporting</label></div>
-                    <%= select_tag "count", "<option>1</option><option>2</option><option>3</option><option>4</option>".html_safe, :style => "width: 100px; float:left;", :disabled => "disabled"  %>
+                    <%= select_tag :report_mode, options_for_select(["overview", "checked_people"]), :style => "width: 100px; float:left;"  %>
                 </li>
                 <li>
                     <div><label for="">&nbsp;</label></div>
-                    <a href='#' id="calculatebtn" class="custom-postfix-class secondary button" style="width: 150px; float:left;" disabled="disabled">Create Report</a>
+                    <a href='/people/report/all' id="reportBtn" class="custom-postfix-class button no-overlay" style="width: 150px; float:left;">Create Report</a>
                 </li>
             </ul>
         </div>
@@ -28,10 +28,11 @@
     <%= page_entries_info @people%>
 </div>
 
+<%= form_tag '/people/report', method: :get, id: 'peopleForm', class: 'no-overlay' do  %>
 <table id="peopleIndexTable" class="table small-12">
     <thead>
         <tr>
-            <td style="text-align: center;"><%= check_box_tag :checked_person,'#', false, id: 'chkall' %></td>
+            <td style="text-align: center;"><%= check_box_tag :checkall,'#', false, id: 'chkall' %></td>
             <th>Name</th>
             <th>Fathers name</th>
             <th>Head of household</th>
@@ -42,15 +43,13 @@
             <th>ZIP code</th>
             <th>Role</th>
             <th>Total Expense</th>
-            <% if can? :update, Person %>
             <td></td>
-            <% end %>
         </tr>
     </thead>
     <tbody>
         <% @people.each do |person| %>
         <tr data-link="<%= person_path(person) %>">
-            <td style="text-align: center"><%= check_box_tag :checked_person, person.id, false, class: 'chk' %></td>
+            <td style="text-align: center"><%= check_box_tag "ids[]", person.id, false, class: 'chk' %></td>
             <td><%= person.name %></td>
             <td><%= person.fathers_name %></td>
             <td><%= person.head_of_household %></td>
@@ -68,18 +67,20 @@
             <td>
                 <%= number_to_indian_currency(person.year_to_date).html_safe %>
             </td>
-            <% if can? :update, Person %>
             <td style="width: 130px;">
-                <%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_person_path(person) %>
-                <% if can? :destroy, Person %>
-                <%= link_to (content_tag(:i, '', :class => 'icon-trash')), person, method: :delete, data: { confirm: 'Are you sure to delete this Beneficiary? All information will be lost!' } %>
+                <%= link_to (content_tag(:i, '', :class => 'icon-download-alt')), report_person_path(person), target: "_blank" %>
+                <% if can? :update, Person %>
+                    <%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_person_path(person) %>
+                    <% if can? :destroy, Person %>
+                    <%= link_to (content_tag(:i, '', :class => 'icon-trash')), person, method: :delete, data: { confirm: 'Are you sure to delete this Beneficiary? All information will be lost!' } %>
+                    <% end %>
                 <% end %>
             </td>
-            <% end %>
         </tr>
         <% end %>
     </tbody>
 </table>
+<% end %>
 <div class="small-12 medium-7 column" style="height: 25px;">
     <%= paginate @people, :params => {:sort => params[:sort]}, :window => 3 %>
 </div>
