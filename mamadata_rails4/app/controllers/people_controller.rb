@@ -3,8 +3,14 @@ class PeopleController < ApplicationController
   before_filter :set_autosuggest
   layout "application_person", except: :index
 
-  # GET /people
-  # GET /people.json
+  def xlsreport
+  	 # render :xlsx => "xlsreport", :filename => "all_posts.xlsx"
+  	 @people = Person.all
+  	 respond_to do |format|
+  	 	format.xls
+  	 end
+	end
+
   def index
     # woat is sis
     @people = Person.order(id: :desc).page(params[:page])

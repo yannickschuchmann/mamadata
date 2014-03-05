@@ -1,0 +1,17 @@
+wb = xlsx_package.workbook
+#wb.add_worksheet(name: 'Foobar') do |sheet|
+#    sheet.add_row ['Cover', 'Sheet']
+#end
+
+@program_names =[]
+Program.all.each do |p|
+@program_names << p.name
+end
+@people = Person.all
+  wb.add_worksheet(:name => "Basic Worksheet") do |sheet|
+    sheet.add_row ["First Column", "Second", "Third"].concat(@program_names)
+    sheet.add_row [1, 2, 3, @people.first.programs.include?(1)]
+    sheet.add_row [Program.first.name]
+    @people.each {|p| sheet.add_row [p.name]}
+    Person.to_xlsx package: xlsx_package
+  end

@@ -9,7 +9,7 @@ resources :donor_types
     resources :community_developments
   end
   delete 'families/:id/edit', to: 'families#delete_relation', as: :delete_family_relation
-
+  get 'people/xlsreport', to: 'people#xlsreport', as: :xls_report
   get 'people/:id/report', to: 'people#report', as: :report_person
   get 'people/report', to: 'people#reportMany', as: :report_people
   get 'people/report/all', to: 'people#reportAll', as: :report_overview_people
