@@ -1,17 +1,26 @@
 wb = xlsx_package.workbook
-#wb.add_worksheet(name: 'Foobar') do |sheet|
-#    sheet.add_row ['Cover', 'Sheet']
-#end
+@headers = ["File","Name","Fathers Name","Head of Household","Gender","Date of Birth", "Place of Birth", 
+	"City", "ZIP Code", "Total Expense"]
+@data = []
+
 
 @program_names =[]
-Program.all.each do |p|
+Program.all.order(id: :asc).each do |p|
 @program_names << p.name
 end
-@people = Person.all
-  wb.add_worksheet(:name => "Basic Worksheet") do |sheet|
-    sheet.add_row ["First Column", "Second", "Third"].concat(@program_names)
-    sheet.add_row [1, 2, 3, @people.first.programs.include?(1)]
-    sheet.add_row [Program.first.name]
-    @people.each {|p| sheet.add_row [p.name]}
-    Person.to_xlsx package: xlsx_package
+@headers = @headers.concat(@program_names)
+
+
+wb.add_worksheet(:name => "Beneficiaries") do |sheet|
+  sheet.add_row @headers
+
+  @people.each do |p|
+  		@programs = []
+  		Program.all.order(id: :asc).each do |program|
+				 @programs << (p.programs.include?(program) ? "x" : "")
+			end	
+			  	sheet.add_row [p.id, p.name, p.fathers_name, p.head_of_household, p.gender, p.date_of_birth, 
+  		p.place_of_birth, p.city, p.zip_code, p.year_to_date].concat(@programs)		
   end
+
+end

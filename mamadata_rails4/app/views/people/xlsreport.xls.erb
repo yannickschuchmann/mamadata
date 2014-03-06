@@ -1,41 +1,43 @@
 <% @headers = ["File","Name","Fathers Name","Head of Household","Gender","Date of Birth", "Place of Birth", "City", "ZIP Code", "Total Expense"] %>
 <?xml version="1.0"?>
-<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+
+
+<ss:Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
           xmlns:o="urn:schemas-microsoft-com:office:office"
           xmlns:x="urn:schemas-microsoft-com:office:excel"
           xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
           xmlns:html="http://www.w3.org/TR/REC-html40">
-  <Worksheet ss:Name="Users">
-    <Table>
-      <Row>
+  <ss:Worksheet ss:Name="Beneficiaries">
+    <ss:Table>
+      <ss:Row>
         <% @headers.each do |column| %>
-          <Cell><Data ss:Type="String"><%=column%></Data></Cell>
+          <ss:Cell><Data ss:Type="String"><%=column%></Data></ss:Cell>
         <% end %>
-        <Cell><Data ss:Type="String"></Data></Cell>
+        <ss:Cell><Data ss:Type="String"></Data></ss:Cell>
           <% Program.all.order(id: :asc).each do |program| %>
-            <Cell><Data ss:Type="String"><%= program.name %></Data></Cell>
+            <ss:Cell><Data ss:Type="String"><%= program.name %></Data></ss:Cell>
           <% end %>
-      </Row>
+      </ss:Row>
       <% @people.each do |user| %>
-        <Row>
-            <Cell><Data ss:Type="Number"><%= user.id %></Data></Cell>
-            <Cell><Data ss:Type="String"><%= user.name %></Data></Cell>
-            <Cell><Data ss:Type="String"><%= user.fathers_name %></Data></Cell>
-            <Cell><Data ss:Type="String"><%= user.head_of_household %></Data></Cell>
-            <Cell><Data ss:Type="String"><%= user.gender %></Data></Cell>
-            <Cell><Data ss:Type="Date"><%= user.date_of_birth %></Data></Cell>
-            <Cell><Data ss:Type="String"><%= user.place_of_birth %></Data></Cell>
-            <Cell><Data ss:Type="String"><%= user.city %></Data></Cell>
-            <Cell><Data ss:Type="Number"><%= user.zip_code %></Data></Cell>
-            <Cell><Data ss:Type="String"><%= user.year_to_date %></Data></Cell>
-            <Cell><Data ss:Type="String"></Data></Cell>
+        <ss:Row>
+            <ss:Cell><Data ss:Type="Number"><%= user.id %></Data></ss:Cell>
+            <ss:Cell><Data ss:Type="String"><%= user.name %></Data></ss:Cell>
+            <ss:Cell><Data ss:Type="String"><%= user.fathers_name %></Data></ss:Cell>
+            <ss:Cell><Data ss:Type="String"><%= user.head_of_household %></Data></ss:Cell>
+            <ss:Cell><Data ss:Type="String"><%= user.gender %></Data></ss:Cell>
+            <ss:Cell><Data ss:Type="Date"><%= user.date_of_birth %></Data></ss:Cell>
+            <ss:Cell><Data ss:Type="String"><%= user.place_of_birth %></Data></ss:Cell>
+            <ss:Cell><Data ss:Type="String"><%= user.city %></Data></ss:Cell>
+            <ss:Cell><Data ss:Type="Number"><%= user.zip_code %></Data></ss:Cell>
+            <ss:Cell><Data ss:Type="String"><%= user.year_to_date %></Data></ss:Cell>
+            <ss:Cell><Data ss:Type="String"></Data></ss:Cell>
             <% Program.all.order(id: :asc).each do |program| %>
-              <Cell><Data ss:Type="String"><%= user.programs.include?(program) ? "true" : "false" %></Data></Cell>
+              <ss:Cell><Data ss:Type="String"><%= user.programs.include?(program) ? "true" : "false" %></Data></ss:Cell>
             <% end %>
             
 
-        </Row>
+        </ss:Row>
       <% end %>
-    </Table>
-  </Worksheet>
-</Workbook>
+    </ss:Table>
+  </ss:Worksheet>
+</ss:Workbook>
