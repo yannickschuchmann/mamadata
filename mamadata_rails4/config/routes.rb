@@ -9,13 +9,15 @@ resources :donor_types
     resources :community_developments
   end
   delete 'families/:id/edit', to: 'families#delete_relation', as: :delete_family_relation
-  get 'people/xlsreport', to: 'people#xlsreport', as: :xls_report
   get 'people/:id/report', to: 'people#report', as: :report_person
-  get 'people/report', to: 'people#reportMany', as: :report_people
-  get 'people/report/all', to: 'people#reportAll', as: :report_overview_people
+  get 'people/report', to: 'people#report_many', as: :report_people
+  get 'people/report_xlsx', to: 'people#report_xlsx', as: :people_xlsx_report
+  get 'people/report/all.:format', to: 'people#report_all', as: :report_overview_people
   put 'people/create', to: 'people#create'
   get 'people/search', to: 'people#search'
 
+
+  get 'benefit_incidents/report_xlsx', to: 'benefit_incidents#report_xlsx'
   get 'benefit_incidents/calculated', to: 'benefit_incidents#calculated'
   resources :benefit_incidents, only: [:show, :edit, :index, :create, :update, :destroy]
   resources :person_godfather_files, only: [:create, :destroy, :edit]
