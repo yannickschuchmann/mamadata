@@ -73,7 +73,7 @@
 			date_to:$('#benefit_incident_date_to').val()}
 		});
 		$calcAmount.val('');
-		$calcAmount .hide();
+		$calcAmount.hide();
 	};
 
 	APP.Incidents.init = function(personId) {
