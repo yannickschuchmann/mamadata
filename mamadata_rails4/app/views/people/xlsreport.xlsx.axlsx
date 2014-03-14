@@ -1,8 +1,6 @@
 wb = xlsx_package.workbook
 @headers = ["File","Name","Fathers Name","Head of Household","Gender","Date of Birth", "Place of Birth", 
 	"City", "ZIP Code", "Total Expense"]
-@data = []
-
 
 @program_names =[]
 Program.all.order(id: :asc).each do |p|
