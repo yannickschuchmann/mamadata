@@ -48,9 +48,7 @@ $("#submitPerson").click(function(event){
 		dataToSend.beneficiary = {};
 		dataToSend.beneficiary.school_name = $(new_person).find("#beneficiary_school_name")[0].value;
 	}
-	// console.log(person, beneficiary);
 	dataToSend.person = person;
-	console.log(dataToSend);
 	$.ajax({
 		url: "http://"+window.location.host+"/people/create",   // I'm doing the proper routing later, since '/make_suggestion' routes to 'items/1/make_suggestion'
 		type: "PUT",
@@ -59,8 +57,6 @@ $("#submitPerson").click(function(event){
 		data: dataToSend,
 		success: function(returned_value){
 			window.location.replace("/people");
-			// window.location.replace("/families/show/"+returned_value.id)
-			// console.log(returned_value);
 		},
 		error: function(returned_value){
 			alert("Something went Wrong during the sending of the data please retry later");

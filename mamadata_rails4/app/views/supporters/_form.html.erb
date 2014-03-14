@@ -1,6 +1,6 @@
 <%= content_for :js do %><%= javascript_include_tag "supporter_new.js" %> <% end %>
 
-<%= form_for(@supporter, :html => { :id => "supporterForm" }) do |f| %>
+<%= form_for(@supporter, :html => { :id => "supporterForm", :class => "ajax", "data-onsuccess" => if @supporter.id then supporter_path @supporter else supporters_path end }) do |f| %>
 <% if @supporter.errors.any? %>
 <div id="error_explanation">
 	<h2><%= pluralize(@supporter.errors.count, "error") %> prohibited this supporter from being saved:</h2>
