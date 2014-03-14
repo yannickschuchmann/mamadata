@@ -9,7 +9,6 @@ class PeopleController < ApplicationController
 	end
 
   def index
-    # woat is sis
     @people = Person.order(id: :desc).page(params[:page])
     sort_params = params[:sort]
     puts "sort params "
@@ -42,32 +41,6 @@ class PeopleController < ApplicationController
 		@people = @people.order(sql_statement)
 		end
 		@people = @people.page(params[:page]).per(per_page_input)
-
-    # if params[:sort].nil? or (params[:sort]["order_primary"].blank? and params[:sort]["order_secondary"].blank?)
-
-    #   @people = @people.order(id: :desc)
-    # else params[:sort]["order_primary"].blank? and params[:sort]["order_secondary"].blank?
-    #   o = params[:sort]
-    #   if o["order_primary"].split('#')[0] == 'total_expense' || o["order_secondary"].split('#')[0] == 'total_expense'
-    #   	bla = Person.with_total_expense if o["order_primary"].split('#')[1] == 'asc' or o["order_secondary"].split('#')[1] == 'asc'
-    #   	bla = Person.with_total_expense.reverse if o["order_primary"].split('#')[1] == 'desc' or o["order_secondary"].split('#')[1] == 'desc'
-    #   	@people = Kaminari.paginate_array(bla)
-    #   	@people.sort_by{|e| e[o["order_primary"][0]]} unless o["order_primary"][0] == 'total_expense'
-    #   	@people.sort_by{|e| e[o["order_secondary"][0]]} unless o["order_secondary"][0] == 'total_expense'
-    #   	@people = Kaminari.paginate_array(@people).page(params[:page])
-    #   else
-    #   	if o["order_primary"].split('#')[1].present? and o["order_secondary"].split('#')[1].present? 
-    #   		@people = @people.order("LOWER(#{o["order_primary"].split('#')[0]}) #{o["order_primary"].split('#')[1]}", "LOWER(#{o["order_secondary"].split('#')[0]}) #{o["order_secondary"].split('#')[1]}")
-      		
-    #   	elsif o["order_primary"].split('#')[1].present?
-    #   		@people = @people.order("LOWER(#{o["order_primary"].split('#')[0]}) #{o["order_primary"].split('#')[1]}")
-    #   	elsif o["order_secondary"].split('#')[1].present?
-    #   		@people = @people.order("LOWER(#{o["order_secondary"].split('#')[0]}) #{o["order_secondary"].split('#')[1]}")
-    #   	end
-    #   end
-    # end
-    # @people = @people.page(params[:page]).per(params[:sort]["per_page"] == 'all' ? 10000 : params[:sort]["per_page"])
-    # ahh THERE is die uthapam :)
   end
 
 	# GET /people/1
