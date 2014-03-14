@@ -37,6 +37,12 @@ class BenefitIncidentsController < ApplicationController
     respond_with @benefit_incidents
   end
 
+  def report_xlsx
+    puts params
+    @benefit_incidents = BenefitIncident.find(params[:ids])
+    render :xlsx => "xlsreport", :filename => "incident_report#{DateTime.now.to_i.to_s}.xlsx"
+  end
+
 
   def add_user_to_program
     @person = Person.find(params[:person_id])
