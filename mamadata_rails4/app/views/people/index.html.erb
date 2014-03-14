@@ -10,14 +10,13 @@
         <div class="button-bar reportBar">
             <ul class="button-group right">
                 <li>
-                    <div><label for="count">Reporting</label></div>
-                    <%= select_tag :report_mode, options_for_select(["overview", "checked_people"]), :style => "width: 100px; float:left;"  %>
+                    <div><label for="report_mode">Reporting</label></div>
+                    <%= select_tag :report_mode, options_for_select([["All/PDF", '/people/report/all.pdf'], ['All/Excel', '/people/report/all.xlsx'], ["Checked/Excel", '/people/report_xlsx'], ["Checked/PDF", 'checked_pdf']]), :style => "width: 100px; float:left;"  %>
                 </li>
                 <li>
                     <div><label for="">&nbsp;</label></div>
                     <a href='/people/report/all' id="reportBtn" class="custom-postfix-class button no-overlay" style="width: 150px; float:left;">Create Report</a>
                 </li>
-                <li><%= link_to "Excel", xls_report_path, class: "custom-postfix-class button no-overlay" %></li>
             </ul>
         </div>
     </div>
