@@ -152,22 +152,34 @@
 
     APP.LoadOverlay = {
         el: '.overlay',
+        pb: '.progressbar',
+        mt: '.progressbar .meter',
         exclude: '.no-overlay, [target=_blank], [data-confirm], dd > a, dd, [disabled="disabled"], a[href="#"], a[href=""], #canvas-toggle, #searchExistingPeopleForm',
         init: function() {
             var self = this;
             this.$el = $(this.el);
+            this.$pb = $(this.pb);
+            this.$mt = $(this.mt);
             $('a').not(this.exclude).on('click', function() {
                 self.$el.show();
             });
             $('form').not(this.exclude).on('submit', function() {
-                console.log(!$(this).find('input.error').length);
                 if(!$(this).find('input.error').length) {
                     self.$el.show();
                 }
             });
             $(document).keyup(function(e) {
-                if (e.keyCode == 27) { self.$el.hide(); }
+                if (e.keyCode == 27) { self.close(); }
             });
+        },
+        close: function() {
+            this.$el.hide();
+            this.progressbar(0);
+            this.$pb.hide();
+        },
+        progressbar: function(percent) {
+            this.$pb.show();
+            this.$mt.width(percent+'%');
         }
     }
 
@@ -208,5 +220,35 @@
             })
         }
     }
+
+    APP.FormHandler = ({
+        $el: $('form.ajax'),
+        init: function() {
+            var self = this;
+            this.$el.on('submit', function(e) {
+                e.preventDefault();
+                APP.LoadOverlay.progressbar(0)
+                $(this).ajaxSubmit({
+                    xhr: function() {  // custom xhr
+                        xhr = $.ajaxSettings.xhr();
+                        if(xhr.upload){ // if upload property exists
+                            xhr.upload.addEventListener('progress', self.progress, false); // progressbar
+                        }
+                        return xhr;
+                    },
+                    success: function(data) {
+                        window.location.href = self.$el.attr('data-onsuccess') || "/";
+                    },
+                    error: function(error) {
+                        APP.LoadOverlay.close();
+                        alert("An error is occured. Please try again");
+                    }
+                });
+            });
+        },
+        progress: function(e) {
+            APP.LoadOverlay.progressbar(e.loaded / e.total * 100);
+        }
+    }).init();
 
 

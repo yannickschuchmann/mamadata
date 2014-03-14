@@ -1,3 +1,5 @@
+@import "foundation/components/global";
+
 .overlay {
   position: fixed;
   top: 0px;
@@ -8,17 +10,40 @@
   z-index:100;
   display: none;
 }
+.progressbar {
+  width: 300px;
+  height: 20px;
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  margin-left: -150px;
+  display: none;
+  padding-top: 10px;
+  border-color: #fff;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  .meter {
+    height: 10px;
+    width: 0;
+    background: #fff;
+    max-width: 100%;
+    @include single-transition(width);
+  }
+}
+
 .spinner {
   width: 40px;
   height: 40px;
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
+  margin-left: -20px;
   vertical-align: middle;
   color: #fff;
   -webkit-animation: rotate 2.0s infinite linear;
   animation: rotate 2.0s infinite linear;
 }
+
 
 .dot1, .dot2 {
   width: 60%;
