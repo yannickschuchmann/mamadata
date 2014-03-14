@@ -18,20 +18,11 @@ class School < ActiveRecord::Base
   def period
     self.joined_at.strftime("%Y")+'-'+self.terminated_at.strftime("%Y") unless self.terminated_at.nil? or self.joined_at.nil?
   end
-
   def sorted_classes
-    self.school_classes.sort do |a, b|
-      case
-      when a.name.to_i + b.name.to_i == 0
-        (a.name.downcase <=> b.name.downcase)*-1
-      when a.name.to_i == 0 && b.name.to_i != 0
-        1
-      when b.name.to_i == 0 && a.name.to_i != 0
-        -1
-      else
-        (a.name <=> b.name)*-1
-      end
-    end
+    # puts '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
+    # puts self.school_classes.methods
+    
+    return self.school_classes.reverse!
   end
 
   private
