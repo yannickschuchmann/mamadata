@@ -4,7 +4,7 @@ wb = xlsx_package.workbook
 
 @program_names =[]
 Program.all.order(id: :asc).each do |p|
-@program_names << p.name
+@program_names << p.name.camelcase
 end
 @headers = @headers.concat(@program_names)
 

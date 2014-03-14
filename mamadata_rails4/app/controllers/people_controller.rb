@@ -4,7 +4,7 @@ class PeopleController < ApplicationController
   layout "application_person", except: :index
 
   def xlsreport
-  	 @people = Person.all
+  	 @people = Person.where(id: 1)
   	 render :xlsx => "xlsreport", :filename => "beneficiary_report#{DateTime.now}.xlsx"
 	end
 
