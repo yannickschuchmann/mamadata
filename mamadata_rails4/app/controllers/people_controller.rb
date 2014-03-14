@@ -6,9 +6,6 @@ class PeopleController < ApplicationController
   def xlsreport
   	 @people = Person.all
   	 render :xlsx => "xlsreport", :filename => "beneficiary_report#{DateTime.now}.xlsx"
-  	 # respond_to do |format|
-  	 # 	format.xls
-  	 # end
 	end
 
   def index
