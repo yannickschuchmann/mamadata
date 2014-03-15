@@ -125,6 +125,25 @@
 			});
 		});
 
+			$('#reportbtn').on('click', function(e) {
+			e.preventDefault();
+			var ids = new Array();
+			$(".chk").each(function() {
+				var $this = $(this);
+				if($this.is(':checked')){
+				  ids.push($this.val());
+			  }
+		    });
+        var data  =  {
+      	ids: ids};
+      	if (ids.length > 0) {
+        var win=window.open("/benefit_incidents/report_xlsx" + '?'+ $.param(data), '_blank');
+        win.focus();
+      } else {
+      	alert("Please Specify at least one Incident");
+      }
+		});
+
 		/* checkox shows datepicker */
 		$('#filter_date').on('click', function(){
 			APP.Incidents.updateIncidentList();
@@ -161,15 +180,25 @@
             var self = this;
             this.$btn.on('click', function(e) {
                 e.preventDefault();
-                console.log($(this).attr('href'));
                 var $this = $(this),
                     type = $this.closest('.reportBar').find('select').val();
-
                 switch (type) {
-                    case "overview":
-                        var win=window.open($this.attr('href'), '_blank');
+                    case '/people/report/all.pdf':
+                        var win=window.open(type, '_blank');
                         win.focus();
                         break;
+                    case '/people/report/all.xlsx':
+                        var win=window.open(type, '_blank');
+                        win.focus();
+                        break; 
+                    case '/people/report_xlsx':
+                    var data  =  {
+                    	ids: self.$form.find('input:checkbox:checked').map(function(){
+                    	return $(this).val();
+                    }).get()};
+                        var win=window.open(type + '?'+ $.param(data), '_blank');
+                        win.focus();
+                        break;                                                
                     default:
                         self.$form.submit();
                 }

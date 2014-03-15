@@ -3,10 +3,7 @@ class PeopleController < ApplicationController
   before_filter :set_autosuggest
   layout "application_person", except: :index
 
-  def xlsreport
-  	 @people = Person.where(id: 1)
-  	 render :xlsx => "xlsreport", :filename => "beneficiary_report#{DateTime.now}.xlsx"
-	end
+
 
   def index
     @people = Person.order(id: :desc).page(params[:page])
@@ -141,7 +138,13 @@ end
     redirect_to Person.create_pdf(params[:id])
   end
 
-  def reportMany
+  def report_xlsx
+  	@people = Person.find(params[:ids])
+  	render :xlsx => "xlsreport", :filename => "beneficiary_report#{DateTime.now.to_i.to_s}.xlsx"
+  end
+
+
+  def report_many
     require 'rubygems'
     require 'zip'
 
@@ -164,8 +167,9 @@ end
     t.close
   end
 
-  def reportAll
-    @people = Person.with_total_expense
+  def report_all
+    @people = Person.all
+    
     Prawn::Document.generate('public/system/people/reports/pdf/all.pdf',:page_layout => :landscape) do |pdf|
       pdf.font_size(25) { pdf.text "Beneficiaries Report" }
       content = [Person.real_attribute_names]
@@ -179,8 +183,11 @@ end
       end
       pdf.table(content, :header => true)
     end
-    redirect_to '/system/people/reports/pdf/all.pdf'
 
+    respond_to do |format|
+    	format.pdf { send_file 'public/system/people/reports/pdf/all.pdf',:filename => "reports_#{Time.now.to_i.to_s}.pdf", :type => "application/pdf", :disposition => 'attachment'}
+    	format.xlsx {render :xlsx => "xlsreport", :filename => "beneficiary_report#{DateTime.now.to_i.to_s}.xlsx"}
+    end
   end
 
 	private

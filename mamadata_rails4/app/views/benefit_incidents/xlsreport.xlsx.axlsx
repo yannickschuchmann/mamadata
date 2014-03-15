@@ -1,0 +1,14 @@
+wb = xlsx_package.workbook
+@headers = ["ID","Program","Benefit","Amount","Currency","Remark","Status", "Date Issued", 
+  "Date Granted", "Beneficiary"]
+
+
+wb.add_worksheet(:name => "Incidents") do |sheet|
+  sheet.add_row @headers
+
+  @benefit_incidents.each do |p|
+          sheet.add_row [p.id, p.program.name, p.benefit.name, p.amount, p.amount.currency, p.remark, p.status ? "Granted" : "Pending", p.created_at,
+            p.date_granted, p.person.name]   
+  end
+
+end
