@@ -44,7 +44,7 @@ class PeopleController < ApplicationController
 	# GET /people/1.json
 	def show
 		@benefit_incidents = BenefitIncident.where(person_id: params[:id])
-		@schools = School.where(person_id: params[:id]).order(joined_at: :desc)
+		@schools = School.where(person_id: params[:id])
 		@godfather_relations = GodfatherPerson.with_deleted.where(person_id: params[:id]).order(created_at: :desc)
 		@godfathers = []
 		@godfather_relations.each do |r|
@@ -195,7 +195,11 @@ end
 		def set_autosuggest
 			@AutoNames  = Person.select('distinct name').collect { |p| p.name.camelize }
 			@AutoFatherNames = Person.select('distinct fathers_name').collect { |p| p.fathers_name.camelize }
-			@AutoZipCode  = Person.select('distinct zip_code').collect { |p| p.zip_code.camelize }
+			@AutoZipCode  = Person.select('distinct zip_code').collect { |p| 
+                                                                            if(p.zip_code != nil)
+                                                                                p.zip_code.camelize
+                                                                            end
+                                                                        }
 			@AutoCities = Person.select('distinct city').collect { |p| p.city.camelize }
 			@AutoNameOfTheStreet  = Person.select('distinct name_of_the_street').collect { |p| p.name_of_the_street.camelize }
 			@AutoBirthPlace  = Person.select('distinct place_of_birth').collect { |p| p.place_of_birth.camelize }

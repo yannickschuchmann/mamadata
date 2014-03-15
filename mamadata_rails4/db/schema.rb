@@ -169,7 +169,7 @@ ActiveRecord::Schema.define(version: 20140224041608) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "area"
-    t.string   "file_number"
+    t.string   "file_number",                   default: ""
     t.string   "head_of_household"
     t.integer  "created_by"
   end
