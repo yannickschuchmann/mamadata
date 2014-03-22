@@ -185,3 +185,7 @@ label.notice {
   color: #fff !important;
   padding: 5px;
 }
+
+button.disabled.secondary, button[disabled].secondary, .button.disabled.secondary, .button[disabled].secondary {
+  opacity: 1!important;
+}

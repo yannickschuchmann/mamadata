@@ -1,7 +1,7 @@
 class RolesController < ApplicationController
   before_action :set_role, only: [:show, :edit, :update, :destroy]
 
-  layout "application_main_sidebar"
+  layout "application_settings_sidebar"
 
   # GET /roles
   # GET /roles.json

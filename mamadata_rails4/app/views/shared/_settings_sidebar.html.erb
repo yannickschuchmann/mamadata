@@ -1,0 +1,14 @@
+<div id="side">
+	<ul class="no-bullet" id="side-nav">
+
+		<% role = 	(controller_name == "roles") ? "active" : "" %>
+		<% possible_choice = 	(controller_name == "possible_choices") ? "active" : "" %>
+
+        <% if can? :read, Role %>
+		<li class="<%= role %>"><%= link_to 'Roles', roles_path %></li>
+        <% end %>
+        <% if can? :read, PossibleChoices %>
+		<li class="<%= possible_choice%>"><a href="" class="button secondary" disabled="disabled">Possible Choices</a></li>
+        <% end %>
+	</ul>
+</div>
