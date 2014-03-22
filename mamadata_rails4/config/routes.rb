@@ -12,7 +12,7 @@ resources :donor_types
   get 'people/:id/report', to: 'people#report', as: :report_person
   get 'people/report', to: 'people#report_many', as: :report_people
   get 'people/report_xlsx', to: 'people#report_xlsx', as: :people_xlsx_report
-  get 'people/report/all.:format', to: 'people#report_all', as: :report_overview_people
+  get 'people/snapshot.:format', to: 'people#snapshot', as: :report_overview_people
   put 'people/create', to: 'people#create'
   get 'people/search', to: 'people#search'
 
