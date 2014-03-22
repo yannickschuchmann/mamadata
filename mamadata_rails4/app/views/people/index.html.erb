@@ -68,7 +68,7 @@
                 <%= number_to_indian_currency(person.year_to_date).html_safe %>
             </td>
             <td style="width: 130px;">
-                <%= link_to (content_tag(:i, '', :class => 'icon-download-alt')), report_person_path(person), target: "_blank" %>
+                <%= link_to (content_tag(:i, '', :class => 'icon-download-alt')), profile_person_path(person), target: "_blank" %>
                 <% if can? :update, Person %>
                     <%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_person_path(person) %>
                     <% if can? :destroy, Person %>
