@@ -16,6 +16,8 @@ resources :donor_types
   put 'people/create', to: 'people#create'
   get 'people/search', to: 'people#search'
 
+  get 'supporters/report_xlsx', to: 'supporters#report_xlsx', as: :supporters_xlsx_report
+
 
   get 'benefit_incidents/report_xlsx', to: 'benefit_incidents#report_xlsx'
   get 'benefit_incidents/calculated', to: 'benefit_incidents#calculated'

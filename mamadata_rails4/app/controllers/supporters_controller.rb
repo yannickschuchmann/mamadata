@@ -1,8 +1,12 @@
 class SupportersController < ApplicationController
   before_action :set_supporter, only: [:show, :edit, :update, :destroy]
 
-  # GET /supporters
-  # GET /supporters.json
+
+  def report_xlsx
+    @supporters = Supporter.all
+    render :xlsx => "xlsreport", :filename => "supporter_report#{DateTime.now.to_i.to_s}.xlsx"
+  end
+
   def index
     @supporters = Supporter.all.order(created_at: :desc)
     @supporters = @supporters.accessible_by(current_ability)

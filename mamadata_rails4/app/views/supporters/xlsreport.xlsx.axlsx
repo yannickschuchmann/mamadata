@@ -1,0 +1,20 @@
+wb = xlsx_package.workbook
+@headers = ["Created On #{l DateTime.now}","File Number","Name","Family Name","Organisation","Position",
+            "Street", "Number", "Zip Code", "City", "E-Mail", "Phone",
+	        "Website", "Donor", "Godfather", "Godfather of"]
+
+
+wb.add_worksheet(:name => "Supporter") do |sheet|
+  sheet.add_row @headers
+
+  @supporters.each do |s|
+    children = []
+    s.people.each do |child|
+        children << child.name.to_s + " (File Number: " + child.id.to_s + ")"
+    end
+	    sheet.add_row ["",s.id, s.name, s.family_name, s.organisation, s.position_in_organisation,
+	                  s.street, s.street_number, s.zipcode, s.city, s.email, s.telephone_number,
+	                  s.website,(s.is_donor? ? "yes" : "no"),(s.godfather ? "yes" : "no")].concat(children)
+  end
+
+end
