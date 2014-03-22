@@ -5,6 +5,7 @@
 <table id="programsIndexTable" class="table tablesorter">
 	<thead>
 		<tr>
+            <td style="text-align: center;"><%= check_box_tag :checkall,'#', false, id: 'chkall' %></td>
 			<th>Name</th>
 			<th>Description</th>
 			<th>Amount Spent this Year</th>
@@ -18,6 +19,7 @@
 	<tbody>
 		<% @programs.each do |program| %>
 		<tr data-link="<%= program_path(program) %>">
+            <td style="text-align: center"><%= check_box_tag "ids[]", program.id, false, class: 'chk' %></td>
 			<td><%= program.name %></td>
 			<td><%= program.description %></td>
 			<td><%= number_to_indian_currency(program.get_amount_year_to_date).html_safe %></td>

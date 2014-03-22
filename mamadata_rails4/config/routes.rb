@@ -16,11 +16,13 @@ resources :donor_types
   get 'people/snapshot.:format', to: 'people#snapshot', as: :snapshot_people
   # xlsx
   get 'people/report_xlsx', to: 'people#report_xlsx', as: :people_xlsx_report
+  get 'supporters/report_xlsx', to: 'supporters#report_xlsx', as: :supporters_xlsx_report
+  get 'programs/report_xlsx', to: 'programs#report_xlsx', as: :programs_xlsx_report
 
   put 'people/create', to: 'people#create'
   get 'people/search', to: 'people#search'
 
-  get 'supporters/report_xlsx', to: 'supporters#report_xlsx', as: :supporters_xlsx_report
+  
 
 
   get 'benefit_incidents/report_xlsx', to: 'benefit_incidents#report_xlsx'
