@@ -207,6 +207,7 @@
                 win.focus();
             });
             this.$checkAll.on('click', function(e) {
+                console.log(e);
                 self.$form.find('input:checkbox').not(self.$checkAll)
                     .prop('checked', $(this).prop('checked'));
             });

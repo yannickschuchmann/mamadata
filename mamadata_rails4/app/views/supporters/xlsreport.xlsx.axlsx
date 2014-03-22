@@ -4,7 +4,7 @@ wb = xlsx_package.workbook
 	        "Website", "Donor", "Godfather", "Godfather of"]
 
 
-wb.add_worksheet(:name => "Supporter") do |sheet|
+wb.add_worksheet(:name => "Supporters") do |sheet|
   sheet.add_row @headers
 
   @supporters.each do |s|

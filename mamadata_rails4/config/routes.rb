@@ -15,10 +15,13 @@ MamadataRails4::Application.routes.draw do
   # xlsx
   get 'people/report', to: 'people#report', as: :report_people
 
+  get 'supporters/report', to: 'supporters#report', as: :report_supporters
+  get 'programs/report', to: 'programs#report', as: :report_programs
+
   put 'people/create', to: 'people#create'
   get 'people/search', to: 'people#search'
 
-  get 'supporters/report_xlsx', to: 'supporters#report_xlsx', as: :supporters_xlsx_report
+  
 
 
   get 'benefit_incidents/report_xlsx', to: 'benefit_incidents#report_xlsx'

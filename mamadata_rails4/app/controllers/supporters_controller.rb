@@ -2,9 +2,9 @@ class SupportersController < ApplicationController
   before_action :set_supporter, only: [:show, :edit, :update, :destroy]
 
 
-  def report_xlsx
-    @supporters = Supporter.all
-    render :xlsx => "xlsreport", :filename => "supporter_report#{DateTime.now.to_i.to_s}.xlsx"
+  def report
+    @supporters = Supporter.find(params[:ids])
+    render :xlsx => "xlsreport", :filename => "supporter_report_#{DateTime.now.to_i.to_s}.xlsx"
   end
 
   def index

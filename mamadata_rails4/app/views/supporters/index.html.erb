@@ -1,11 +1,28 @@
 <% if notice %>
 <p id="notice"><%= notice %></p>
 <% end %>
-<h1>Supporters</h1>
+<h1>Supporters
+    <div class="small-12 medium-5 right">
+        <div class="button-bar exportBar">
+            <ul class="button-group right">
+                <li>
+                    <%= select_tag :report_mode, options_for_select([["Report", report_supporters_path]]), :style => "display: none; width: 100px; float:left;"  %>
+                </li>
+                <li>
+                    <div><label for="">&nbsp;</label></div>
+                    <a href='' id="exportBtn" class="custom-postfix-class button no-overlay" style="width: 150px; float:left;">Create Report</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</h1>
+
+<%= form_tag '', method: :get, id: 'exportForm', class: 'no-overlay' do  %>
 <table id="supporterIndexTable" class="table tablesorter">
 	<thead>
 		<tr>
-			<th>Organisation</th>
+            <td style="text-align: center;"><%= check_box_tag :checkall,'#', false, id: 'chkall' %></td>
+            <th>Organisation</th>
 			<th>Name</th>
 			<th>Family name</th>
 			<th>Country</th>
@@ -24,7 +41,8 @@
 	<tbody>
 		<% @supporters.each do |supporter| %>
 		<tr data-link="<%= supporter_path(supporter) %>">
-			<td><%= supporter.organisation %></td>
+            <td style="text-align: center"><%= check_box_tag "ids[]", supporter.id, false, class: 'chk' %></td>
+            <td><%= supporter.organisation %></td>
 			<td><%= supporter.name %></td>
 			<td><%= supporter.family_name %></td>
 			<td><%= supporter.country %></td>
@@ -46,3 +64,4 @@
 		<% end %>
 	</tbody>
 </table>
+<% end %>
