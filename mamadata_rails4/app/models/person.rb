@@ -1,16 +1,17 @@
 class Person < ActiveRecord::Base
   acts_as_xlsx
+
   has_attached_file :avatar, :styles => {:medium => "300x300>", :small => "160>", :thumb => "100x100>"}, :default_url => "/images/missing_:style.gif"
   belongs_to :role
   belongs_to :family
   belongs_to :user, foreign_key: 'created_by'
   has_many :journals
   has_many :beneficiary_program_relationships
-  has_many :programs, through: :beneficiary_program_relationships#, dependent: :destroy
+  has_many :programs, through: :beneficiary_program_relationships
   has_many :benefits, through: :programs
   has_many :schools
   has_many :godfather_people
-  has_many :godfathers, :class_name => "Supporter", through: :godfather_people#, dependent: :destroy
+  has_many :godfathers, :class_name => "Supporter", through: :godfather_people
   has_many :person_godfather_files, through: :godfather_people
   has_many :benefit_incidents
   monetize :income_paise, :disable_validation => true
