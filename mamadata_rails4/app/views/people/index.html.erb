@@ -7,15 +7,15 @@
         <%= render "sort" %>
     </div>
     <div class="small-12 medium-5 right">
-        <div class="button-bar reportBar">
+        <div class="button-bar exportBar">
             <ul class="button-group right">
                 <li>
                     <div><label for="report_mode">Reporting</label></div>
-                    <%= select_tag :report_mode, options_for_select([["All/PDF", '/people/report/all.pdf'], ['All/Excel', '/people/report/all.xlsx'], ["Checked/Excel", '/people/report_xlsx'], ["Checked/PDF", 'checked_pdf']]), :style => "width: 100px; float:left;"  %>
+                    <%= select_tag :report_mode, options_for_select([["Snapshot", snapshot_people_path({format: "pdf"})], ["Profiles", profile_people_path], ["Report", report_people_path]]), :style => "width: 100px; float:left;"  %>
                 </li>
                 <li>
                     <div><label for="">&nbsp;</label></div>
-                    <a href='/people/report/all' id="reportBtn" class="custom-postfix-class button no-overlay" style="width: 150px; float:left;">Create Report</a>
+                    <a href='' id="exportBtn" class="custom-postfix-class button no-overlay" style="width: 150px; float:left;">Create Report</a>
                 </li>
             </ul>
         </div>
@@ -28,7 +28,7 @@
     <%= page_entries_info @people%>
 </div>
 
-<%= form_tag '/people/report', method: :get, id: 'peopleForm', class: 'no-overlay' do  %>
+<%= form_tag '', method: :get, id: 'exportForm', class: 'no-overlay' do  %>
 <table id="peopleIndexTable" class="table small-12">
     <thead>
         <tr>

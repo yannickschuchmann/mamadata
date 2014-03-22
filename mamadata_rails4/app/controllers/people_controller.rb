@@ -135,7 +135,7 @@ end
 		end
   end
 
-  def report_xlsx
+  def report
   	@people = Person.find(params[:ids])
   	render :xlsx => "xlsreport", :filename => "beneficiary_report#{DateTime.now.to_i.to_s}.xlsx"
   end

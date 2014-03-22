@@ -13,7 +13,7 @@ MamadataRails4::Application.routes.draw do
   get 'people/profiles', to: 'people#profiles', as: :profile_people
   get 'people/snapshot.:format', to: 'people#snapshot', as: :snapshot_people
   # xlsx
-  get 'people/report_xlsx', to: 'people#report_xlsx', as: :people_xlsx_report
+  get 'people/report', to: 'people#report', as: :report_people
 
   put 'people/create', to: 'people#create'
   get 'people/search', to: 'people#search'

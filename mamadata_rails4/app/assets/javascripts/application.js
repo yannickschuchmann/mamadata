@@ -60,7 +60,6 @@
 
 
         APP.LoadOverlay.init();
-        APP.Persons.Reports.init();
 	});
 
 	/* update incidents via ajax function */
@@ -184,42 +183,37 @@
     }
 
 
-    APP.Persons.Reports = {
-        $form: $('#peopleForm'),
-        $btn: $('#reportBtn'),
+    APP.ExportHandler = ({
+        $form: $('#exportForm'),
+        $btn: $('#exportBtn'),
         $checkAll: $('#chkall'),
         init: function() {
             var self = this;
             this.$btn.on('click', function(e) {
                 e.preventDefault();
                 var $this = $(this),
-                    type = $this.closest('.reportBar').find('select').val();
-                switch (type) {
-                    case '/people/report/all.pdf':
-                        var win=window.open(type, '_blank');
-                        win.focus();
-                        break;
-                    case '/people/report/all.xlsx':
-                        var win=window.open(type, '_blank');
-                        win.focus();
-                        break; 
-                    case '/people/report_xlsx':
-                    var data  =  {
-                    	ids: self.$form.find('input:checkbox:checked').map(function(){
-                    	return $(this).val();
+                    type = $this.closest('.exportBar').find('select').val(),
+                    data  =  {
+                        ids: self.$form.find('input:checkbox:checked').not(self.$checkAll).map(function(){
+                        return $(this).val();
                     }).get()};
-                        var win=window.open(type + '?'+ $.param(data), '_blank');
-                        win.focus();
-                        break;                                                
-                    default:
-                        self.$form.submit();
+
+                if(data.ids.length === 0) {
+                    alert("Please select at least one entry");
+                    return;
                 }
+                var win=window.open(type + '?'+ $.param(data), '_blank');
+
+                win.focus();
             });
             this.$checkAll.on('click', function(e) {
-                self.$form.find('input:checkbox').prop('checked', $(this).prop('checked'))
-            })
+                self.$form.find('input:checkbox').not(self.$checkAll)
+                    .prop('checked', $(this).prop('checked'));
+            });
+
+            return this;
         }
-    }
+    }).init();
 
     APP.FormHandler = ({
         $el: $('form.ajax'),
