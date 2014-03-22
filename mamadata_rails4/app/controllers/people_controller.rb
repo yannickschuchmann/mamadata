@@ -134,17 +134,16 @@ end
 		end
   end
 
-  def report
-    redirect_to Person.create_pdf(params[:id])
-  end
-
   def report_xlsx
   	@people = Person.find(params[:ids])
   	render :xlsx => "xlsreport", :filename => "beneficiary_report#{DateTime.now.to_i.to_s}.xlsx"
   end
 
+  def profile
+    redirect_to Person.create_pdf(params[:id])
+  end
 
-  def report_many
+  def profiles
     require 'rubygems'
     require 'zip'
 
@@ -163,7 +162,7 @@ end
       end
     end
 
-    send_file t.path, :type => "application/zip", :filename => "reports_#{Time.now.to_i.to_s}.zip", :disposition => 'attachment'
+    send_file t.path, :type => "application/zip", :filename => "profiles_#{Time.now.to_i.to_s}.zip", :disposition => 'attachment'
     t.close
   end
 
