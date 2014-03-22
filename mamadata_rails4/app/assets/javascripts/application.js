@@ -226,6 +226,7 @@
         init: function() {
             var self = this;
             this.$el.on('submit', function(e) {
+                if (self.$el.find('.error').length > 0) return
                 e.preventDefault();
                 APP.LoadOverlay.progressbar(0)
                 $(this).ajaxSubmit({
@@ -241,7 +242,9 @@
                     },
                     error: function(error) {
                         APP.LoadOverlay.close();
-                        alert("An error is occured. Please try again");
+                        alert("An error is occurred.\n" +
+                            "Please do not upload files greater than 1mb.\n" +
+                            "Try again!");
                     }
                 });
             });

@@ -27,7 +27,8 @@
 			</div>
 			<div class="small-12 medium-8 columns">
 				<%= f.file_field :avatar %>
-			</div>
+                <label for="person_zip_code" class="notice">Please do not upload files greater than 1mb</label>
+            </div>
 		</div>
 		<% if @person.avatar_file_name %>
 		<div class="row">
