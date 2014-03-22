@@ -17,8 +17,11 @@ class Person < ActiveRecord::Base
   monetize :income_paise, :disable_validation => true
   validates_presence_of :name, :fathers_name, :gender, :date_of_birth, :name_of_the_street, :zip_code, :narrative_text, :religion, :city, :place_of_birth, :marital_status
   validate :amount_to_big
+  before_save :update_relationships
 
   #validate :validate_head_of_household
+
+  @program_ids_was = []
 
   def get_total_expenses (date = nil)
     total_expenses=Money.new(0)
@@ -92,6 +95,18 @@ class Person < ActiveRecord::Base
 
   def self.real_attribute_names
     ["Name", "Fathers Name", "Head of Household", "Gender", "Date of birth", "Place of birth", "City", "ZIP Code", "Role", "Total Expense"]
+  end
+
+  def set_old_program_ids
+    @program_ids_was = self.program_ids
+  end
+
+  private
+  def update_relationships
+    deleted_program_ids = @program_ids_was - self.program_ids
+    self.beneficiary_program_relationships.where(program_id: deleted_program_ids).each do |relation|
+      relation.destroy
+    end
   end
 
   protected

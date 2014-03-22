@@ -95,6 +95,7 @@ end
 	# PATCH/PUT /people/1.json
 	def update
 		respond_to do |format|
+      @person.set_old_program_ids
 			if @person.update(person_params)
         @person.family.update(name: @person.head_of_household) unless @person.family.nil?
 				if params[:redirect_to_incident] == 'true'
