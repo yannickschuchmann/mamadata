@@ -8,7 +8,7 @@ class BenefitIncidentsController < ApplicationController
   # GET /benefit_incidents
   # GET /benefit_incidents.json
   def index
-    @benefit_incidents = BenefitIncident.all.order(created_at: :desc).page(params[:page]).per(1)
+    @benefit_incidents = BenefitIncident.all.order(created_at: :desc).page(params[:page]).per(50)
   end
 
   def calculated

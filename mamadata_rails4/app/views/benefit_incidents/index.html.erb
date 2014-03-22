@@ -12,7 +12,7 @@
                     <a href='#' id="setgrantedbtn" class="button custom-postfix-class">Set Granted</a>
                     <% end %>
                 </li>
-                <li><a href='#' id='calculatebtn' class="button custom-postfix-class">Calcualte</a></li>
+                <li><a href='#' id='calculatebtn' class="button custom-postfix-class">Calculate</a></li>
             </ul>
             <ul class="button-group right">
                 <li><a href='#' id='filter_date' class="button custom-prefix-class">Filter by Date</a></li>
@@ -23,7 +23,6 @@
     </div>
 
 <div id="calculated_amount" style="display:none"></div>
-<a href='#' id="reportbtn" class="custom-postfix-class button" style="width: 150px; float:left; margin-bottom: 10px;">Create Report</a>
 <div class="clearfix"></div>
 <div class="small-12 medium-7 column" style="height: 25px;">
     <%= paginate @benefit_incidents, :params => {:sort => params[:sort]}, :window => 3 %>
