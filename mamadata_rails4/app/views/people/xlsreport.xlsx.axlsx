@@ -17,7 +17,7 @@ wb.add_worksheet(:name => "Beneficiaries") do |sheet|
         @program_hist = BeneficiaryProgramRelationship.with_deleted.where(person_id: p.id).order("created_at DESC")
         hist=[]
         @program_hist.each do |entry|
-           hist << entry.program.name.to_s + ", Entry Date: " + (l entry.created_at.to_date) + ", End Date: " + (entry.deleted_at ? (l entry.deleted_at.to_date) : "") +";"
+           hist << entry.program.name.to_s + ", Start Date: " + (l entry.created_at.to_date) + ", End Date: " + (entry.deleted_at ? (l entry.deleted_at.to_date) : "-") +";"
         end
   		@programs = []
   		godfather = p.godfathers.first ? (p.godfathers.first.name + " " + p.godfathers.first.family_name) : "no godfather"

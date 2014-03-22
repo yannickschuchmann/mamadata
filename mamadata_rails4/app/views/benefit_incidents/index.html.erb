@@ -25,6 +25,9 @@
 <div id="calculated_amount" style="display:none"></div>
 <a href='#' id="reportbtn" class="custom-postfix-class button" style="width: 150px; float:left; margin-bottom: 10px;">Create Report</a>
 <div class="clearfix"></div>
+<div class="small-12 medium-7 column" style="height: 25px;">
+    <%= paginate @benefit_incidents, :params => {:sort => params[:sort]}, :window => 3 %>
+</div>
 <div id="incidents">
     <%= render "/benefit_incidents/list"%>
 </div>
