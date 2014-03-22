@@ -135,17 +135,16 @@ end
 		end
   end
 
-  def report
-    redirect_to Person.create_pdf(params[:id])
-  end
-
   def report_xlsx
   	@people = Person.find(params[:ids])
   	render :xlsx => "xlsreport", :filename => "beneficiary_report#{DateTime.now.to_i.to_s}.xlsx"
   end
 
+  def profile
+    redirect_to Person.create_pdf(params[:id])
+  end
 
-  def report_many
+  def profiles
     require 'rubygems'
     require 'zip'
 
@@ -164,14 +163,14 @@ end
       end
     end
 
-    send_file t.path, :type => "application/zip", :filename => "reports_#{Time.now.to_i.to_s}.zip", :disposition => 'attachment'
+    send_file t.path, :type => "application/zip", :filename => "profiles_#{Time.now.to_i.to_s}.zip", :disposition => 'attachment'
     t.close
   end
 
-  def report_all
-    @people = Person.all
+  def snapshot
+    @people = params[:ids] ? Person.find(params[:ids]) : Person.all
     
-    Prawn::Document.generate('public/system/people/reports/pdf/all.pdf',:page_layout => :landscape) do |pdf|
+    Prawn::Document.generate('public/system/people/reports/pdf/snapshot.pdf',:page_layout => :landscape) do |pdf|
       pdf.font_size(25) { pdf.text "Beneficiaries Report" }
       content = [Person.real_attribute_names]
       @people.each do |p|
@@ -186,8 +185,8 @@ end
     end
 
     respond_to do |format|
-    	format.pdf { send_file 'public/system/people/reports/pdf/all.pdf',:filename => "reports_#{Time.now.to_i.to_s}.pdf", :type => "application/pdf", :disposition => 'attachment'}
-    	format.xlsx {render :xlsx => "xlsreport", :filename => "beneficiary_report#{DateTime.now.to_i.to_s}.xlsx"}
+    	format.pdf { send_file 'public/system/people/reports/pdf/snapshot.pdf',:filename => "snapshot_#{Time.now.to_i.to_s}.pdf", :type => "application/pdf", :disposition => 'attachment'}
+    	# format.xlsx {render :xlsx => "xlsreport", :filename => "beneficiary_report#{DateTime.now.to_i.to_s}.xlsx"}
     end
   end
 

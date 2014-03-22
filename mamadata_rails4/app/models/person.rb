@@ -65,7 +65,7 @@ class Person < ActiveRecord::Base
     paths = []
     ids.each do |id|
       @person = self.find(id)
-      path = "/system/people/reports/pdf/#{id}_#{Time.now.to_i.to_s}.pdf"
+      path = "/system/people/reports/pdf/profile_#{id}_#{Time.now.to_i.to_s}.pdf"
       Prawn::Document.generate("public#{path}") do |pdf|
         pdf.font_size(25) { pdf.text "Beneficiary Report" }
         #pdf.image @person.avatar.url(:medium), :position => :left

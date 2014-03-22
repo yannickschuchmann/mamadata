@@ -180,3 +180,8 @@ input[type="color"] {
 		}
 	}
 }
+label.notice {
+  background-color: $color-deco1;
+  color: #fff !important;
+  padding: 5px;
+}
