@@ -104,6 +104,7 @@ class Person < ActiveRecord::Base
   private
   def update_relationships
     deleted_program_ids = @program_ids_was - self.program_ids
+    debugger
     self.beneficiary_program_relationships.where(program_id: deleted_program_ids).each do |relation|
       relation.destroy
     end

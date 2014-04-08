@@ -6,6 +6,7 @@ set :repo_url, 'git@git.lazarski.me:mamadata/mamadata.git'
 
 # Default branch is :master
 #set :branch, "devel"
+
 set :branch, ENV['tag']
 #set :branch, do
 #  # Warn that branches cannot be deployed
