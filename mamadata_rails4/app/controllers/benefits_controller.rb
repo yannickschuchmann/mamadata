@@ -9,11 +9,16 @@ class BenefitsController < ApplicationController
     @benefits = Benefit.all.order(created_at: :desc)
   end
 
+
+  def report
+    @benefits = Benefit.find(params[:ids])
+    render :xlsx => "xlsreport", :filename => "benefit_report_#{DateTime.now.to_i.to_s}.xlsx"
+  end
+
+
   # GET /benefits/1
   # GET /benefits/1.json
   def show
-
-
 
   end
 
