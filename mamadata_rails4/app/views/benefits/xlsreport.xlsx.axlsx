@@ -1,0 +1,22 @@
+wb = xlsx_package.workbook
+@headers = ["Created On #{l DateTime.now}",
+            "File Number","Name","Fathers Name","Date of Birth","Gender", "ZIP Code",
+            "City/Village"]
+
+@benefits.each do |benefit|
+    wb.add_worksheet(:name => benefit.name) do |sheet|
+          sheet.add_row ["Participating Beneficiaries"]
+          sheet.add_row @headers
+          benefit_participants = benefit.people.order("created_at DESC")
+          participants = []
+          benefit_participants.each do |p|
+            unless p.nil?
+                sheet.add_row ["",p.id, p.name, p.fathers_name, p.date_of_birth, p.gender, p.zip_code,
+                            p.city]
+            end
+
+          end
+
+    end
+
+end
