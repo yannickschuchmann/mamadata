@@ -36,7 +36,7 @@ gem 'money-rails'
 #gem 'money', :git => 'git://github.com/RubyMoney/money.git'
 gem 'fiscali'
 gem 'google_currency'
-gem 'debugger'
+
 gem 'paranoia', '~> 2.0'
 gem 'kaminari'
 gem 'rails-i18n', '~> 4.0.0'
@@ -51,6 +51,7 @@ group :doc do
 end
 
 group :development do
+gem 'debugger'
 	gem 'better_errors'
 	gem 'binding_of_caller'
     gem 'capistrano'
