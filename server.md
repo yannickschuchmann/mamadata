@@ -4,6 +4,7 @@
 ## ssh/sftp
 - login: micha 
 - pw: *********
+
 subdaomins werden bei all-incl verwaltet auch hier daten bei Herr Kabel anfragen
 
 ## backup sftp:
