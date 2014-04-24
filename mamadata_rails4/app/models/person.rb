@@ -70,11 +70,39 @@ class Person < ActiveRecord::Base
       @person = self.find(id)
       path = "/system/people/reports/pdf/profile_#{id}_#{Time.now.to_i.to_s}.pdf"
       Prawn::Document.generate("public#{path}") do |pdf|
-        pdf.font_size(25) { pdf.text "Beneficiary Report" }
-        #pdf.image @person.avatar.url(:medium), :position => :left
+
+        pdf.image("#{Rails.root}/public/images/sharana_logo.png", :width => 100)
+        pdf.text "Created Date: #{DateTime.now.to_s}"
+        pdf.text "Name: #{@person.name}"
+        pdf.text "File Number: #{@person.id}"
+        pdf.text "Old File Number: #{@person.file_number}"
+        pdf.text "Fathers Name: #{@person.fathers_name}"
+        pdf.text "Gender: #{@person.gender}"
+        pdf.text "Date of Birth: #{@person.date_of_birth}"
+        pdf.text "Place of Birth: #{@person.place_of_birth}"
+        pdf.image("#{Rails.root}/public#{@person.avatar.url(:small).split("?")[0]}" , :position => :left)
         content = @person.attribute_names.map do |attribute|
           [attribute, @person[attribute].to_s]
         end
+        pdf.text "ZIP Code: #{@person.zip_code}"
+        pdf.text "City/Village: #{@person.city}"
+        pdf.text "Area: #{@person.area}"
+        pdf.text "Number of the House: #{@person.number_of_the_house}"
+        pdf.text "Street Name: #{@person.name_of_the_street}"
+        pdf.text "Religion: #{@person.religion}"
+        pdf.text "Caste: #{@person.caste}"
+        pdf.text "Completed Education: #{@person.education}"
+        pdf.text "Marital Status: #{@person.marital_status}"
+        pdf.text "Occupation: #{@person.occupation}"
+        pdf.text "Income: #{@person.income_paise}"
+        pdf.text "Health Condition: #{@person.health_condition}"
+        pdf.text "Godfathers: "
+        @person.godfathers.each do |godfather|
+          pdf.text "#{godfather.name} #{godfather.family_name}"
+        end
+        pdf.text "Narrative Text: "
+        pdf.text "#{@person.narrative_text}"
+
         pdf.table(content)
       end
       paths << path
