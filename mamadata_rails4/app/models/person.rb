@@ -10,6 +10,7 @@ class Person < ActiveRecord::Base
   has_many :programs, through: :beneficiary_program_relationships
   has_many :benefits, through: :programs
   has_many :schools
+  has_many :school_classes, through: :schools
   has_many :godfather_people
   has_many :godfathers, :class_name => "Supporter", through: :godfather_people
   has_many :person_godfather_files, through: :godfather_people
@@ -17,7 +18,7 @@ class Person < ActiveRecord::Base
   monetize :income_paise, :disable_validation => true
   validates_presence_of :name, :fathers_name, :gender, :date_of_birth, :name_of_the_street, :zip_code, :narrative_text, :religion, :city, :place_of_birth, :marital_status
   validate :amount_to_big
-  before_save :update_relationships
+  # before_save :update_relationships
 
   #validate :validate_head_of_household
 
@@ -66,44 +67,123 @@ class Person < ActiveRecord::Base
   def self.create_pdf ids
     ids = ids.split unless ids.is_a? Array
     paths = []
+    headerHeight = 190
     ids.each do |id|
       @person = self.find(id)
       path = "/system/people/reports/pdf/profile_#{id}_#{Time.now.to_i.to_s}.pdf"
       Prawn::Document.generate("public#{path}") do |pdf|
-
-        pdf.image("#{Rails.root}/public/images/sharana_logo.png", :width => 100)
-        pdf.text "Created Date: #{DateTime.now.to_s}"
-        pdf.text "Name: #{@person.name}"
-        pdf.text "File Number: #{@person.id}"
-        pdf.text "Old File Number: #{@person.file_number}"
-        pdf.text "Fathers Name: #{@person.fathers_name}"
-        pdf.text "Gender: #{@person.gender}"
-        pdf.text "Date of Birth: #{@person.date_of_birth}"
-        pdf.text "Place of Birth: #{@person.place_of_birth}"
-        pdf.image("#{Rails.root}/public#{@person.avatar.url(:small).split("?")[0]}" , :position => :left)
-        content = @person.attribute_names.map do |attribute|
-          [attribute, @person[attribute].to_s]
+        pdf.default_leading 10
+        pdf.font_size 11
+        pdf.repeat :all do
+          # header
+          pdf.bounding_box [pdf.bounds.left, pdf.bounds.top], :width  => pdf.bounds.width do
+            pdf.image("#{Rails.root}/public/images/sharana_logo.png", :width => 80)
+            pdf.move_down 10
+            pdf.text "Created Date: #{DateTime.now.to_s}"
+            pdf.text "Name: #{@person.name}"
+            pdf.text "File Number: #{@person.id}", :leading => 0
+            pdf.text "Old File Number: #{@person.file_number}"
+            pdf.text "Fathers Name: #{@person.fathers_name}"
+            pdf.text "Gender: #{@person.gender}", :leading => 0
+            pdf.text "Date of Birth: #{@person.date_of_birth}", :leading => 0
+            pdf.text "Place of Birth: #{@person.place_of_birth}"
+          end
         end
-        pdf.text "ZIP Code: #{@person.zip_code}"
-        pdf.text "City/Village: #{@person.city}"
-        pdf.text "Area: #{@person.area}"
-        pdf.text "Number of the House: #{@person.number_of_the_house}"
-        pdf.text "Street Name: #{@person.name_of_the_street}"
-        pdf.text "Religion: #{@person.religion}"
-        pdf.text "Caste: #{@person.caste}"
-        pdf.text "Completed Education: #{@person.education}"
-        pdf.text "Marital Status: #{@person.marital_status}"
-        pdf.text "Occupation: #{@person.occupation}"
-        pdf.text "Income: #{@person.income_paise}"
-        pdf.text "Health Condition: #{@person.health_condition}"
-        pdf.text "Godfathers: "
-        @person.godfathers.each do |godfather|
-          pdf.text "#{godfather.name} #{godfather.family_name}"
-        end
-        pdf.text "Narrative Text: "
-        pdf.text "#{@person.narrative_text}"
+        pdf.bounding_box([pdf.bounds.left, pdf.bounds.top - headerHeight], :width  => pdf.bounds.width, :height => pdf.bounds.height - headerHeight) do
+          pdf.image("#{Rails.root}/public#{@person.avatar.url(:small).split("?")[0]}" , :position => :left)
+          pdf.move_down 20
+          pdf.text "ZIP Code: #{@person.zip_code}", :leading => 0
+          pdf.text "City/Village: #{@person.city}", :leading => 0
+          pdf.text "Area: #{@person.area}", :leading => 0
+          pdf.text "Number of the House: #{@person.number_of_the_house}", :leading => 0
+          pdf.text "Street Name: #{@person.name_of_the_street}"
+          pdf.text "Religion: #{@person.religion}", :leading => 0
+          pdf.text "Caste: #{@person.caste}"
+          pdf.text "Completed Education: #{@person.education}", :leading => 0
+          pdf.text "Marital Status: #{@person.marital_status}"
+          pdf.text "Occupation: #{@person.occupation}", :leading => 0
+          pdf.text "Income: #{@person.income_paise}"
+          pdf.text "Health Condition: #{@person.health_condition}"
+          pdf.text "Godfathers: ", :leading => 5
+          pdf.indent 20 do
+            @person.godfathers.each_with_index do |godfather, index|
+              pdf.text "#{index+1}. #{godfather.name} #{godfather.family_name}"
+            end
+          end
+          pdf.start_new_page
+          pdf.text "Narrative Text: ", :leading => 5
+          pdf.text "#{@person.narrative_text}", :leading => 0
+          pdf.start_new_page
 
-        pdf.table(content)
+          # programs
+          pdf.text "Programs: "
+          programs = @person.programs.map do |program|
+            [program.name, program.created_at.to_s, program.created_at.to_s]
+          end
+          programs.insert(0, ["Name", "From", "Till"])
+          if programs.size > 1 then pdf.table(programs) else pdf.text "No programs" end
+
+          pdf.move_down 20
+
+          # benefits
+          pdf.text "Benefits: "
+          benefits = @person.benefits.map do |benefit|
+            [benefit.name, benefit.get_amount_year_to_date.to_s]
+          end
+          benefits.insert(0, ["Name", "Amount"])
+          if benefits.size > 1
+            pdf.table(benefits)
+            pdf.move_down 10
+
+            pdf.text "Total: INR #{@person.year_to_date}"
+          else
+            pdf.text "No benefits"
+          end
+
+          pdf.move_down 20
+
+          #schools
+          schools = @person.schools
+          current_school = schools.pop
+
+          pdf.text "Current School:"
+          pdf.indent 20 do
+            pdf.text "Name: #{current_school.name}", :leading => 0
+            pdf.text "Type: #{current_school.type}", :leading => 0
+            pdf.text "Remark: #{current_school.remark}", :leading => 0
+          end
+          pdf.move_down 20
+
+          pdf.text "School History:"
+          schools.each do |school|
+            pdf.indent 20 do
+              pdf.text "Name: #{school.name}", :leading => 0
+              pdf.text "Type: #{school.type}", :leading => 0
+              pdf.text "Remark: #{school.remark}", :leading => 0
+              pdf.move_down 10
+            end
+          end
+
+          # school_class files
+          @person.school_classes.order("created_at ASC").each do |school_class|
+            pdf.go_to_page(pdf.page_count)
+            file_path = school_class.document.path
+            case file_path.split(".")[-1]
+              when "pdf"
+                # tmp_pdf = Prawn::Document.new(:template => file_path)
+                #
+                # template_page_count = tmp_pdf.page_count
+                # (1..template_page_count).each do |template_page_number|
+                #   pdf.start_new_page(:template => "#{file_path}", :template_page => template_page_number)
+                # end
+                break
+              else
+                pdf.start_new_page
+                pdf.image("#{file_path}" , :width => pdf.bounds.width, :position => :left)
+            end
+          end
+
+        end
       end
       paths << path
     end
@@ -132,7 +212,6 @@ class Person < ActiveRecord::Base
   private
   def update_relationships
     deleted_program_ids = @program_ids_was - self.program_ids
-    debugger
     self.beneficiary_program_relationships.where(program_id: deleted_program_ids).each do |relation|
       relation.destroy
     end
