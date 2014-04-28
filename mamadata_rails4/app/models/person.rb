@@ -70,7 +70,7 @@ class Person < ActiveRecord::Base
     headerHeight = 190
     ids.each do |id|
       @person = self.find(id)
-      path = "/system/people/reports/pdf/profile_#{id}_#{Time.now.to_i.to_s}.pdf"
+      path = "/system/people/reports/pdf/#{id}_profile_#{Time.now.to_i.to_s}.pdf"
       Prawn::Document.generate("public#{path}") do |pdf|
         pdf.default_leading 10
         pdf.font_size 11
@@ -161,25 +161,6 @@ class Person < ActiveRecord::Base
               pdf.text "Type: #{school.type}", :leading => 0
               pdf.text "Remark: #{school.remark}", :leading => 0
               pdf.move_down 10
-            end
-          end
-
-          # school_class files
-          @person.school_classes.order("created_at ASC").each do |school_class|
-            pdf.go_to_page(pdf.page_count)
-            file_path = school_class.document.path
-            case file_path.split(".")[-1]
-              when "pdf"
-                # tmp_pdf = Prawn::Document.new(:template => file_path)
-                #
-                # template_page_count = tmp_pdf.page_count
-                # (1..template_page_count).each do |template_page_number|
-                #   pdf.start_new_page(:template => "#{file_path}", :template_page => template_page_number)
-                # end
-                break
-              else
-                pdf.start_new_page
-                pdf.image("#{file_path}" , :width => pdf.bounds.width, :position => :left)
             end
           end
 

@@ -1,6 +1,6 @@
 
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy, :add_to_family]
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :add_to_family, :profile]
   before_filter :set_autosuggest
   layout "application_person", except: :index
 
@@ -142,7 +142,40 @@ end
   end
 
   def profile
-    redirect_to Person.create_pdf(params[:id])
+    require 'rubygems'
+    require 'zip'
+
+    t = Tempfile.new('tmp-zip-' + request.remote_ip)
+    at = Tempfile.new('tmp-zip-attachments' + request.remote_ip)
+
+    pdf = Person.create_pdf(params[:id])
+    paths = []
+
+    @person.school_classes.each do |school_class|
+      paths << school_class.document.path
+    end
+
+    @person.person_godfather_files.each do |godfather_file|
+      paths << godfather_file.file.path
+    end
+
+    Zip::OutputStream.open(at.path) do |z|
+      paths.each do |path|
+        z.put_next_entry(path.split('/').last) # filename
+        z.print IO.read(path)
+      end
+    end
+
+    Zip::OutputStream.open(t.path) do |z|
+      z.put_next_entry(pdf.split('/').last) # filename
+      z.print IO.read("public/"+pdf)
+
+      z.put_next_entry(params[:id] + "_attachments_#{Time.now.to_i.to_s}.zip") # filename
+      z.print IO.read(at.path)
+    end
+
+    send_file t.path, :type => "application/zip", :filename => "profile_#{Time.now.to_i.to_s}.zip", :disposition => 'attachment'
+    t.close
   end
 
   def profiles
