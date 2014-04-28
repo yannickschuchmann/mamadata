@@ -79,7 +79,7 @@ namespace :deploy do
       within release_path do
         execute "chgrp -R deployers #{release_path}/"
         execute "mkdir #{release_path}/mamadata_rails4/tmp && chgrp -R deployers #{release_path}/mamadata_rails4/tmp"
-        # execute "cd #{release_path}/mamadata_rails4/ && rake assets:clean && rake assets:precompile"
+        execute "cd #{release_path}/mamadata_rails4/ && rake db:clean && rake db:migrate && rake db:seed"
         execute "chgrp -R deployers #{release_path}/mamadata_rails4/"
         execute "chgrp -R deployers #{shared_path}/"
       end
