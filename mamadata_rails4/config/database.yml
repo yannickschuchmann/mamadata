@@ -26,6 +26,7 @@ production:
   database: rails
   username: rails
   password: lm3Q7UVwkM
+
 staging:
   adapter: mysql2
   encoding: utf8
