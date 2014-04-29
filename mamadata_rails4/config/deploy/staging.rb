@@ -8,7 +8,7 @@ set :application, 'mamadata_stagging'
 role :app, %w{micha@62.141.45.55}
 role :web, %w{micha@62.141.45.55}
 role :db,  %w{micha@62.141.45.55}
-set :rails_env, "test"
+set :rails_env, "staging"
 # Extended Server Syntax
 # ======================
 # This can be used to drop a more detailed server
@@ -79,7 +79,7 @@ namespace :deploy do
       within release_path do
         execute "chgrp -R deployers #{release_path}/"
         execute "mkdir #{release_path}/mamadata_rails4/tmp && chgrp -R deployers #{release_path}/mamadata_rails4/tmp"
-        execute "cd #{release_path}/mamadata_rails4/ && rake db:migrate && rake db:seed"
+        # execute "cd #{release_path}/mamadata_rails4/ && rake db:migrate && rake db:seed"
         execute "chgrp -R deployers #{release_path}/mamadata_rails4/"
         execute "chgrp -R deployers #{shared_path}/"
       end
