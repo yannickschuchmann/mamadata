@@ -2,6 +2,8 @@ class Person < ActiveRecord::Base
   acts_as_xlsx
 
   has_attached_file :avatar, :styles => {:medium => "300x300>", :small => "160>", :thumb => "100x100>"}, :default_url => "/images/missing_:style.png"
+  validates_attachment_content_type :avatar,
+                                    :content_type => /^image\/(png|jpg|jpeg)/
   belongs_to :role
   belongs_to :family
   belongs_to :user, foreign_key: 'created_by'
@@ -90,7 +92,7 @@ class Person < ActiveRecord::Base
           end
         end
         pdf.bounding_box([pdf.bounds.left, pdf.bounds.top - headerHeight], :width  => pdf.bounds.width, :height => pdf.bounds.height - headerHeight) do
-          pdf.image("#{Rails.root}/public#{@person.avatar.url(:small).split("?")[0]}" , :position => :left)
+          pdf.image("#{Rails.root}/public#{@person.avatar.url(:small).split("?")[0]}", :width => 160 , :position => :left)
           pdf.move_down 20
           pdf.text "ZIP Code: #{@person.zip_code}", :leading => 0
           pdf.text "City/Village: #{@person.city}", :leading => 0
@@ -146,13 +148,15 @@ class Person < ActiveRecord::Base
           schools = @person.schools
           current_school = schools.pop
 
-          pdf.text "Current School:"
-          pdf.indent 20 do
-            pdf.text "Name: #{current_school.name}", :leading => 0
-            pdf.text "Type: #{current_school.type}", :leading => 0
-            pdf.text "Remark: #{current_school.remark}", :leading => 0
+          if current_school
+            pdf.text "Current School:"
+            pdf.indent 20 do
+              pdf.text "Name: #{current_school.name}", :leading => 0
+              pdf.text "Type: #{current_school.type}", :leading => 0
+              pdf.text "Remark: #{current_school.remark}", :leading => 0
+            end
+            pdf.move_down 20
           end
-          pdf.move_down 20
 
           pdf.text "School History:"
           schools.each do |school|
