@@ -159,10 +159,12 @@ end
       paths << godfather_file.file.path
     end
 
-    Zip::OutputStream.open(at.path) do |z|
-      paths.each do |path|
-        z.put_next_entry(path.split('/').last) # filename
-        z.print IO.read(path)
+    if paths.size > 0
+      Zip::OutputStream.open(at.path) do |z|
+        paths.each do |path|
+          z.put_next_entry(path.split('/').last) # filename
+          z.print IO.read(path)
+        end
       end
     end
 
@@ -170,8 +172,10 @@ end
       z.put_next_entry(pdf.split('/').last) # filename
       z.print IO.read("public/"+pdf)
 
-      z.put_next_entry(params[:id] + "_attachments_#{Time.now.to_i.to_s}.zip") # filename
-      z.print IO.read(at.path)
+      if paths.size > 0
+        z.put_next_entry(params[:id] + "_attachments_#{Time.now.to_i.to_s}.zip") # filename
+        z.print IO.read(at.path)
+      end
     end
 
     send_file t.path, :type => "application/zip", :filename => "profile_#{Time.now.to_i.to_s}.zip", :disposition => 'attachment'
@@ -182,18 +186,48 @@ end
     require 'rubygems'
     require 'zip'
 
-    paths = Person.create_pdf(params[:ids])
     t = Tempfile.new('tmp-zip-' + request.remote_ip)
 
     Zip::OutputStream.open(t.path) do |z|
-      if paths.is_a? Array
-        paths.each do |path|
-          z.put_next_entry(path.split('/').last) # filename
-          z.print IO.read("public/"+path)
+      params[:ids].each do |id|
+        person = Person.find(id)
+
+        tt = Tempfile.new('tmp-zip-' + request.remote_ip)
+        at = Tempfile.new('tmp-zip-attachments' + request.remote_ip)
+
+        pdf = Person.create_pdf(id)
+        paths = []
+
+        person.school_classes.each do |school_class|
+          paths << school_class.document.path
         end
-      else
-        z.put_next_entry(paths.split('/').last) # filename
-        z.print IO.read("public/"+paths)
+
+        person.person_godfather_files.each do |godfather_file|
+          paths << godfather_file.file.path
+        end
+
+        if paths.size > 0
+          Zip::OutputStream.open(at.path) do |az|
+            paths.each do |path|
+              az.put_next_entry(path.split('/').last) # filename
+              az.print IO.read(path)
+            end
+          end
+        end
+
+        Zip::OutputStream.open(tt.path) do |tz|
+          tz.put_next_entry(pdf.split('/').last) # filename
+          tz.print IO.read("public/"+pdf)
+
+          if paths.size > 0
+            tz.put_next_entry(id + "_attachments_#{Time.now.to_i.to_s}.zip") # filename
+            tz.print IO.read(at.path)
+          end
+        end
+
+        z.put_next_entry(id + "_attachments_#{Time.now.to_i.to_s}.zip") # filename
+        z.print IO.read(tt.path)
+
       end
     end
 

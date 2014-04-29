@@ -92,6 +92,9 @@ class Person < ActiveRecord::Base
           end
         end
         pdf.bounding_box([pdf.bounds.left, pdf.bounds.top - headerHeight], :width  => pdf.bounds.width, :height => pdf.bounds.height - headerHeight) do
+          if @person.avatar_file_name == "missing_gif"
+
+          end
           pdf.image("#{Rails.root}/public#{@person.avatar.url(:small).split("?")[0]}", :width => 160 , :position => :left)
           pdf.move_down 20
           pdf.text "ZIP Code: #{@person.zip_code}", :leading => 0
