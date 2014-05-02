@@ -81,7 +81,7 @@ class PeopleController < ApplicationController
 #    @beneficiary = Beneficiary.create(beneficiaryParameters.permit(:school_name))
 #    end
 	respond_to do |format|
-    update_program_history
+    update_history_entries
 		if @person.save
 			format.html { redirect_to @person, notice: 'Person was successfully created.' }
 			format.json { render action: 'show', status: :created, location: @person }
@@ -96,7 +96,7 @@ end
 	# PATCH/PUT /people/1.json
 	def update
 		respond_to do |format|
-      update_program_history
+      update_history_entries
 			if @person.update(person_params)
         @person.family.update(name: @person.head_of_household) unless @person.family.nil?
 				if params[:redirect_to_incident] == 'true'
@@ -113,7 +113,7 @@ end
 		end
   end
 
-  def update_program_history
+  def update_history_entries
     new_program_ids = []
     params[:person][:program_ids].to_a.each do |id|
       new_program_ids << id.to_i unless id.to_i == 0
@@ -121,6 +121,12 @@ end
     current_program_ids =  @person.program_ids
     added_program_ids = new_program_ids - current_program_ids
     removed_program_ids = current_program_ids - new_program_ids
+    current_godfather_id = @person.godfather_ids
+    new_godfather_id = params[:person][:godfather_ids]
+    if new_godfather_id != current_godfather_id
+      relation = @person.godfather_people.where(godfather_id: current_godfather_id).first
+      relation.destroy unless relation == nil
+    end unless current_godfather_id == nil
 
 
     @person.beneficiary_program_relationships.where(program_id: removed_program_ids).each do |relation|
