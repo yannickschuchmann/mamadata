@@ -81,6 +81,7 @@ class PeopleController < ApplicationController
 #    @beneficiary = Beneficiary.create(beneficiaryParameters.permit(:school_name))
 #    end
 	respond_to do |format|
+    update_program_history
 		if @person.save
 			format.html { redirect_to @person, notice: 'Person was successfully created.' }
 			format.json { render action: 'show', status: :created, location: @person }
@@ -95,7 +96,7 @@ end
 	# PATCH/PUT /people/1.json
 	def update
 		respond_to do |format|
-      @person.set_old_program_ids
+      update_program_history
 			if @person.update(person_params)
         @person.family.update(name: @person.head_of_household) unless @person.family.nil?
 				if params[:redirect_to_incident] == 'true'
@@ -110,7 +111,30 @@ end
 				format.json { render json: @person.errors, status: :unprocessable_entity }
 			end
 		end
-	end
+  end
+
+  def update_program_history
+    new_program_ids = []
+    params[:person][:program_ids].to_a.each do |id|
+      new_program_ids << id.to_i unless id.to_i == 0
+    end unless params[:person].nil? || params[:person][:program_ids].nil?
+    current_program_ids =  @person.program_ids
+    added_program_ids = new_program_ids - current_program_ids
+    removed_program_ids = current_program_ids - new_program_ids
+
+
+    @person.beneficiary_program_relationships.where(program_id: removed_program_ids).each do |relation|
+      relation.deleter = current_user
+      relation.save
+      relation.destroy
+    end
+
+    added_program_ids.each do |id|
+      BeneficiaryProgramRelationship.create(person_id: @person.id, program_id: id, added_by: current_user.id)
+    end
+
+    end
+
 
 	# DELETE /people/1
 	# DELETE /people/1.json
