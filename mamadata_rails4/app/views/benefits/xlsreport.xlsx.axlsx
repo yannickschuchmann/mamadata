@@ -11,7 +11,6 @@ wb = xlsx_package.workbook
           participants = []
           benefit_participants.each do |p|
             unless p.nil?
-          last_granted =
                 sheet.add_row ["",p.id, p.name, p.fathers_name, p.date_of_birth, p.gender, p.zip_code,
                             p.city, benefit.name, p.benefit_incidents.where(status:true, benefit_id: benefit.id).last ? p.benefit_incidents.where(status:true, benefit_id: benefit.id).last.date_granted : "",
                             p.benefit_incidents.where(status:true, benefit_id: benefit.id).last ? p.benefit_incidents.where(status:true, benefit_id: benefit.id).last.amount : "" ]
