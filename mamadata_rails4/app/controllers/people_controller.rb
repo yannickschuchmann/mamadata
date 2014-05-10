@@ -114,13 +114,17 @@ end
   end
 
   def update_history_entries
+    unless params[:person].nil? || params[:person][:program_ids].nil?
     new_program_ids = []
     params[:person][:program_ids].to_a.each do |id|
       new_program_ids << id.to_i unless id.to_i == 0
-    end unless params[:person].nil? || params[:person][:program_ids].nil?
+    end
     current_program_ids =  @person.program_ids
     added_program_ids = new_program_ids - current_program_ids
     removed_program_ids = current_program_ids - new_program_ids
+    puts "added " + added_program_ids.to_s
+    puts "removed " + removed_program_ids.to_s
+    end
     current_godfather_id = @person.godfather_ids
     new_godfather_id = params[:person][:godfather_ids]
     if new_godfather_id != current_godfather_id
@@ -137,7 +141,7 @@ end
 
     added_program_ids.each do |id|
       BeneficiaryProgramRelationship.create(person_id: @person.id, program_id: id, added_by: current_user.id)
-    end
+    end unless added_program_ids.nil?
 
     end
 
