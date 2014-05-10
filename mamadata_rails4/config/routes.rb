@@ -18,6 +18,7 @@ MamadataRails4::Application.routes.draw do
   get 'supporters/report', to: 'supporters#report', as: :report_supporters
   get 'programs/report', to: 'programs#report', as: :report_programs
   get 'benefits/report', to: 'benefits#report', as: :report_benefits
+  get 'benefit_incidents/report', to: 'benefit_incidents#report', as: :report_benefit_incidents
 
   put 'people/create', to: 'people#create'
   get 'people/search', to: 'people#search'
