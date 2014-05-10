@@ -13,8 +13,18 @@
                     <% end %>
                 </li>
                 <li><a href='#' id='calculatebtn' class="button custom-postfix-class">Calculate</a></li>
+                <li>
+
             </ul>
+            <ul class="button-group right exportBar">
+                <%= select_tag :report_mode, options_for_select([["Report", report_benefit_incidents_path]]), :style => "display: none; width: 100px; float:left;"  %>
+                </li>
+                <li>
+                    <a href='' id="exportBtn" class="custom-postfix-class button no-overlay" style="width: 150px; float:left;">Create Report</a>
+                </li>
+                </ul>
             <ul class="button-group right">
+
                 <li><a href='#' id='filter_date' class="button custom-prefix-class">Filter by Date</a></li>
                 <li><input type="text" class="datepicker" id="benefit_incident_date_from" placeholder="from:"></li>
                 <li><input type="text" class="datepicker" id="benefit_incident_date_to" placeholder="to:"></li>
