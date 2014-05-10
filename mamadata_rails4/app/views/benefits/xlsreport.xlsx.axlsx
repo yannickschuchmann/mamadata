@@ -1,7 +1,7 @@
 wb = xlsx_package.workbook
 @headers = ["Created On #{l DateTime.now}",
             "File Number","Name","Fathers Name","Date of Birth","Gender", "ZIP Code",
-            "City/Village"]
+            "City/Village", "Benefit Name","Last Granted Incident Date", "Last Granted Incident Amount" ]
 
 @benefits.each do |benefit|
     wb.add_worksheet(:name => benefit.name) do |sheet|
@@ -11,8 +11,10 @@ wb = xlsx_package.workbook
           participants = []
           benefit_participants.each do |p|
             unless p.nil?
+          last_granted =
                 sheet.add_row ["",p.id, p.name, p.fathers_name, p.date_of_birth, p.gender, p.zip_code,
-                            p.city]
+                            p.city, benefit.name, p.benefit_incidents.where(status:true, benefit_id: benefit.id).last ? p.benefit_incidents.where(status:true, benefit_id: benefit.id).last.date_granted : "",
+                            p.benefit_incidents.where(status:true, benefit_id: benefit.id).last ? p.benefit_incidents.where(status:true, benefit_id: benefit.id).last.amount : "" ]
             end
 
           end
