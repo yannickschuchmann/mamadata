@@ -203,7 +203,6 @@
                     return;
                 }
 
-
                 switch (type) {
                     case "/people/profiles":
                     case "/people/snapshot":

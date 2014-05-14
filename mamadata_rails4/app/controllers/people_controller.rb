@@ -173,7 +173,12 @@ end
   def report
     @timestamp = DateTime.now.to_i.to_s
   	@people = Person.find(params[:ids])
-  	render :xlsx => "xlsreport", :filename => "beneficiary_report#{@timestamp}.xlsx"
+    file_name = "/system/people/reports/beneficiary_report#{@timestamp}.xlsx"
+    render :xlsx => "xlsreport", :filename => "beneficiary_report#{@timestamp}.xlsx"
+
+    respond_to do |format|
+      format.json  {{ :status => "ok", :message => file_name }}
+    end
 
   end
 
