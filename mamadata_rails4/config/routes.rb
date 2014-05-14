@@ -11,7 +11,7 @@ MamadataRails4::Application.routes.draw do
   # pdfs
   get 'people/:id/profile', to: 'people#profile', as: :profile_person
   post 'people/profiles', to: 'people#profiles', as: :profile_people
-  post 'people/snapshot.:format', to: 'people#snapshot', as: :snapshot_people
+  post 'people/snapshot', to: 'people#snapshot', as: :snapshot_people
   # xlsx
   post 'people/report', to: 'people#report', as: :report_people
 

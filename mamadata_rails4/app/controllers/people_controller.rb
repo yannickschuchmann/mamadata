@@ -163,7 +163,7 @@ end
 		zipcode = params['zipcode']
 
 		result = Person.where("name LIKE ? AND fathers_name LIKE ? AND city LIKE ? AND zip_code LIKE ?", "%#{name}%","%#{fname}%","%#{city}%","%#{zipcode}%")
-		
+
 		respond_to do |format|
 			# format.html # index.html.erb
 			format.json { render json: result }
@@ -178,6 +178,7 @@ end
   def profile
     require 'rubygems'
     require 'zip'
+    require 'fileutils'
 
     t = Tempfile.new('tmp-zip-' + request.remote_ip)
     at = Tempfile.new('tmp-zip-attachments' + request.remote_ip)
@@ -220,9 +221,10 @@ end
     require 'rubygems'
     require 'zip'
 
-    t = Tempfile.new('tmp-zip-' + request.remote_ip)
+    file_name = "/system/people/reports/pdf/profiles_#{Time.now.to_i.to_s}.zip"
+    mainPath = "#{Rails.root}/public#{file_name}"
 
-    Zip::OutputStream.open(t.path) do |z|
+    Zip::File.open(mainPath, Zip::File::CREATE) do |z|
       params[:ids].each do |id|
         person = Person.find(id)
 
@@ -259,20 +261,23 @@ end
           end
         end
 
-        z.put_next_entry(id + "_attachments_#{Time.now.to_i.to_s}.zip") # filename
-        z.print IO.read(tt.path)
+        z.add(id + "_attachments_#{Time.now.to_i.to_s}.zip", tt.path) # filename
 
       end
     end
 
-    send_file t.path, :type => "application/zip", :filename => "profiles_#{Time.now.to_i.to_s}.zip", :disposition => 'attachment'
-    t.close
+    respond_to do |format|
+      msg = { :status => "ok", :message => file_name }
+      format.json  { render :json => msg }
+    end
+
   end
 
   def snapshot
     @people = params[:ids] ? Person.find(params[:ids]) : Person.all
-    
-    Prawn::Document.generate('public/system/people/reports/pdf/snapshot.pdf',:page_layout => :landscape) do |pdf|
+
+    file_name = "/system/people/reports/pdf/snapshot.pdf"
+    Prawn::Document.generate("#{Rails.root}/public#{file_name}",:page_layout => :landscape) do |pdf|
       pdf.font_size(25) { pdf.text "Beneficiaries Report" }
       content = [Person.real_attribute_names]
       @people.each do |p|
@@ -286,9 +291,10 @@ end
       pdf.table(content, :header => true)
     end
 
+
     respond_to do |format|
-    	format.pdf { send_file 'public/system/people/reports/pdf/snapshot.pdf',:filename => "snapshot_#{Time.now.to_i.to_s}.pdf", :type => "application/pdf", :disposition => 'attachment'}
-    	# format.xlsx {render :xlsx => "xlsreport", :filename => "beneficiary_report#{DateTime.now.to_i.to_s}.xlsx"}
+      msg = { :status => "ok", :message => file_name }
+      format.json  { render :json => msg }
     end
   end
 
@@ -297,7 +303,7 @@ end
 		def set_autosuggest
 			@AutoNames  = Person.select('distinct name').collect { |p| p.name.camelize }
 			@AutoFatherNames = Person.select('distinct fathers_name').collect { |p| p.fathers_name.camelize }
-			@AutoZipCode  = Person.select('distinct zip_code').collect { |p| 
+			@AutoZipCode  = Person.select('distinct zip_code').collect { |p|
                                                                             if(p.zip_code != nil)
                                                                                 p.zip_code.camelize
                                                                             end

@@ -11,7 +11,7 @@
             <ul class="button-group right">
                 <li>
                     <div><label for="report_mode">Reporting</label></div>
-                    <%= select_tag :report_mode, options_for_select([["Snapshot", snapshot_people_path({format: "pdf"})], ["Profiles", profile_people_path], ["Report", report_people_path]]), :style => "width: 100px; float:left;"  %>
+                    <%= select_tag :report_mode, options_for_select([["Snapshot", snapshot_people_path], ["Profiles", profile_people_path], ["Report", report_people_path]]), :style => "width: 100px; float:left;"  %>
                 </li>
                 <li>
                     <div><label for="">&nbsp;</label></div>

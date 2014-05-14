@@ -202,12 +202,10 @@
                     alert("Please select at least one entry");
                     return;
                 }
-                $.post(type, data).done(function () {
-                    alert('bla');
+                $.post(type, data).success(function (response) {
+                    var win = window.open(response.message, '_blank');
+                    win.focus();
                 });
-//                var win=window.open(type + '?'+ $.param(data), '_blank');
-//
-//                win.focus();
             });
             this.$checkAll.on('click', function(e) {
                 console.log(e);
