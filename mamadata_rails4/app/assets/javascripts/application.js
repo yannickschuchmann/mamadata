@@ -203,6 +203,7 @@
                     return;
                 }
                 $.post(type, data).success(function (response) {
+                    alert(response);
                     var win = window.open(response.message, '_blank');
                     win.focus();
                 });
