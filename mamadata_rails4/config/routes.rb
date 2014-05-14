@@ -10,15 +10,15 @@ MamadataRails4::Application.routes.draw do
 
   # pdfs
   get 'people/:id/profile', to: 'people#profile', as: :profile_person
-  get 'people/profiles', to: 'people#profiles', as: :profile_people
-  get 'people/snapshot.:format', to: 'people#snapshot', as: :snapshot_people
+  post 'people/profiles', to: 'people#profiles', as: :profile_people
+  post 'people/snapshot.:format', to: 'people#snapshot', as: :snapshot_people
   # xlsx
-  get 'people/report', to: 'people#report', as: :report_people
+  post 'people/report', to: 'people#report', as: :report_people
 
-  get 'supporters/report', to: 'supporters#report', as: :report_supporters
-  get 'programs/report', to: 'programs#report', as: :report_programs
-  get 'benefits/report', to: 'benefits#report', as: :report_benefits
-  get 'benefit_incidents/report', to: 'benefit_incidents#report', as: :report_benefit_incidents
+  post 'supporters/report', to: 'supporters#report', as: :report_supporters
+  post 'programs/report', to: 'programs#report', as: :report_programs
+  post 'benefits/report', to: 'benefits#report', as: :report_benefits
+  post 'benefit_incidents/report', to: 'benefit_incidents#report', as: :report_benefit_incidents
 
   put 'people/create', to: 'people#create'
   get 'people/search', to: 'people#search'
