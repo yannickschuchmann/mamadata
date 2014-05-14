@@ -171,14 +171,9 @@ end
   end
 
   def report
+    @timestamp = DateTime.now.to_i.to_s
   	@people = Person.find(params[:ids])
-    @filename = "#{Rails.root}/public/reports/111.xlsx"
-    # respond_to do |format|
-    #   format.xlsx {
-    #     # send_file @filename, :filename => "#{action_name}.xlsx" if File.exists? @filename
-    #   }
-    # end
-  	render :xlsx => "xlsreport", :filename => "beneficiary_report#{DateTime.now.to_i.to_s}.xlsx"
+  	render :xlsx => "xlsreport", :filename => "beneficiary_report#{@timestamp}.xlsx"
 
   end
 

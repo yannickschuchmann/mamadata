@@ -21,4 +21,4 @@ wb = xlsx_package.workbook
 
 end
 
-xlsx_package.serialize "#{Rails.root}/public/program_report#{DateTime.now.to_i.to_s}.xlsx"
+xlsx_package.serialize "#{Rails.root}/public/system/people/reports/program_report_#{@timestamp}.xlsx"

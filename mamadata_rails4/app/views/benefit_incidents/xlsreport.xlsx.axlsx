@@ -17,4 +17,4 @@ wb.add_worksheet(:name => "Incidents") do |sheet|
 
 end
 
-xlsx_package.serialize "#{Rails.root}/public/incident_report#{DateTime.now.to_i.to_s}.xlsx"
+xlsx_package.serialize "#{Rails.root}/public/system/people/reports/incident_report_#{@timestamp}.xlsx"
