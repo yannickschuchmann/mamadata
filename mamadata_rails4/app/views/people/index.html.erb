@@ -29,6 +29,7 @@
 </div>
 
 <%= form_tag '', method: :get, id: 'exportForm', class: 'no-overlay' do  %>
+<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 <table id="peopleIndexTable" class="table small-12">
     <thead>
         <tr>
