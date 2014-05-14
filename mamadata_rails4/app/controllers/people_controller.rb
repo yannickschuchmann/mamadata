@@ -171,8 +171,10 @@ end
   end
 
   def report
+    @timestamp = DateTime.now.to_i.to_s
   	@people = Person.find(params[:ids])
-  	render :xlsx => "xlsreport", :filename => "beneficiary_report#{DateTime.now.to_i.to_s}.xlsx"
+  	render :xlsx => "xlsreport", :filename => "beneficiary_report#{@timestamp}.xlsx"
+
   end
 
   def profile

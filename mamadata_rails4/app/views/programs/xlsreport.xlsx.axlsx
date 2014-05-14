@@ -20,3 +20,5 @@ wb = xlsx_package.workbook
     end
 
 end
+
+xlsx_package.serialize "#{Rails.root}/public/system/people/reports/program_report_#{@timestamp}.xlsx"

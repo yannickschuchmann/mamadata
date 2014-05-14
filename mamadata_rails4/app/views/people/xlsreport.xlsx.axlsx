@@ -35,3 +35,5 @@ wb.add_worksheet(:name => "Beneficiaries") do |sheet|
   end
 
 end
+
+xlsx_package.serialize "#{Rails.root}/public/system/people/reports/beneficiary_report_#{@timestamp}.xlsx"
