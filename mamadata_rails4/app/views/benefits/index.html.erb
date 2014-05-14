@@ -17,11 +17,13 @@
 		</div>
 </h1>
 <div class="row">
-		<%= form_tag '', method: :get, id: 'exportForm', class: 'no-overlay' do  %>
-    <table id="benefitsIndexTable" class="table tablesorter">
+    <%= form_tag '', method: :get, id: 'exportForm', class: 'no-overlay' do  %>
+        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+
+        <table id="benefitsIndexTable" class="table tablesorter">
         <thead>
             <tr>
-                <td style="text-align: center;"><%= check_box_tag :checked_person,'#', false, id: 'chkall' %></td>                <th>Name</th>
+                <td style="text-align: center;"><%= check_box_tag :checkall,'#', false, id: 'chkall' %></td>                <th>Name</th>
                 <th>Description</th>
                 <th>Amount Spent this Year</th>
                 <th>Benefit Type</th>
@@ -35,7 +37,7 @@
         <tbody>
             <% @benefits.each do |benefit| %>
             <tr data-link="<%= benefit_path(benefit) %>">
-                <td><%= check_box_tag :checked_benefit, benefit.id, false, class: 'chk' %></td>
+                <td><%= check_box_tag "ids[]", benefit.id, false, class: 'chk' %></td>
                 <td><%= benefit.name %></td>
                 <td><%= benefit.description %></td>
                 <td><%= number_to_indian_currency(benefit.get_amount_year_to_date).html_safe %></td>

@@ -1,8 +1,10 @@
 <%= form_tag '', method: :get, id: 'exportForm', class: 'no-overlay' do  %>
-<table id="benefitTable" class="table tablesorter">
+    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+
+    <table id="benefitTable" class="table tablesorter">
 	<thead>
 		<tr>
-			<td><%= check_box_tag :checked_incident,'#', false, id: 'chkall' %></td>
+			<td><%= check_box_tag :checkall,'#', false, id: 'chkall' %></td>
 			<th>Program</th>
 			<th>Benefit</th>
 			<th>Amount</th>
@@ -17,7 +19,7 @@
 	<tbody>
 		<% @benefit_incidents.each do |benefit_incident| %>
 		<tr data-link="<%= benefit_incident_path(benefit_incident.id) %>">
-			<td><%= check_box_tag :checked_incident, benefit_incident.id, false, class: 'chk' %></td>
+			<td><%= check_box_tag "ids[]", benefit_incident.id, false, class: 'chk' %></td>
 			<td><%= benefit_incident.program ? (link_to benefit_incident.program.name, program_path(benefit_incident.program)) : "deleted"%></td>
 			<td><%= benefit_incident.benefit ? (link_to benefit_incident.benefit.name, benefit_path(benefit_incident.benefit)) : "deleted" %></td>
 			<td><%= number_to_indian_currency(benefit_incident.amount).html_safe %></td>

@@ -203,16 +203,20 @@
                     return;
                 }
 
-                if(type === "/people/report") {
-                    self.$form
-                        .attr('action', type)
-                        .attr('method', 'post')
-                        .submit();
-                } else {
-                    $.post(type, data).success(function (response) {
-                        var win = window.open(response.message, '_blank');
-                        win.focus();
-                    });
+
+                switch (type) {
+                    case "/people/profiles":
+                    case "/people/snapshot":
+                        $.post(type, data).success(function (response) {
+                            var win = window.open(response.message, '_blank');
+                            win.focus();
+                        });
+                        break;
+                    default:
+                        self.$form
+                            .attr('action', type)
+                            .attr('method', 'post')
+                            .submit();
                 }
 
             });

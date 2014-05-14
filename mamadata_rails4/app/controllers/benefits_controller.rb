@@ -12,7 +12,7 @@ class BenefitsController < ApplicationController
 
   def report
     @benefits = Benefit.find(params[:ids])
-    @timestamp = DateTime.now.to_i.to_s
+    timestamp = DateTime.now.to_i.to_s
     render :xlsx => "xlsreport", :filename => "benefit_report_#{timestamp}.xlsx"
   end
 
