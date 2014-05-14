@@ -4,7 +4,8 @@ wb = xlsx_package.workbook
             "City/Village", "Benefit Name","Last Granted Incident Date", "Last Granted Incident Amount" ]
 
 @benefits.each do |benefit|
-    wb.add_worksheet(:name => benefit.name) do |sheet|
+
+    wb.add_worksheet(:name => benefit.name.gsub("/", " ")) do |sheet|
           sheet.add_row ["Participating Beneficiaries"]
           sheet.add_row @headers
           benefit_participants = benefit.people.order("created_at DESC")
