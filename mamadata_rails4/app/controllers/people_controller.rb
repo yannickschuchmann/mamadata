@@ -296,9 +296,14 @@ end
 
 
     respond_to do |format|
-      msg = { :status => "ok", :message => file_name }
+      msg = { :status => "ok", :message => report_snapshot_path}
       format.json  { render :json => msg }
     end
+  end
+
+  def get_snapshot
+    file_name = "public/system/people/reports/pdf/snapshot.pdf"
+    send_file file_name, :type => "application/pdf", :filename => "snapshot.pdf", :disposition => 'attachment'
   end
 
 	private

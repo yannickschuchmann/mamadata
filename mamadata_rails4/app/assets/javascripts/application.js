@@ -207,8 +207,7 @@
                     case "/people/profiles":
                     case "/people/snapshot":
                         $.post(type, data).success(function (response) {
-                            var win = window.open(response.message, '_blank');
-                            win.focus();
+                            self.download(response.message);
                         });
                         break;
                     default:
@@ -226,6 +225,10 @@
             });
 
             return this;
+        },
+        download: function(path) {
+            var ifrm = document.getElementById('dloadframe');
+            ifrm.src = path;
         }
     }).init();
 

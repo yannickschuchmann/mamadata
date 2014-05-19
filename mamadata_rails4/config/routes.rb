@@ -23,7 +23,7 @@ MamadataRails4::Application.routes.draw do
   put 'people/create', to: 'people#create'
   get 'people/search', to: 'people#search'
 
-  
+  get 'people/snapshot', to: 'people#get_snapshot', as: :report_snapshot
 
 
   get 'benefit_incidents/report_xlsx', to: 'benefit_incidents#report_xlsx'
