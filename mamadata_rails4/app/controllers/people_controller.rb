@@ -266,7 +266,8 @@ end
         z.add(id + "_attachments_#{Time.now.to_i.to_s}.zip", tt.path) # filename
 
       end
-    end
+     end
+    File.chmod(0644, "public"+file_name)
 
     respond_to do |format|
       msg = { :status => "ok", :message => file_name }
