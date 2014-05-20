@@ -232,6 +232,8 @@ end
 
         tt = Tempfile.new('tmp-zip-' + request.remote_ip)
         at = Tempfile.new('tmp-zip-attachments' + request.remote_ip)
+        File.chmod(0644,tt)
+        File.chmod(0644,at)
 
         pdf = Person.create_pdf(id)
         paths = []
