@@ -229,11 +229,9 @@ end
     Zip::File.open(mainPath, Zip::File::CREATE) do |z|
       params[:ids].each do |id|
         person = Person.find(id)
-
         tt = Tempfile.new('tmp-zip-' + request.remote_ip)
         at = Tempfile.new('tmp-zip-attachments' + request.remote_ip)
-        File.chmod(0644,tt)
-        File.chmod(0644,at)
+
 
         pdf = Person.create_pdf(id)
         paths = []
@@ -267,9 +265,11 @@ end
 
         z.add(id + "_attachments_#{Time.now.to_i.to_s}.zip", tt.path) # filename
 
+        tt.close
+        at.close
       end
      end
-    File.chmod(0644, "public"+file_name)
+    File.chmod(0777, "public"+file_name)
 
     respond_to do |format|
       msg = { :status => "ok", :message => file_name }
