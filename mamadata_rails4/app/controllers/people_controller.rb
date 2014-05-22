@@ -228,17 +228,18 @@ end
 
     Zip::File.open(mainPath, Zip::File::CREATE) do |main_zip_file|
 
-      tt = []
-      at = []
+      person_profile_zip = []
+      person_attachments_zip = []
       params[:ids].each_with_index do |id, index|
         person = Person.find(id)
-        tt[index] = Tempfile.new(['tmp-zip-' + request.remote_ip, '.zip'], 'tmp')
-        # at[index] = Tempfile.new(['tmp-zip-attachments' + request.remote_ip, '.zip'], 'tmp')
+        person_profile_zip[index] = File.new("#{Rails.root}/public/system/people/reports/tmp-zip-" + Time.now.to_i.to_s + (0...8).map { (65 + rand(26)).chr }.join, 'w+')
+        # person_attachments_zip[index] = Tempfile.new(['tmp-zip-attachments' + request.remote_ip, '.zip'], 'tmp')
 
-        File.chmod(0777, tt[index].path)
-        # File.chmod(0777, at[index].path)
+        # File.chmod(0777, person_profile_zip[index].path)
+        # File.chmod(0777, person_attachments_zip[index].path)
 
         pdf = Person.create_pdf(id)
+        puts pdf.to_s
         paths = []
 
         person.school_classes.each do |school_class|
@@ -250,7 +251,7 @@ end
         end
 
         # if paths.size > 0
-        #   Zip::OutputStream.open(at[index].path) do |az|
+        #   Zip::OutputStream.open(person_attachments_zip[index].path) do |az|
         #     paths.each do |path|
         #       az.put_next_entry(path.split('/').last) # filename
         #       az.print IO.read(path)
@@ -258,20 +259,20 @@ end
         #   end
         # end
 
-        Zip::OutputStream.open(tt[index].path) do |tz|
+        Zip::OutputStream.open(person_profile_zip[index].path) do |tz|
           tz.put_next_entry(pdf.split('/').last) # filename
           tz.print IO.read("public/"+pdf)
 
           if paths.size > 0
             # tz.put_next_entry(id + "_attachments_#{(Time.now.to_i+1).to_s}.zip") # filename
-            # tz.print IO.read(at[index].path)
+            # tz.print IO.read(person_attachments_zip[index].path)
           end
-          # at[index].close
+          # person_attachments_zip[index].close
         end
+        person_profile_zip[index].close
 
-        main_zip_file.add(id + "_attachments_#{time}.zip", tt[index].path) # filename
+        main_zip_file.add(id + "_complete_profile_#{time}.zip", person_profile_zip[index].path) # filename
 
-        tt[index].close
       end
      end
     File.chmod(0777, "public"+file_name)
