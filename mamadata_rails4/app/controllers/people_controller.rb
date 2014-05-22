@@ -226,17 +226,17 @@ end
     file_name = "/system/people/reports/pdf/profiles_#{time}.zip"
     mainPath = "#{Rails.root}/public#{file_name}"
 
-    Zip::File.open(mainPath, Zip::File::CREATE) do |z|
+    Zip::File.open(mainPath, Zip::File::CREATE) do |main_zip_file|
 
       tt = []
       at = []
       params[:ids].each_with_index do |id, index|
         person = Person.find(id)
         tt[index] = Tempfile.new(['tmp-zip-' + request.remote_ip, '.zip'], 'tmp')
-        at[index] = Tempfile.new(['tmp-zip-attachments' + request.remote_ip, '.zip'], 'tmp')
+        # at[index] = Tempfile.new(['tmp-zip-attachments' + request.remote_ip, '.zip'], 'tmp')
 
         File.chmod(0777, tt[index].path)
-        File.chmod(0777, at[index].path)
+        # File.chmod(0777, at[index].path)
 
         pdf = Person.create_pdf(id)
         paths = []
@@ -249,27 +249,27 @@ end
           paths << godfather_file.file.path
         end
 
-        if paths.size > 0
-          Zip::OutputStream.open(at[index].path) do |az|
-            paths.each do |path|
-              az.put_next_entry(path.split('/').last) # filename
-              az.print IO.read(path)
-            end
-          end
-        end
+        # if paths.size > 0
+        #   Zip::OutputStream.open(at[index].path) do |az|
+        #     paths.each do |path|
+        #       az.put_next_entry(path.split('/').last) # filename
+        #       az.print IO.read(path)
+        #     end
+        #   end
+        # end
 
         Zip::OutputStream.open(tt[index].path) do |tz|
           tz.put_next_entry(pdf.split('/').last) # filename
           tz.print IO.read("public/"+pdf)
 
           if paths.size > 0
-            tz.put_next_entry(id + "_attachments_#{time}.zip") # filename
-            tz.print IO.read(at[index].path)
+            # tz.put_next_entry(id + "_attachments_#{(Time.now.to_i+1).to_s}.zip") # filename
+            # tz.print IO.read(at[index].path)
           end
-          at[index].close
+          # at[index].close
         end
 
-        z.add(id + "_attachments_#{time}.zip", tt[index].path) # filename
+        main_zip_file.add(id + "_attachments_#{time}.zip", tt[index].path) # filename
 
         tt[index].close
       end
