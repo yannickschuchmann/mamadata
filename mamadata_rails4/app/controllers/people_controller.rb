@@ -233,10 +233,8 @@ end
       params[:ids].each_with_index do |id, index|
         person = Person.find(id)
         person_profile_zip[index] = File.new("#{Rails.root}/public/system/people/reports/tmp-zip-" + Time.now.to_i.to_s + (0...8).map { (65 + rand(26)).chr }.join, 'w+')
-        # person_attachments_zip[index] = Tempfile.new(['tmp-zip-attachments' + request.remote_ip, '.zip'], 'tmp')
+        person_attachments_zip[index] = File.new("#{Rails.root}/public/system/people/reports/tmp-zip-attachments" + Time.now.to_i.to_s + (0...8).map { (65 + rand(26)).chr }.join, 'w+')
 
-        # File.chmod(0777, person_profile_zip[index].path)
-        # File.chmod(0777, person_attachments_zip[index].path)
 
         pdf = Person.create_pdf(id)
         puts pdf.to_s
@@ -250,24 +248,24 @@ end
           paths << godfather_file.file.path
         end
 
-        # if paths.size > 0
-        #   Zip::OutputStream.open(person_attachments_zip[index].path) do |az|
-        #     paths.each do |path|
-        #       az.put_next_entry(path.split('/').last) # filename
-        #       az.print IO.read(path)
-        #     end
-        #   end
-        # end
+        if paths.size > 0
+          Zip::OutputStream.open(person_attachments_zip[index].path) do |az|
+            paths.each do |path|
+              az.put_next_entry(path.split('/').last) # filename
+              az.print IO.read(path)
+            end
+          end
+        end
 
         Zip::OutputStream.open(person_profile_zip[index].path) do |tz|
           tz.put_next_entry(pdf.split('/').last) # filename
           tz.print IO.read("public/"+pdf)
 
           if paths.size > 0
-            # tz.put_next_entry(id + "_attachments_#{(Time.now.to_i+1).to_s}.zip") # filename
-            # tz.print IO.read(person_attachments_zip[index].path)
+            tz.put_next_entry(id + "_attachments_#{(Time.now.to_i+1).to_s}.zip") # filename
+            tz.print IO.read(person_attachments_zip[index].path)
           end
-          # person_attachments_zip[index].close
+          person_attachments_zip[index].close
         end
         person_profile_zip[index].close
 
