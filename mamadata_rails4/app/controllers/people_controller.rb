@@ -262,14 +262,14 @@ end
           tz.print IO.read("public/"+pdf)
 
           if paths.size > 0
-            tz.put_next_entry(id + "_attachments_#{(Time.now.to_i+1).to_s}.zip") # filename
+            tz.put_next_entry(id + "_" + person.name + "_attachments_#{(Time.now.to_i+1).to_s}.zip") # filename
             tz.print IO.read(person_attachments_zip[index].path)
           end
           person_attachments_zip[index].close
         end
         person_profile_zip[index].close
 
-        main_zip_file.add(id + "_complete_profile_#{time}.zip", person_profile_zip[index].path) # filename
+        main_zip_file.add(id + "_" + person.name +  "_complete_profile_#{time}.zip", person_profile_zip[index].path) # filename
 
       end
      end
