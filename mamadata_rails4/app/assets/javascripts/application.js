@@ -191,6 +191,7 @@
             var self = this;
             this.$btn.on('click', function(e) {
                 e.preventDefault();
+                if(self.$btn.attr('disabled')) return;
                 var $this = $(this),
                     type = $this.closest('.exportBar').find('select').val(),
                     data  =  {
@@ -206,7 +207,10 @@
                 switch (type) {
                     case "/people/profiles":
                     case "/people/snapshot":
+                        var pufferText = self.$btn.text();
+                        self.$btn.text('Loading..').addClass('disabled').attr('disabled', true);
                         $.post(type, data).success(function (response) {
+                            self.$btn.text(pufferText).removeClass('disabled').attr('disabled', false);
                             self.download(response.message);
                         });
                         break;
@@ -219,7 +223,6 @@
 
             });
             this.$checkAll.on('click', function(e) {
-                console.log(e);
                 self.$form.find('input:checkbox').not(self.$checkAll)
                     .prop('checked', $(this).prop('checked'));
             });
