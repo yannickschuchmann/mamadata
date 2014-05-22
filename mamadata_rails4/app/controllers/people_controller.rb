@@ -232,8 +232,8 @@ end
       at = []
       params[:ids].each_with_index do |id, index|
         person = Person.find(id)
-        tt[index] = Tempfile.new('tmp-zip-' + request.remote_ip, 'tmp')
-        at[index] = Tempfile.new('tmp-zip-attachments' + request.remote_ip, 'tmp')
+        tt[index] = Tempfile.new(['tmp-zip-' + request.remote_ip, '.zip'], 'tmp')
+        at[index] = Tempfile.new(['tmp-zip-attachments' + request.remote_ip, '.zip'], 'tmp')
 
         File.chmod(0777, tt[index].path)
         File.chmod(0777, at[index].path)
