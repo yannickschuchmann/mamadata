@@ -222,8 +222,8 @@ end
   def profiles
     require 'rubygems'
     require 'zip'
-
-    file_name = "/system/people/reports/pdf/profiles_#{Time.now.to_i.to_s}.zip"
+    time = Time.now.to_i.to_s
+    file_name = "/system/people/reports/pdf/profiles_#{time}.zip"
     mainPath = "#{Rails.root}/public#{file_name}"
 
     Zip::File.open(mainPath, Zip::File::CREATE) do |z|
@@ -263,13 +263,13 @@ end
           tz.print IO.read("public/"+pdf)
 
           if paths.size > 0
-            tz.put_next_entry(id + "_attachments_#{Time.now.to_i.to_s}.zip") # filename
+            tz.put_next_entry(id + "_attachments_#{time}.zip") # filename
             tz.print IO.read(at[index].path)
           end
           at[index].close
         end
 
-        z.add(id + "_attachments_#{Time.now.to_i.to_s}.zip", tt[index].path) # filename
+        z.add(id + "_attachments_#{time}.zip", tt[index].path) # filename
 
         tt[index].close
       end
