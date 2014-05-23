@@ -234,7 +234,8 @@ end
         person = Person.find(id)
         person_profile_zip[index] = File.new("#{Rails.root}/public/system/people/reports/tmp-zip-" + Time.now.to_i.to_s + (0...8).map { (65 + rand(26)).chr }.join, 'w+')
         person_attachments_zip[index] = File.new("#{Rails.root}/public/system/people/reports/tmp-zip-attachments" + Time.now.to_i.to_s + (0...8).map { (65 + rand(26)).chr }.join, 'w+')
-
+        File.chmod(0666, person_profile_zip[index].path)
+        File.chmod(0666, person_attachments_zip[index].path)
 
         pdf = Person.create_pdf(id)
         puts pdf.to_s
@@ -266,14 +267,17 @@ end
             tz.print IO.read(person_attachments_zip[index].path)
           end
           person_attachments_zip[index].close
+          # File.delete(person_attachments_zip[index].path) if File.exist?(person_attachments_zip[index].path)
         end
         person_profile_zip[index].close
 
         main_zip_file.add(id + "_" + person.name +  "_complete_profile_#{time}.zip", person_profile_zip[index].path) # filename
-
+        puts "file to delete !!!" + person_profile_zip[index].path
       end
-     end
+    end
+    # File.delete("#{Rails.root}/public/system/people/reports/tmp-zip-*")
     File.chmod(0777, "public"+file_name)
+    FileUtils.rm_rf(Dir.glob("#{Rails.root}/public/system/people/reports/tmp-zip-*"))
 
     respond_to do |format|
       msg = { :status => "ok", :message => file_name }
