@@ -217,6 +217,7 @@ end
 
     send_file t.path, :type => "application/zip", :filename => "profile_#{Time.now.to_i.to_s}.zip", :disposition => 'attachment'
     t.close
+    FileUtils.rm_rf(Dir.glob("#{Rails.root}/public/system/people/reports/pdf/*profile_*"))
   end
 
   def profiles
