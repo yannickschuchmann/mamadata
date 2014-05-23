@@ -272,12 +272,13 @@ end
         person_profile_zip[index].close
 
         main_zip_file.add(id + "_" + person.name +  "_complete_profile_#{time}.zip", person_profile_zip[index].path) # filename
-        puts "file to delete !!!" + person_profile_zip[index].path
+        # puts "file to delete !!!" + person_profile_zip[index].path
       end
     end
     # File.delete("#{Rails.root}/public/system/people/reports/tmp-zip-*")
     File.chmod(0777, "public"+file_name)
     FileUtils.rm_rf(Dir.glob("#{Rails.root}/public/system/people/reports/tmp-zip-*"))
+    FileUtils.rm_rf(Dir.glob("#{Rails.root}/public/system/people/reports/pdf/*profile_*"))
 
     respond_to do |format|
       msg = { :status => "ok", :message => file_name }
