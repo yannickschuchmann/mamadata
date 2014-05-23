@@ -276,7 +276,7 @@ end
       end
     end
     # File.delete("#{Rails.root}/public/system/people/reports/tmp-zip-*")
-    File.chmod(0777, "public"+file_name)
+    File.chmod(0666, "public"+file_name)
     FileUtils.rm_rf(Dir.glob("#{Rails.root}/public/system/people/reports/tmp-zip-*"))
     FileUtils.rm_rf(Dir.glob("#{Rails.root}/public/system/people/reports/pdf/*profile_*"))
 
