@@ -253,8 +253,10 @@ end
         if paths.size > 0
           Zip::OutputStream.open(person_attachments_zip[index].path) do |az|
             paths.each do |path|
-              az.put_next_entry(path.split('/').last) # filename
-              az.print IO.read(path)
+              unless path.nil?
+                az.put_next_entry(path.split('/').last) # filename
+                az.print IO.read(path)
+              end
             end
           end
         end
