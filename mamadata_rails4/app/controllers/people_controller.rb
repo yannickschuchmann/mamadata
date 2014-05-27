@@ -217,7 +217,7 @@ end
 
     send_file t.path, :type => "application/zip", :filename => "profile_#{Time.now.to_i.to_s}.zip", :disposition => 'attachment'
     t.close
-    # FileUtils.rm_rf(Dir.glob("#{Rails.root}/public/system/people/reports/pdf/*profile_*"))
+    FileUtils.rm_rf(Dir.glob("#{Rails.root}/public/system/people/reports/pdf/*profile_*"))
   end
 
   def profiles
@@ -277,8 +277,8 @@ end
       end
     end
     File.chmod(0666, "public"+file_name)
-    # FileUtils.rm_rf(Dir.glob("#{Rails.root}/public/system/people/reports/tmp-zip-*"))
-    # FileUtils.rm_rf(Dir.glob("#{Rails.root}/public/system/people/reports/pdf/*profile_*"))
+    FileUtils.rm_rf(Dir.glob("#{Rails.root}/public/system/people/reports/tmp-zip-*"))
+    FileUtils.rm_rf(Dir.glob("#{Rails.root}/public/system/people/reports/pdf/*profile_*"))
 
     respond_to do |format|
       msg = { :status => "ok", :message => file_name }
