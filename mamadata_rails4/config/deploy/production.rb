@@ -16,7 +16,6 @@ role :db,  %w{micha@62.141.45.55}
 # extended properties on the server.
 server '62.141.45.55', user: 'micha', roles: %w{web app}, my_property: :my_value
 # set :branch, 'master'
-<<<<<<< HEAD
 
 set :branch, ENV["tag"] || ENV["branch"]
 # you can set custom ssh options
