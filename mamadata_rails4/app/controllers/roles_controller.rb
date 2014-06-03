@@ -1,10 +1,12 @@
 class RolesController < ApplicationController
   before_action :set_role, only: [:show, :edit, :update, :destroy]
 
+  layout "application_settings_sidebar"
+
   # GET /roles
   # GET /roles.json
   def index
-    @roles = Role.all
+    @roles = Role.all.order(created_at: :desc)
   end
 
   # GET /roles/1
@@ -28,7 +30,7 @@ class RolesController < ApplicationController
 
     respond_to do |format|
       if @role.save
-        format.html { redirect_to @role, notice: 'Role was successfully created.' }
+        format.html { redirect_to roles_path, notice: 'Role was successfully created.' }
         format.json { render action: 'show', status: :created, location: @role }
       else
         format.html { render action: 'new' }
@@ -42,7 +44,7 @@ class RolesController < ApplicationController
   def update
     respond_to do |format|
       if @role.update(role_params)
-        format.html { redirect_to @role, notice: 'Role was successfully updated.' }
+        format.html { redirect_to roles_path, notice: 'Role was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

@@ -1,15 +1,21 @@
 class SupportersController < ApplicationController
   before_action :set_supporter, only: [:show, :edit, :update, :destroy]
 
-  # GET /supporters
-  # GET /supporters.json
+
+  def report
+    @supporters = Supporter.find(params[:ids])
+    render :xlsx => "xlsreport", :filename => "supporter_report_#{DateTime.now.to_i.to_s}.xlsx"
+  end
+
   def index
-    @supporters = Supporter.all
+    @supporters = Supporter.all.order(created_at: :desc)
+    @supporters = @supporters.accessible_by(current_ability)
   end
 
   # GET /supporters/1
   # GET /supporters/1.json
   def show
+    authorize! :read, @supporter
   end
 
   # GET /supporters/new
@@ -19,13 +25,17 @@ class SupportersController < ApplicationController
 
   # GET /supporters/1/edit
   def edit
+    authorize! :update, @supporter
   end
 
   # POST /supporters
   # POST /supporters.json
   def create
     @supporter = Supporter.new(supporter_params)
-
+    # puts "@@@@@"
+    # puts params[:donor_type].blank?
+    # puts "@@@@@@@"
+    # @supporter.build_donor_type(params[:donor_type])
     respond_to do |format|
       if @supporter.save
         format.html { redirect_to @supporter, notice: 'Supporter was successfully created.' }
@@ -69,6 +79,6 @@ class SupportersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def supporter_params
-      params.require(:supporter).permit(:organisation,:name , :family_name, :date_of_birth, :country, :city, :street, :zipcode, :email, :website, :telephone_number, :godfather, :is_volunteer, :begin_of_work, :end_of_work, :type_of_work)
+      params.require(:supporter).permit(:organisation,:name , :family_name, :date_of_birth, :country, :city, :street, :zipcode, :email, :website, :telephone_number, :godfather, :is_volunteer, :begin_of_work, :end_of_work, :type_of_work, :donor_type_id, :is_donor, :donation_amount, :donation_year, :street_number,:avatar, :avatar_file_name)
     end
 end

@@ -2,5 +2,26 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @supporter %> |
-<%= link_to 'Back', supporters_path %>
+<script type="text/javascript">
+$(document).ready(function () {
+	if ($("#volunteerCheckbox:checked").length == 1) 	{$("#volunteerChecked").css("display", "block");};
+	if ($("#godfatherCheckbox:checked").length == 1) 	{$("#godfatherChecked").css("display", "block");};
+	if ($("#donorCheckbox:checked").length == 1) 		{$("#donorChecked").css("display", "block");};
+	if ($("#donorType").val() == 1)			 			{$("#godfatherCheckboxDiv").css("display", "block");};
+});
+
+$("#supporterForm").validate({
+	rules: {
+		'supporter[name]': 			{required: true, minlength: 1},
+		'supporter[family_name]': 	{required: true, minlength: 1},
+		'supporter[date]': 			{required: true},
+		'supporter[street_number]': {required: true, minlength: 1},
+		'supporter[street]': 		{required: true, minlength: 1},
+		'supporter[city]': 			{required: true, minlength: 1},
+		'supporter[zipcode]': 		{required: true, minlength: 1},
+		'supporter[country]': 		{required: true, minlength: 1},
+		'supporter[email]': 		{required: true, email:true}
+	}
+	}
+);
+</script>

@@ -1,0 +1,191 @@
+@import "base";
+@import "foundation/components/global";
+
+body .row {
+	max-width: 100%; /* overrides 62.5rem foundation default for app-like full screen */
+}
+.sharana_logo {
+	margin: 0 auto;
+	width: 315px;
+	height:66px;
+	background: url("/images/sharana_logo.png");
+}
+#notice {
+	padding: 20px;
+	background-color: #F5F5F5;
+	font-size: 15px;
+	text-align: center !important;
+	color: green;
+    &.alert {
+      color: red;
+    }
+}
+
+.button {
+	background: $color-deco3 !important;
+    &.secondary {
+      background: #ccc!important;
+    }
+    &.less-pd {
+      padding-right: 0.7rem !important;
+      padding-left: 0.7rem !important;
+    }
+}
+
+#content {
+	margin-top: 20px;
+	@include box-sizing(border-box);
+	padding-right: 10px;
+}
+
+.person-picture {
+	padding: 10px 0;
+}
+
+.button-edit {
+	margin: 0 !important;
+}
+input.datepicker {
+	@extend .icon-edit;
+}
+
+.button-bar .button-group.right {
+  margin-right: 0;
+}
+
+.button-center {
+	text-align: center;
+}
+
+tr[data-link] {
+	cursor: pointer;
+}
+
+.selectWithOtherField {
+    .other-field.column {
+      min-height: 0 !important;
+    }
+	div >input[type="text"] {
+		display: none;
+		&.active {
+			display: block;
+		}
+	}
+}
+
+#searchExistingPeople {
+	&.content {
+		padding: 0;
+	}
+}
+
+td {
+	.button {
+		margin-bottom: 0;
+	}
+	a > i {
+		padding: 8px;
+		color: $color-active;
+	}
+}
+
+#people {
+	.person {
+		background: #f5f5f5;
+		position: relative;
+		padding: 40px 0 10px;
+		margin-bottom: 20px;
+		.removeLink {
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+	}
+}
+.accordion > dd {border-bottom: 5px solid #fff;}
+
+label.error {
+	background-color: #c0392b;
+	color: #fff !important;
+	padding: 5px;
+}
+a.label {
+	margin-bottom: 5px;
+}
+form {
+	.column, .columns {
+		min-height: 56px;
+	}
+}
+
+input[type="file"] {
+  padding: 0 !important;
+}
+
+html.touch{
+	input[type="checkbox"] {
+		width: 20px;
+		height: 20px
+	}
+}
+
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"] {
+	font-size: 1em;
+}
+
+.pagination { font-size: 0.875rem}
+.pagination .page {
+	padding: 5px;
+	text-align: center;
+	> a {
+		color: #333;
+		padding: 5px;
+	}
+	&.current{
+		color: #fff;
+		padding: 5px 10px;
+		background-color:  $color-active;
+		&:hover {
+			padding: 5px 10px;
+		}
+	} 
+	&.gap:hover {
+		background-color: transparent;
+		color: #333;
+	}
+	&:hover{
+		color: #fff;
+		padding: 5px;
+		background-color:  $color-active;
+		> a {
+			padding: 5px;
+			color: #fff;
+			background-color:  $color-active;
+		}
+	}
+}
+label.notice {
+  background-color: $color-deco1;
+  color: #fff !important;
+  padding: 5px;
+}
+
+button.disabled.secondary, button[disabled].secondary, .button.disabled.secondary, .button[disabled].secondary {
+  opacity: 1!important;
+}

@@ -1,0 +1,20 @@
+<% if params[:action] == "index" %>
+    <% if can? :create, User %>
+    <li>
+        <%= link_to new_user_path do %>
+        <%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+        New User
+        <% end %>
+    </li>
+    <% end %>
+<% end %>
+<% if params[:action] == "show" %>
+    <% if can? :update, Supporter %>
+	<li>
+		<%= link_to  edit_supporter_path(@supporter) do %>
+		<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+		Edit Supporter
+		<% end %>
+	</li>
+    <% end %>
+<% end %>

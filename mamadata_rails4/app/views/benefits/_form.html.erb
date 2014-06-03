@@ -1,26 +1,83 @@
+<%= content_for :js do %><%= javascript_include_tag "benefits" %> <% end %>
+
 <%= form_for(@benefit) do |f| %>
-  <% if @benefit.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@benefit.errors.count, "error") %> prohibited this benefit from being saved:</h2>
+<% if @benefit.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@benefit.errors.count, "error") %> prohibited this benefit from being saved:</h2>
 
-      <ul>
-      <% @benefit.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+  <ul>
+    <% @benefit.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="row">
+    <div class="small-12 medium-6 column">
+        <div class="row">
+          <div class="small-12 medium-4 column"><%= f.label :name %></div>
+          <div class="small-12 medium-8 column"><%= f.text_field :name %></div>
+        </div>
+        <div class="row">
+          <div class="small-12 medium-4 column"><%= f.label :description %></div>
+          <div class="small-12 medium-8 column"><%= f.text_field :description %></div>
+        </div>
     </div>
-  <% end %>
+    <div class="small-12 medium-6 column">
+        <div class="row">
+            <div class="small-12 medium-4 column">
+                <%= f.label :category, "Amount for each incident" %>
+            </div>
+            <div class="small-12 medium-8 column">
+                <%= f.select :category, [ ["Individual","none"],["Calculated Amount", "calculated"], ["Fixed Amount","fixed"]]%>
+            </div>
+        </div>
+        <div class="row" id="fixed_amount" style="display:none">
+          <div class="small-12 medium-4 column"><%= f.label :fixed_amount, "Fixed Amount" %></div>
+          <div class="small-12 medium-8 column"><%= f.text_field :fixed_amount %></div>
+        </div>
+        <div class="row" id="calculated_amount" style="display:none">
+          <div class="small-12 medium-4 column"><%= f.label :optional_amount, "Calculated Amount" %></div>
+          <div class="small-12 medium-8 column"><%= f.text_field :optional_amount %></div>
 
-  <div class="field">
-    <div class="span3"><%= f.label :name %></div>
-    <div class="span9"><%= f.text_field :name %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label :description %></div>
-    <div class="span9"><%= f.text_field :description %></div>
-  </div>
+          <div class="small-12 medium-4 column"><%= f.label :max_people, "Number of Beneficiaries" %></div>
+          <div class="small-12 medium-8 column"><%= f.number_field :max_people %></div>
+        </div>
+    </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit :class => 'btn btn-primary' %>
-  </div>
+
+
+
+<h2>
+Available in Programs 
+</h2>
+<table id="programsIndexTable" class="table tablesorter">
+  <thead>
+    <tr>
+    <td></td>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Amount Spent this Year</th>
+      <th>Created At</th>
+      
+    </tr>
+  </thead>
+
+  <tbody>
+    <% Program.all.order(created_at: :desc).each do |program| %>
+    <tr>
+    <td><%= check_box_tag :program_ids, program.id, @benefit.programs.include?(program), :name => 'benefit[program_ids][]' %></td>
+      <td><%= program.name %></td>
+      <td><%= program.description %></td>
+      <td><%= number_to_indian_currency(program.get_amount_year_to_date).html_safe %></td>
+      <td><%= l program.created_at.to_date %></td>
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="button-center">
+  <%= f.submit :class => 'button' %>
+</div>
 <% end %>

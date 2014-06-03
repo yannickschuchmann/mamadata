@@ -1,0 +1,40 @@
+<div id="wrapper">
+    <!-- Nav Title -->
+    <div class="fixed">
+        <nav class="top-bar" data-topbar>
+            <ul class="title-area">
+                <li class="menu-icon">
+                    <a class="menu-icon" id="canvas-toggle"><span></span></a>
+                </li>
+            </ul>
+            <ul class="title-area">
+                <li class="name">
+                    <h1><%= link_to "MamaData", root_path%></h1>
+                </li>
+            </ul>
+            <section class="top-bar-section">
+                    <span style="font-size: 12px; color: #ddd; line-height: 45px; float: left"><%= current_user.email %></span>
+                    <ul class="nav right">
+                    <% if user_signed_in? %>
+                        <% if controller_name == "people" %>
+                            <%= render '/shared/people_navigation' %>
+                        <% elsif controller_name == "programs" %>
+                            <%= render '/shared/program_navigation' %>
+                        <% elsif controller_name == "roles" %>
+                            <%= render '/shared/role_navigation' %>
+                        <% elsif controller_name == "families" || controller_name == "community_developments" %>
+                            <%= render '/shared/family_navigation' %>
+                        <% elsif controller_name == "benefit_incidents" %>
+                            <%= render '/shared/benefit_incident_navigation' %>
+                        <% elsif controller_name == "supporters" %>
+                            <%= render '/shared/supporter_navigation' %>
+                        <% elsif controller_name == "benefits" %>
+                            <%= render '/shared/benefit_navigation' %>
+                        <% elsif controller_name == "users" %>
+                            <%= render '/shared/user_navigation' %>
+                        <% end %>
+                    <% end %>
+                </ul>
+            </section>
+        </nav>
+    </div>

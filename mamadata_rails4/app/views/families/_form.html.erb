@@ -1,0 +1,95 @@
+<% if notice %>
+    <div class="small-12 column">
+    <%= content_tag :p, notice, id: 'notice', class: 'alert' %>
+    </div>
+<% end %>
+<div class="medium-6 columns">
+    <form action="" id="searchExistingPeopleForm">
+        <div class="row">
+            <h5 class="column" style="margin-bottom: 10px; height: 33px;">
+                <button class="button tiny no-overlay" type="submit" id="searchExistingPeopleSubmit"><i class="icon-search"></i> Search</button><a id="FormToggle" class="left button tiny  no-overlay" style="margin: 0 10px 0 0; display: none;"><i class="icon-search"></i> Search agan</a> for Beneficiaries<br>
+                <div class="clearfix"></div>
+            </h5>
+        </div>
+        <div id="search_results">
+                <div id="searchExistingPeople" class="content">
+                    <div class="row">
+                        <div class="small-12 medium-3 column">Name</div>
+                        <div class="small-12 medium-9 column"><input name="name" type="text" id="autoname"></div>
+                        <div class="small-12 medium-3 column">Fathers Name</div>
+                        <div class="small-12 medium-9 column"><input type="text" name="fname" id="AutoFatherNames" /></div>
+                        <div class="small-12 medium-3 column">City</div>
+                        <div class="small-12 medium-9 column"><input name="city" type="text" id="AutoCity"/></div>
+                        <div class="small-12 medium-3 column">Zipcode</div>
+                        <div class="small-12 medium-9 column"><input name="zipcode" type="text" id="AutoZipCode"/></div>
+                    </div>
+                </div>
+        </div>
+    </form>
+    <div id="search_results_List" class="row" style="display: none;">
+        <h5 class="column" style="margin-bottom: 10px; height: 33px;">
+            <span id="toggle" class="button tiny no-overlay" style="margin: 0 10px 0 0;"><i class="icon-search"></i> Search again</span> for Beneficiaries
+        </h5>
+        <table class="small-12 column table tablesorter">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Fathers Name</th>
+                    <th>City</th>
+                    <th>Zipcode</th>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody id="searchResult">
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="medium-6 columns">
+	<h5>Family Members Added</h5>
+	<%= form_for @family do |f| %>
+	<div id="people">
+		<% unless @family.people.nil? then @family.people.each_with_index do |person, index| %>
+		<div class="person" data-pid="<%= person.id %>">
+			<input type="hidden" name="people[<%= index %>][person_id]" value="<%= person.id %>"/>
+            <% if can? :delete_relation, Family %>
+			<%= link_to content_tag(:i, '', class: 'icon-trash'), delete_family_relation_path(id: person.id), class: 'removeLink button tiny', method: :delete %>
+            <% end %>
+			<div class="row">
+				<div class="small-12 medium-4 left" style="padding: 10px 20px;">Name</div>
+				<div class="small-12 medium-8 right" style="padding: 10px 20px;"><%= person.name %></div>
+				<div class="small-12 medium-4 left" style="padding: 10px 20px;">Father's name</div>
+				<div class="small-12 medium-8 right" style="padding: 10px 20px;"><%= person.fathers_name %>y</div>
+				<div class="small-12 medium-4 left" style="padding: 10px 20px;">Role in the Household</div>
+				<div class="small-12 medium-8 right" style="padding: 10px 20px;">
+					<select class="role_id" name="people[<%= index %>][role_id]">
+						<option value="1"<%= " selected" if person.role_id == 1%>>Head of the Household</option>
+						<option value="2"<%= " selected" if person.role_id == 2%>>Wife</option>
+						<option value="3"<%= " selected" if person.role_id == 3%>>Child</option>
+						<option value="4"<%= " selected" if person.role_id == 4%>>Father</option>
+						<option value="5"<%= " selected" if person.role_id == 5%>>Mother</option>
+						<option value="6"<%= " selected" if person.role_id == 6%>>Brother</option>
+						<option value="7"<%= " selected" if person.role_id == 7%>>Sister</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<% end %>
+		<% end %>
+	</div>
+	<%= f.submit :class => 'button tiny', :style => "margin-bottom: 10px;", :id => "buttonHide"%>
+	<% end %>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    var cities = <%= @AutoCities.to_json.html_safe  %>;
+    var names = <%= @AutoNames.to_json.html_safe %>;
+    var fathersnames = <%= @AutoFatherNames.to_json.html_safe %>;
+    var zipcode = <%= @AutoZip.to_json.html_safe %>;
+    $("#autoname").autocomplete({source: uniqueArray(names});
+    $("#AutoCity").autocomplete({source: uniqueArray(cities)});
+    $("#AutoFatherNames").autocomplete({source: uniqueArray(fathersnames)});
+    $("#AutoZipCode").autocomplete({source: uniqueArray(zipcode)});
+});
+</script>

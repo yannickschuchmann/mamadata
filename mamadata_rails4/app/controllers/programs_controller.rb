@@ -1,16 +1,22 @@
 class ProgramsController < ApplicationController
   before_action :set_program, only: [:show, :edit, :update, :destroy]
 
-  # GET /programs
-  # GET /programs.json
+  layout "application_main_sidebar"
+
+  def report
+    @programs = Program.find(params[:ids])
+    render :xlsx => "xlsreport", :filename => "program_report_#{DateTime.now.to_i.to_s}.xlsx"
+  end
+
   def index
-    @programs = Program.all
+    @programs = Program.all.order(created_at: :desc)
     @data = Program.all.map { |p| [p.name, p.benefits]  }
   end
 
   # GET /programs/1
   # GET /programs/1.json
   def show
+    @program_participants = BeneficiaryProgramRelationship.with_deleted.where(program_id: params[:id]).order("created_at DESC")
   end
 
   # GET /programs/new

@@ -1,6 +1,13 @@
-<h1>New Incident</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', benefit_incidents_list_path(@benefit_incident.person_id) %>
-
+<div class="row">
+	<div class="small-12 medium-12 column medium-centered">
+		<% if !@benefit_incident.person.programs.empty?%>
+		<%= render 'form' %>
+		<% else %>
+		<h2>&nbsp;</h2>
+		<h4>Please add person to a program</h4>
+		<% end %>
+	</div>
+	<div class="text-center">
+		<%= link_to 'Cancel', person_path(@benefit_incident.person_id), :class => "button tiny" %>
+	</div>
+</div>

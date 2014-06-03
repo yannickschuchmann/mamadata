@@ -1,0 +1,21 @@
+<% if params[:action] == "index" %>
+    <% if can? :create, Program %>
+    <li>
+        <%= link_to new_program_path do %>
+        <%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+        New Program
+        <% end %>
+    </li>
+    <% end %>
+<% end %>
+<% if params[:action] == "show" %>
+    <% if can? :update, Program %>
+	<li>
+		<%= link_to  edit_program_path(@program) do %>
+		<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+		Edit Program
+		<% end %>
+	</li>
+    <% end %>
+<% end %>
+

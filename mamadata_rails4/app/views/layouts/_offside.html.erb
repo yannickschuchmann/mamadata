@@ -1,0 +1,28 @@
+<% if user_signed_in? %>
+<div id="off-side">
+	<ul class="off-canvas-list">
+		<% overviews 		= 	(controller_name == "people" || controller_name == "families" || controller_name == "supporters" || controller_name == "users")  ? "active" : "" %>
+		<% users 			= 	(controller_name == "registrations") ? "active" : "" %>
+		<% settings 		= 	(controller_name == "roles" || controller_name == "donor_types") ? "active" : "" %>
+		<% benefit_incidents= 	(controller_name == "benefit_incidents") ? "active" : "" %>
+		<% benefits 		=	(controller_name == "benefits") ? "active" : "" %>
+		<% programs 		= 	(controller_name == "programs") ? "active" : "" %>
+
+		<li class="<%= overviews %>"><%= link_to 'Overviews', people_path %></li>
+		<% if can? :read, Program %>
+			<li class="<%= programs %>"><%= link_to 'Programs', programs_path %></li>
+		<% end %>
+		<% if can? :read, Benefit %>
+			<li class="<%= benefits %>"><%= link_to 'Benefits', benefits_path %></li>
+		<% end %>
+		<% if can? :read, BenefitIncident %>
+			<li class="<%= benefit_incidents %>"><%= link_to 'Incidents', benefit_incidents_path %></li>
+		<% end %>
+		<% if can? :manage, User %>
+			<li class="<%= settings %>"><%= link_to 'Settings', roles_path %></li>
+		<% end %>
+		<li class="<%= users %>"><%= link_to 'Profile', edit_user_registration_path %></li>
+		<li><%= link_to 'Sign out', destroy_user_session_path %> </li>
+	</ul>
+</div>
+<% end %>

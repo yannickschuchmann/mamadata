@@ -1,58 +1,67 @@
-<h1>Supporters</h1>
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+<h1>Supporters
+    <div class="small-12 medium-5 right">
+        <div class="button-bar exportBar">
+            <ul class="button-group right">
+                <li>
+                    <%= select_tag :report_mode, options_for_select([["Report", report_supporters_path]]), :style => "display: none; width: 100px; float:left;"  %>
+                </li>
+                <li>
+                    <div><label for="">&nbsp;</label></div>
+                    <a href='' id="exportBtn" class="custom-postfix-class button no-overlay" style="width: 150px; float:left;">Create Report</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Organisation</th>
-      <th>Name</th>
-      <th>Family name</th>
-      <th>Date of birth</th>
-      <th>Country</th>
-      <th>City</th>
-      <th>Street</th>
-      <th>Zipcode</th>
-      <th>E-Mail</th>
-      <th>Website</th>
-      <th>Telephone Number</th>
-      <th>Godfather</th>
-      <th>Is Volunteer?</th>
-      <th>Begin of Work</th>
-      <th>End of Work</th>
-      <th>Type of Work</th>
-      <th></th>
-    </tr>
-  </thead>
+<%= form_tag '', method: :get, id: 'exportForm', class: 'no-overlay' do  %>
+<table id="supporterIndexTable" class="table tablesorter">
+	<thead>
+		<tr>
+            <td style="text-align: center;"><%= check_box_tag :checkall,'#', false, id: 'chkall' %></td>
+            <th>Organisation</th>
+			<th>Name</th>
+			<th>Family name</th>
+			<th>Country</th>
+			<th>City</th>
+			<th>E-Mail</th>
+			<th>Is Volunteer?</th>
+			<th>Type of Work</th>
+			<th>Donor Type</th>
+			<th>Godfather</th>
+			<% if can? :update, Supporter %>
+			<td></td>
+			<% end %>
+		</tr>
+	</thead>
 
-  <tbody>
-    <% @supporters.each do |supporter| %>
-      <tr>
-        <td><%= supporter.organisation %></td>
-        <td><%= supporter.name %></td>
-        <td><%= supporter.family_name %></td>
-        <td><%= supporter.date_of_birth %></td>
-        <td><%= supporter.country %></td>
-        <td><%= supporter.city %></td>
-        <td><%= supporter.street %></td>
-        <td><%= supporter.zipcode %></td>
-        <td><%= supporter.email %></td>
-        <td><%= supporter.website %></td>
-        <td><%= supporter.telephone_number %></td>
-        <td><%= supporter.godfather %></td>
-        <td><%= supporter.is_volunteer %></td>
-        <td><%= supporter.begin_of_work %></td>
-        <td><%= supporter.end_of_work %></td>
-        <td><%= supporter.type_of_work %></td>
-        <td><%= link_to (content_tag(:i, '', :class => 'icon-file')), supporter %>
-        <%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_supporter_path(supporter) %>
-        <%= link_to (content_tag(:i, '', :class => 'icon-trash')), supporter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+	<tbody>
+		<% @supporters.each do |supporter| %>
+		<tr data-link="<%= supporter_path(supporter) %>">
+            <td style="text-align: center"><%= check_box_tag "ids[]", supporter.id, false, class: 'chk' %></td>
+            <td><%= supporter.organisation %></td>
+			<td><%= supporter.name %></td>
+			<td><%= supporter.family_name %></td>
+			<td><%= supporter.country %></td>
+			<td><%= supporter.city %></td>
+			<td><%= supporter.email %></td>
+			<td><%= supporter.is_volunteer ? 'yes' : 'no' %></td>
+			<td><%= supporter.type_of_work %></td>
+			<td><%= supporter.donor_type ? supporter.donor_type.name : 'None' %></td>
+			<td><%= supporter.godfather  ? 'yes' : 'no' %></td>
+			<% if can? :update, Supporter %>
+				<td style="width: 130px;">
+					<%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_supporter_path(supporter) %>
+					<% if can? :destroy, Supporter %>
+						<%= link_to (content_tag(:i, '', :class => 'icon-trash')), supporter, method: :delete, data: { confirm: 'Are you sure you want to delete this supporter?' } %>
+					<% end %>
+				</td>
+			<% end %>
+		</tr>
+		<% end %>
+	</tbody>
 </table>
-
-<br>
-
-<%= link_to new_supporter_path, :class => 'btn btn-primary' do %>
-  <%= (content_tag(:i, '', :class => 'icon-pencil')) %>
-  New Supporter
 <% end %>

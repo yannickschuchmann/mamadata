@@ -1,30 +1,47 @@
-<h1>Benefits</h1>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @benefits.each do |benefit| %>
-      <tr>
-        <td><%= benefit.name %></td>
-        <td><%= benefit.description %></td>
-        <td><%= link_to (content_tag(:i, "", :class => "icon-file")), benefit %>
-        <%= link_to (content_tag(:i, "", :class => "icon-edit")), edit_benefit_path(benefit) %>
-        <%= link_to (content_tag(:i, "", :class => "icon-trash")), benefit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to new_benefit_path, :class => 'btn btn-primary' do %>
-  <%= (content_tag(:i, "", :class => "icon-pencil")) %>
-  New Benefit
+<% if notice %>
+    <p id="notice"><%= notice %></p>
 <% end %>
+<h1>Benefits <small>(<%= @benefits.count %>)</small></h1>
+<div class="row">
+    <table id="benefitsIndexTable" class="table tablesorter">
+        <thead>
+            <tr>
+                <td style="text-align: center;"><%= check_box_tag :checked_person,'#', false, id: 'chkall' %></td>                <th>Name</th>
+                <th>Description</th>
+                <th>Amount Spent this Year</th>
+                <th>Benefit Type</th>
+                <th>Last Granted</th>
+                <th>Created At</th>
+                <% if can? :edit, Benefit  %>
+                <td></td>
+                <% end %>
+            </tr>
+        </thead>
+        <tbody>
+            <% @benefits.each do |benefit| %>
+            <tr data-link="<%= benefit_path(benefit) %>">
+                <td><%= check_box_tag :checked_benefit, benefit.id, false, class: 'chk' %></td>
+                <td><%= benefit.name %></td>
+                <td><%= benefit.description %></td>
+                <td><%= number_to_indian_currency(benefit.get_amount_year_to_date).html_safe %></td>
+                <td><%= benefit.get_category %></td>
+                <td><%= l benefit.get_last_date_granted unless benefit.get_last_date_granted.nil? %></td>
+                <td><%= l benefit.created_at.to_date %></td>
+                <% if can? :edit, Benefit  %>
+                <td style="width: 100px;">
+                    <%= link_to (content_tag(:i, "", :class => "icon-edit")), edit_benefit_path(benefit) %>
+                    <% if can? :destroy, Benefit %>
+                    <%= link_to (content_tag(:i, "", :class => "icon-trash")), benefit, method: :delete, data: { confirm: 'Are you sure you want to delete this benefit?' } %>
+                    <% end %>
+                </td>
+                <% end %>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+$("#chkall").click(function () {
+    $(".chk").prop('checked', $(this).prop('checked'));
+});
+</script>

@@ -1,4 +1,5 @@
-// 
+@import "base";
+//
 // FOUNDATION SETTINGS
 //
 
@@ -51,6 +52,7 @@
 
 // We use these as default colors throughout
 // $primary-color: #008CBA;
+$primary-color: $color-deco1;
 // $secondary-color: #e7e7e7;
 // $alert-color: #f04124;
 // $success-color: #43AC6A;
@@ -495,8 +497,8 @@
 // $tabbar-header-margin: 0;
 
 // Off Canvas Menu Variables
-// $off-canvas-width: 250px;
-// $off-canvas-bg: #333;
+$off-canvas-width: 150px;
+$off-canvas-bg: #494949;
 
 // Off Canvas Menu List Variables
 // $off-canvas-label-padding: 0.3rem rem-calc(15);
@@ -835,11 +837,11 @@
 
 // These control the background color for the table and even rows
 // $table-bg: #fff;
-// $table-even-row-bg: #f9f9f9  ;
+ $table-even-row-bg: #f5f5f5  ;
 
 // These control the table cell border style
 // $table-border-style: solid;
-// $table-border-size: 1px;
+$table-border-size: 0;
 // $table-border-color: #ddd;
 
 // These control the table head styles
@@ -927,7 +929,7 @@
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-// $topbar-bg-color: #333;
+$topbar-bg-color: #e67e22;
 // $topbar-bg: $topbar-bg-color;
 
 // Height and margin
@@ -955,7 +957,7 @@
 // $topbar-link-weight: normal;
 // $topbar-link-font-size: rem-calc(13);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
-// $topbar-link-bg-hover: #272727  ;
+$topbar-link-bg-hover: $color-active  ;
 // $topbar-link-bg-active: $primary-color;
 // $topbar-link-bg-active-hover: darken($primary-color, 5%);
 // $topbar-link-font-family: $body-font-family;
@@ -980,8 +982,8 @@
 // Transitions and breakpoint styles
 // $topbar-transition-speed: 300ms;
 // Using rem-calc for the below breakpoint causes issues with top bar
-// $topbar-breakpoint: #{upper-bound($medium-range)}; // Change to 9999px for always mobile layout
-// $topbar-media-query: "only screen and (min-width: #{upper-bound($medium-range)})";
+$topbar-breakpoint: 0em; // Change to 9999px for always mobile layout
+$topbar-media-query: "only screen";
 
 // Divider Styles
 // $topbar-divider-border-bottom: solid 1px lighten($topbar-bg-color, 10%);
@@ -990,4 +992,35 @@
 // Sticky Class
 // $topbar-sticky-class: ".sticky";
 // $topbar-arrows: true; //Set false to remove the triangle icon from the menu item
+
 @import 'foundation';
+
+h1 {
+	margin-bottom: 1.5rem;
+}
+select.column, select.columns {
+  padding: 0.5rem 0.9375rem!important;
+}
+input[type="file"] {
+  padding: 0.5rem 0;
+}
+
+.custom-prefix-class {
+  @include prefix-postfix-base();
+  @include grid-column(
+    $columns:12,
+    $float:left
+  );
+}
+.custom-postfix-class {
+  @include prefix-postfix-base();
+  @include grid-column(
+    $columns:12,
+    $float:left
+  );
+  padding-right: 0.8rem;
+}
+.button-group li select {
+	display: inline-block;
+	height: 37px;
+}

@@ -1,32 +1,35 @@
-<h1>Listing Incidents</h1>
+<%= content_for :js do %><%= javascript_include_tag "incidents_index" %> <% end %>
+<% if notice %>
+    <p id="notice"><%= notice %></p>
+<% end %>
+<h1>Incidents <small>(<%= @benefit_incidents.count %>)</small></h1>
+<div class="small-12">
+        <div class="button-bar">
+            <ul class="button-group">
+                <li><%= select_tag(:incident_status, options_for_select([['Show All', nil], ['Show Pending', "false"], ['Show Granted', "true"]])) %></li>
+                <li>
+                    <% if can? :grant, BenefitIncident %>
+                    <a href='#' id="setgrantedbtn" class="button custom-postfix-class">Set Granted</a>
+                    <% end %>
+                </li>
+                <li><a href='#' id='calculatebtn' class="button custom-postfix-class">Calculate</a></li>
+            </ul>
+            <ul class="button-group right">
+                <li><a href='#' id='filter_date' class="button custom-prefix-class">Filter by Date</a></li>
+                <li><input type="text" class="datepicker" id="benefit_incident_date_from" placeholder="from:"></li>
+                <li><input type="text" class="datepicker" id="benefit_incident_date_to" placeholder="to:"></li>
+            </ul>
+        </div>
+    </div>
 
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Program</th>
-      <th>Benefit</th>
-      <th>Amount</th>
-      <th>Remark</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @benefit_incidents.each do |benefit_incident| %>
-      <tr>
-        <td><%= benefit_incident.person.name %></td>
-        <td><%= benefit_incident.program.name %></td>
-        <td><%= benefit_incident.benefit.name %></td>
-        <td><%= benefit_incident.amount %></td>
-        <td><%= benefit_incident.remark %></td>
-        <td><%= link_to 'Show', benefit_incident %>
-        <%= link_to 'Edit', edit_benefit_incident_path(benefit_incident) %>
-        <%= link_to 'Delete', benefit_incident, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
+<div id="calculated_amount" style="display:none"></div>
+<div class="clearfix"></div>
+<div class="small-12 medium-7 column" style="height: 25px;">
+    <%= paginate @benefit_incidents, :params => {:sort => params[:sort]}, :window => 3 %>
+</div>
+<div id="incidents">
+    <%= render "/benefit_incidents/list"%>
+</div>
+<script type="text/javascript">
+var action = '<%= action_name %>';
+</script>

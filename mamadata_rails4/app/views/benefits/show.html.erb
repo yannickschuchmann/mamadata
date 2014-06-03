@@ -1,23 +1,84 @@
+<% if notice %>
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @benefit.name %>
-</p>
-
-<p>
-  <strong>Descriptioin:</strong>
-  <%= @benefit.description %>
-</p>
-<p>
-  <strong>Belongs to Programs:</strong>
-  <ul>
-  <% @benefit.programs.each do |program| %>
-  <li><%= program.name %></li>
-  <% end %>
-  </ul>
-</p>
-
-
-<%= link_to 'Edit', edit_benefit_path(@benefit) %> |
-<%= link_to 'Back', benefits_path %>
+<% end %>
+<h2 style="margin: 0px;"><%= @benefit.name %></h2>
+<h4 style="margin: 0px;"><%= @benefit.description %></h4>
+<% if @benefit.category == "none" %>
+	<p style="background-color: #F5F5F5; padding: 10px; margin: 0px;">Amount is individually set per Incident</p>
+<% elsif @benefit.category == "calculated" %>
+	<p style="background-color: #F5F5F5; padding: 10px; margin: 0px;">Benefit has a calculated Amount per Incident</p>
+	<table>
+		<tr>
+			<td>Total Amount Set for this Benefit: </td>
+			<td><%= number_to_indian_currency(@benefit.optional_amount).html_safe %></td>
+		</tr>
+		<tr>
+			<td>Number of Beneficiarys set to participate: </td>
+			<td><%= @benefit.max_people %></td>
+		</tr>
+		<tr>
+			<td>Calculated Amount per Incident: </td>
+			<td><%= number_to_indian_currency(@benefit.optional_amount/@benefit.max_people).html_safe %></td>
+		</tr>
+	</table>
+<% elsif @benefit.category == "fixed" %>
+	<p style="background-color: #F5F5F5; padding: 10px; margin: 0px;">Benefit has a fixed Amount per Incident</p>
+	Fixed Amount per Incident: <%= number_to_indian_currency(@benefit.fixed_amount).html_safe %>
+<% end %>
+<table class="table">
+	<tr>
+		<td><b>Year to Date:</b></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Pending:</td>
+		<td><%= number_to_indian_currency(@benefit.get_amount_year_to_date(false)).html_safe %></td>
+	</tr>
+	<tr>
+		<td>Granted:</td>
+		<td><%= number_to_indian_currency(@benefit.get_amount_year_to_date).html_safe %></td>
+	</tr>
+</table>
+<h5><%= @benefit.name %> is Part in Program </h5>
+<% @benefit.programs.order(name: :asc).each do |benefit|  %>
+<%= link_to benefit.name, program_path(benefit), class:  "label button" %>
+<% end %>
+<p>&nbsp;</p>
+<div class="row">
+	<h3>Issued Incidents with Benedit <%= @benefit.name %> (<%= @benefit.benefit_incidents.count %>)</h3>
+	<div class="small-12">
+		<%= render "shared/reporting" %>
+	</div>
+	<table id="benefitTable" class="table tablesorter small-12" style="margin-bottom: 40px;">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Fathers Name</th>
+				<th>Age</th>
+				<th>Gender</th>
+				<th>City/Village</th>
+				<th>Program</th>
+				<th>Amount</th>
+				<th>Status</th>
+				<th>Date Created</th>
+				<th>Date Granted</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @benefit.benefit_incidents.each do |benefit_incident| %>
+			<tr data-link="<%= person_path(benefit_incident.person) %>">
+				<td><%= benefit_incident.person.name %></td>
+				<td><%= benefit_incident.person.fathers_name %></td>
+				<td><%= (Date.today.year - benefit_incident.person.date_of_birth.year) %></td>
+				<td><%= benefit_incident.person.gender %></td>
+				<td><%= benefit_incident.person.city %></td>
+				<td><%= link_to benefit_incident.program.name, program_path(benefit_incident.program) %></td>
+				<td><%= number_to_indian_currency(benefit_incident.amount).html_safe  %></td>
+				<td><%= benefit_incident.status == true ? 'Granted' : 'Pending' %></td>
+				<td><%= l benefit_incident.created_at.to_datetime, :format => :custom unless benefit_incident.created_at.nil? %></td>
+				<td><%= l benefit_incident.date_granted.to_datetime, :format => :custom unless benefit_incident.date_granted.nil? %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

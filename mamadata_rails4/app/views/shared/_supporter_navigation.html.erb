@@ -1,0 +1,28 @@
+<% if params[:action] == "index" %>
+    <% if can? :manage, DonorType %>
+    <li>
+        <%= link_to donor_types_path do %>
+        <%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+        Edit Donor Types
+        <% end %>
+    </li>
+    <% end %>
+    <% if can? :create, Supporter %>
+    <li>
+        <%= link_to new_supporter_path do %>
+        <%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+        New Supporter
+        <% end %>
+    </li>
+    <% end %>
+<% end %>
+<% if params[:action] == "show" %>
+    <% if can? :update, Supporter %>
+    <li>
+        <%= link_to  edit_supporter_path(@supporter) do %>
+        <%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+        Edit Supporter
+        <% end %>
+    </li>
+    <% end %>
+<% end %>

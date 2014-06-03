@@ -1,15 +1,20 @@
 class BenefitsController < ApplicationController
   before_action :set_benefit, only: [:show, :edit, :update, :destroy]
 
+  layout "application_main_sidebar"
+
   # GET /benefits
   # GET /benefits.json
   def index
-    @benefits = Benefit.all
+    @benefits = Benefit.all.order(created_at: :desc)
   end
 
   # GET /benefits/1
   # GET /benefits/1.json
   def show
+
+
+
   end
 
   # GET /benefits/new
@@ -41,10 +46,6 @@ class BenefitsController < ApplicationController
   # PATCH/PUT /benefits/1.json
   def update
 
-     puts '@@@@@@@@@@@@'
-    puts benefit_params
-    puts '@@@@@@@@@@@@'
-    
     respond_to do |format|
       if @benefit.update(benefit_params)
         format.html { redirect_to @benefit, notice: 'Benefit was successfully updated.' }
@@ -74,6 +75,13 @@ class BenefitsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def benefit_params
-      params.require(:benefit).permit(:name, :description)
+      params.require(:benefit).permit(:name, :description, :optional_amount, :max_people, :fixed_amount, :category, :program_ids => [])
     end
+
+
+  def get_total_amount_granted
+
+      return total_amount_granted
+  end
+
 end

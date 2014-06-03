@@ -1,82 +1,139 @@
+<% if notice %>
 <p id="notice"><%= notice %></p>
+<% end %>
+<div class="row person-head">
+	<div class="medium-2 column">
+		<%= image_tag @supporter.avatar.url(:medium), :class => "person-picture" %>
+	</div>
+	<div class="medium-10 column">
+		<h3 style="margin-top: 15px;"><%= @supporter.name + " " + @supporter.family_name %></h3>
+	</div>
+</div>
+<hr>
+<div class="row">
+	<div class="small-12 medium-6 column">
+		<h5> General Information </h5>
+		<table class="table small-12">
+			<tr>
+				<td class="medium-5"><b>Organisation:</b></td>
+				<td class="medium-8"><%= @supporter.organisation %></td>
+			</tr>
+			<tr>
+				<td class="medium-5"><b>Position in Organisation:</b></td>
+				<td class="medium-8"><%= @supporter.position_in_organisation %></td>
+			</tr>
+			<tr>
+				<td class="medium-5"><b>Date of birth:</b></td>
+				<td class="medium-8"><%= l @supporter.date_of_birth.to_date %></td>
+			</tr>
+			<tr>
+				<td class="medium-5"><b>E-Mail:</b></td>
+				<td class="medium-8"><%= @supporter.email %></td>
+			</tr>
+			<tr>
+				<td class="medium-5"><b>Website:</b></td>
+				<td class="medium-8"><%= @supporter.website %></td>
+			</tr>
+			<tr>
+				<td class="medium-5"><b>Telephone Number:</b></td>
+				<td class="medium-8"><%= @supporter.telephone_number %></td>
+			</tr>
+		</table>
+	</div>
+	<div class="small-12 medium-6 column">
+		<h5>Address</h5>
+		<table class="table small-12">
+			<tr>
+				<td class="medium-5"><b>Country:</b></td>
+				<td class="medium-8"><%= @supporter.country %></td>
+			</tr>
+			<tr>
+				<td class="medium-5"><b>Street:</b></td>
+				<td class="medium-8"><%= @supporter.street %></td>
+			</tr>
+			<tr>
+				<td class="medium-5"><b>Door Number:</b></td>
+				<td class="medium-8"><%= @supporter.street_number %></td>
+			</tr>
+			<tr>
+				<td class="medium-5"><b>Zipcode:</b></td>
+				<td class="medium-8"><%= @supporter.zipcode %></td>
+			</tr>
+			<tr>
+				<td class="medium-5"><b>City:</b></td>
+				<td class="medium-8"><%= @supporter.city %></td>
+			</tr>
+		</table>
+	</div>
+</div>
+<hr>
+<% if @supporter.is_volunteer %>
+<div class="row">
+	<div class="small-12 medium-6 column">
+		<h5>Volunteer</h5>
+		<table class="table small-12">
+			<tr>
+				<td class="medium-5"><b>Begin of Work:</b></td>
+				<td class="medium-8"><%= l @supporter.begin_of_work.to_date %></td>
+			</tr>
 
-<p>
-  <strong>Organisation:</strong>
-  <%= @supporter.organisation %>
-</p>
+			<tr>
+				<td class="medium-5"><b>End of Work:</b></td>
+				<td class="medium-8"><%= l @supporter.end_of_work.to_date %></td>
+			</tr>
+			<tr>
+				<td class="medium-5"><b>Type of Work:</b></td>
+				<td class="medium-8"><%= @supporter.type_of_work %></td>
+			</tr>
+		</table>
+	</div>
+</div>
+<% else %>
+<div class="row">
+	<div class="small-12 medium-6 column">
+		<h5>Supporter is not a Volunteer</h5>
+	</div>
+</div>
+<% end %>
+<hr>
 
-<p>
-  <strong>Name:</strong>
-  <%= @supporter.name %>
-</p>
+<% if @supporter.is_donor %>
+<div class="row">
+	<div class="small-12 medium-6 column">
+		<h5>Donor</h5>
+		<table class="table small-12">
+			<tr>
+				<td class="medium-5"><b>Donor Type:</b></td>
+				<td class="medium-9"><%= (@supporter.donor_type) ? @supporter.donor_type.name : 'none' %></td>
+			</tr>
+		</table>
+	</div>
+	<div class="small-12 medium-6 column">
+		<% unless @supporter.people.empty? or !@supporter.godfather %>
+		<h5>Supporter is a Godfather of</h5>
+		<div class="row">
+			<table class="table small-12">
+				<% @supporter.people.each do |ben| %>
+				<tr>
+					<% fullName = (ben.name + " " +ben.fathers_name) %>
+					<td>
+						<%= link_to ben do %>
+						<%= (content_tag(:i, '', :class => 'icon-chevron-right')) %>
+						<%= fullName %>
+						<% end%>
+					</td>
+					<% end%>
+				</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
+</div>
+<% else %>
+<div class="row">
+	<div class="small-12 medium-6 column">
+		<h5>Supporter is not a Donor</h5>
+	</div>
+</div>
+<% end %>
 
-<p>
-  <strong>Family name:</strong>
-  <%= @supporter.family_name %>
-</p>
-
-<p>
-  <strong>Date of birth:</strong>
-  <%= @supporter.date_of_birth %>
-</p>
-
-<p>
-  <strong>Country:</strong>
-  <%= @supporter.country %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @supporter.city %>
-</p>
-
-<p>
-  <strong>Street:</strong>
-  <%= @supporter.street %>
-</p>
-
-<p>
-  <strong>Zipcode:</strong>
-  <%= @supporter.zipcode %>
-</p>
-
-<p>
-  <strong>E-Mail:</strong>
-  <%= @supporter.email %>
-</p>
-
-<p>
-  <strong>website:</strong>
-  <%= @supporter.website %>
-</p>
-
-<p>
-  <strong>Telephone Number:</strong>
-  <%= @supporter.telephone_number %>
-</p>
-
-<p>
-  <strong>Godfather:</strong>
-  <%= @supporter.godfather %>
-</p>
-
-<p>
-  <strong>Is Volunteer?:</strong>
-  <%= @supporter.is_volunteer %>
-</p>
-
-<p>
-  <strong>Begin of Work:</strong>
-  <%= @supporter.begin_of_work %>
-</p>
-
-<p>
-  <strong>End of Work:</strong>
-  <%= @supporter.end_of_work %>
-</p>
-<p>
-  <strong>Type of Work:</strong>
-  <%= @supporter.type_of_work %>
-</p>
-<%= link_to 'Edit', edit_supporter_path(@supporter) %> |
-<%= link_to 'Back', supporters_path %>

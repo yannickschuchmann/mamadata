@@ -1,0 +1,5 @@
+$("#incidents").html('<%= escape_javascript(render "/benefit_incidents/list", benefit_incidents: @benefit_incidents) %>');
+
+$("#chkall").click(function () {
+	$(".chk").prop('checked', $(this).prop('checked'));
+});

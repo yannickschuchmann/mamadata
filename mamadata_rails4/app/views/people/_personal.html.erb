@@ -1,0 +1,107 @@
+<h5>Personal Information</h5>
+<table class="small-12">
+	<tr>
+		<td class="small-4">Father's name</td>
+		<td class="small-8"><%= @person.fathers_name %></td>
+	</tr>
+    <tr>
+        <td class="small-4">Head of household</td>
+        <td class="small-8"><%= @person.head_of_household %></td>
+    </tr>
+	<tr>
+		<td>Gender</td>
+		<td><%= @person.gender %></td>
+	</tr>
+	<tr>
+		<td>Date of birth</td>
+		<td><%=l @person.date_of_birth unless @person.date_of_birth.nil?%></td>
+	</tr>
+	<tr>
+		<td>Place of birth</td>
+		<td><%= @person.place_of_birth %></td>
+	</tr>
+	<tr>
+		<td>Native place</td>
+		<td><%= @person.native_place %></td>
+	</tr>
+	<tr>
+		<td>Relation to Head of Household</td>
+		<td>
+			<% if !@person.role_id.nil? %>
+			<%	b = Role.find (@person.role_id) %>
+			<%= b.name %>
+			<% else %>
+			<%= "not given" %>
+			<% end %>
+		</td>
+	</tr>
+</table>
+
+<h5>Household Information</h5>
+<table class="small-12">
+	<tr>
+		<td class="small-4">ZIP code</td>
+		<td class="small-8"><%= @person.zip_code %></td>
+	</tr>
+	<tr>
+		<td>City/Village</td>
+		<td><%= @person.city %></td>
+	</tr>
+	<tr>
+		<td>Area</td>
+		<td><%= @person.area %></td>
+	</tr>
+	<tr>
+		<td>Name of the street</td>
+		<td><%= @person.name_of_the_street %></td>
+	</tr>
+	<tr>
+		<td>Door Number</td>
+		<td><%= @person.name_of_the_house %></td>
+	</tr>
+</table>
+
+<h5>Additional Information</h5>
+<table class="small-12">
+	<tbody>
+		<tr>
+			<td class="small-4">Religion</td>
+			<td class="small-8"><%= @person.religion %></td>
+		</tr>
+		<% if @person.religion.downcase == "hindi" || @person.religion.downcase == "hindu" %>
+		<tr>
+			<td>Caste</td>
+			<td><%= @person.caste %></td>
+		</tr>
+		<% end %>
+		<tr>
+			<td>Completed Education</td>
+			<td><%= @person.education %></td>
+		</tr>
+		<tr>
+			<td>Marital status</td>
+			<td><%= @person.marital_status %></td>
+		</tr>
+		<tr>
+			<td>Occupation</td>
+			<td><%= @person.occupation %></td>
+		</tr>
+		<tr>
+			<td>Income</td>
+			<td><%= number_to_indian_currency(@person.income).html_safe %></td>
+		</tr>
+		<tr>
+			<td>Health condition</td>
+			<td><%= @person.health_condition %></td>
+		</tr>
+	</tbody>
+</table>
+<% if @person.godfathers.empty? && @person.former_godfathers.empty? %>
+	<h5>Godfathers</h5>
+	<p><%= @person.name %> has no Godfather</p>
+<% else %>
+<%= render 'person_godfather_files/godfather_history' %>
+<% end %>
+
+
+

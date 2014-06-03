@@ -1,20 +1,74 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @program.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @program.description %>
-</p>
-<p>
-<strong>Has Following Benefits</strong>
-<% @program.benefits.each do |benefit| %>
-<li><%=	benefit.name %></li>
+<% if notice %>
+	<p id="notice"><%= notice %></p>
+<% end %>
+<h2 style="margin: 0px;"><%= @program.name %></h2>
+<h5 style="margin: 0px;"><%= @program.description %></h5>
+<p style="background-color: #F5F5F5; padding: 10px; margin:0px;"></p>
+<table class="table">
+	<tr>
+		<td><b>Year to Date:</b></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Pending:</td>
+		<td><%= number_to_indian_currency(@program.get_amount_year_to_date(false)).html_safe %></td>
+	</tr>
+	<tr>
+		<td>Granted:</td>
+		<td><%= number_to_indian_currency(@program.get_amount_year_to_date).html_safe %></td>
+	</tr>
+</table>
+<h5>Benefits Assigned to Program </h5>
+	<% @program.benefits.order(name: :asc).each do |benefit|  %>
+		<%= link_to benefit.name, benefit_path(benefit), class:  "label button" %>
 	<% end %>
-</p>
+	<p>&nbsp;</p>
 
-<%= link_to 'Edit', edit_program_path(@program) %> |
-<%= link_to 'Back', programs_path %>
+<h3>Participating Beneficiaries (<%= @program.people.count %>)
+    <div class="small-12 medium-5 right">
+        <div class="button-bar exportBar">
+            <ul class="button-group right">
+                <li>
+                    <%= select_tag :report_mode, options_for_select([["Report", report_programs_path]]), :style => "display: none; width: 100px; float:left;"  %>
+                </li>
+                <li>
+                    <div><label for="">&nbsp;</label></div>
+                    <a href='' id="exportBtn" class="custom-postfix-class button no-overlay" style="width: 150px; float:left;">Create Report</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</h3>
+
+<%= form_tag '', method: :get, id: 'exportForm', class: 'no-overlay' do  %>
+    <input style="display: none" checked="checked" type="checkbox" name="" value="<%= @program.id %>" id=""/>
+<% end %>
+
+<table id="peopleIndexTable" class="table tablesorter">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Fathers name</th>
+			<th>Age</th>
+			<th>Gender</th>
+			<th>City/Village</th>
+			<th>In Program Since</th>
+			<th>Excluded from Program On</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @program_participants.each do |participant| %>
+		<% unless participant.person.nil? %>
+				<tr data-link="<%= person_path(participant.person) %>">
+					<td><%= participant.person.name %></a></td>
+					<td><%= participant.person.fathers_name %></td>
+					<td><%= (Date.today.year - participant.person.date_of_birth.year) %></td>
+					<td><%= participant.person.gender %></td>
+					<td><%= participant.person.city %></td>
+					<td><%= l participant.created_at.to_date unless participant.created_at.nil? %></td>
+					<td><%= l participant.deleted_at.to_date unless participant.deleted_at.nil?%></td>
+				</tr>
+			<% end %>
+		<% end %>
+	</tbody>
+</table>

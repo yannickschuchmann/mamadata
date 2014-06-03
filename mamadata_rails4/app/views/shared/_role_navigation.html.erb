@@ -1,0 +1,21 @@
+<% if params[:action] == "index" %>
+    <% if can? :create, Role %>
+    <li>
+        <%= link_to new_role_path do %>
+        <%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+        New Role
+        <% end %>
+    </li>
+    <% end %>
+<% end %>
+<% if params[:action] == "show" %>
+    <% if can? :update, Role %>
+    <li>
+        <%= link_to edit_role_path(@role) do %>
+        <%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+        Edit Role
+        <% end %>
+    </li>
+    <% end %>
+<% end %>
+

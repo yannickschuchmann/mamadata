@@ -1,0 +1,7 @@
+<%= form_for([@person, @person.journals.build], :html => { :id => "journalForm" }) do |f| %>
+	<div class="small-12">
+		<div><%= f.label "Journal Entry" %></div>
+		<div><%= f.text_area :text, :style => "height: 150px" %></div>
+	</div>
+	<%= f.submit "Create Journal Entry", :class => "button" %>
+<% end %>

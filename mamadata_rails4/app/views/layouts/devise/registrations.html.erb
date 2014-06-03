@@ -1,0 +1,8 @@
+<%= render partial: '/layouts/header', locals: {onsite: 'is_static'} %>
+<%= render '/layouts/offside' %>
+<%= render '/layouts/wrapper_begin' %>
+<div id="content">
+    <%= yield %>
+</div>
+<%= render '/layouts/wrapper_end' %>
+<%= render '/layouts/footer' %>

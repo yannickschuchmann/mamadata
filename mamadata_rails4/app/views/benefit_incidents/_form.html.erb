@@ -1,74 +1,80 @@
+<%= content_for :js do %><%= javascript_include_tag "benefit_incidents" %> <% end %>
+<h3>New Incident for <%= link_to (@benefit_incident.person.name + " " +@benefit_incident.person.fathers_name), person_path(@benefit_incident.person)  %></h3>
+<h3 style="margin-bottom: 20px;"><small>Total Amount Spent on: <%= number_to_indian_currency(@benefit_incident.person.get_total_expenses).html_safe %></small></h3>
 <%= form_for(@benefit_incident) do |f| %>
-  <% if @benefit_incident.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@benefit_incident.errors.count, "error") %> prohibited this benefit_incident from being saved:</h2>
+<% if @benefit_incident.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@benefit_incident.errors.count, "error") %> prohibited this benefit from being saved:</h2>
 
-      <ul>
-      <% @benefit_incident.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-<h2>Person: <%=@benefit_incident.person.name %></h2>
-  <div class="field">
-    <div class="span9"><%= f.hidden_field :person_id, value: @benefit_incident.person_id %></div>
-  </div>
-      <div class="field">
-      <div class="actions">
-      <%= link_to 'Add Person to Program', edit_person_path(@benefit_incident.person_id), :class => 'button [tiny small large]' %></div>
-    <div class="span3"><%= f.label :program_id %></div>
-    <div class="span9"><%= f.select :program_id, Program.all.map{|program| [program.name, program.id]}%></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label :benefit_id %></div>
-    <div class="span9" id="benefit_select"><%= f.select :benefit_id, []%></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label :amount %></div>
-    <div class="span9"><%= f.number_field :amount %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label :remark %></div>
-    <div class="span9"><%= f.text_field :remark%></div>
-  </div>
-
-  <div class="actions">
-    <%= f.submit :class => 'btn btn-primary' %>
-  </div>
+  <ul>
+    <% @benefit_incident.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
 <% end %>
 
+<%= f.hidden_field :person_id, value: @benefit_incident.person_id %>
+<%= f.hidden_field :date_granted, value: @benefit_incident.date_granted %>
+<div class="row">
+	<div class="small-12 medium-2 columns"><%= f.label :program_id %></div>
+	<div class="small-12 medium-10 columns"><%= f.select :program_id, @person.programs.map{|program| [program.name, program.id]}%></div>
+</div>
+<div class="row">
+	<div class="small-12 medium-2 columns"><%= f.label :benefit_id %></div>
+	<div class="small-12 medium-10 columns" id="benefit_select"><%= f.select :benefit_id, @benefits.map{|b| [b.name, b.id]}%></div>
+</div>
+<div class="row">
+	<div class="small-12 medium-2 columns"><%= f.label :amount %></div>
+	<div class="small-12 medium-10 columns"><%= f.text_field :amount, placeholder: "0.00" %></div>
+</div>
+<div class="row">
+	<div class="small-6 medium-2  columns"><%= f.label :remark %></div>
+	<div class="small-12 medium-10 columns">
+		<%= f.text_area :remark, size:"100x10", :id => "benefit_incident_remark" %>
+		<div style="margin-top: -15px; margin-bottom: 10px;" class="text-right">
+			<span id="txtLeft">500</span><span> of 500 chars left</span>
+		</div>
+	</div>
+</div>
+<% if can? :grant, BenefitIncident %>
+<div class="row">
+	<div class="small-12 medium-2 columns"><%= f.label :status %></div>
+	<% if @benefit_incident.status == true %>
+	<div class="small-12 medium-10 columns"><%= f.select :status, [['Granted',true],['Pending', false]], :selected =>  ['Granted', true] %></div>
+	<% else %>
+	<div class="small-12 medium-10 columns"><%= f.select :status, [['Granted',true],['Pending', false]], :selected =>  ['Pending', false] %></div>
+	<% end %>
+</div>
+<% else %>
+<%= f.hidden_field :status, value: @benefit_incident.status %>
+<% end %>
+	<% if (params[:action] == "new") %>
+		<div class="text-center">
+			<%= f.submit "New Incident", :class => 'button' %>
+		</div>
+	<% else %>
+		<div class="text-center">
+			<%= f.submit "Update Incident", :class => 'button' %>
+		</div>
+	<% end %>
+<% end %>
 <script>
-  var data = <%= @data.to_json.html_safe %>;
-  var programsOfPerson = <%= @programs_for_user.to_json.html_safe %>;
-  var allPrograms = <%= @all_programs.to_json.html_safe %>;
-  $('#benefit_incident_program_id').empty();
-  $.each(programsOfPerson, function( value) {   
-     $('#benefit_incident_program_id')
-         .append($("<option></option>")
-         .attr("value",value)
-         .text(allPrograms[value]));
-});
+var data = <%= @data.to_json.html_safe %>;
+var allPrograms = <%= @all_programs.to_json.html_safe %>;
+var allBenefits = <%= @all_benefits.to_json.html_safe %>;
+var benefits_calculated =<%= @benefits_with_calculated_amount.to_json.html_safe %>;
+var benefits_fixed =<%= @benefits_with_fixed_amount.to_json.html_safe %>;
+var action = '<%= action_name %>';
 
-var initialProgram = $('#benefit_incident_program_id').val();
-$.each(data[initialProgram], function(key, value) {   
-     $('#benefit_incident_benefit_id')
-         .append($("<option></option>")
-         .attr("value",value.id)
-         .text(value.name));
-});
-
-
-$('#benefit_incident_program_id').on('change', function(){
-  $('#benefit_incident_benefit_id').empty();
-  var benefitsOfSelectedProgram = data[this.value];
-
-$.each(benefitsOfSelectedProgram, function(key, value) {   
-     $('#benefit_incident_benefit_id')
-         .append($("<option></option>")
-         .attr("value",value.id)
-         .text(value.name));
-});
-
-  });
+var maxlengthTxt = 500;
+var txt = 0;
+$("#benefit_incident_remark").keyup(function (e) {
+	txt = $(this).val();
+	leftText = maxlengthTxt - txt.length;
+	if (leftText <= 0) {
+		$(this).val(txt.slice(0, maxlengthTxt));
+	};
+	$('#txtLeft').html(leftText);
+})
 </script>

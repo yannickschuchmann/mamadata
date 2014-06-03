@@ -6,6 +6,8 @@ gem 'rails', '4.0.0'
 #gem "twitter-bootstrap-rails", "~> 2.2.8"
 gem 'foundation-rails'
 
+gem 'font-awesome-rails', '~> 3.2.1' 
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
@@ -24,14 +26,26 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'jquery-turbolinks'
+#gem 'jquery-turbolinks'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+#gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
+gem 'money-rails'
+#gem 'money', :git => 'git://github.com/RubyMoney/money.git'
+gem 'fiscali'
+gem 'google_currency'
+gem 'debugger'
+gem 'paranoia', '~> 2.0'
+gem 'kaminari'
+gem 'rails-i18n', '~> 4.0.0'
+gem 'axlsx_rails'
+gem "zip-zip"
+gem  'acts_as_xlsx'
 
 group :doc do
+
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
@@ -39,18 +53,29 @@ end
 group :development do
 	gem 'better_errors'
 	gem 'binding_of_caller'
+    gem 'capistrano'
 end
-
+group :production do
+	gem 'mysql2'
+end
 group :development, :test do
 	gem "rspec-rails", "~> 2.14.0"
 	gem 'factory_girl_rails', '4.2.1'
 end
 
+gem 'rubyzip'
+
+
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Use unicorn as the app server
 # gem 'unicorn'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+gem 'devise'
+gem 'cancan'
+gem "paperclip", "~> 3.0"
+
+gem 'prawn'

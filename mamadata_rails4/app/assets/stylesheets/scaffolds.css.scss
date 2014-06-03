@@ -20,11 +20,10 @@ pre {
 
 a {
   color: #000;
+  cursor: pointer;
   &:visited {
   }
   &:hover {
-    color: #fff;
-    background-color: #000;
   }
 }
 
@@ -40,15 +39,16 @@ div {
 
 .field_with_errors {
   padding: 2px;
-  background-color: red;
-  display: table;
+  background-color: #c0392b;
 }
 
 #error_explanation {
   width: 450px;
-  border: 2px solid red;
+  border: 2px solid #c0392b;
   padding: 7px;
   padding-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 20px;
   background-color: #f0f0f0;
   h2 {
@@ -58,7 +58,7 @@ div {
     font-size: 12px;
     margin: -7px;
     margin-bottom: 0px;
-    background-color: #c00;
+    background-color: #c0392b;
     color: #fff;
   }
   ul li {

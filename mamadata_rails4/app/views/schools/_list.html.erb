@@ -1,0 +1,97 @@
+<dl class="accordion" data-accordion>
+	<% @schools.each_with_index do |school, index| %>
+	<dd>
+		<a href="#school<%= school.id %>">
+			<%= !school.terminated? ? school.joined_at.strftime("%Y")+"-now" : school.period %>
+			<%= school.name %>
+			<span class="right"><i class="icon-chevron-right"></i></span>
+		</a>
+		<div id="school<%= school.id %>" class="content<%= " active" if index == 0 %>">
+			<div class="row">
+				<ul class="button-group left">
+					<% if can? :update, School %>
+					<li><%= link_to content_tag(:i, '',:class => 'icon-edit')+" Edit", edit_school_path(school.id), class: 'button tiny' %></li>
+					<% if can? :destroy, School %>
+					<li><%= link_to content_tag(:i, '',:class => 'icon-trash')+" Delete", school, method: 'delete', data: { confirm: 'Are you sure? All School Information will be lost' }, class: 'button tiny' %></li>
+					<% end %>
+					<% end %>
+				</ul>
+				<ul class="button-group right">
+					<% if can? :create, School %>
+					<li><%= link_to content_tag(:i, '',:class => 'icon-plus')+" Add Class/File", new_school_class_path(id: @person.id, school_id: school.id), {class: 'button tiny'} %></li>
+					<% unless school.terminated? %>
+					<li><%= link_to content_tag(:i, '',:class => 'icon-lock')+" Terminate", terminate_school_path(school.id), class: 'button tiny'  %></li>
+					<% end %>
+					<% end %>
+				</ul>
+				<div class="clearfix"></div>
+				<div class="small-12 medium-6 column">
+					<h4><%= school.name %></h4>
+					<table class="table small-12">
+						<tr>
+							<td class="small-2">Type: </td>
+							<td><%= school.type %></td>
+						</tr>
+						<tr>
+							<td>Language: </td>
+							<td><%= school.language %></td>
+						</tr>
+						<tr>
+							<td>Remark: </td>
+							<td><%= simple_format(school.remark, {}, wrapper_tag: "div") %></td>
+						</tr>
+						<tr>
+							<td>Language: </td>
+							<td><%= school.language %></td>
+						</tr>
+						<% if school.terminated? %>
+						<tr>
+							<td>Termination Date: </td>
+							<td><%= l school.terminated_at %></td>
+						</tr>
+						<tr>
+							<td>Termination Reason: </td>
+							<td><%= school.termination_reason %></td>
+						</tr>
+						<tr>
+							<td>Termination Remark: </td>
+							<td><%= simple_format(school.termination_remark, {}, wrapper_tag: "div") %></td>
+						</tr>
+						<% end %>
+					</table>
+				</div>
+				<div class="small-12 medium-6 column">
+					<table class="table small-12">
+						<tr>
+							<th>Class</th>
+							<th>Remark</th>
+							<th>File</th>
+							<th></th>
+						</tr>
+						<% unless school.school_classes.size > 0 %>
+						<tr>
+							<td colspan="4">No school classes added</td>
+						</tr>
+						<% end %>
+						<% school.sorted_classes.each do |school_class| %>
+						<tr>
+							<td><%= school_class.name %></td>
+							<td><%= simple_format(school_class.remark, {}, wrapper_tag: "div") %></td>
+							<td><%= school_class.document_file_name.nil? ? 'No file' : (link_to school_class.document_file_name, document_school_class_path(id: school_class.id), class: 'no-overlay') %></td>
+							<% if can? :update, SchoolClass %>
+							<td>
+								<%= link_to content_tag(:i, '', class: 'icon-edit'), edit_school_class_path(school_class.id) %>
+								<% if can? :destroy, SchoolClass %>
+								<%= link_to content_tag(:i, '', class: 'icon-trash'), school_class, method: 'delete', data: { confirm: 'Are you sure? Class Information will be lost' } %>
+								<% end %>
+							</td>
+							<% end %>
+						</tr>
+						<% end %>
+					</table>
+				</div>
+			</div>
+		</div>
+	</dd>
+	<% end %>
+</dl>

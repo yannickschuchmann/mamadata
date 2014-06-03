@@ -1,0 +1,4 @@
+<%= content_for :js do %><%= javascript_include_tag "families_new.js" %> <% end %>
+
+<h2>Edit Family <small><%= @family.name %></small></h2>
+<%= render "form" %>

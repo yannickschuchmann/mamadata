@@ -1,81 +1,176 @@
-<%= form_for(@supporter) do |f| %>
-  <% if @supporter.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@supporter.errors.count, "error") %> prohibited this supporter from being saved:</h2>
+<%= content_for :js do %><%= javascript_include_tag "supporter_new.js" %> <% end %>
 
-      <ul>
-      <% @supporter.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for(@supporter, :html => { :id => "supporterForm", :class => "ajax", "data-onsuccess" => if @supporter.id then supporter_path @supporter else supporters_path end }) do |f| %>
+<% if @supporter.errors.any? %>
+<div id="error_explanation">
+	<h2><%= pluralize(@supporter.errors.count, "error") %> prohibited this supporter from being saved:</h2>
 
-  <div class="field">
-    <div class="span3"><%= f.label :organisation %></div>
-    <div class="span9"><%= f.text_field :organisation %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label :name %></div>
-    <div class="span9"><%= f.text_field :name %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label :family_name %></div>
-    <div class="span9"><%= f.text_field :family_name %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label :date_of_birth %></div>
-    <div class="span9"><%= f.date_select :date_of_birth %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label :country %></div>
-    <div class="span9"><%= f.text_field :country %></div>
-  </div>
-    <div class="field">
-    <div class="span3"><%= f.label :city %></div>
-    <div class="span9"><%= f.text_field :city %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label :street %></div>
-    <div class="span9"><%= f.text_field :street %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label :zipcode %></div>
-    <div class="span9"><%= f.number_field :zipcode %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label :email %></div>
-    <div class="span9"><%= f.text_field :email %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label :website %></div>
-    <div class="span9"><%= f.text_field :website %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label :telephone_number %></div>
-    <div class="span9"><%= f.number_field :telephone_number %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label :godfather %></div>
-    <div class="span9"><%= f.check_box :godfather %></div>
-  </div>
-    <div class="field">
-    <div class="span3"><%= f.label :is_volunteer %></div>
-    <div class="span9"><%= f.check_box :is_volunteer %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label :begin_of_work %></div>
-    <div class="span9"><%= f.date_select :begin_of_work %></div>
-  </div>
-    <div class="field">
-    <div class="span3"><%= f.label :end_of_work %></div>
-    <div class="span9"><%= f.date_select :end_of_work %></div>
-  </div>
-  <div class="field">
-    <div class="span3"><%= f.label :type_of_work %></div>
-    <div class="span9"><%= f.text_field :type_of_work %></div>
-  </div>
-  <div class="actions">
-    <%= f.submit :class => 'btn btn-primary' %>
-  </div>
+	<ul>
+		<% @supporter.errors.full_messages.each do |msg| %>
+		<li><%= msg %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+
+<div class="row">
+	<div class="small-12 medium-6 column">
+		<div class="row">
+			<div class="small-12 medium-3 column"><%= f.label :organisation %></div>
+			<div class="small-12 medium-9 column"><%= f.text_field :organisation %></div>
+		</div>
+		<div class="row">
+			<div class="small-12 medium-3 column"><%= f.label :position_in_organisation %></div>
+			<div class="small-12 medium-9 column"><%= f.text_field :position_in_organisation %></div>
+		</div>
+		<div class="row">
+			<div class="small-12 medium-3 columns"><%= f.label :name %></div>
+			<div class="small-12 medium-9 columns"><%= f.text_field :name %></div>
+		</div>
+		<div class="row">
+			<div class="small-12 medium-3 columns"><%= f.label :family_name %></div>
+			<div class="small-12 medium-9 columns"><%= f.text_field :family_name %></div>
+		</div>
+		<div class="row">
+			<div class="small-12 medium-3 columns">
+				<%= f.label :avatar, "Profile Picture" %>
+			</div>
+			<div class="small-12 medium-9 columns">
+				<%= f.file_field :avatar %>
+			</div>
+		</div>
+							<% if @supporter.avatar_file_name %>
+			<div class="row">
+				<div class="small-12 medium-3 columns">
+					<label for"oldfile">Existing Picture:</label>
+				</div>
+				<div class="small-12 medium-9 columns left">
+				<div style="margin-bottom: 14px;">
+					<%= image_tag @supporter.avatar.url(:thumb) %>
+					</div>
+						<%#= content_tag(:i, " ", class: "icon-file")+ " "+@person.avatar_file_name %>
+				</div>
+			</div>
+			<% end %>
+		<div class="row">
+			<div class="small-12 medium-3 columns"><%= f.label :date_of_birth %></div>
+			<div class="small-12 medium-9 columns"><%= f.date_select  :date_of_birth, {:order => [:day, :month, :year], :start_year => 1910}, :class => "small-4 left" %></div>
+			<div class="clearfix"></div>
+		</div>
+	</diV>
+	<div class="small-12 medium-6 column">
+		<div class="row">
+			<div class="small-12 medium-3 columns"><%= f.label :country %></div>
+			<div class="small-12 medium-9 columns"><%= f.text_field :country %></div>
+		</div>
+		<div class="row">
+			<div class="small-12 medium-3 columns"><%= f.label :zipcode %></div>
+			<div class="small-12 medium-9 columns"><%= f.text_field :zipcode %></div>
+		</div>
+		<div class="row">
+			<div class="small-12 medium-3 columns"><%= f.label :city %></div>
+			<div class="small-12 medium-9 columns"><%= f.text_field :city %></div>
+		</div>
+		<div class="row">
+			<div class="small-12 medium-3 columns"><%= f.label :street %></div>
+			<div class="small-12 medium-9 columns"><%= f.text_field :street %></div>
+		</div>
+		<div class="row">
+			<div class="small-12 medium-3 columns"><%= f.label :street_number, "Door Number" %></div>
+			<div class="small-12 medium-9 columns"><%= f.text_field :street_number %></div>
+		</div>
+	</diV>
+	<hr>
+	<div class="small-12 medium-6 column">
+		<div class="row">
+			<div class="small-12 medium-3 column"><%= f.label :email %></div>
+			<div class="small-12 medium-9 column"><%= f.text_field :email %></div>
+		</div>
+		<div class="row">
+			<div class="small-12 medium-2 columns"><%= f.label :website %></div>
+			<div class="small-12 medium-9 columns"><%= f.text_field :website %></div>
+		</div>
+		<div class="row">
+			<div class="small-12 medium-2 columns"><%= f.label :telephone_number %></div>
+			<div class="small-12 medium-9 columns"><%= f.text_field :telephone_number %></div>
+		</div>
+	</diV>
+	<hr>
+	<div class="small-12 medium-6 column">
+		<div class="row">
+			<div class="small-12 medium-3 columns"><%= f.label :is_volunteer, "Is Volunteer", :for => "volunteerCheckbox" %></div>
+			<div class="small-12 medium-9 columns"><%= f.check_box :is_volunteer, :id => "volunteerCheckbox" %></div>
+		</div>
+		<div id="volunteerChecked" style="display:none">
+			<div class="row">
+				<div class="small-12 medium-3 columns"><%= f.label :begin_of_work %></div>
+				<div class="small-12 medium-9 columns"><%= f.date_select :begin_of_work, {:order => [:day, :month, :year], :start_year => 1910}, :class => "small-4 left" %></div>
+			</div>
+			<div class="row">
+				<div class="small-12 medium-3 columns"><%= f.label :end_of_work %></div>
+				<div class="small-12 medium-9 columns"><%= f.date_select :end_of_work, {:order => [:day, :month, :year], :start_year => 1910}, :class => "small-4 left" %></div>
+			</div>
+			<div class="row">
+				<div class="small-12 medium-3 columns"><%= f.label :type_of_work %></div>
+				<div class="small-12 medium-9 columns"><%= f.text_field :type_of_work %></div>
+			</div>
+		</div>
+	</diV>
+	<div class="small-12 medium-6 column">
+		<div class="row">
+			<div class="small-12 medium-3 columns"><%= f.label :is_donor, "Is Donor", :for => "donorCheckbox" %></div>
+			<div class="small-12 medium-9 columns"><%= f.check_box :is_donor, :id => "donorCheckbox" %></div>
+		</div>
+        <% unless current_user.role == "sharana_france" %>
+		<div id="donorChecked" style="display:none">
+			<div class="row">
+				<div class="small-12 medium-3 columns"><%= f.label :donor_type_id, :for => "donorType" %></div>
+				<div class="small-12 medium-9 columns"><%= f.select :donor_type_id, DonorType.all.map{|d| [d.name, d.id]} , {:include_blank => "Please Select"}, :id => "donorType" %></div>
+			</div>
+			<div id="godfatherCheckboxDiv" style="display: none;">
+				<div class="row">
+					<div class="small-12 medium-3 columns"><%= f.label :godfather, "Is Godfather", :for => "godfatherCheckbox" %></div>
+					<div class="small-12 medium-9 columns"><%= f.check_box :godfather, :id => "godfatherCheckbox" %></div>
+				</div>
+			</div>
+        </div>
+        <% else %>
+        <%= f.hidden_field :donor_type_id, :value => "1" %>
+        <div id="donorChecked" class="row" style="display: none">
+            <div class="small-12 medium-3 columns"><%= f.label :godfather, "Is Godfather", :for => "godfatherCheckbox" %></div>
+            <div class="small-12 medium-9 columns"><%= f.check_box :godfather, :id => "godfatherCheckbox" %></div>
+        </div>
+        <% end %>
+	</div>
+</div>
+<script type="text/javascript">
+function toggleDiv (argument, argument2) {
+	var e = argument;
+	var f = argument2;
+	$(e).click(function  () {
+		if (this.checked) {
+			$(f).css("display", "block");
+		} else {
+			$(f).css("display", "none");
+		}
+	});
+}
+
+toggleDiv("#volunteerCheckbox", "#volunteerChecked");
+toggleDiv("#donorCheckbox", "#donorChecked");
+toggleDiv("#godfatherCheckbox", "#godfatherChecked");
+
+$("#donorType").change(function  () {
+	var selecetedType = this.options[this.selectedIndex].value;
+	if (selecetedType == 1) {
+		$("#godfatherCheckboxDiv").css("display", "block");
+	}else {
+		$("#godfatherCheckboxDiv").css("display", "none");
+	}
+})
+
+</script>
+<div class="button-center">
+	<%= f.submit :class => 'button' %>
+</div>
 <% end %>

@@ -1,0 +1,13 @@
+<div id="side">
+	<dl id="side-nav" data-tab>
+		<dd class="active"><a href="#panel2-1"><i class="icon-info icon-2x"></i><br />General Information</a></dd>
+		<dd><a href="#panel2-2"><i class="icon-comments icon-2x"></i><br />Narrative Text</a></dd>
+		<dd><a href="#school"><i class="icon-bell icon-2x"></i><br />School</a></dd>
+		<dd><a href="#panel2-4"><i class="icon-inbox icon-2x"></i><br />Benefit History</a></dd>
+		<dd><a href="#panel2-5"><i class="icon-book icon-2x"></i><br />Journal Entries</a></dd>
+
+	</dl>
+	<dl class="side_family">
+		<dd><%= link_to (content_tag(:i, '', :class => 'icon-group icon-2x')+ simple_format("<br> Link to Family", {}, wrapper_tag: "span")), family_path(@person.family_id) unless @person.family.nil? %></a></dd>
+	</dl>
+</div>

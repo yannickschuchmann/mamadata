@@ -1,0 +1,20 @@
+<% if params[:action] == "index" %>
+    <% if can? :create, Benefit %>
+    <li>
+        <%= link_to new_benefit_path do %>
+        <%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+        New Benefit
+        <% end %>
+    </li>
+    <% end %>
+<% end %>
+<% if params[:action] == "show" %>
+    <% if can? :update, Benefit %>
+	<li>
+		<%= link_to  edit_benefit_path(@benefit) do %>
+		<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+		Edit Benefit
+		<% end %>
+	</li>
+    <% end %>
+<% end %>

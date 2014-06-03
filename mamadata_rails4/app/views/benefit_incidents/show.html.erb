@@ -1,24 +1,32 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>User:</strong>
-  <%= @benefit_incident.person.name %>
-</p>
-<p>
-  <strong>Amount:</strong>
-  <%= @benefit_incident.amount %>
-</p>
-  <strong>Program:</strong>
-  <%= @benefit_incident.program.name %>
-</p>
-  <strong>Benefit:</strong>
-  <%= @benefit_incident.benefit.name %>
-</p>
-
-<p>
-  <strong>Remark:</strong>
-  <%= @benefit_incident.remark %>
-</p>
-
-<%= link_to 'Edit', edit_benefit_incident_path(@benefit_incident) %> |
-<%= link_to 'List All Incidents', benefit_incidents_list_path(person_id: @benefit_incident.person_id) %>
+<% if notice %>
+	<p id="notice"><%= notice %></p>
+<% end %>
+<table class="table small-12">
+	<tr>
+		<td><b>User:</b></td>
+		<td><%= @benefit_incident.person.name %></td>
+	</tr>
+	<tr>
+		<td><b>Amount:</b></td>
+		<td><%= number_to_indian_currency(@benefit_incident.amount).html_safe %></td>
+	</tr>
+	<tr>
+		<td><b>Program:</b></td>
+		<td><%= @benefit_incident.program.name %></td>
+	</tr>
+	<tr>
+		<td><b>Benefit:</b></td>
+		<td><%= @benefit_incident.benefit.name %></td>
+	</tr>
+	<tr>
+		<td><b>Remark:</b></td>
+		<td><%= simple_format(@benefit_incident.remark, {}, wrapper_tag: "div") %></td>
+	</tr>
+	<tr>
+		<td><b>Status:</b></td>
+		<td><%= @benefit_incident.status == true ? 'Granted' : 'Pending' %></td>
+	</tr>
+</table>
+<div class="button-center">
+	<%= link_to 'Back to Beneficiary', person_path(@benefit_incident.person, anchor: "panel2-4"), :class => "button" %>
+</div>

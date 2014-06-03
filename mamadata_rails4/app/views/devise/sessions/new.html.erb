@@ -1,0 +1,39 @@
+<div class="sign-in">
+    <div class="sharana_logo"></div>
+    <h1 class="text-center">MamaData</h1>
+    <div class="row">
+        <div class="small-12 column" style="margin-bottom: 20px;">
+            <%= content_tag(:div, flash[:alert], :id => "notice", class: 'alert') if flash[:alert] %>
+        </div>
+    </div>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+        <div class="row">
+            <div class="small-12 column">
+                <%= f.email_field :email, :autofocus => true, :placeholder => :email %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 column">
+                <%= f.password_field :password, :placeholder => :password %>
+            </div>
+        </div>
+
+
+        <div class="row">
+          <div class="small-12 column">
+            <%= f.submit "Sign in", :class => "button expand" %>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="small-6 column">
+                <% if devise_mapping.rememberable? -%>
+                <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+                <% end -%>
+            </div>
+            <div class="small-6 column text-right">
+                <%= render "devise/shared/links" %>
+            </div>
+        </div>
+    <% end %>
+</div>

@@ -1,0 +1,8 @@
+<% if can? :update, BenefitIncident and params[:action] == "show" %>
+	<li>
+		<%= link_to edit_benefit_incident_path(@benefit_incident) do %>
+		<%= (content_tag(:i, '', :class => 'icon-pencil')) %>
+		Edit Incident
+		<% end %>
+	</li>
+<% end %>

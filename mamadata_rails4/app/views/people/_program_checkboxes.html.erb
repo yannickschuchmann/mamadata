@@ -1,0 +1,10 @@
+<div class="row">
+	<h2 class="text-center">Programs</h2>
+    <% Program.all.each_slice(10) do |slice| %>
+        <% slice.each do |p| %>
+            <label <%= 'id=community_development' if (p.name == 'Community Development')  %> class="small-12 medium-6 column"><%= check_box_tag :program_ids, p.id, @person.programs.include?(p), :name => 'person[program_ids][]' %> <%= p.name %>
+            </label>
+        <% end %>
+    <% end %>
+<%= hidden_field_tag "person[program_ids][]", nil %>
+</div>

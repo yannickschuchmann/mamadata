@@ -1,0 +1,37 @@
+wb = xlsx_package.workbook
+@headers = ["Created On #{l DateTime.now}","File Number","Name","Head of Household","Fathers Name","Gender","Date of Birth", "Place of Birth",
+            "Native Place", "Area", "Number of the House", "Name of the Street",
+	        "City/Village", "ZIP Code", "Narrative Text", "Total Expense YTD INR", "Godfather"]
+
+@program_names =[]
+Program.all.order(id: :asc).each do |p|
+@program_names << p.name.camelcase
+end
+@headers = @headers.concat(@program_names).concat(["Program History"]).concat(["Granted Incidents"])
+
+
+wb.add_worksheet(:name => "Beneficiaries") do |sheet|
+  sheet.add_row @headers
+
+  @people.each do |p|
+        @program_hist = BeneficiaryProgramRelationship.with_deleted.where(person_id: p.id).order("created_at DESC")
+        hist=[]
+        @program_hist.each do |entry|
+           hist << entry.program.name.to_s + ", Start Date: " + (l entry.created_at.to_date) + ", End Date: " + (entry.deleted_at ? (l entry.deleted_at.to_date) : "-") +";"
+        end
+  		@programs = []
+  		godfather = p.godfathers.first ? (p.godfathers.first.name + " " + p.godfathers.first.family_name) : "no godfather"
+  		Program.all.order(id: :asc).each do |program|
+			@programs << (p.programs.include?(program) ? "yes" : "no")
+		end
+		@incidents_granted = []
+		p.benefit_incidents.where(status: true).each do |incident|
+		    @incidents_granted << (incident.benefit.name.to_s + " (" + incident.amount.to_s + " INR)")
+		end
+	    sheet.add_row ["",p.id, p.name, p.head_of_household,p.fathers_name, p.gender, p.date_of_birth, p.place_of_birth,
+                       p.native_place, p.area, p.number_of_the_house, p.name_of_the_street,
+                       p.city, p.zip_code, p.narrative_text, p.year_to_date,
+                       godfather].concat(@programs).concat(hist).concat(@incidents_granted)
+  end
+
+end

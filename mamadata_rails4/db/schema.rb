@@ -11,13 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131215202635) do
+ActiveRecord::Schema.define(version: 20140224041608) do
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_active",  default: false
+    t.datetime "deleted_at"
+    t.integer  "added_by"
+    t.integer  "deleted_by"
   end
 
   add_index "beneficiary_program_relationships", ["person_id"], name: "index_beneficiary_program_relationships_on_person_id"
@@ -27,10 +31,19 @@ ActiveRecord::Schema.define(version: 20131215202635) do
     t.integer  "person_id"
     t.integer  "benefit_id"
     t.integer  "program_id"
-    t.integer  "amount"
+    t.integer  "amount_paise",              limit: 8, default: 0
+    t.string   "amount_currency",                     default: "INR", null: false
     t.text     "remark"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "date_granted"
+    t.boolean  "status"
+    t.integer  "amount_in_euro_paise",      limit: 8, default: 0
+    t.string   "amount_in_euro_currency",             default: "EUR", null: false
+    t.integer  "amount_in_dollar_paise",    limit: 8, default: 0
+    t.string   "amount_in_dollar_currency",           default: "USD", null: false
+    t.integer  "created_by"
+    t.integer  "granted_by"
   end
 
   add_index "benefit_incidents", ["benefit_id"], name: "index_benefit_incidents_on_benefit_id"
@@ -40,15 +53,20 @@ ActiveRecord::Schema.define(version: 20131215202635) do
   create_table "benefits", force: true do |t|
     t.string   "name"
     t.string   "description"
+    t.integer  "optional_amount_paise",    limit: 8
+    t.string   "optional_amount_currency",           default: "INR", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "fixed_amount_paise",       limit: 8
+    t.string   "fixed_amount_currency",              default: "INR", null: false
+    t.integer  "max_people"
+    t.string   "category"
   end
 
   create_table "community_developments", force: true do |t|
-    t.integer  "head_of_household_id"
     t.string   "type_of_family"
     t.string   "residental_status"
-    t.string   "house_posession"
+    t.string   "house_possession"
     t.string   "house_type"
     t.boolean  "electricity"
     t.string   "water_from"
@@ -81,52 +99,102 @@ ActiveRecord::Schema.define(version: 20131215202635) do
     t.datetime "updated_at"
   end
 
+  create_table "donor_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "families", force: true do |t|
-    t.integer "person_id"
-    t.integer "community_development_id"
-    t.string  "name"
-    t.integer "head_id"
+    t.integer  "person_id"
+    t.integer  "community_development_id"
+    t.string   "name"
+    t.integer  "head_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "families", ["community_development_id"], name: "index_families_on_community_development_id"
   add_index "families", ["head_id"], name: "index_families_on_head_id"
   add_index "families", ["person_id"], name: "index_families_on_person_id"
 
-  create_table "people", force: true do |t|
-    t.string   "name"
-    t.string   "fathers_name"
-    t.string   "gender"
-    t.date     "date_of_birth"
-    t.string   "place_of_birth"
-    t.string   "native_place"
-    t.string   "name_of_the_house"
-    t.integer  "number_of_the_house"
-    t.string   "name_of_the_street"
-    t.string   "city"
-    t.integer  "pin_code"
-    t.string   "religion"
-    t.string   "caste"
-    t.string   "education"
-    t.string   "marital_status"
-    t.string   "health_condition"
-    t.string   "occupation"
-    t.integer  "income"
-    t.integer  "family_id"
-    t.integer  "role_id"
-    t.string   "school_name"
-    t.string   "school_type"
-    t.string   "school_language"
-    t.string   "school_class"
-    t.text     "narrative_text"
-    t.string   "status"
+  create_table "godfather_people", force: true do |t|
+    t.integer  "person_id"
     t.integer  "godfather_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
+  end
+
+  create_table "journals", force: true do |t|
+    t.integer  "person_id"
+    t.text     "text"
+    t.datetime "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "journals", ["person_id"], name: "index_journals_on_person_id"
+
+  create_table "people", force: true do |t|
+    t.string   "name",                          default: ""
+    t.string   "fathers_name",                  default: ""
+    t.string   "gender",                        default: ""
+    t.date     "date_of_birth"
+    t.string   "place_of_birth",                default: ""
+    t.string   "native_place",                  default: ""
+    t.string   "name_of_the_house",             default: ""
+    t.integer  "number_of_the_house"
+    t.string   "name_of_the_street",            default: ""
+    t.string   "city",                          default: ""
+    t.string   "zip_code"
+    t.string   "religion",                      default: ""
+    t.string   "caste",                         default: ""
+    t.string   "education",                     default: ""
+    t.string   "marital_status",                default: ""
+    t.string   "health_condition",              default: ""
+    t.string   "occupation",                    default: ""
+    t.integer  "income_paise",        limit: 8, default: 0
+    t.string   "income_currency",               default: "INR", null: false
+    t.integer  "family_id"
+    t.integer  "role_id"
+    t.text     "narrative_text"
+    t.text     "default"
+    t.string   "status",                        default: ""
+    t.integer  "godfather_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "area"
+    t.string   "file_number",                   default: ""
+    t.string   "head_of_household"
+    t.integer  "created_by"
   end
 
   add_index "people", ["family_id"], name: "index_people_on_family_id"
   add_index "people", ["godfather_id"], name: "index_people_on_godfather_id"
   add_index "people", ["role_id"], name: "index_people_on_role_id"
+
+  create_table "person_godfather_files", force: true do |t|
+    t.integer  "godfather_person_id"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remark",              default: "", null: false
+  end
+
+  create_table "possible_choices", force: true do |t|
+    t.string   "property"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "program_benefit_relationships", force: true do |t|
     t.integer  "program_id"
@@ -151,6 +219,36 @@ ActiveRecord::Schema.define(version: 20131215202635) do
     t.datetime "updated_at"
   end
 
+  create_table "school_classes", force: true do |t|
+    t.string   "name"
+    t.integer  "school_id"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
+    t.text     "remark"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "school_classes", ["school_id"], name: "index_school_classes_on_school_id"
+
+  create_table "schools", force: true do |t|
+    t.integer  "person_id"
+    t.string   "name"
+    t.string   "type"
+    t.text     "remark"
+    t.string   "language"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.date     "terminated_at"
+    t.string   "termination_reason"
+    t.text     "termination_remark"
+    t.datetime "joined_at"
+  end
+
+  add_index "schools", ["person_id"], name: "index_schools_on_person_id"
+
   create_table "supporters", force: true do |t|
     t.string   "organisation"
     t.string   "name"
@@ -159,7 +257,7 @@ ActiveRecord::Schema.define(version: 20131215202635) do
     t.string   "country"
     t.string   "city"
     t.string   "street"
-    t.integer  "zipcode"
+    t.string   "zipcode"
     t.string   "email"
     t.string   "website"
     t.string   "telephone_number"
@@ -170,6 +268,36 @@ ActiveRecord::Schema.define(version: 20131215202635) do
     t.string   "type_of_work"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_donor"
+    t.integer  "donation_amount_paise",    limit: 8
+    t.string   "donation_amount_currency",           default: "INR", null: false
+    t.integer  "donor_type_id"
+    t.date     "donation_year"
+    t.string   "street_number"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "position_in_organisation"
   end
+
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "role"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

@@ -1,0 +1,23 @@
+<h1>Users</h1>
+<table id="usersIndexTable" class="table tablesorter">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Role</th>
+            <td></td>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @users.each do |user| %>
+        <tr>
+            <td><%= user.email %></td>
+            <td><%= user.role %></td>
+            <td style="width: 130px;">
+                <%= link_to (content_tag(:i, '', :class => 'icon-edit')), edit_user_path(user) %>
+                <%= link_to (content_tag(:i, '', :class => 'icon-trash')), user, method: :delete, data: { confirm: 'Are you sure you want to delete this user?' } %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
