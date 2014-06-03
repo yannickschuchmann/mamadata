@@ -2,7 +2,7 @@
 lock '3.1.0'
 
 set :application, 'mamadata_micha'
-set :repo_url, 'git@git.lazarski.me:mamadata/mamadata.git'
+set :repo_url, 'git@github.com:yannickschuchmann/mamadata.git'
 
 # Default branch is :master
 set :branch, "devel"
