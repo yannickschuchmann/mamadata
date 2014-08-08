@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
 	helper :all
+  before_filter :set_current_user
 
 
   # Prevent CSRF attacks by raising an exception.

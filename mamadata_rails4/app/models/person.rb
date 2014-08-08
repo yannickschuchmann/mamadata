@@ -9,7 +9,7 @@ class Person < ActiveRecord::Base
   belongs_to :user, foreign_key: 'created_by'
   has_many :journals
   has_many :beneficiary_program_relationships
-  has_many :programs, through: :beneficiary_program_relationships
+  has_many :programs, through: :beneficiary_program_relationships, before_remove: :archive_deleted_entries, after_add: :set_program_adder
   has_many :benefits, through: :programs
   has_many :schools
   has_many :school_classes, through: :schools
@@ -20,11 +20,27 @@ class Person < ActiveRecord::Base
   monetize :income_paise, :disable_validation => true
   validates_presence_of :name, :fathers_name, :gender, :date_of_birth, :name_of_the_street, :zip_code, :narrative_text, :religion, :city, :place_of_birth, :marital_status
   validate :amount_to_big
-  # before_save :update_relationships
 
-  #validate :validate_head_of_household
 
   @program_ids_was = []
+
+  def set_program_adder(obj)
+    puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2 before add"
+    BeneficiaryProgramRelationship.create(person_id: self.id, program_id: obj.id, added_by: User.current.id)
+    false
+  end
+
+  def archive_deleted_entries(obj)
+    puts "destroying object"
+    histroy_entry = BeneficiaryProgramRelationship.where(person_id: self.id, program_id: obj.id)
+    histroy_entry.each do |entry|
+      entry.inspect
+      entry.deleter=User.current
+      entry.save
+      entry.destroy
+    end
+
+  end
 
   def get_total_expenses (date = nil)
     total_expenses=Money.new(0)
@@ -197,13 +213,7 @@ class Person < ActiveRecord::Base
     @program_ids_was = self.program_ids
   end
 
-  private
-  def update_relationships
-    deleted_program_ids = @program_ids_was - self.program_ids
-    self.beneficiary_program_relationships.where(program_id: deleted_program_ids).each do |relation|
-      relation.destroy
-    end
-  end
+
 
   protected
 

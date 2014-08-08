@@ -81,7 +81,7 @@ class PeopleController < ApplicationController
 #    @beneficiary = Beneficiary.create(beneficiaryParameters.permit(:school_name))
 #    end
 	respond_to do |format|
-    update_history_entries
+    # update_history_entries
 		if @person.save
 			format.html { redirect_to @person, notice: 'Person was successfully created.' }
 			format.json { render action: 'show', status: :created, location: @person }
@@ -96,7 +96,7 @@ end
 	# PATCH/PUT /people/1.json
 	def update
 		respond_to do |format|
-      update_history_entries
+      # update_history_entries
 			if @person.update(person_params)
         @person.family.update(name: @person.head_of_household) unless @person.family.nil?
 				if params[:redirect_to_incident] == 'true'
