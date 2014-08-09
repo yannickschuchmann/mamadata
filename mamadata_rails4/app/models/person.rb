@@ -25,13 +25,15 @@ class Person < ActiveRecord::Base
   @program_ids_was = []
 
   def set_program_adder(obj)
-    puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2 before add"
-    BeneficiaryProgramRelationship.create(person_id: self.id, program_id: obj.id, added_by: User.current.id)
-    false
+    entries = BeneficiaryProgramRelationship.where(person_id: self.id, program_id: obj.id)
+    entries.each do |entry|
+      entry.adder = User.current
+      entry.save
+    end
+
   end
 
   def archive_deleted_entries(obj)
-    puts "destroying object"
     histroy_entry = BeneficiaryProgramRelationship.where(person_id: self.id, program_id: obj.id)
     histroy_entry.each do |entry|
       entry.inspect
