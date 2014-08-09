@@ -14,7 +14,7 @@ class Person < ActiveRecord::Base
   has_many :schools
   has_many :school_classes, through: :schools
   has_many :godfather_people
-  has_many :godfathers, :class_name => "Supporter", through: :godfather_people
+  has_many :godfathers, :class_name => "Supporter", through: :godfather_people, before_remove: :archive_deleted_godfather_entries
   has_many :person_godfather_files, through: :godfather_people
   has_many :benefit_incidents
   monetize :income_paise, :disable_validation => true
@@ -23,6 +23,14 @@ class Person < ActiveRecord::Base
 
 
   @program_ids_was = []
+
+  def archive_deleted_godfather_entries(obj)
+    entries = GodfatherPerson.where(person_id: self.id, godfather_id: obj.id)
+    entries.each do |entry|
+      entry.save
+      entry.destroy
+    end
+  end
 
   def set_program_adder(obj)
     entries = BeneficiaryProgramRelationship.where(person_id: self.id, program_id: obj.id)
