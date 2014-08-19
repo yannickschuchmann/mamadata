@@ -27,7 +27,7 @@ class Person < ActiveRecord::Base
   def archive_deleted_godfather_entries(obj)
     entries = GodfatherPerson.where(person_id: self.id, godfather_id: obj.id)
     entries.each do |entry|
-      entry.save
+      entry.save!
       entry.destroy
     end
   end
@@ -36,7 +36,7 @@ class Person < ActiveRecord::Base
     entries = BeneficiaryProgramRelationship.where(person_id: self.id, program_id: obj.id)
     entries.each do |entry|
       entry.adder = User.current
-      entry.save
+      entry.save!
     end
 
   end
@@ -46,7 +46,7 @@ class Person < ActiveRecord::Base
     histroy_entry.each do |entry|
       entry.inspect
       entry.deleter=User.current
-      entry.save
+      entry.save!
       entry.destroy
     end
 
