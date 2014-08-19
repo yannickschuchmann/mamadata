@@ -2,22 +2,28 @@
 <% if notice %>
     <p id="notice"><%= notice %></p>
 <% end %>
+<% cache ["v1", @person] do %>
 <%= render 'head' %>
 <div class="clearfix"></div>
 <div class="tabs-content row">
-    <div class="small-12 column content active" id="panel2-1">
+
+      <div class="small-12 column content active" id="panel2-1">
         <%= render 'personal' %>
-    </div>
-    <div class="small-12 column content" id="panel2-2">
+      </div>
+
+      <div class="small-12 column content" id="panel2-2">
         <%= render 'narrativetext' %>
-    </div>
-    <div class="small-12 column content" id="school">
+      </div>
+      <div class="small-12 column content" id="school">
         <%= render 'school' %>
-    </div>
-    <div class="small-12 column content" id="panel2-5">
+      </div>
+      <div class="small-12 column content" id="panel2-5">
         <%= render 'journal' %>
-    </div>
-    <div class="small-12 column content" id="panel2-4">
-        <%= render 'incidents' %>
-    </div>
+      </div>
+
+  <div class="small-12 column content" id="panel2-4">
+    <%= render 'incidents' %>
+
+  </div>
+  <% end %>
 </div>

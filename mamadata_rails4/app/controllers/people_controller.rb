@@ -1,6 +1,6 @@
 
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy, :add_to_family, :profile]
+  before_action :set_person, only: [ :edit, :update, :destroy, :add_to_family, :profile]
   before_filter :set_autosuggest, only: [:create, :edit]
   layout "application_person", except: :index
 
@@ -43,13 +43,15 @@ class PeopleController < ApplicationController
 	# GET /people/1
 	# GET /people/1.json
 	def show
-		@benefit_incidents = BenefitIncident.where(person_id: params[:id])
-		@schools = School.where(person_id: params[:id])
+    @person = Person.find(params[:id])
+		@benefit_incidents = @person.benefit_incidents#BenefitIncident.where(person_id: params[:id])
+		@schools = @person.schools#School.where(person_id: params[:id])
 		@godfather_relations = GodfatherPerson.with_deleted.where(person_id: params[:id]).order(created_at: :desc)
 		@godfathers = []
 		@godfather_relations.each do |r|
 			@godfathers << Supporter.find(r.godfather_id)
-		end
+    end
+    fresh_when etag: @person
 	end
 
 	# GET /people/new
