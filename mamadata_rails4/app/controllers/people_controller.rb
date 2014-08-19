@@ -1,7 +1,7 @@
 
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy, :add_to_family, :profile]
-  before_filter :set_autosuggest
+  before_filter :set_autosuggest, only: [:create, :edit]
   layout "application_person", except: :index
 
 
@@ -9,8 +9,7 @@ class PeopleController < ApplicationController
   def index
     @people = Person.order(id: :desc).page(params[:page])
     sort_params = params[:sort]
-    puts "sort params "
-    puts params[:sort]
+
     unless sort_params.nil?
     	order_primary = params[:sort][:order_primary]
     	order_secondary = params[:sort][:order_secondary]

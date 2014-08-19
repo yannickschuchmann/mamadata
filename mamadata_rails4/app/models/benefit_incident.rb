@@ -1,7 +1,7 @@
 class BenefitIncident < ActiveRecord::Base
 	acts_as_xlsx
 	scope :last_date_granted, -> { order(date_granted: :desc) }
-	belongs_to :person
+	belongs_to :person, touch: true
 	belongs_to :program
 	belongs_to :benefit
 	belongs_to :creator, class_name: 'User', foreign_key: 'created_by'

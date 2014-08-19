@@ -51,10 +51,11 @@ group :doc do
 end
 
 group :development do
-gem 'debugger', '~> 1.6.6'
+  gem 'debugger', '~> 1.6.6'
 	gem 'better_errors'
 	gem 'binding_of_caller'
-    gem 'capistrano'
+  gem 'capistrano'
+  gem 'rack-mini-profiler'
 end
 group :production do
 	gem 'mysql2'

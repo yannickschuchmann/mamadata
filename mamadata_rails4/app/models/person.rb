@@ -52,12 +52,21 @@ class Person < ActiveRecord::Base
 
   end
 
+
+  def cached_benefit_incidents
+    Rails.cache.fetch([self, "benefit_incidents"]) { benefit_incidents.to_a }
+  end
+
+  def cached_benefit_incidents_year_to_date(date)
+    Rails.cache.fetch([self, "benefit_incidents"]) { benefit_incidents.where('date_granted >= :date', :date => date).to_a }
+  end
+
   def get_total_expenses (date = nil)
     total_expenses=Money.new(0)
     if date.nil?
-      benefit_incidents = self.benefit_incidents
+      benefit_incidents = self.cached_benefit_incidents
     else
-      benefit_incidents = self.benefit_incidents.where('date_granted >= :date', :date => date)
+      benefit_incidents = self.cached_benefit_incidents_year_to_date(date)
     end
     benefit_incidents.each do |benefit|
       total_expenses+=benefit.amount
