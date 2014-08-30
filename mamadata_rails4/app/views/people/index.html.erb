@@ -49,6 +49,7 @@
     </thead>
     <tbody>
         <% @people.each do |person| %>
+        <% cache person do %>
         <tr data-link="<%= person_path(person) %>">
             <td style="text-align: center"><%= check_box_tag "ids[]", person.id, false, class: 'chk' %></td>
             <td><%= person.name %></td>
@@ -59,12 +60,7 @@
             <td><%= person.place_of_birth %></td>
             <td><%= person.city %></td>
             <td><%= person.zip_code %></td>
-            <td>
-                <% if !person.role_id.nil? %>
-                <%  b = Role.find (person.role_id) %>
-                <%= b.name %>
-                <% end %>
-            </td>
+            <td><%= person.role ? person.role.name : "not given" %></td>
             <td>
                 <%= number_to_indian_currency(person.year_to_date).html_safe %>
             </td>
@@ -79,9 +75,11 @@
             </td>
         </tr>
         <% end %>
+    <% end %>
+    <% end %>
     </tbody>
 </table>
-<% end %>
+
 <div class="small-12 medium-7 column" style="height: 25px;">
     <%= paginate @people, :params => {:sort => params[:sort]}, :window => 3 %>
 </div>
