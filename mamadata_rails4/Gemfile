@@ -81,3 +81,5 @@ gem 'cancan'
 gem "paperclip", "~> 3.0"
 
 gem 'prawn'
+
+gem 'quiet_assets', group: :development

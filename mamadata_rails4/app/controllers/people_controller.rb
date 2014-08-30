@@ -1,7 +1,7 @@
 
 class PeopleController < ApplicationController
   before_action :set_person, only: [ :edit, :update, :destroy, :add_to_family, :profile]
-  before_filter :set_autosuggest, only: [:create, :edit]
+  before_filter :set_autosuggest, only: [:new, :edit]
   layout "application_person", except: :index
 
 
@@ -321,17 +321,14 @@ end
 	private
 		# Use callbacks to share common setup or constraints between actions.
 		def set_autosuggest
-			@AutoNames  = Person.select('distinct name').collect { |p| p.name.camelize }
-			@AutoFatherNames = Person.select('distinct fathers_name').collect { |p| p.fathers_name.camelize }
-			@AutoZipCode  = Person.select('distinct zip_code').collect { |p|
-                                                                            if(p.zip_code != nil)
-                                                                                p.zip_code.camelize
-                                                                            end
-                                                                        }
-			@AutoCities = Person.select('distinct city').collect { |p| p.city.camelize }
-			@AutoNameOfTheStreet  = Person.select('distinct name_of_the_street').collect { |p| p.name_of_the_street.camelize }
-			@AutoBirthPlace  = Person.select('distinct place_of_birth').collect { |p| p.place_of_birth.camelize }
-			@AutoNativePlace  = Person.select('distinct native_place').collect { |p| p.native_place.camelize }
+      @people_for_auto = Person.all
+			@AutoNames  ||= @people_for_auto.collect(&:name).uniq.map {|e| e.camelize}
+			@AutoFatherNames ||= @people_for_auto.collect(&:fathers_name).uniq.map {|e| e.camelize}
+      @AutoZipCode  ||= @people_for_auto.collect(&:zip_code).uniq.map {|e| e.camelize}
+			@AutoCities ||= @people_for_auto.collect(&:city).uniq.map {|e| e.camelize}
+			@AutoNameOfTheStreet  ||= @people_for_auto.collect(&:name_of_the_street).uniq.map {|e| e.camelize}
+			@AutoBirthPlace  ||= @people_for_auto.collect(&:place_of_birth).uniq.map {|e| e.camelize}
+			@AutoNativePlace  ||= @people_for_auto.collect(&:native_place).uniq.map {|e| e.camelize}
 		end
 		def set_person
 			@person = Person.find(params[:id])
