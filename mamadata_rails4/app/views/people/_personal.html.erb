@@ -1,3 +1,4 @@
+<% cache [@person] do %>
 <h5>Personal Information</h5>
 <table class="small-12">
 	<tr>
@@ -26,14 +27,7 @@
 	</tr>
 	<tr>
 		<td>Relation to Head of Household</td>
-		<td>
-			<% if !@person.role_id.nil? %>
-			<%	b = Role.find (@person.role_id) %>
-			<%= b.name %>
-			<% else %>
-			<%= "not given" %>
-			<% end %>
-		</td>
+		<td><%= @person.role ? @person.role.name : "not given" %></td>
 	</tr>
 </table>
 
@@ -79,7 +73,7 @@
 			<td><%= @person.education %></td>
 		</tr>
 		<tr>
-			<td>Marital status</td>
+		    <td>Marital status</td>
 			<td><%= @person.marital_status %></td>
 		</tr>
 		<tr>
@@ -104,4 +98,4 @@
 <% end %>
 
 
-
+<%end%>
