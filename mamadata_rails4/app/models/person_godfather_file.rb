@@ -1,5 +1,5 @@
 class PersonGodfatherFile < ActiveRecord::Base
-	belongs_to :godfather_person
+	belongs_to :godfather_person, touch: true
 	has_one :person, through: :godfather_person
 	has_attached_file :file
 	validates :file, presence: true
