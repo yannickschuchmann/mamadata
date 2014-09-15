@@ -71,6 +71,9 @@ class Person < ActiveRecord::Base
     benefit_incidents.each do |benefit|
       total_expenses+=benefit.amount
     end
+    # better use this rails build in funciton to sum the amount
+    # TODO work with chached benefit incidents for date specific queries
+    # benefit_incidents.sum(:amount)
     total_expenses
   end
 
