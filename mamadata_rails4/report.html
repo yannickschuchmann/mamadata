@@ -1,0 +1,971 @@
+<!DOCTYPE HTML SYSTEM>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Brakeman Report</title>
+  <script>
+    function toggle(context) {
+      var elem = document.getElementById(context);
+
+      if (elem.style.display != "block")
+        elem.style.display = "block";
+      else
+        elem.style.display = "none";
+
+      elem.parentNode.scrollIntoView();
+    }
+  </script>
+  <style>
+    /* CSS style used for HTML reports */
+
+body {
+  font-family: sans-serif;
+  color: #161616;
+}
+
+a {
+  color: #161616;
+}
+
+p {
+  font-weight: bold;
+  font-size: 11pt;
+  color: #2D0200;
+ }
+
+ th {
+   background-color: #980905;
+   border-bottom: 5px solid #530200;
+   color: white;
+   font-size: 11pt;
+   padding: 1px 8px 1px 8px;
+ }
+
+ td {
+   border-bottom: 2px solid white;
+   font-family: monospace;
+   padding: 5px 8px 1px 8px;
+ }
+
+ table {
+   background-color: #FCF4D4;
+   border-collapse: collapse;
+ }
+
+ h1 {
+   color: #2D0200;
+   font-size: 14pt;
+ }
+
+ h2 {
+   color: #2D0200;
+   font-size: 12pt;
+ }
+
+ span.high-confidence {
+   font-weight:bold;
+   color: red;
+ }
+
+ span.med-confidence {
+ }
+
+ span.weak-confidence {
+   color:gray;
+ }
+
+ div.warning_message {
+   cursor: pointer;
+ }
+
+ div.warning_message:hover {
+   background-color: white;
+ }
+
+ table caption {
+   background-color: #FFE;
+   padding: 2px;
+ }
+
+ table.context {
+   margin-top: 5px;
+   margin-bottom: 5px;
+   border-left: 1px solid #90e960;
+   color: #212121;
+ }
+
+ tr.context {
+   background-color: white;
+ }
+
+ tr.first {
+   border-top: 1px solid #7ecc54;
+   padding-top: 2px;
+ }
+
+ tr.error {
+  background-color: #f4c1c1 !important
+ }
+
+ tr.near_error {
+  background-color: #f4d4d4 !important
+ }
+
+ tr.alt {
+   background-color: #e8f4d4;
+ }
+
+ td.context {
+   padding: 2px 10px 0px 6px;
+   border-bottom: none;
+ }
+
+ td.context_line {
+   padding: 2px 8px 0px 7px;
+   border-right: 1px solid #b3bda4;
+   border-bottom: none;
+   color: #6e7465;
+ }
+
+ pre.context {
+   margin-bottom: 1px;
+ }
+
+ .user_input {
+   background-color: #fcecab;
+ }
+
+ div.render_path {
+   display: none;
+   background-color: #ffe;
+   padding: 5px;
+   margin: 2px 0px 2px 0px;
+ }
+
+ div.template_name {
+   cursor: pointer;
+ }
+
+ div.template_name:hover {
+   background-color: white;
+ }
+
+  </style>
+</head>
+<body>
+
+<h1>Brakeman Report</h1>
+<table>
+  <tr>
+    <th>Application Path</th>
+    <th>Rails Version</th>
+    <th>Brakeman Version</th>
+    <th>Report Time</th>
+    <th>Checks Performed</th>
+  </tr>
+  <tr>
+    <td>/home/skceb/develop/mamadata/mamadata_rails4</td>
+    <td>4.0.0</td>
+    <td>3.0.1
+    <td>
+      2015-02-07 11:15:12 +0100<br><br>
+      1.520409592 seconds
+    </td>
+    <td>BasicAuth, ContentTag, CreateWith, CrossSiteScripting, DefaultRoutes, Deserialize, DetailedExceptions, DigestDoS, EscapeFunction, Evaluation, Execute, FileAccess, FileDisclosure, FilterSkipping, ForgerySetting, HeaderDoS, I18nXSS, JRubyXML, JSONParsing, LinkTo, LinkToHref, MailTo, MassAssignment, ModelAttrAccessible, ModelAttributes, ModelSerialize, NestedAttributes, NumberToCurrency, QuoteTableName, Redirect, RegexDoS, Render, RenderDoS, RenderInline, ResponseSplitting, SQL, SQLCVEs, SSLVerify, SafeBufferManipulation, SanitizeMethods, SelectTag, SelectVulnerability, Send, SendFile, SessionSettings, SimpleFormat, SingleQuotes, SkipBeforeFilter, StripTags, SymbolDoSCVE, TranslateBug, UnsafeReflection, ValidationRegex, WithoutProtection, YAMLParsing</td>
+  </tr>
+</table>
+<br>
+<h2 id='summary'>Summary</h2>
+<table>
+  <tr>
+    <th>Scanned/Reported</th>
+    <th>Total</th>
+  </tr>
+  <tr>
+    <td>Controllers</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Models</td>
+    <td>23</td>
+  </tr>
+  <tr>
+    <td>Templates</td>
+    <td>116</td>
+  </tr>
+  <tr>
+    <td>Errors</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Security Warnings</td>
+    <td>7 <span class='high-confidence'>(2)</span></td>
+  </tr>
+  
+  <tr>
+    <td>Ignored Warnings</td>
+    <td>0</td>
+  </tr>
+  
+</table>
+<br>
+<table>
+  <tr>
+    <th>Warning Type</th>
+    <th>Total</th>
+  </tr>
+  
+  <tr>
+    <td>Cross Site Scripting</td>
+    <td>2</td>
+  </tr>
+  
+  <tr>
+    <td>Denial of Service</td>
+    <td>1</td>
+  </tr>
+  
+  <tr>
+    <td>Mass Assignment</td>
+    <td>1</td>
+  </tr>
+  
+  <tr>
+    <td>Remote Code Execution</td>
+    <td>1</td>
+  </tr>
+  
+  <tr>
+    <td>SQL Injection</td>
+    <td>2</td>
+  </tr>
+  
+</table>
+<br>
+<div onClick="toggle('errors_table');">  <h2>Exceptions raised during the analysis (click to see them)</h2 ></div>
+  <div>
+    <div id='errors_table' style='display:none'> 
+      <table>
+        <tr>
+          <th>Error</th>
+          <th>Location</th>
+        </tr>
+        
+          <tr>
+            <td>undefined method `to_sym&#39; for nil:NilClass</td>
+            <td>
+              
+                /home/skceb/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/brakeman-3.0.1/lib/brakeman/processors/controller_alias_processor.rb:339:in `find_method'
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td>undefined method `to_sym&#39; for nil:NilClass</td>
+            <td>
+              
+                /home/skceb/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/brakeman-3.0.1/lib/brakeman/processors/controller_alias_processor.rb:339:in `find_method'
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td>undefined method `to_sym&#39; for nil:NilClass</td>
+            <td>
+              
+                /home/skceb/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/brakeman-3.0.1/lib/brakeman/processors/controller_alias_processor.rb:339:in `find_method'
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td>undefined method `to_sym&#39; for nil:NilClass</td>
+            <td>
+              
+                /home/skceb/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/brakeman-3.0.1/lib/brakeman/processors/controller_alias_processor.rb:339:in `find_method'
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td>undefined method `to_sym&#39; for nil:NilClass</td>
+            <td>
+              
+                /home/skceb/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/brakeman-3.0.1/lib/brakeman/processors/controller_alias_processor.rb:339:in `find_method'
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td>undefined method `to_sym&#39; for nil:NilClass</td>
+            <td>
+              
+                /home/skceb/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/brakeman-3.0.1/lib/brakeman/processors/controller_alias_processor.rb:339:in `find_method'
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td>undefined method `to_sym&#39; for nil:NilClass</td>
+            <td>
+              
+                /home/skceb/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/brakeman-3.0.1/lib/brakeman/processors/controller_alias_processor.rb:339:in `find_method'
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td>undefined method `to_sym&#39; for nil:NilClass</td>
+            <td>
+              
+                /home/skceb/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/brakeman-3.0.1/lib/brakeman/processors/controller_alias_processor.rb:339:in `find_method'
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td>undefined method `to_sym&#39; for nil:NilClass</td>
+            <td>
+              
+                /home/skceb/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/brakeman-3.0.1/lib/brakeman/processors/controller_alias_processor.rb:339:in `find_method'
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td>undefined method `to_sym&#39; for nil:NilClass</td>
+            <td>
+              
+                /home/skceb/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/brakeman-3.0.1/lib/brakeman/processors/controller_alias_processor.rb:339:in `find_method'
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td>undefined method `to_sym&#39; for nil:NilClass</td>
+            <td>
+              
+                /home/skceb/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/brakeman-3.0.1/lib/brakeman/processors/controller_alias_processor.rb:339:in `find_method'
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td>undefined method `to_sym&#39; for nil:NilClass</td>
+            <td>
+              
+                /home/skceb/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/brakeman-3.0.1/lib/brakeman/processors/controller_alias_processor.rb:339:in `find_method'
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td>undefined method `to_sym&#39; for nil:NilClass</td>
+            <td>
+              
+                /home/skceb/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/brakeman-3.0.1/lib/brakeman/processors/controller_alias_processor.rb:339:in `find_method'
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td>undefined method `to_sym&#39; for nil:NilClass</td>
+            <td>
+              
+                /home/skceb/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/brakeman-3.0.1/lib/brakeman/processors/controller_alias_processor.rb:339:in `find_method'
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <td>undefined method `to_sym&#39; for nil:NilClass</td>
+            <td>
+              
+                /home/skceb/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/brakeman-3.0.1/lib/brakeman/processors/controller_alias_processor.rb:339:in `find_method'
+              
+            </td>
+          </tr>
+        
+      </table>
+    </div>
+  </div>
+<h2>Security Warnings</h2>  
+<table>
+  <tr>
+    <th>Confidence</th>
+    <th>Class</th>
+    <th>Method</th>
+    <th>Warning Type</th>
+    <th>Message</th>
+  </tr>
+  
+  <tr>
+    <td><span class='high-confidence'>High</span></td>
+    <td>Family</td>
+    <td>update_head_of_household_fields</td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/sql_injection/">SQL Injection</a></td>
+    <td><div class='warning_message' onClick="toggle('context6');toggle('message6');toggle('full_message6')" ><span id='message6' style='display:block' >Possible SQL injection near line 28: Person.update_all(&quot;head_of_household = \&quot;#{Person.find(self.head...</span><span id='full_message6' style='display:none'>Possible SQL injection near line 28: Person.update_all(&quot;head_of_household = \&quot;#{<span class="user_input">Person.find(self.head_id).head_of_household</span>}&quot;&quot;, [&quot;family_id = ?&quot;, self.id.to_s])</span><table id='context6' class='context' style='display:none'><caption>app/models/family.rb</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>23</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>      self.name = &#39;&#39;</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>24</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    end</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>25</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  end</pre>
+            </td>
+          </tr>
+          <tr class='context alt near_error'>
+            <td class='context_line'>
+              <pre class='context'>27</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  def update_head_of_household_fields</pre>
+            </td>
+          </tr>
+          <tr class='context error'>
+            <td class='context_line'>
+              <pre class='context'>28</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    Person.update_all(&quot;head_of_household = \&quot;#{Person.find(self.head_id).head_of_household}\&quot;&quot;, [&quot;family_id = ?&quot;, self.id.to_s]) unless self.people.empty?</pre>
+            </td>
+          </tr>
+          <tr class='context alt near_error'>
+            <td class='context_line'>
+              <pre class='context'>29</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  end</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>31</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  def create_comdev</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>32</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    self.create_community_development</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>33</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  end</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+  
+  <tr>
+    <td><span class='high-confidence'>High</span></td>
+    <td></td>
+    <td></td>
+    <td><a rel="no-referrer" href="https://groups.google.com/d/msg/ruby-security-ann/niK4drpSHT4/g8JW8ZsayRkJ">SQL Injection</a></td>
+    <td><div class='warning_message' onClick="toggle('context7');toggle('message7');toggle('full_message7')" >Rails 4.0.0 contains a SQL injection vulnerability (CVE-2013-6417). Upgrade to 4.0.2 near line 169<table id='context7' class='context' style='display:none'><caption>Gemfile.lock</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>164</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>    rack (1.5.2)</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>165</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rack-mini-profiler (0.9.2)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>166</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      rack (&gt;= 1.1.3)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>167</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rack-test (0.6.2)</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>168</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      rack (&gt;= 1.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt error'>
+            <td class='context_line'>
+              <pre class='context'>169</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rails (4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>170</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      actionmailer (= 4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>171</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      actionpack (= 4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>172</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      activerecord (= 4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>173</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      activesupport (= 4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>174</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      bundler (&gt;= 1.3.0, &lt; 2.0)</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+  
+  <tr>
+    <td><span class='med-confidence'>Medium</span></td>
+    <td></td>
+    <td></td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/remote_code_execution/">Remote Code Execution</a></td>
+    <td><div class='warning_message' onClick="toggle('context2');toggle('message2');toggle('full_message2')" ><span id='message2' style='display:block' >Rails 4.0.0 with globbing routes is vulnerable to directory traversal and remote code execution. Patc...</span><span id='full_message2' style='display:none'>Rails 4.0.0 with globbing routes is vulnerable to directory traversal and remote code execution. Patch or upgrade to 4.0.5</span><table id='context2' class='context' style='display:none'><caption>config/routes.rb</caption></table></div></td>
+  </tr>
+  
+  <tr>
+    <td><span class='med-confidence'>Medium</span></td>
+    <td></td>
+    <td></td>
+    <td><a rel="no-referrer" href="https://groups.google.com/d/msg/ruby-security-ann/5ZI1-H5OoIM/ZNq4FoR2GnIJ">Cross Site Scripting</a></td>
+    <td><div class='warning_message' onClick="toggle('context5');toggle('message5');toggle('full_message5')" ><span id='message5' style='display:block' >Rails 4.0.0 has a vulnerability in simple_format (CVE-2013-6416). Upgrade to Rails version 4.0.2 near...</span><span id='full_message5' style='display:none'>Rails 4.0.0 has a vulnerability in simple_format (CVE-2013-6416). Upgrade to Rails version 4.0.2 near line 169</span><table id='context5' class='context' style='display:none'><caption>Gemfile.lock</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>164</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>    rack (1.5.2)</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>165</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rack-mini-profiler (0.9.2)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>166</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      rack (&gt;= 1.1.3)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>167</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rack-test (0.6.2)</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>168</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      rack (&gt;= 1.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt error'>
+            <td class='context_line'>
+              <pre class='context'>169</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rails (4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>170</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      actionmailer (= 4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>171</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      actionpack (= 4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>172</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      activerecord (= 4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>173</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      activesupport (= 4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>174</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      bundler (&gt;= 1.3.0, &lt; 2.0)</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+  
+  <tr>
+    <td><span class='med-confidence'>Medium</span></td>
+    <td></td>
+    <td></td>
+    <td><a rel="no-referrer" href="https://groups.google.com/d/msg/ruby-security-ann/9WiRn2nhfq0/2K2KRB4LwCMJ">Cross Site Scripting</a></td>
+    <td><div class='warning_message' onClick="toggle('context4');toggle('message4');toggle('full_message4')" ><span id='message4' style='display:block' >Rails 4.0.0 has a vulnerability in number helpers (CVE-2014-0081). Upgrade to Rails version 4.0.3 nea...</span><span id='full_message4' style='display:none'>Rails 4.0.0 has a vulnerability in number helpers (CVE-2014-0081). Upgrade to Rails version 4.0.3 near line 169</span><table id='context4' class='context' style='display:none'><caption>Gemfile.lock</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>164</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>    rack (1.5.2)</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>165</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rack-mini-profiler (0.9.2)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>166</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      rack (&gt;= 1.1.3)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>167</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rack-test (0.6.2)</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>168</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      rack (&gt;= 1.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt error'>
+            <td class='context_line'>
+              <pre class='context'>169</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rails (4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>170</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      actionmailer (= 4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>171</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      actionpack (= 4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>172</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      activerecord (= 4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>173</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      activesupport (= 4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>174</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      bundler (&gt;= 1.3.0, &lt; 2.0)</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+  
+  <tr>
+    <td><span class='med-confidence'>Medium</span></td>
+    <td></td>
+    <td></td>
+    <td><a rel="no-referrer" href="https://groups.google.com/d/msg/ruby-security-ann/A-ebV4WxzKg/KNPTbX8XAQUJ">Denial of Service</a></td>
+    <td><div class='warning_message' onClick="toggle('context3');toggle('message3');toggle('full_message3')" ><span id='message3' style='display:block' >Rails 4.0.0 has a denial of service vulnerability (CVE-2013-6414). Upgrade to Rails version 4.0.2 nea...</span><span id='full_message3' style='display:none'>Rails 4.0.0 has a denial of service vulnerability (CVE-2013-6414). Upgrade to Rails version 4.0.2 near line 169</span><table id='context3' class='context' style='display:none'><caption>Gemfile.lock</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>164</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>    rack (1.5.2)</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>165</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rack-mini-profiler (0.9.2)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>166</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      rack (&gt;= 1.1.3)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>167</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rack-test (0.6.2)</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>168</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      rack (&gt;= 1.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt error'>
+            <td class='context_line'>
+              <pre class='context'>169</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rails (4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>170</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      actionmailer (= 4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>171</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      actionpack (= 4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>172</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      activerecord (= 4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>173</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      activesupport (= 4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>174</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      bundler (&gt;= 1.3.0, &lt; 2.0)</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+  
+  <tr>
+    <td><span class='med-confidence'>Medium</span></td>
+    <td></td>
+    <td></td>
+    <td><a rel="no-referrer" href="https://groups.google.com/d/msg/rubyonrails-security/M4chq5Sb540/CC1Fh0Y_NWwJ">Mass Assignment</a></td>
+    <td><div class='warning_message' onClick="toggle('context1');toggle('message1');toggle('full_message1')" >create_with is vulnerable to strong params bypass. Upgrade to Rails 4.0.9 or patch near line 169<table id='context1' class='context' style='display:none'><caption>Gemfile.lock</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>164</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>    rack (1.5.2)</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>165</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rack-mini-profiler (0.9.2)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>166</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      rack (&gt;= 1.1.3)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>167</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rack-test (0.6.2)</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>168</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      rack (&gt;= 1.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt error'>
+            <td class='context_line'>
+              <pre class='context'>169</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    rails (4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>170</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      actionmailer (= 4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>171</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      actionpack (= 4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>172</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      activerecord (= 4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>173</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      activesupport (= 4.0.0)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>174</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      bundler (&gt;= 1.3.0, &lt; 2.0)</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+  
+</table>
+</body></html>
