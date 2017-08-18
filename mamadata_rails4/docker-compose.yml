@@ -1,0 +1,21 @@
+version: '2'
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: app_Dockerfile
+    image: mamadata_app
+    env_file: .env
+    environment:
+      RAILS_ENV: $RAILS_ENV
+    ports:
+      - "3000:3000"
+    volumes:
+      - '.:/mamadata'
+    stdin_open: true
+    tty: true
+#  mailcatcher:
+#    image: yappabe/mailcatcher
+#    ports:
+#      - "1025:1025"
+#      - "1080:1080"
