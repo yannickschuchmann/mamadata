@@ -1,5 +1,5 @@
 # Base our image on an official, minimal image of our preferred Ruby
-FROM ruby:2.0-slim
+FROM ruby:1.9.3-slim
 
 # Install essential Linux packages
 RUN apt-get update && apt-get install -qq -y --no-install-recommends    build-essential \
