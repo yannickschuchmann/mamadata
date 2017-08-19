@@ -1,0 +1,45 @@
+# Base our image on an official, minimal image of our preferred Ruby
+FROM ruby:1.9.3-slim
+
+# Install essential Linux packages
+RUN apt-get update && apt-get install -qq -y --no-install-recommends    build-essential \
+                                                                        libpq-dev \
+                                                                        libxml2-dev libxslt1-dev \
+                                                                        imagemagick \
+                                                                        sqlite3 libsqlite3-dev \
+                                                                        libmysqlclient-dev mysql-client \
+                                                                        git \
+                                                                        curl
+
+# Provide nodejs 8 from package sources
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && apt-get install -qq -y --no-install-recommends nodejs
+
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get update && apt-get install yarn
+
+# Define where our application will live inside the image
+ENV RAILS_ROOT /mamadata
+
+# Create application home. App server will need the pids dir so just create everything in one shot
+RUN mkdir -p $RAILS_ROOT/tmp/pids
+
+# Set our working directory inside the image
+WORKDIR $RAILS_ROOT
+
+RUN gem install bundler
+
+# Use the Gemfiles as Docker cache markers. Always bundle before copying app src.
+# (the src likely changed and we don't want to invalidate Docker's cache too early)
+# http://ilikestuffblog.com/2014/01/06/how-to-skip-bundle-install-when-deploying-a-rails-app-to-docker/
+COPY Gemfile Gemfile
+
+COPY Gemfile.lock Gemfile.lock
+
+# Finish establishing our Ruby enviornment
+RUN bundle install
+
+# Copy the Rails application into place
+COPY . .
+
+CMD bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"

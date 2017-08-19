@@ -4,7 +4,7 @@ wb = xlsx_package.workbook
             "City/Village","In Program Since", "Excluded from Program on"]
 
 @programs.each do |program|
-    wb.add_worksheet(:name => program.name) do |sheet|
+    wb.add_worksheet(:name => trim_worksheet_name(program.name)) do |sheet|
           sheet.add_row ["Participating Beneficiaries"]
           sheet.add_row @headers
           program_participants = BeneficiaryProgramRelationship.with_deleted.where(program_id: program.id).order("created_at DESC")
