@@ -18,7 +18,7 @@ class BenefitsControllerTest < ActionController::TestCase
 
   test "should create benefit" do
     assert_difference('Benefit.count') do
-      post :create, benefit: { descriptioin: @benefit.descriptioin, name: @benefit.name }
+      post :create, benefit: { description: @benefit.description, name: @benefit.name }
     end
 
     assert_redirected_to benefit_path(assigns(:benefit))
@@ -35,7 +35,7 @@ class BenefitsControllerTest < ActionController::TestCase
   end
 
   test "should update benefit" do
-    patch :update, id: @benefit, benefit: { descriptioin: @benefit.descriptioin, name: @benefit.name }
+    patch :update, id: @benefit, benefit: { description: @benefit.description, name: @benefit.name }
     assert_redirected_to benefit_path(assigns(:benefit))
   end
 
