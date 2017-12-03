@@ -53,42 +53,49 @@ class AddAdditionalFieldsToCommunityDevelopment < ActiveRecord::Migration
     add_column :community_developments, :number_children_sponsored_by_sharana, :string
     add_column :community_developments, :total_debt, :string
 
-    # better to have multiple select
-    add_column :community_developments, :origin_loan_bank, :boolean
-    add_column :community_developments, :origin_loan_chits, :boolean
-    add_column :community_developments, :origin_loan_private_lender, :boolean
-    add_column :community_developments, :origin_loan_shg, :boolean
-    add_column :community_developments, :origin_loan_relatives, :boolean
+    # question 152: new field for family_undergone_family_planning with multiple options
+    add_column :community_developments, :family_undergone_family_planning_revised, :string
 
     # better to have multiple select
-    add_column :community_developments, :reasons_loan_food, :boolean
-    add_column :community_developments, :reasons_loan_housing, :boolean
-    add_column :community_developments, :reasons_loan_household_items, :boolean
-    add_column :community_developments, :reasons_loan_education, :boolean
-    add_column :community_developments, :reasons_loan_hospitalisation, :boolean
-    add_column :community_developments, :reasons_loan_profession, :boolean
-    add_column :community_developments, :reasons_loan_functions, :boolean
-    add_column :community_developments, :reasons_loan_marriage, :boolean
+    add_column :community_developments, :origin_loan, :string
+    # add_column :community_developments, :origin_loan_bank, :boolean
+    # add_column :community_developments, :origin_loan_chits, :boolean
+    # add_column :community_developments, :origin_loan_private_lender, :boolean
+    # add_column :community_developments, :origin_loan_shg, :boolean
+    # add_column :community_developments, :origin_loan_relatives, :boolean
 
     # better to have multiple select
-    add_column :community_developments, :children_immunised_tetanus, :boolean
-    add_column :community_developments, :children_immunised_bcg, :boolean
-    add_column :community_developments, :children_immunised_dtp, :boolean
-    add_column :community_developments, :children_immunised_hep_b, :boolean
-    add_column :community_developments, :children_immunised_polio, :boolean
-    add_column :community_developments, :children_immunised_measles, :boolean
-    add_column :community_developments, :children_immunised_small_pox, :boolean
+    add_column :community_developments, :reasons_loan, :string
+    # add_column :community_developments, :reasons_loan_food, :boolean
+    # add_column :community_developments, :reasons_loan_housing, :boolean
+    # add_column :community_developments, :reasons_loan_household_items, :boolean
+    # add_column :community_developments, :reasons_loan_education, :boolean
+    # add_column :community_developments, :reasons_loan_hospitalisation, :boolean
+    # add_column :community_developments, :reasons_loan_profession, :boolean
+    # add_column :community_developments, :reasons_loan_functions, :boolean
+    # add_column :community_developments, :reasons_loan_marriage, :boolean
 
     # better to have multiple select
-    add_column :community_developments, :alcoholism_no_problems, :boolean
-    add_column :community_developments, :alcoholism_early_death, :boolean
-    add_column :community_developments, :alcoholism_job_lost, :boolean
-    add_column :community_developments, :alcoholism_family_dispute, :boolean
-    add_column :community_developments, :alcoholism_physical_abuse, :boolean
-    add_column :community_developments, :alcoholism_health_issue, :boolean
-    add_column :community_developments, :alcoholism_debt_loans, :boolean
-    add_column :community_developments, :alcoholism_marital_issues, :boolean
-    add_column :community_developments, :alcoholism_reduced_household_income, :boolean
+    add_column :community_developments, :children_immunised, :string
+    # add_column :community_developments, :children_immunised_tetanus, :boolean
+    # add_column :community_developments, :children_immunised_bcg, :boolean
+    # add_column :community_developments, :children_immunised_dtp, :boolean
+    # add_column :community_developments, :children_immunised_hep_b, :boolean
+    # add_column :community_developments, :children_immunised_polio, :boolean
+    # add_column :community_developments, :children_immunised_measles, :boolean
+    # add_column :community_developments, :children_immunised_small_pox, :boolean
+
+    # better to have multiple select
+    add_column :community_developments, :alcoholism_problems, :string
+    # add_column :community_developments, :alcoholism_no_problems, :boolean
+    # add_column :community_developments, :alcoholism_early_death, :boolean
+    # add_column :community_developments, :alcoholism_job_lost, :boolean
+    # add_column :community_developments, :alcoholism_family_dispute, :boolean
+    # add_column :community_developments, :alcoholism_physical_abuse, :boolean
+    # add_column :community_developments, :alcoholism_health_issue, :boolean
+    # add_column :community_developments, :alcoholism_debt_loans, :boolean
+    # add_column :community_developments, :alcoholism_marital_issues, :boolean
+    # add_column :community_developments, :alcoholism_reduced_household_income, :boolean
 
     add_column :community_developments, :children_attend_health_camps, :boolean
     add_column :community_developments, :daily_alcohol_expenses, :string
