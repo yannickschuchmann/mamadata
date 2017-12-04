@@ -11,11 +11,14 @@ class AddAdditionalFieldsToCommunityDevelopment < ActiveRecord::Migration
     add_column :community_developments, :number_boys, :string
     add_column :community_developments, :number_girls, :string
     add_column :community_developments, :number_beneficiaries, :string
-    add_column :community_developments, :electricity, :boolean
-    add_column :community_developments, :water, :boolean
-    add_column :community_developments, :toilet, :boolean
-    add_column :community_developments, :bathroom, :boolean
-    add_column :community_developments, :good_ventilation, :boolean
+
+    add_column :community_developments, :facilities, :string
+    # add_column :community_developments, :electricity, :boolean
+    # add_column :community_developments, :water, :boolean
+    # add_column :community_developments, :toilet, :boolean
+    # add_column :community_developments, :bathroom, :boolean
+    # add_column :community_developments, :good_ventilation, :boolean
+
     add_column :community_developments, :source_drinking_water, :string
     add_column :community_developments, :source_water_other_use, :string
     add_column :community_developments, :distance_water_sources, :string
@@ -101,7 +104,6 @@ class AddAdditionalFieldsToCommunityDevelopment < ActiveRecord::Migration
     add_column :community_developments, :daily_alcohol_expenses, :string
     add_column :community_developments, :marriagleable_age_girl, :string
     add_column :community_developments, :marriagleable_age_boy, :string
-    add_column :community_developments, :treat_boys_girls_equally, :string
     add_column :community_developments, :treat_boys_girls_equally, :string
     add_column :community_developments, :domestic_violence, :boolean
 
