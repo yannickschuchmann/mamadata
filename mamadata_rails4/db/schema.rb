@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 20171105152050) do
     t.string   "family_skilled_in_art"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "bdes"
     t.string   "house_id"
     t.string   "location"
     t.string   "door_number"
@@ -122,7 +123,7 @@ ActiveRecord::Schema.define(version: 20171105152050) do
     t.boolean  "feature_phone"
     t.boolean  "cycle"
     t.boolean  "motorcycle"
-    t.boolean  "bdes"
+    t.boolean  "beds"
     t.boolean  "fans"
     t.string   "migration"
     t.boolean  "own_land"
@@ -152,8 +153,8 @@ ActiveRecord::Schema.define(version: 20171105152050) do
     t.string   "alcoholism_problems"
     t.boolean  "children_attend_health_camps"
     t.string   "daily_alcohol_expenses"
-    t.string   "marriagleable_age_girl"
-    t.string   "marriagleable_age_boy"
+    t.string   "marriageable_age_girl"
+    t.string   "marriageable_age_boy"
     t.string   "treat_boys_girls_equally"
     t.boolean  "domestic_violence"
     t.string   "number_people_illness"
@@ -178,9 +179,6 @@ ActiveRecord::Schema.define(version: 20171105152050) do
     t.string   "skilled_arts_what_to_earn"
     t.string   "govt_schemes_availed"
     t.string   "govt_schemes_found_out"
-    t.boolean  "children_school_dropout"
-    t.string   "children_school_dropout_reason"
-    t.string   "children_school_dropout_condition"
   end
 
   create_table "donor_types", force: true do |t|

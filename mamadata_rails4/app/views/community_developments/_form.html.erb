@@ -12,8 +12,52 @@
 <% end %>
 
 <div class="row">
+	<div class="medium-4 column"><%= f.label :house_id, "House ID" %></div>
+	<div class="medium-8 column"><%= f.text_field :house_id  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :location, "Location" %></div>
+	<div class="medium-8 column"><%= f.select :location, ["Thideer Nagar", "Kandoctorkottam", "Vandrapet", "Solai Nagar", "Street", "Aranganur", "Angalakuppam"] %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :door_number, "Door Name" %></div>
+	<div class="medium-8 column"><%= f.text_field :door_number  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :street_name, "Street Name" %></div>
+	<div class="medium-8 column"><%= f.text_field :street_name  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :respondent, "Name of Respondent" %></div>
+	<div class="medium-8 column"><%= f.text_field :respondent  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_people_in_household, "Number of people in the household" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_people_in_household, step: 1, min: 0  %></div>
+</div>
+<div class="row">
 	<div class="medium-4 column"><%= f.label :type_of_family, "Type of family" %></div>
 	<div class="medium-8 column"><%= f.select :type_of_family, ["nuclear", "joint", "extended", "no parents"], include_blank: "-" %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_adults, "Number of adults" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_adults, step: 1, min: 0  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_children, "Number of children" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_children, step: 1, min: 0  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_boys, "Number of boys" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_boys, step: 1, min: 0  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_girls, "Number of girls" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_girls, step: 1, min: 0  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_beneficiaries, "Number of beneficiaries" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_beneficiaries, step: 1, min: 0  %></div>
 </div>
 <div class="row">
 	<div class="medium-4 column"><%= f.label :residental_status, "Residential status" %></div>
@@ -33,13 +77,41 @@
 	</div>
 </div>
 <div class="row">
+		<div class="medium-4 column"><%= f.label :facilities, "Facilties" %></div>
+		<div class="medium-8 column">
+			<div class="row">
+				<p class="hide-for-touch" style="margin-bottom: 5px;">
+					Hold down ctrl for multiple select
+				</p>
+				<%= f.select(:facilities, [
+						["electricity", "electricity"],
+						["water", "water"],
+						["toilet", "toilet"],
+						["bathroom", "bathroom"],
+						["good ventilation", "good ventilation"]
+					],{}, { :multiple => true, :size => 5 })%>
+			</div>
+		</div>
+	</div>
+<div class="row">
 	<div class="medium-4 column"><%= f.label :electricity, "Do you have electricity connection?" %></div>
 	<div class="medium-8 column"><%= f.check_box :electricity %></div>
 </div>
 <div class="row">
 	<div class="medium-4 column"><%= f.label :water_from, "Where do you obtain your water?" %></div>
-	<div class="medium-8 column"><%= f.select :water_from, ["municipality", "village pond", "no water"], include_blank: "-"%>
-	</div>
+	<div class="medium-8 column"><%= f.select :water_from, ["municipality", "village pond", "no water"], include_blank: "-"%></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :source_drinking_water, "Source of drinking water" %></div>
+	<div class="medium-8 column"><%= f.select :source_drinking_water, ["tap", "handpump", "public tap", "well", "tubewell", "borewell", "govt provided mineral water"] %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :source_water_other_use, "Source of water for other uses" %></div>
+	<div class="medium-8 column"><%= f.select :source_water_other_use, ["Tap", "river", "tubewell", "pond", "well", "handpump", "borewell", "public tap"] %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :distance_water_sources, "Distance of household from water sources (in metres)" %></div>
+	<div class="medium-8 column"><%= f.select :distance_water_sources, ["0-20", "20-50", "50-100", ">100"] %></div>
 </div>
 <div class="row">
 	<div class="medium-4 column"><%= f.label :toilet_facility, "Do you have a toilet facility in your house?" %></div>
@@ -55,6 +127,75 @@
 		<div class="medium-8 column"><%= f.check_box :want_rain_harvesting %></div>
 	</div>
 </div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :fuel_cooking, "Fuel used for cooking" %></div>
+	<div class="medium-8 column"><%= f.select :fuel_cooking, ["Coal", "Kerosene", "Gas", "Electric"] %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_meals_daily, "Number of meals a day" %></div>
+	<div class="medium-8 column"><%= f.text_field :source_water_other_use %></div>
+</div>
+
+<h3>Amenities</h3>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :television, "Television" %></div>
+	<div class="medium-8 column"><%= f.check_box :television %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :washing_machine, "Washing Machine" %></div>
+	<div class="medium-8 column"><%= f.check_box :washing_machine %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :refrigerator, "Refrigerator" %></div>
+	<div class="medium-8 column"><%= f.check_box :refrigerator %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :ac, "AC" %></div>
+	<div class="medium-8 column"><%= f.check_box :ac %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :smartphone, "Smartphone" %></div>
+	<div class="medium-8 column"><%= f.check_box :smartphone %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :feature_phone, "Feature Phone" %></div>
+	<div class="medium-8 column"><%= f.check_box :feature_phone %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :cycle, "Cycle" %></div>
+	<div class="medium-8 column"><%= f.check_box :cycle %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :beds, "Beds" %></div>
+	<div class="medium-8 column"><%= f.check_box :beds %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :fans, "Fans" %></div>
+	<div class="medium-8 column"><%= f.check_box :fans %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :migration, "Migration" %></div>
+	<div class="medium-8 column"><%= f.select :migration,
+		[
+			"No",
+			"Yes due to financial problems",
+			"Yes due to employment opportunity",
+			"Yes due to personal problems",
+			"Yes due to nomadic practices",
+			"Yes due to season based job",
+			"Yes due to other reasons"
+		]
+	%></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :own_land, "Own Land" %></div>
+	<div class="medium-8 column"><%= f.check_box :own_land %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :own_cattle, "Own Cattle" %></div>
+	<div class="medium-8 column"><%= f.check_box :own_cattle %></div>
+</div>
+
 <div class="row">
 	<div class="medium-4 column"><%= f.label :earning_members_of_family, "Number of earning members in the family?" %></div>
 	<div class="medium-8 column"><%= f.number_field :earning_members_of_family, step: 1, min: 0  %></div>
@@ -75,6 +216,82 @@
 		</div>
 	</div>
 </div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :approx_household_income, "Approx household income (per month)" %></div>
+	<div class="medium-8 column"><%= f.select :approx_household_income, ["0", "0-1000", "1000-2000", "2000-3000", "3000-4000", "4000-5000", ">5000"] %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :exact_income, "Exact income (if possible)" %></div>
+	<div class="medium-8 column"><%= f.text_field :exact_income %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :approx_household_expenditure, "Approx household expenditure" %></div>
+	<div class="medium-8 column"><%= f.select :approx_household_expenditure, ["0", "0-1000", "1000-2000", "2000-3000", "3000-4000", "4000-5000", ">5000"] %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :marital_status_parent, "Martial status of parents" %></div>
+	<div class="medium-8 column"><%= f.select :marital_status_parent, ["Married", "single", "separated", "divorced", "widowed", "remarried", "coinhabiting", "no parents"] %></div>
+</div>
+
+<h3>Guardian 1 details</h3>
+<h3>Guardian 2 details</h3>
+
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_children_in_school, "Number of children going to school" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_children_in_school, step: 1, min: 0  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_children_not_in_school, "Number of children not going to school" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_children_not_in_school, step: 1, min: 0  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_children_dropped_out, "Number of children dropped out" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_children_dropped_out, step: 1, min: 0  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_children_in_govt_aided_school, "Number of children going to govt aided school" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_children_in_govt_aided_school, step: 1, min: 0  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_children_in_govt_school, "Number of children going to govt school" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_children_in_govt_school, step: 1, min: 0  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_children_in_private_school, "Number of children going to private school" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_children_in_private_school, step: 1, min: 0  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_children_coming_for_tuition, "Number of children coming to Sharana for tuition" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_children_coming_for_tuition, step: 1, min: 0  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_children_not_coming_for_tuition, "Number of children not coming to Sharana for tuition" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_children_not_coming_for_tuition, step: 1, min: 0  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_children_gayatri_creche, "Number of children attending Gayatri House creche" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_children_gayatri_creche, step: 1, min: 0  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_children_gayatri_pre_school, "Number of children attending Gayatri House pre-school" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_children_gayatri_pre_school, step: 1, min: 0  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_children_gayatri_drop_in, "Number of children attending Gayatri House drop-in centre" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_children_gayatri_drop_in, step: 1, min: 0  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_people_mobile_library, "Number of people attending mobile library" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_people_mobile_library, step: 1, min: 0  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_children_sponsored_by_sharana, "Number of children being sponsored by Sharana" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_children_sponsored_by_sharana, step: 1, min: 0  %></div>
+</div>
+
+
+
+
 <div class="row">
 	<div class="medium-4 column"><%= f.label :any_savings, "Do you have any savings?", :for => "savingsCheckbox" %></div>
 	<div class="medium-8 column"><%= f.check_box :any_savings, :id => "savingsCheckbox" %></div>
@@ -101,6 +318,43 @@
 	</div>
 </div>
 <div class="row">
+	<div class="medium-4 column"><%= f.label :origin_loan, "Origin of Loan" %></div>
+	<div class="medium-8 column">
+		<div class="row">
+			<p class="hide-for-touch" style="margin-bottom: 5px;">
+				Hold down ctrl for multiple select
+			</p>
+			<%= f.select(:origin_loan, [
+					["bank", "bank"],
+					["chits", "chits"],
+					["private lender", "private lender"],
+					["SHG", "SHG"],
+					["relatives", "relatives"]
+				],{}, { :multiple => true, :size => 5 })%>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :reasons_loan, "Reasons for Loan" %></div>
+	<div class="medium-8 column">
+		<div class="row">
+			<p class="hide-for-touch" style="margin-bottom: 5px;">
+				Hold down ctrl for multiple select
+			</p>
+			<%= f.select(:reasons_loan, [
+					["loan for food", "loan for food"],
+					["loan for housing", "loan for housing"],
+					["loan for household items", "loan for household items"],
+					["loan for education", "loan for education"],
+					["loan for hospitalisation", "loan for hospitalisation"],
+					["loan for profession", "loan for profession"],
+					["loan for functions", "loan for functions"],
+					["loan for marriage", "loan for marriage"]
+				],{}, { :multiple => true, :size => 8 })%>
+		</div>
+	</div>
+</div>
+<div class="row">
 	<div class="medium-4 column"><%= f.label :debts, "Do you have any debts?", :for => "debtsCheckbox" %></div>
 	<div class="medium-8 column"><%= f.check_box :debts, :id => "debtsCheckbox" %></div>
 </div>
@@ -114,6 +368,11 @@
 		</div>
 	</div>
 </div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :total_debt, "Total debt" %></div>
+	<div class="medium-8 column"><%= f.text_field :total_debt %></div>
+</div>
+
 <div class="row">
 	<div class="medium-4 column"><%= f.label :family_members_addicted_to, "Are any family members addicted to any substance?" %></div>
 	<div class="medium-8 column"><%= f.select :family_members_addicted_to, ["alcohol", "other"], include_blank: "-"%>
@@ -154,13 +413,80 @@
 	<div class="medium-8 column"><%= f.check_box :family_children_vaccined %></div>
 </div>
 <div class="row">
+	<div class="medium-4 column"><%= f.label :children_immunised, "Children immunised for:" %></div>
+	<div class="medium-8 column">
+		<div class="row">
+			<p class="hide-for-touch" style="margin-bottom: 5px;">
+				Hold down ctrl for multiple select
+			</p>
+			<%= f.select(:children_immunised, [
+					["Tetanus", "Tetanus"],
+					["BCG", "BCG"],
+					["DTP", "DTP"],
+					["Hep B", "Hep B"],
+					["Polio", "Polio"],
+					["Measles", "Measles"],
+					["Small pox", "Small pox"]
+				],{}, { :multiple => true, :size => 7 })%>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :children_attend_health_camps, "Attend health camps?" %></div>
+	<div class="medium-8 column"><%= f.check_box :children_attend_health_camps %></div>
+</div>
+
+<div class="row">
+	<div class="medium-4 column"><%= f.label :alcoholism_problems, "Problems faced due to alcoholism:" %></div>
+	<div class="medium-8 column">
+		<div class="row">
+			<p class="hide-for-touch" style="margin-bottom: 5px;">
+				Hold down ctrl for multiple select
+			</p>
+			<%= f.select(:alcoholism_problems, [
+					["No problems", "No problems"],
+					["Early death", "Early death"],
+					["Job lost", "Job lost"],
+					["Family dispute", "Family dispute"],
+					["Physical abuse", "Physical abuse"],
+					["Health issues", "Health issues"],
+					["Debt and loans", "Debt and loans"],
+					["Marital issues", "Marital issues"],
+					["Reduced household income", "Reduced household income"]
+				],{}, { :multiple => true, :size => 9 })%>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :daily_alcohol_expenses, "Alcohol expenses (per day)" %></div>
+	<div class="medium-8 column"><%= f.select :daily_alcohol_expenses, ["0", "0-15", "15-50", "50-100", "100-150", "150-200", ">200"] %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :marriageable_age_girl, "Marriageable age (girl)" %></div>
+	<div class="medium-8 column"><%= f.select :marriageable_age_girl, ["14", "16", "18", "21", ">21"] %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :marriageable_age_boy, "Marriageable age (boy)" %></div>
+	<div class="medium-8 column"><%= f.select :marriageable_age_boy, ["14", "16", "18", "21", ">21"] %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :treat_boys_girls_equally, "Do you treat boys and girls equally?" %></div>
+	<div class="medium-8 column"><%= f.select :treat_boys_girls_equally, ["Yes", "No", "Maybe", "I don't know"] %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :domestic_violence, "Face domestic violence" %></div>
+	<div class="medium-8 column"><%= f.check_box :domestic_violence %></div>
+</div>
+
+
+<div class="row">
 	<div class="medium-4 column"><%= f.label :family_knowledge_of_family_planning, "Do married members of your family know about family planning?" %></div>
 	<div class="medium-8 column"><%= f.check_box :family_knowledge_of_family_planning %></div>
 </div>
 <div class="clearfix"></div>
 <div class="row">
-	<div class="medium-4 column"><%= f.label :family_undergone_family_planning, "Has any of your family member undergone family planning?" %></div>
-	<div class="medium-8 column"><%= f.check_box :family_undergone_family_planning %></div>
+	<div class="medium-4 column"><%= f.label :family_undergone_family_planning_revised, "Has any of your family member undergone family planning?" %></div>
+	<div class="medium-8 column"><%= f.select :family_undergone_family_planning_revised, ["Yes", "No", "Yes after birth of 2 children", "Yes after birth of a boy child", "Don't know what it is"] %></div>
 </div>
 <div class="row">
 	<div class="medium-4 column"><%= f.label :home_remedies_for_illnesses, "Do you know any home remedies for general illnesses?" %></div>
@@ -175,6 +501,103 @@
 		<%= f.select(:illness_treatment, [['government hospital', 'government hospital'], ['Private medical practitioner', 'Private medical practitioner'], ['country doctor', 'country doctor'], ['priest', 'priest'], ['midwife', 'midwife'], ['priest', 'priest'], ['other', 'other'], ],{ :prompt => " -- select one or multiple -- "}, { :multiple => true, :size => 8 })%>
 	</div>
 </div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_people_illness, "Number of people with illness" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_people_illness, step: 1, min: 0  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_people_physically_challenged, "Number of physically challenged people" %></div>
+	<div class="medium-8 column"><%= f.number_field :number_people_physically_challenged, step: 1, min: 0  %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :number_monthly_doctor_visits, "Number of visits to doctor a month" %></div>
+	<div class="medium-8 column"><%= f.select :number_monthly_doctor_visits, ["0", "0-2", "2-5", "5-10", "10-15", ">15"] %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :medical_expenses, "Medical expenses" %></div>
+	<div class="medium-8 column"><%= f.select :medical_expenses, ["0", "0-100", "100-200", "200-300", "300-400", "400-500", ">500"] %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :regularly_toilet_cleaning, "Do you clean the toilet regularly?" %></div>
+	<div class="medium-8 column"><%= f.check_box :regularly_toilet_cleaning %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :defecate_in_open, "Do you defecate in the open?" %></div>
+	<div class="medium-8 column"><%= f.check_box :defecate_in_open %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :dustbin_usage, "Do you use a dustbin?" %></div>
+	<div class="medium-8 column"><%= f.check_box :dustbin_usage %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :garbage_dumped_to, "Where is garbage dumped?" %></div>
+	<div class="medium-8 column"><%= f.select :garbage_dumped_to, ["Open place", "public dustbin", "collected from house", "outside house"] %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :segregate_waste, "Do you segregate waste?" %></div>
+	<div class="medium-8 column"><%= f.check_box :segregate_waste %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :habit_washing_hands, "Do you have the habit of washing hands?" %></div>
+	<div class="medium-8 column"><%= f.check_box :habit_washing_hands %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :soap_usage, "Do you use soap?" %></div>
+	<div class="medium-8 column"><%= f.check_box :soap_usage %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :sanitary_napkin_usage, "Do you use sanitary napkins?" %></div>
+	<div class="medium-8 column"><%= f.check_box :sanitary_napkin_usage %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :contraceptives_awareness, "Awareness of contraceptives?" %></div>
+	<div class="medium-8 column"><%= f.check_box :contraceptives_awareness %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :contraceptives_usage, "Do you use contraceptives?" %></div>
+	<div class="medium-8 column"><%= f.check_box :contraceptives_usage %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :contraceptives_usage, "Do you use contraceptives?" %></div>
+	<div class="medium-8 column"><%= f.check_box :contraceptives_usage %></div>
+</div>
+
+<%# skilled arts %>
+
+<div class="row">
+	<div class="medium-4 column"><%= f.label :skilled_arts_received_training, "Anyone received training?" %></div>
+	<div class="medium-8 column"><%= f.check_box :skilled_arts_received_training %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :skilled_arts_earning_after_training, "Are they earning after the training?" %></div>
+	<div class="medium-8 column"><%= f.check_box :skilled_arts_earning_after_training %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :skilled_arts_hobby_doing, "Anyone doing an activity/hobby based on skill?" %></div>
+	<div class="medium-8 column"><%= f.check_box :skilled_arts_hobby_doing %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :skilled_arts_acquired_skill_earning, "Anyone acquired a skill and earning?" %></div>
+	<div class="medium-8 column"><%= f.check_box :skilled_arts_acquired_skill_earning %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :skilled_arts_what_to_develop, "What skill would you like to develop?" %></div>
+	<div class="medium-8 column"><%= f.text_field :skilled_arts_what_to_develop %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :skilled_arts_what_to_earn, "How much would you like to earn?" %></div>
+	<div class="medium-8 column"><%= f.text_field :skilled_arts_what_to_earn %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :govt_schemes_availed, "Govt schemes availed" %></div>
+	<div class="medium-8 column"><%= f.text_field :govt_schemes_availed %></div>
+</div>
+<div class="row">
+	<div class="medium-4 column"><%= f.label :govt_schemes_found_out, "How did you find out about the schemes?" %></div>
+	<div class="medium-8 column"><%= f.text_field :govt_schemes_found_out %></div>
+</div>
+
+<!-- go on here -->
 <div class="row">
 	<div class="medium-4 column"><%= f.label :family_school_dropout, "Do you have any school drop out children in your family?", :for => "dropoutCheckbox" %></div>
 	<div class="medium-8 column"><%= f.check_box :family_school_dropout, :id => "dropoutCheckbox" %></div>

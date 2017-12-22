@@ -32,7 +32,7 @@ class AddAdditionalFieldsToCommunityDevelopment < ActiveRecord::Migration
     add_column :community_developments, :feature_phone, :boolean
     add_column :community_developments, :cycle, :boolean
     add_column :community_developments, :motorcycle, :boolean
-    add_column :community_developments, :bdes, :boolean
+    add_column :community_developments, :beds, :boolean
     add_column :community_developments, :fans, :boolean
     add_column :community_developments, :migration, :string
     add_column :community_developments, :own_land, :boolean
@@ -102,8 +102,8 @@ class AddAdditionalFieldsToCommunityDevelopment < ActiveRecord::Migration
 
     add_column :community_developments, :children_attend_health_camps, :boolean
     add_column :community_developments, :daily_alcohol_expenses, :string
-    add_column :community_developments, :marriagleable_age_girl, :string
-    add_column :community_developments, :marriagleable_age_boy, :string
+    add_column :community_developments, :marriageable_age_girl, :string
+    add_column :community_developments, :marriageable_age_boy, :string
     add_column :community_developments, :treat_boys_girls_equally, :string
     add_column :community_developments, :domestic_violence, :boolean
 
@@ -129,8 +129,5 @@ class AddAdditionalFieldsToCommunityDevelopment < ActiveRecord::Migration
     add_column :community_developments, :skilled_arts_what_to_earn, :string
     add_column :community_developments, :govt_schemes_availed, :string
     add_column :community_developments, :govt_schemes_found_out, :string
-    add_column :community_developments, :children_school_dropout, :boolean
-    add_column :community_developments, :children_school_dropout_reason, :string
-    add_column :community_developments, :children_school_dropout_condition, :string
   end
 end
