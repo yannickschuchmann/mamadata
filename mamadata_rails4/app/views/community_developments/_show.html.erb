@@ -1,8 +1,52 @@
 <div class="small-12">
 	<table class="table small-12">
 		<tr>
+			<td class="small-12 medium-6 columns">House ID:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.house_id %></td>
+		</tr>
+		<tr>
+			<td class="small-12 medium-6 columns">Location:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.location %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Door Number:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.door_number %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Street Name:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.street_name %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Name of Respondent:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.respondent %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of people in the household:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_people_in_household %></td>
+		</tr>
+    <tr>
 			<td class="small-12 medium-6 columns">Type of family:</td>
 			<td class="small-12 medium-6 columns"><%= @family.community_development.type_of_family %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of adults:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_adults %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of children:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_children %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of boys:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_boys %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of girls:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_girls %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of beneficiaries:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_beneficiaries %></td>
 		</tr>
 		<tr>
 			<td class="small-12 medium-6 columns">Residental status:</td>
@@ -16,6 +60,14 @@
 			<td class="small-12 medium-6 columns">What is the type of the house:</td>
 			<td class="small-12 medium-6 columns"><%= @family.community_development.house_type %></td>
 		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Facilities:</td>
+			<td class="small-12 medium-6 columns">
+        <% @family.community_development.facilities.each_with_index do |v, i| %>
+          <%= i == 0 ? v.to_s : ", "+v.to_s %>
+        <% end unless @family.community_development.facilities.nil? %>
+      </td>
+		</tr>
 		<tr>
 			<td class="small-12 medium-6 columns">Do you have electricity connection:</td>
 			<td class="small-12 medium-6 columns"><%= @family.community_development.electricity ? 'yes' : 'no' %></td>
@@ -23,6 +75,18 @@
 		<tr>
 			<td class="small-12 medium-6 columns">Where do you obtain your water:</td>
 			<td class="small-12 medium-6 columns"><%= @family.community_development.water_from %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Source of drinking water:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.source_drinking_water %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Source of water for other uses:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.source_water_other_use %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Distance of household from water sources (in metres):</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.distance_water_sources %></td>
 		</tr>
 		<tr>
 			<td class="small-12 medium-6 columns">Do you have a toilet facility in your house</td>
@@ -38,6 +102,66 @@
 				<td class="small-12 medium-6 columns"><%= @family.community_development.want_rain_harvesting  ? 'yes' : 'no' %></td>
 			</tr>
 		<% end %>
+    <tr>
+			<td class="small-12 medium-6 columns">Fuel used for cooking:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.fuel_cooking %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of meals a day:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_meals_daily %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Amenities:</td>
+			<td class="small-12 medium-6 columns"></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Television:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.television ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Washing machine:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.washing_machine ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Refrigerator:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.refrigerator ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">AC:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.ac ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Smartphone:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.smartphone ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Feature phone:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.feature_phone ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Cycle:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.cycle ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Beds:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.beds ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Fans:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.fans ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Migration:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.migration %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Own land:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.own_land ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Own cattle:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.own_cattle ? 'yes' : 'no' %></td>
+		</tr>
 		<tr>
 			<td class="small-12 medium-6 columns">Number of earning members in the family:</td>
 			<td class="small-12 medium-6 columns"><%= @family.community_development.earning_members_of_family %></td>
@@ -50,6 +174,82 @@
 			<td class="small-12 medium-6 columns">If agriculture give land details:</td>
 			<td class="small-12 medium-6 columns"><%= @family.community_development.land_details %></td>
 		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Approx household income (per month):</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.approx_household_income %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Exact income (if possible):</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.exact_income %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Approx household expenditure:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.approx_household_expenditure %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Marital status of parents:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.marital_status_parent %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Marital status of parents:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.marital_status_parent %></td>
+		</tr>
+
+    <tr><td>Guardian 1</td><td></td></tr>
+    <tr><td>Guardian 2</td><td></td></tr>
+
+    <tr>
+			<td class="small-12 medium-6 columns">Number of children going to school:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_children_in_school %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of children not going to school:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_children_not_in_school %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of children dropped out:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_children_dropped_out %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of children going to govt aided school:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_children_in_govt_aided_school %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of children going to govt school:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_children_in_govt_school %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of children going to private school:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_children_in_private_school %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of children coming to Sharana for tuition:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_children_coming_for_tuition %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of children not coming to Sharana for tuition:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_children_not_coming_for_tuition %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of children attending Gayatri House creche:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_children_gayatri_creche %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of children attending Gayatri House pre-school:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_children_gayatri_pre_school %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of children attending Gayatri House drop-in centre:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_children_gayatri_drop_in %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of people attending mobile library:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_people_mobile_library %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of children being sponsored by Sharana:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_children_sponsored_by_sharana %></td>
+		</tr>
 		<tr>
 			<td class="small-12 medium-6 columns">Do you have any savings:</td>
 			<td class="small-12 medium-6 columns"><%= @family.community_development.any_savings ? 'yes' : 'no' %></td>
@@ -60,6 +260,14 @@
 				<td class="small-12 medium-6 columns"><%= @family.community_development.mode_of_savings %></td>
 			</tr>
 		<% end %>
+    <tr>
+			<td class="small-12 medium-6 columns">Origin of loan:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.origin_loan %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Reasons for loan:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.reasons_loan %></td>
+		</tr>
 		<tr>
 			<td class="small-12 medium-6 columns">Do you have debts:</td>
 			<td class="small-12 medium-6 columns"><%= @family.community_development.debts ? 'yes' : 'no' %></td>
@@ -70,6 +278,10 @@
 				<td class="small-12 medium-6 columns"><%= @family.community_development.reason_for_debt %></td>
 			</tr>
 		<% end %>
+    <tr>
+			<td class="small-12 medium-6 columns">Total debt:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.total_debt %></td>
+		</tr>
 		<tr>
 			<td class="small-12 medium-6 columns">Are any family members addicted to any substance:</td>
 			<td class="small-12 medium-6 columns"><%= @family.community_development.family_members_addicted_to %></td>
@@ -104,13 +316,59 @@
 			<td class="small-12 medium-6 columns">Are the children in your family duly vaccinated:</td>
 			<td class="small-12 medium-6 columns"><%= @family.community_development.family_children_vaccined ? 'yes' : 'no' %></td>
 		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Children immunised for:</td>
+			<td class="small-12 medium-6 columns">
+        <% @family.community_development.children_immunised.each_with_index do |v, i| %>
+          <%= i == 0 ? v.to_s : ", "+v.to_s %>
+        <% end unless @family.community_development.children_immunised.nil? %>
+      </td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Attend health camps</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.children_attend_health_camps ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Problems faced due to alcoholism:</td>
+			<td class="small-12 medium-6 columns">
+        <% @family.community_development.alcoholism_problems.each_with_index do |v, i| %>
+          <%= i == 0 ? v.to_s : ", "+v.to_s %>
+        <% end unless @family.community_development.alcoholism_problems.nil? %>
+      </td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Alcohol expenses (per day)</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.daily_alcohol_expenses %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Marriageable age (girl)</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.marriageable_age_girl %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Marriageable age (boy)</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.marriageable_age_boy %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Do you treat boys and girls equally</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.treat_boys_girls_equally %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Face domestic violence</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.domestic_violence ? 'yes' : 'no' %></td>
+		</tr>
 		<tr>
 			<td class="small-12 medium-6 columns">Do married members of your family know about family planning:</td>
 			<td class="small-12 medium-6 columns"><%= @family.community_development.family_knowledge_of_family_planning ? 'yes' : 'no' %></td>
 		</tr>
+    <% if @family.community_development.family_undergone_family_planning.present? %>
 		<tr>
-			<td class="small-12 medium-6 columns">Has any of your family member undergone family planning:</td>
+			<td class="small-12 medium-6 columns">Has any of your family member undergone family planning (DEPRECATED: only "yes" and "no"):</td>
 			<td class="small-12 medium-6 columns"><%= @family.community_development.family_undergone_family_planning ? 'yes' : 'no' %></td>
+		</tr>
+    <% end %>
+    <tr>
+			<td class="small-12 medium-6 columns">Has any of your family member undergone family planning:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.family_undergone_family_planning_revised %></td>
 		</tr>
 		<tr>
 			<td class="small-12 medium-6 columns">Do you know any home remedies for general illnesses:</td>
@@ -119,6 +377,99 @@
 		<tr>
 			<td class="small-12 medium-6 columns">For your illness, where do you go for treatment</td>
 			<td class="small-12 medium-6 columns"><% @family.community_development.illness_treatment.each_with_index do |v, i| %><%= i == 0 ? v.to_s : ", "+v.to_s %><% end unless @family.community_development.illness_treatment.nil? %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of people with illness:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_people_illness %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of physically challenged people:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_people_physically_challenged %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Number of visits to doctor a month:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.number_monthly_doctor_visits %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Medical expenses:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.medical_expenses %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Do you clean the toilet regularly:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.regularly_toilet_cleaning ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Do you defecate in the open:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.defecate_in_open ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Do you use a dustbin:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.dustbin_usage ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Where is garbage dumped:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.garbage_dumped_to %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Do you segregate waste:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.segregate_waste ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Do you have the habit of washing hands:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.habit_washing_hands ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Do you use soap:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.soap_usage ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Do you use sanitary napkins:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.sanitary_napkin_usage ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Awareness of contraceptives:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.contraceptives_awareness ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Do you use contraceptives:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.contraceptives_usage ? 'yes' : 'no' %></td>
+		</tr>
+
+    <tr>
+      <td>Skilled arts</td>
+      <td></td>
+    </tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Anyone received training:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.skilled_arts_received_training ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Are they earning after the training:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.skilled_arts_earning_after_training ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Anyone doing an activity/hobby based on skill:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.skilled_arts_hobby_doing ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Anyone acquired a skill and earning:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.skilled_arts_acquired_skill_earning ? 'yes' : 'no' %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">What skill would you like to develop:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.skilled_arts_what_to_develop %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">How much would you like to earn:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.skilled_arts_what_to_earn %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">Govt schemes availed:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.govt_schemes_availed %></td>
+		</tr>
+    <tr>
+			<td class="small-12 medium-6 columns">How did you find out about the schemes:</td>
+			<td class="small-12 medium-6 columns"><%= @family.community_development.govt_schemes_found_out %></td>
 		</tr>
 		<tr>
 			<td class="small-12 medium-6 columns">Do you have any school drop out children in your family</td>
