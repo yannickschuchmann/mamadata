@@ -109,8 +109,8 @@
 			<td class="small-12 medium-6 columns"><%= @family.community_development.number_meals_daily %></td>
 		</tr>
     <tr>
-			<td><strong>Amenities:</strong></td>
-			<td></td>
+			<td class="small-12 medium-6 columns"><strong>Amenities:</strong></td>
+			<td class="small-12 medium-6 columns"></td>
 		</tr>
     <tr>
 			<td class="small-12 medium-6 columns">Television:</td>
@@ -192,10 +192,96 @@
 			<td class="small-12 medium-6 columns">Marital status of parents:</td>
 			<td class="small-12 medium-6 columns"><%= @family.community_development.marital_status_parent %></td>
 		</tr>
-
-    <tr><td><strong>Guardian 1</strong></td><td></td></tr>
-    <tr><td><strong>Guardian 2</strong></td><td></td></tr>
-
+		<tr>
+			<td class="small-12 medium-6 columns"></td>
+			<td class="small-12 medium-6 columns"></td>
+		</tr>
+		<% @family.community_development.guardians.each_with_index do |guardian, index| %>
+			<tr>
+				<td class="small-12 medium-6 columns"><strong>Guardian <%= index + 1 %></strong></td>
+				<td class="small-12 medium-6 columns"></td>
+			</tr>
+			<tr>
+				<td class="small-12 medium-6 columns">Name:</td>
+				<td class="small-12 medium-6 columns"><%= guardian.name %></td>
+			</tr>
+			<tr>
+				<td class="small-12 medium-6 columns">Age:</td>
+				<td class="small-12 medium-6 columns"><%= guardian.age %></td>
+			</tr>
+			<tr>
+				<td class="small-12 medium-6 columns">Sex:</td>
+				<td class="small-12 medium-6 columns"><%= guardian.sex %></td>
+			</tr>
+			<tr>
+				<td class="small-12 medium-6 columns">Relationship with beneficiary:</td>
+				<td class="small-12 medium-6 columns"><%= guardian.relationship_beneficiary %></td>
+			</tr>
+			<tr>
+				<td class="small-12 medium-6 columns">Religion:</td>
+				<td class="small-12 medium-6 columns"><%= guardian.religion %></td>
+			</tr>
+			<tr>
+				<td class="small-12 medium-6 columns">Caste:</td>
+				<td class="small-12 medium-6 columns"><%= guardian.caste %></td>
+			</tr>
+			<tr>
+				<td class="small-12 medium-6 columns">Educational qualification:</td>
+				<td class="small-12 medium-6 columns"><%= guardian.educational_qualification %></td>
+			</tr>
+			<tr>
+				<td class="small-12 medium-6 columns">Occupation:</td>
+				<td class="small-12 medium-6 columns"><%= guardian.occupation %></td>
+			</tr>
+			<tr>
+				<td class="small-12 medium-6 columns">Income:</td>
+				<td class="small-12 medium-6 columns"><%= guardian.income %></td>
+			</tr>
+			<tr>
+				<td class="small-12 medium-6 columns">Employment kind:</td>
+				<td class="small-12 medium-6 columns"><%= guardian.employment_kind %></td>
+			</tr>
+			<tr>
+				<td class="small-12 medium-6 columns">Pension:</td>
+				<td class="small-12 medium-6 columns"><%= guardian.pension %></td>
+			</tr>
+			<tr>
+				<td class="small-12 medium-6 columns">Aadhar card:</td>
+				<td class="small-12 medium-6 columns"><%= guardian.aadhar_card ? 'yes' : 'no' %></td>
+			</tr>
+			<tr>
+				<td class="small-12 medium-6 columns">Voter's ID:</td>
+				<td class="small-12 medium-6 columns"><%= guardian.voters_id ? 'yes' : 'no' %></td>
+			</tr>
+			<tr>
+				<td class="small-12 medium-6 columns">Bank account:</td>
+				<td class="small-12 medium-6 columns"><%= guardian.bank_account ? 'yes' : 'no' %></td>
+			</tr>
+			<tr>
+				<td class="small-12 medium-6 columns">SHG:</td>
+				<td class="small-12 medium-6 columns"><%= guardian.shg ? 'yes' : 'no' %></td>
+			</tr>
+			<tr>
+				<td class="small-12 medium-6 columns">Criminal cases:</td>
+				<td class="small-12 medium-6 columns"><%= guardian.criminal_cases ? 'yes' : 'no' %></td>
+			</tr>
+			<tr>
+				<td class="small-12 medium-6 columns">Physically challenged:</td>
+				<td class="small-12 medium-6 columns"><%= guardian.physically_challenged ? 'yes' : 'no' %></td>
+			</tr>
+			<tr>
+				<td class="small-12 medium-6 columns">Illness:</td>
+				<td class="small-12 medium-6 columns"><%= guardian.illness %></td>
+			</tr>
+			<tr>
+				<td class="small-12 medium-6 columns">Alcoholic:</td>
+				<td class="small-12 medium-6 columns"><%= guardian.alcoholic ? 'yes' : 'no' %></td>
+			</tr>
+		<% end %>
+		<tr>
+			<td class="small-12 medium-6 columns"></td>
+			<td class="small-12 medium-6 columns"></td>
+		</tr>
     <tr>
 			<td class="small-12 medium-6 columns">Number of children going to school:</td>
 			<td class="small-12 medium-6 columns"><%= @family.community_development.number_children_in_school %></td>
@@ -428,8 +514,8 @@
 		</tr>
 
     <tr>
-      <td><strong>Skilled arts</strong></td>
-      <td></td>
+      <td class="small-12 medium-6 columns"><strong>Skilled arts</strong></td>
+      <td class="small-12 medium-6 columns"></td>
     </tr>
     <tr>
 			<td class="small-12 medium-6 columns">Anyone received training:</td>
