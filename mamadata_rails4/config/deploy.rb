@@ -50,7 +50,7 @@ set :format, :pretty
 # set :linked_files, %w{config/database.yml}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{mamadata_rails4/bin mamadata_rails4/log mamadata_rails4/vendor/bundle mamadata_rails4/public/system}
+set :linked_dirs, %w{mamadata_rails4/log mamadata_rails4/vendor/bundle mamadata_rails4/public/system}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
