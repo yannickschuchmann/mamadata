@@ -241,8 +241,76 @@
 		<div class="medium-8 column"><%= fg.text_field :name %></div>
 	</div>
 	<div class="row">
+		<div class="medium-4 column"><%= fg.label :age, "Age" %></div>
+		<div class="medium-8 column"><%= fg.text_field :age %></div>
+	</div>
+	<div class="row">
 		<div class="medium-4 column"><%= fg.label :sex, "Sex" %></div>
 		<div class="medium-8 column"><%= fg.text_field :sex %></div>
+	</div>
+	<div class="row">
+		<div class="medium-4 column"><%= fg.label :relationship_beneficiary, "Relationship with Beneficiary" %></div>
+		<div class="medium-8 column"><%= fg.text_field :relationship_beneficiary %></div>
+	</div>
+	<div class="row">
+		<div class="medium-4 column"><%= fg.label :religion, "Religion" %></div>
+		<div class="medium-8 column"><%= fg.select :religion, ["Hindu", "Muslim", "Christian", "Buddhist", "Jain"] %></div>
+	</div>
+	<div class="row">
+		<div class="medium-4 column"><%= fg.label :caste, "Caste" %></div>
+		<div class="medium-8 column"><%= fg.select :caste, ["SC", "ST", "OBC", "DNTN"] %></div>
+	</div>
+	<div class="row">
+		<div class="medium-4 column"><%= fg.label :educational_qualification, "Educational qualification" %></div>
+		<div class="medium-8 column"><%= fg.select :educational_qualification, ["Never attended school", "LKG", "UKG", "Standard (1-12)", "UG", "PG"] %></div>
+	</div>
+	<div class="row">
+		<div class="medium-4 column"><%= fg.label :occupation, "Occupation" %></div>
+		<div class="medium-8 column"><%= fg.text_field :occupation %></div>
+	</div>
+	<div class="row">
+		<div class="medium-4 column"><%= fg.label :income, "Income" %></div>
+		<div class="medium-8 column"><%= fg.select :income, ["No income", "0-1000", "1000-2000", "2000-3000", "3000-4000", "4000-5000", ">5000"] %></div>
+	</div>
+	<div class="row">
+		<div class="medium-4 column"><%= fg.label :employment_kind, "Employment kind" %></div>
+		<div class="medium-8 column"><%= fg.select :employment_kind, ["Daily wage", "Employed", "Hired by Contractor", "Unemployed", "Self-employed"] %></div>
+	</div>
+	<div class="row">
+		<div class="medium-4 column"><%= fg.label :pension, "Pension" %></div>
+		<div class="medium-8 column"><%= fg.select :pension, ["Widowed", "Handicapped", "Senior Citizen", "No pension"] %></div>
+	</div>
+	<div class="row">
+		<div class="medium-4 column"><%= fg.label :aadhar_card, "Aadhar card" %></div>
+		<div class="medium-8 column"><%= fg.check_box :aadhar_card %></div>
+	</div>
+	<div class="row">
+		<div class="medium-4 column"><%= fg.label :voters_id, "Voter's ID" %></div>
+		<div class="medium-8 column"><%= fg.check_box :voters_id %></div>
+	</div>
+	<div class="row">
+		<div class="medium-4 column"><%= fg.label :bank_account, "Bank account" %></div>
+		<div class="medium-8 column"><%= fg.check_box :bank_account %></div>
+	</div>
+	<div class="row">
+		<div class="medium-4 column"><%= fg.label :shg, "SHG" %></div>
+		<div class="medium-8 column"><%= fg.check_box :shg %></div>
+	</div>
+	<div class="row">
+		<div class="medium-4 column"><%= fg.label :criminal_cases, "Criminal cases" %></div>
+		<div class="medium-8 column"><%= fg.check_box :criminal_cases %></div>
+	</div>
+	<div class="row">
+		<div class="medium-4 column"><%= fg.label :physically_challenged, "Physically challenged" %></div>
+		<div class="medium-8 column"><%= fg.check_box :physically_challenged %></div>
+	</div>
+	<div class="row">
+		<div class="medium-4 column"><%= fg.label :illness, "Illness" %></div>
+		<div class="medium-8 column"><%= fg.text_field :illness %></div>
+	</div>
+	<div class="row">
+		<div class="medium-4 column"><%= fg.label :alcoholic, "Alcoholic" %></div>
+		<div class="medium-8 column"><%= fg.check_box :alcoholic %></div>
 	</div>
 <% end %>
 
@@ -298,10 +366,6 @@
 	<div class="medium-4 column"><%= f.label :number_children_sponsored_by_sharana, "Number of children being sponsored by Sharana" %></div>
 	<div class="medium-8 column"><%= f.number_field :number_children_sponsored_by_sharana, step: 1, min: 0  %></div>
 </div>
-
-
-
-
 <div class="row">
 	<div class="medium-4 column"><%= f.label :any_savings, "Do you have any savings?", :for => "savingsCheckbox" %></div>
 	<div class="medium-8 column"><%= f.check_box :any_savings, :id => "savingsCheckbox" %></div>
