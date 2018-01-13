@@ -233,8 +233,18 @@
 	<div class="medium-8 column"><%= f.select :marital_status_parent, ["Married", "single", "separated", "divorced", "widowed", "remarried", "coinhabiting", "no parents"] %></div>
 </div>
 
-<h3>Guardian 1 details</h3>
-<h3>Guardian 2 details</h3>
+<% guardins_index = 0 %>
+<%= f.fields_for :guardians do |fg| %>
+	<h3>Guardian <%= guardins_index += 1 %> details</h3>
+	<div class="row">
+		<div class="medium-4 column"><%= fg.label :name, "Name" %></div>
+		<div class="medium-8 column"><%= fg.text_field :name %></div>
+	</div>
+	<div class="row">
+		<div class="medium-4 column"><%= fg.label :sex, "Sex" %></div>
+		<div class="medium-8 column"><%= fg.text_field :sex %></div>
+	</div>
+<% end %>
 
 <div class="row">
 	<div class="medium-4 column"><%= f.label :number_children_in_school, "Number of children going to school" %></div>

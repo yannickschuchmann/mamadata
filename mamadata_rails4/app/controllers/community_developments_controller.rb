@@ -179,7 +179,29 @@ class CommunityDevelopmentsController < ApplicationController
 				:skilled_arts_what_to_develop,
 				:skilled_arts_what_to_earn,
 				:govt_schemes_availed,
-				:govt_schemes_found_out
+				:govt_schemes_found_out,
+				:guardians_attributes => [
+					:id,
+					:name,
+					:age,
+					:sex,
+					:relationship_beneficiary,
+					:religion,
+					:caste,
+					:educational_qualification,
+					:occupation,
+					:income,
+					:employment_kind,
+					:pension,
+					:aadhar_card,
+					:voters_id,
+					:bank_account,
+					:shg,
+					:criminal_cases,
+					:physically_challenged,
+					:illness,
+					:alcoholic
+				]
 			)
 		end
 	end

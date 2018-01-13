@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171105152050) do
+ActiveRecord::Schema.define(version: 20180113191347) do
 
   create_table "beneficiary_program_relationships", force: true do |t|
     t.integer  "program_id"
@@ -207,6 +207,33 @@ ActiveRecord::Schema.define(version: 20171105152050) do
     t.datetime "updated_at"
     t.datetime "deleted_at"
   end
+
+  create_table "guardians", force: true do |t|
+    t.integer  "community_development_id"
+    t.string   "name"
+    t.string   "age"
+    t.string   "sex"
+    t.string   "relationship_beneficiary"
+    t.string   "religion"
+    t.string   "caste"
+    t.string   "educational_qualification"
+    t.string   "occupation"
+    t.string   "income"
+    t.string   "employment_kind"
+    t.string   "pension"
+    t.boolean  "aadhar_card"
+    t.boolean  "voters_id"
+    t.boolean  "bank_account"
+    t.boolean  "shg"
+    t.boolean  "criminal_cases"
+    t.boolean  "physically_challenged"
+    t.string   "illness"
+    t.boolean  "alcoholic"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "guardians", ["community_development_id"], name: "index_guardians_on_community_development_id"
 
   create_table "journals", force: true do |t|
     t.integer  "person_id"
