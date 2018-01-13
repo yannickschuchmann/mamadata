@@ -63,9 +63,7 @@
     <tr>
 			<td class="small-12 medium-6 columns">Facilities:</td>
 			<td class="small-12 medium-6 columns">
-        <% @family.community_development.facilities.each_with_index do |v, i| %>
-          <%= i == 0 ? v.to_s : ", "+v.to_s %>
-        <% end unless @family.community_development.facilities.nil? %>
+        <% @family.community_development.facilities.each_with_index do |v, i| %><%= i == 0 ? v.to_s : ", "+v.to_s %><% end unless @family.community_development.facilities.nil? %>
       </td>
 		</tr>
 		<tr>
@@ -111,8 +109,8 @@
 			<td class="small-12 medium-6 columns"><%= @family.community_development.number_meals_daily %></td>
 		</tr>
     <tr>
-			<td class="small-12 medium-6 columns">Amenities:</td>
-			<td class="small-12 medium-6 columns"></td>
+			<td><strong>Amenities:</strong></td>
+			<td></td>
 		</tr>
     <tr>
 			<td class="small-12 medium-6 columns">Television:</td>
@@ -195,8 +193,8 @@
 			<td class="small-12 medium-6 columns"><%= @family.community_development.marital_status_parent %></td>
 		</tr>
 
-    <tr><td>Guardian 1</td><td></td></tr>
-    <tr><td>Guardian 2</td><td></td></tr>
+    <tr><td><strong>Guardian 1</strong></td><td></td></tr>
+    <tr><td><strong>Guardian 2</strong></td><td></td></tr>
 
     <tr>
 			<td class="small-12 medium-6 columns">Number of children going to school:</td>
@@ -257,16 +255,16 @@
 		<% if @family.community_development.any_savings%>
 			<tr>
 				<td class="small-12 medium-6 columns">If yes, what is the mode of savings:</td>
-				<td class="small-12 medium-6 columns"><%= @family.community_development.mode_of_savings %></td>
+				<td class="small-12 medium-6 columns"><% @family.community_development.mode_of_savings.each_with_index do |v, i| %><%= i == 0 ? v.to_s : ", "+v.to_s %><% end unless @family.community_development.mode_of_savings.nil? %></td>
 			</tr>
 		<% end %>
     <tr>
 			<td class="small-12 medium-6 columns">Origin of loan:</td>
-			<td class="small-12 medium-6 columns"><%= @family.community_development.origin_loan %></td>
+			<td class="small-12 medium-6 columns"><% @family.community_development.origin_loan.each_with_index do |v, i| %><%= i == 0 ? v.to_s : ", "+v.to_s %><% end unless @family.community_development.origin_loan.nil? %></td>
 		</tr>
     <tr>
 			<td class="small-12 medium-6 columns">Reasons for loan:</td>
-			<td class="small-12 medium-6 columns"><%= @family.community_development.reasons_loan %></td>
+			<td class="small-12 medium-6 columns"><% @family.community_development.reasons_loan.each_with_index do |v, i| %><%= i == 0 ? v.to_s : ", "+v.to_s %><% end unless @family.community_development.reasons_loan.nil? %></td>
 		</tr>
 		<tr>
 			<td class="small-12 medium-6 columns">Do you have debts:</td>
@@ -319,9 +317,7 @@
     <tr>
 			<td class="small-12 medium-6 columns">Children immunised for:</td>
 			<td class="small-12 medium-6 columns">
-        <% @family.community_development.children_immunised.each_with_index do |v, i| %>
-          <%= i == 0 ? v.to_s : ", "+v.to_s %>
-        <% end unless @family.community_development.children_immunised.nil? %>
+        <% @family.community_development.children_immunised.each_with_index do |v, i| %><%= i == 0 ? v.to_s : ", "+v.to_s %><% end unless @family.community_development.children_immunised.nil? %>
       </td>
 		</tr>
     <tr>
@@ -331,9 +327,7 @@
     <tr>
 			<td class="small-12 medium-6 columns">Problems faced due to alcoholism:</td>
 			<td class="small-12 medium-6 columns">
-        <% @family.community_development.alcoholism_problems.each_with_index do |v, i| %>
-          <%= i == 0 ? v.to_s : ", "+v.to_s %>
-        <% end unless @family.community_development.alcoholism_problems.nil? %>
+        <% @family.community_development.alcoholism_problems.each_with_index do |v, i| %><%= i == 0 ? v.to_s : ", "+v.to_s %><% end unless @family.community_development.alcoholism_problems.nil? %>
       </td>
 		</tr>
     <tr>
@@ -360,12 +354,10 @@
 			<td class="small-12 medium-6 columns">Do married members of your family know about family planning:</td>
 			<td class="small-12 medium-6 columns"><%= @family.community_development.family_knowledge_of_family_planning ? 'yes' : 'no' %></td>
 		</tr>
-    <% if @family.community_development.family_undergone_family_planning.present? %>
 		<tr>
 			<td class="small-12 medium-6 columns">Has any of your family member undergone family planning (DEPRECATED: only "yes" and "no"):</td>
 			<td class="small-12 medium-6 columns"><%= @family.community_development.family_undergone_family_planning ? 'yes' : 'no' %></td>
 		</tr>
-    <% end %>
     <tr>
 			<td class="small-12 medium-6 columns">Has any of your family member undergone family planning:</td>
 			<td class="small-12 medium-6 columns"><%= @family.community_development.family_undergone_family_planning_revised %></td>
@@ -436,7 +428,7 @@
 		</tr>
 
     <tr>
-      <td>Skilled arts</td>
+      <td><strong>Skilled arts</strong></td>
       <td></td>
     </tr>
     <tr>
@@ -485,10 +477,12 @@
 				<td class="small-12 medium-6 columns"><%= @family.community_development.family_dropout_present_condition %></td>
 			</tr>
 		<% end %>
+		<% unless @family.community_development.family_skilled_in_art.blank? %>
 		<tr>
 			<td class="small-12 medium-6 columns">Is any of you family member skilled in any art?</td>
 			<td class="small-12 medium-6 columns"><% @family.community_development.family_skilled_in_art.each_with_index do |v, i| %><%= i == 0 ? v.to_s : ", "+v.to_s %><% end unless @family.community_development.family_skilled_in_art.nil? %></td>
 		</tr>
+		<% end %>
 	</table>
 	<p>&nbsp;<br />&nbsp;</p>
 </div>

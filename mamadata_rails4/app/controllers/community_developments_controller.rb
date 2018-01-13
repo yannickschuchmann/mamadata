@@ -7,8 +7,19 @@ class CommunityDevelopmentsController < ApplicationController
 	# PATCH/PUT /community_developments/1.json
 	def update
 		#remove empty array fields!
-		community_development_params["family_skilled_in_art"].reject!(&:empty?)
-		community_development_params["illness_treatment"].reject!(&:empty?)
+		[
+			"family_skilled_in_art",
+			"illness_treatment",
+			"facilities",
+			"mode_of_savings",
+			"origin_loan",
+			"reasons_loan",
+			"alcoholism_problems",
+			"children_immunised"
+		].each do |field|
+			community_development_params[field].reject!(&:empty?) unless community_development_params[field].nil?
+		end
+
 		respond_to do |format|
 			if @community_development.update(community_development_params)
 				format.html { redirect_to @community_development.family, notice: 'Community development was successfully updated.' }
@@ -54,7 +65,9 @@ class CommunityDevelopmentsController < ApplicationController
 				:source_of_income,
 				:land_details,
 				:any_savings,
-				:mode_of_savings,
+				{
+					:mode_of_savings => []
+				},
 				:debts,
 				:reason_for_debt,
 				:family_members_addicted_to,
@@ -87,7 +100,9 @@ class CommunityDevelopmentsController < ApplicationController
 				:number_boys,
 				:number_girls,
 				:number_beneficiaries,
-				:facilities,
+				{
+					:facilities => []
+				},
 				:source_drinking_water,
 				:source_water_other_use,
 				:distance_water_sources,
@@ -125,10 +140,18 @@ class CommunityDevelopmentsController < ApplicationController
 				:number_children_sponsored_by_sharana,
 				:total_debt,
 				:family_undergone_family_planning_revised,
-				:origin_loan,
-				:reasons_loan,
-				:children_immunised,
-				:alcoholism_problems,
+				{
+					:origin_loan => []
+				},
+				{
+					:reasons_loan => []
+				},
+				{
+					:children_immunised => [],
+				},
+				{
+					:alcoholism_problems => [],
+				},
 				:children_attend_health_camps,
 				:daily_alcohol_expenses,
 				:marriageable_age_girl,
