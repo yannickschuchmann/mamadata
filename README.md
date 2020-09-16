@@ -44,28 +44,28 @@ User roles
 ----------
 Currently MamaData supports 5 different user roles - **please differentiate between user roles and roles in a family!**.
 
-###Admin
+### Admin
 As an administrator you have full access to every page which means you can create, read. update and delete an entity.
-###Social Worker
+### Social Worker
 On one hand social workers have to manage beneficiaries and their relations to families, programs and benefits and they even have to create incidents for them.
 So they have the ability to create, read, update and delete beneficiaries, families and incidents. But they can not edit the granting status of an incident
-###Accountant
+### Accountant
 Accountants can edit Benefits and have full management right to incidents. It's their task to administrate the granting status of an incident.
-###Supporter
+### Supporter
 Supporters can read everything except application settings (Roles, DonorTypes, Users)
-###Sharana_France
+### Sharana_France
 As a special version of a supporter, they can **only** manage their own supporter, (with DonorTypeId == 1)
 
 Organizations Workflow
 ----------------------
-###Incidents
+### Incidents
 
 Incidents are the real goods or services, valued in rupees, a beneficiary can get. Think of it like issue tickets just with different values.
 Incndents can placed by the social worker. They can only be submitted in the beneficiary file the Incident should belong to.
 The accountants responsibility is to either grant or dismiss the incident.
 
 
-###Benefits
+### Benefits
 A category in which the Incidents will be placed in
 The Benefit belongs to one or more programs
 
@@ -73,18 +73,18 @@ The Benefit belongs to one or more programs
 - **calculated amount**  is set by the administrator or the accountant. Here there is an overall budget which gets divided by a specific number of benficiaries
 - The **fixed** amount is set by the administrator or the accountant to ensure beneficiaries getting the same amount, for example mobile fees, regardless of their actual costs
 
-###Programs
+### Programs
 Programs are groups which consist of one or multiple Benefit(s)
 
-###User Accounts
+### User Accounts
 Due to security reasons a new user can only be added by the administrator. He also defines the users role in the organization
 and the initial password which can be changed after the first login via profile settings
 
-###Families
+### Families
 A familiy should be created **after** every member of the family is recorded as a beneficiary
 After creating such a family there will be a family questionaire
 
-###Godfather
+### Godfather
 The Sharana_France Role has an option to be a godfather for one particular beneficiary.
 In case the beneficiary has a godfather there are options to upload documents related to the godfather in the beneficairy file
 
